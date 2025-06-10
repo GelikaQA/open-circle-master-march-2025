@@ -67,10 +67,5 @@ public class CommonSteps {
     @Then("assert text {string} presented in {string}")
     public void assertTextPresentedIn(String text, String target) {
         basePage.assertTextPresentedIn(text, target);
-        WebElement foundElement = driver.findElement(getByObject(target));
-        String elementText = foundElement.getText();
-
-        String message = "Text \"" + text + "\" \nin " + target + " is not presented. \nActual text is \"" + elementText + "\"";
-        assertTrue(message, elementText.contains(text));
     }
 }

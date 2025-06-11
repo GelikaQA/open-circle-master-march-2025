@@ -127,4 +127,9 @@ public class BasePage {
         String message = "Text '" + text + "' 'in " + target + " is not presented. 'Actual text is '" + elementText + "'";
         assertTrue(message, elementText.contains(text));
     }
+
+    public void waitForElementIsVisible(String target) {
+        wait.forElementToBeDisplayed(10, getByObject(target), "Element");
+        wait.forElementToBeInteractable(10, getByObject(target), "Element");
+    }
 }

@@ -4,11 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebElement;
 import pages.BasePage;
-
-import static org.junit.Assert.assertTrue;
-import static tools.CommonTools.getByObject;
 
 public class CommonSteps {
 
@@ -67,5 +63,10 @@ public class CommonSteps {
     @Then("assert text {string} presented in {string}")
     public void assertTextPresentedIn(String text, String target) {
         basePage.assertTextPresentedIn(text, target);
+    }
+
+    @And("wait for {string} is visible")
+    public void waitForElementIsVisible(String target) {
+        basePage.waitForElementIsVisible(target);
     }
 }

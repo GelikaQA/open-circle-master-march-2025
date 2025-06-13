@@ -40,7 +40,7 @@ public class CommonSteps {
         basePage.assertElementIsDisplayed(element);
     }
 
-    @Given("user is on the page {string}")
+    @Given("open page {string}")
     public void userIsOnThePage(String url) {
         basePage.openWebPage(url);
     }

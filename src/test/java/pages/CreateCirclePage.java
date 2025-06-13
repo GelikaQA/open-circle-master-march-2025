@@ -16,5 +16,5 @@ public class CreateCirclePage {
     private static final String CREATE_CIRCLE_COPY_ERROR_POPUP = "//div[contains(@class, 'ant-notification ant-notification-topRight')]//span[text()='Generate PassCode firstly']";
     private static final String CREATE_CIRCLE_NON_UNIQUE_EMAIL_ERROR_POPUP = "//div[contains(@class, 'ant-notification ant-notification-topRight')]//span[text()='A user with such an email exists.']";
     private static final String CREATE_CIRCLE_NON_UNIQUE_CIRCLE_NAME_ERROR_POPUP = "//div[@class='ant-notification-notice-with-icon']//span[text()='A Circle with this name exists.']";
-//  private static final String LOGIN_CREATE_CIRCLE_SUCCESS_POPUP = "//div[@class='ant-notification-notice-content']//span[text='You have successfully registered.']""; This XPath is for the success message that pops up in Login page after Circle is successfully created
+///  private static final String LOGIN_CREATE_CIRCLE_SUCCESS_POPUP = "//div[@class='ant-notification-notice-content']//span[text='You have successfully registered.']""; This XPath is for the success message that pops up in Login page after Circle is successfully created
 }

@@ -2,10 +2,8 @@ package pages;
 
 public class ChangePasswordPage {
 
-    private static final String PROFILE_ICON = "xpath=//div[@class='profile_container__LOFPn']/child::span'";
-    private static final String PROFILE_CHANGE_PASSWORD_SECTION ="xpath=//div[@class='ant-collapse-header']/descendant::span[text()='Change password']";
+    private static final String PROFILE_CHANGE_PASSWORD_SECTION ="xpath=span[text()='Change password']";
     private static final String CHANGE_PASSWORD_CURRENT_PASSWORD_INPUT_FIELD = "xpath=//input[@id='oldPassword']";
-    private static final String CHANGE_PASSWORD_DROPDOWN = "xpath=//div[@class='ant-collapse-expand-icon']/child::span";
     private static final String CURRENT_PASSWORD_INPUT_FIELD = "xpath=//input[@id='oldPassword']";
     private static final String NEW_PASSWORD_INPUT_FIELD  ="xpath=//input[@id='newPassword']";
     private static final String CHANGE_PASSWORD_SAVE_BUTTON  ="xpath=//div[@class='profile_passwordSaveContainer__fkz2n']//descendant::button";

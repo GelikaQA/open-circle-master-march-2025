@@ -6,10 +6,10 @@ import static tools.CommonTools.getByObject;
 
 public class LoginPage extends BasePage {
 
-    private static final String SIGN_IN_BUTTON_ON_SIGN_IN_PAGE_LOCATOR = "xpath=//button/span[contains(text(), 'Sign in')]";
-    private static final String EMAIL_INPUT_FIELD_LOCATOR = "id=email";
-    private static final String PASSWORD_INPUT_FIELD_LOCATOR = "id=password";
-    private static final String WARNING_MESSAGE_LOCATOR = "xpath=(.//*[normalize-space(text()) and normalize-space(.)='Warning'])[1]/following::span[1]";
+            "private static final String SIGN_IN_BUTTON_ON_SIGN_IN_PAGE_LOCATOR = \"xpath=//button/span[contains(text(), 'Sign in')]\";\n" +
+            "private static final String EMAIL_INPUT_FIELD_LOCATOR = \"id=email\";\n" +
+            "private static final String PASSWORD_INPUT_FIELD_LOCATOR = \"id=password\";\n" +
+            "private static final String WARNING_MESSAGE_LOCATOR = \"xpath=(.//*[normalize-space(text()) and normalize-space(.)='Warning'])[ing::span[1]";
 
     public static String getSignInPage() {
         return PropertiesLoader.getProperties("signInUrl");

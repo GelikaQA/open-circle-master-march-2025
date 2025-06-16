@@ -1,10 +1,9 @@
 Feature: join_circle
-  Scenario: ID 2, Show warning When Passcode is less than 6 digits
-#    Given they navigate to ""http://opencircle.us/join""
-    Given open page "http://opencircle.us/join"
-#    When they enter 'JoinCircle' in the field Circle Name on the Join Circle page
-#    When they enter "JoinCircle" in "//input[@name='circleId']"
-    When they enter "JoinCircle" in "name=circleId"
+
+  Scenario: Show warning When Passcode is less than 6 digits
+    Given a user opens Join Circle page
+    When they enter "JoinCircle" in the field Circle Name on the Join Circle page
+
 #    And enters ""55566"" in the Passcode field on the Join Circle page
 #    And they enter "55566" in "//input[@name='passCode']"
     And they enter "55566" in "name=passCode"

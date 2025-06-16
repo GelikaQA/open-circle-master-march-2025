@@ -12,7 +12,7 @@ public class LoginPage extends BasePage {
     private static final String WARNING_MESSAGE_LOCATOR = "xpath=(.//*[normalize-space(text()) and normalize-space(.)='Warning'])[1]/following::span[1]";
     private static final String SIGN_IN_MESSAGE_INVALID_EMAIL = "xpath=//li[text()='Invalid email address, limited to 32 characters']";
     private static final String SIGN_IN_MESSAGE_INVALID_PASSWORD = "//li[contains(text(),'Field should contain at least one upper-case')]";
-    private static final String SIGN_IN_MESSAGE_POP_UP_INVALID_EMAIL_PASSWORD = "//span[text()='Invalid email or password.']";
+    private static final String SIGN_IN_MESSAGE_POPUP_INVALID_EMAIL_PASSWORD = "//span[text()='Invalid email or password.']";
 
     public static String getSignInPage() {
         return PropertiesLoader.getProperties("signInUrl");

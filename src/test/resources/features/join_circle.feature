@@ -22,7 +22,7 @@ Feature: join_circle
     And they enter "Password1" in "name=password"
 #    And They press button 'Join' on the Join Circle page
 #    And they click "//button[@type='submit']//span[text()='Join']"
-    And they click "//button[@type='submit']//span[text()='Join']"
+    And they click "xpath=//button[@type='submit']//span[text()='Join']"
 #    Then they are still on the Join Circle page as the registration was not  completed
     Then they verify that they see element "xpath=//div[contains(@class,'login_auth_body')]//h1[text()='Join Circle']"
 #    And a warning message 'Incorrect Passcode. Please try again' is displayed under the Passcode field

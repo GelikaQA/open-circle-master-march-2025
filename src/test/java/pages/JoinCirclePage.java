@@ -8,7 +8,7 @@ public class JoinCirclePage {
     private static final String JOIN_CIRCLE_LAST_NAME_INPUT_FIELD = "name=lastName";
     private static final String JOIN_CIRCLE_EMAIL_INPUT_FIELD = "name=email";
     private static final String JOIN_CIRCLE_PASSWORD_INPUT_FIELD = "name=password";
-    private static final String JOIN_CIRCLE_JOIN_SUBMIT_BUTTON = "type=submit";
+    private static final String JOIN_CIRCLE_JOIN_SUBMIT_BUTTON = "//button[@type='submit']//span[text()='Join']";
     private static final String JOIN_CIRCLE_SIGN_IN_REDIRECT_BUTTON = "xpath=//button[@type='button']//span[text()='Sign in']";
     private static final String JOIN_CIRCLE_CREATE_CIRCLE_REDIRECT_BUTTON = "xpath=//button[@type='button']//span[text()='Create Circle']";
     private static final String JOIN_CIRCLE_POP_UP_MESSAGE_SUCCESS_REGISTRATION = "xpath=//div[@class='ant-notification-notice-description']//span[text()='You have successfully registered.']";

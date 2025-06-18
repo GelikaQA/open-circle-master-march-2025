@@ -1,6 +1,11 @@
 package pages;
 
-public class ProfilePage {
+import org.openqa.selenium.WebElement;
+
+import static org.junit.Assert.assertTrue;
+import static tools.CommonTools.getByObject;
+
+public class ProfilePage extends BasePage{
     private static final String PROFILE_AVATAR_ICON = "xpath=//div[contains(@class, 'profile_container')]";
     private static final String PROFILE_PAGE_TITLE = "xpath=//*[text()='Profile']";
     private static final String PROFILE_FIRST_NAME_INPUT_FIELD = "xpath=//input[@id='firstName']";
@@ -13,5 +18,37 @@ public class ProfilePage {
     private static final String ERROR_MESSAGE_SPEC_CHARS = "xpath=//div[text()='Field accepts alphabetical char and digits, no special chars allowed']";
     private static final String ERROR_MESSAGE_EMPTY_FIELD ="xpath=//div[text()='Please input your Last Name']";
 
+    public static String getProfileAvatarIcon(){
+        return PROFILE_AVATAR_ICON;
+    }
+
+    public static String getProfileAvatarDeleteButton(){
+        return PROFILE_AVATAR_DELETE_BUTTON;
+    }
+
+    public static String getProfileUploadButton(){
+        return PROFILE_UPLOAD_BUTTON;
+
+    }
+
+
+    public void clickOnTheAvatarIcon() {
+        wait.forElementToBeDisplayed(10, getByObject(getProfileAvatarIcon()), "Avatar Icon");
+        WebElement foundElement = driver.findElement(getByObject(getProfileAvatarIcon()));
+        foundElement.click();
+    }
+
+    public void clickOnTheDeleteButton() {
+        wait.forElementToBeDisplayed(10, getByObject(getProfileAvatarDeleteButton()),
+                "Avatar Delete Button");
+        WebElement foundElement = driver.findElement(getByObject(getProfileAvatarDeleteButton()));
+        foundElement.click();
+    }
+
+    public void seeTheUploadButton() {
+        wait.forElementToBeDisplayed(10, getByObject(getProfileUploadButton()), "Upload Button");
+        WebElement foundElement = driver.findElement(getByObject(getProfileUploadButton()));
+        assertTrue(foundElement.isDisplayed());
+    }
 
 }

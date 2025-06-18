@@ -4,7 +4,7 @@ import tools.PropertiesLoader;
 
 import static tools.CommonTools.getByObject;
 
-public class LoginPage extends BasePage {
+public class SignInPage extends BasePage {
 
     private static final String SIGN_IN_BUTTON_ON_SIGN_IN_PAGE_LOCATOR = "xpath=//button/span[contains(text(), 'Sign in')]";
     private static final String EMAIL_INPUT_FIELD_LOCATOR = "id=email";
@@ -13,6 +13,16 @@ public class LoginPage extends BasePage {
     private static final String SIGN_IN_MESSAGE_INVALID_EMAIL = "xpath=//li[text()='Invalid email address, limited to 32 characters']";
     private static final String SIGN_IN_MESSAGE_INVALID_PASSWORD = "xpath=//li[contains(text(),'Field should contain at least one upper-case')]";
     private static final String SIGN_IN_MESSAGE_POPUP_INVALID_EMAIL_PASSWORD = "xpath=//span[text()='Invalid email or password.']";
+    private static final String EXISTING_EMAIL = "ad1@testings.com";
+    private static final String EXISTING_PASSWORD = "Test12345!";
+
+    public static String getExistingEmail() {
+        return EXISTING_EMAIL;
+    }
+
+    public static String getExistingPassword() {
+        return EXISTING_PASSWORD;
+    }
 
     public static String getSignInPage() {
         return PropertiesLoader.getProperties("signInUrl");

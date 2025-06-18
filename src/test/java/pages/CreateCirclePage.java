@@ -4,6 +4,15 @@ public class CreateCirclePage {
     private static final String CREATE_CIRCLE_TITLE_HEADER = "xpath=//h1[contains(@class, 'login_auth_title')]";
     private static final String CIRCLE_NAME_FIELD_ON_CREATE_CIRCLE_PAGE = "id=circleId";
     private static final String CREATE_CIRCLE_PASSCODE_INPUT_FIELD = "id=passCode";
+
+
+    //TEST CONFLICTS IN INTELLIJ IDEA
+
+
+
+
+
+
     private static final String GENERATE_PASSCODE_BUTTON_ON_CREATE_CIRCLE_PAGE = "xpath=//button[@class='ant-btn css-o2xhy3 ant-btn-primary'][1]";
     private static final String COPY_PASSCODE_BUTTON_ON_CREATE_CIRCLE_PAGE = "xpath=//button[@class='ant-btn css-o2xhy3 ant-btn-primary'][2]";
     private static final String FIRSTNAME_ON_CREATE_CIRCLE_PAGE = "id=firstName";

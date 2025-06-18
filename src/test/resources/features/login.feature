@@ -2,7 +2,7 @@ Feature: login
 
   Scenario: Successful login with valid credentials
 #    Given user is on Open Circle login page http://opencircle.us/login
-    Given open page "http://opencircle.us/login"
+    Given user open page "http://opencircle.us/login"
 #    When they enter valid existing email on Login page
     When they enter "ad1@testings.com" in "xpath=//input[@id='email']"
 #    And they enter a valid corresponding password on Login pages

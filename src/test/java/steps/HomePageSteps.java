@@ -11,4 +11,5 @@ public class HomePageSteps {
     public void theySeeCircleNameOnHomePage() {
         homePage.assertCircleNameIsDisplayedOnHomePage();
     }
+
 }

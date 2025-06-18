@@ -1,0 +1,52 @@
+package steps;
+
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import pages.ChangePasswordPage;
+
+public class ChangePasswordSteps {
+    ChangePasswordPage changePasswordPage = new ChangePasswordPage();
+
+    @Given("the user is signed in to Open Circle")
+    public void theUserIsSignedInToOpenCircle() {
+        changePasswordPage.openLoginPage();
+    }
+    @When("they enter {string} in Email input field on login page")
+    public void theyEnterInEmailInputFieldOnLoginPage(String email) {
+        changePasswordPage.enterEmailOnLoginPage(email);
+    }
+    @And("they enter {string} in Password input field on login page")
+    public void theyEnterInPasswordInputFieldOnLoginPage(String password) {
+        changePasswordPage.enterPasswordOnLoginPage(password);
+    }
+    @And("they click Sign in button on login page")
+    public void theyClickSignInButtonOnLoginPage() {
+        changePasswordPage.clickSignInButton();
+    }
+    @And("they click Profile icon")
+    public void theyClickProfileIcon() {
+        changePasswordPage.clickProfileIcon();
+    }
+    @And("they click Change password section")
+    public void theyClickChangePasswordSection() {
+        changePasswordPage.clickChangePasswordSection();
+    }
+    @And("they enter {string} in Current password input field")
+    public void theyEnterPasswordInCurrentPasswordInputField(String Password) {
+        changePasswordPage.enterPasswordInCurrentPasswordInputField(Password);
+    }
+    @And("they enter {string} in New password input field")
+    public void theyEnterPasswordInNewPasswordInputField(String Password) {
+        changePasswordPage.enterPasswordInNewPasswordInputField(Password);
+    }
+    @And("they click Save button")
+    public void theySaveButton() {
+        changePasswordPage.clickSaveButton();
+    }
+    @Then("they verify that they see Warning message empty current password input field")
+    public void theyVerifyThatTheySeeWarningMessageEmptyCurrentPasswordInputField() {
+        changePasswordPage.clickSaveButton();
+    }
+}

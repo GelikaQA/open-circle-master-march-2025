@@ -34,8 +34,8 @@ public class LoginPage extends BasePage {
         return WARNING_MESSAGE_LOCATOR;
     }
 
-    public void openSignInPage() {
-        driver.get(getSignInPage());
+
+    public void openSignInPage() {driver.get(getSignInPage());
     }
 
     public void clickSignInButton() {
@@ -54,7 +54,9 @@ public class LoginPage extends BasePage {
     }
 
     public void assertNoUserWarningMessage() {
-        wait.forElementToBeDisplayed(10, getByObject(getWarningMessageLocator()), "Warning message");
+        wait.forElementToBeDisplayed(10, getByObject(getWarningMessageLocator()),
+                "Warning message");
         assert driver.findElement(getByObject(getWarningMessageLocator())).getText().contains("User not found.");
     }
+
 }

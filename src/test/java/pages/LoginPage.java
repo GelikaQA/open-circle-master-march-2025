@@ -13,7 +13,6 @@ public class LoginPage extends BasePage {
     private static final String SIGN_IN_MESSAGE_INVALID_EMAIL = "xpath=//li[text()='Invalid email address, limited to 32 characters']";
     private static final String SIGN_IN_MESSAGE_INVALID_PASSWORD = "xpath=//li[contains(text(),'Field should contain at least one upper-case')]";
     private static final String SIGN_IN_MESSAGE_POPUP_INVALID_EMAIL_PASSWORD = "xpath=//span[text()='Invalid email or password.']";
-    private static final String CHAT_PAGE_HEADER_LOCATOR = "xpath=//div[contains(text(),'Bootcamp2025')]";
 
     public static String getSignInPage() {
         return PropertiesLoader.getProperties("signInUrl");
@@ -34,7 +33,7 @@ public class LoginPage extends BasePage {
     public static String getWarningMessageLocator() {
         return WARNING_MESSAGE_LOCATOR;
     }
-    public static String getChatPageHeaderLocator() { return CHAT_PAGE_HEADER_LOCATOR; }
+
 
     public void openSignInPage() {driver.get(getSignInPage());
     }
@@ -58,11 +57,6 @@ public class LoginPage extends BasePage {
         wait.forElementToBeDisplayed(10, getByObject(getWarningMessageLocator()),
                 "Warning message");
         assert driver.findElement(getByObject(getWarningMessageLocator())).getText().contains("User not found.");
-    }
-    public void assertChatPageHeaderLocator() {
-        wait.forElementToBeDisplayed(10, getByObject(getChatPageHeaderLocator()),
-                "Warning message");
-        assert driver.findElement(getByObject(getChatPageHeaderLocator())).getText().contains("User not found.");
     }
 
 }

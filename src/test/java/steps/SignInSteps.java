@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.BasePage;
+import pages.HomePage;
 import pages.LoginPage;
 
 
@@ -12,6 +13,7 @@ public class SignInSteps {
 
     LoginPage signInPage = new LoginPage();
     BasePage basePage = new BasePage();
+    HomePage homePage = new HomePage();
 
     @Given("a Circle User is on Sign In page")
     public void openSignInPage() {
@@ -53,12 +55,12 @@ public class SignInSteps {
         signInPage.enterPasswordOnSignInPage(password);
     }
 
-    @And("a user click click Sign In button on Login page")
-    public void theyClickClickSignInButton() {signInPage.clickSignInButton();
+    @And("a user click Sign In button on Login page")
+    public void theyClickSignInButton() {signInPage.clickSignInButton();
     }
 
     @Then("a user verify that they on circle Home page")
     public void aUserVerifyThatTheyOnCircleHomePage() {
-        signInPage.assertChatPageHeaderLocator();
+        homePage.assertCircleNameIsDisplayedOnHomePage();
     }
 }

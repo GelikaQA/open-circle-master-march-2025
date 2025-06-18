@@ -37,4 +37,28 @@ public class SignInSteps {
     public void theySeeWarningMessage() {
         signInPage.assertNoUserWarningMessage();
     }
+
+    @Given("a user opens Login page")
+    public void aUserOpensLoginPage() {
+        signInPage.openSignInPage();
+    }
+
+    @When("a user enter {string} in email input field on Login page")
+    public void enterValidEmail(String email)
+    { signInPage.enterEmailOnSignInPage(email);
+    }
+
+    @And("a user enter {string} in password input field on Login page")
+    public void theyEnterInPasswordInputFieldOnLoginPage(String password) {
+        signInPage.enterPasswordOnSignInPage(password);
+    }
+
+    @And("a user click click Sign In button on Login page")
+    public void theyClickClickSignInButton() {signInPage.clickSignInButton();
+    }
+
+    @Then("a user verify that they on circle Home page")
+    public void aUserVerifyThatTheyOnCircleHomePage() {
+        signInPage.assertChatPageHeaderLocator();
+    }
 }

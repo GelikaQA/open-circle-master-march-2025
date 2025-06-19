@@ -40,9 +40,8 @@ public class TopicsPage {
     public static String getCreateNewTopicCreateButton() {
         return CREATE_NEW_TOPIC_CREATE_BUTTON;}
 
-    public static String getTopicCreationSuccessMessage_MESSAGE() {
-    return TOPIC_CREATION_SUCCESS_MESSAGE;}
-
+    public static String getTopicCreationSuccessMessage() {
+        return TOPIC_CREATION_SUCCESS_MESSAGE;}
 
 
     public void clickCreateTopicPlusButton() {

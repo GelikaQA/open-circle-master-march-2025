@@ -31,6 +31,30 @@ public class JoinCirclePage extends BasePage {
         return JOIN_CIRCLE_CIRCLE_NAME_INPUT_FIELD;
     }
 
+    public static String getJoinCirclePasscodeInputField() {
+        return JOIN_CIRCLE_PASSCODE_INPUT_FIELD;
+    }
+    public static String getJoinCircleFirstNameInputField() {
+        return JOIN_CIRCLE_FIRST_NAME_INPUT_FIELD;
+    }
+    public static String getJoinCircleLastNameInputField() {
+        return JOIN_CIRCLE_LAST_NAME_INPUT_FIELD;
+    }
+    public static String getJoinCircleEmailInputField() {
+        return JOIN_CIRCLE_EMAIL_INPUT_FIELD;
+    }
+    public static String getJoinCirclePasswordInputField() {
+        return JOIN_CIRCLE_PASSWORD_INPUT_FIELD;
+    }
+    public static String getJoinCircleJoinSubmitButton() {
+        return JOIN_CIRCLE_JOIN_SUBMIT_BUTTON;
+    }
+    public static String getJoinCircleEntirePageVerification() {
+        return JOIN_CIRCLE_ENTIRE_PAGE_VERIFICATION;
+    }
+    public static String getJoinCirclePopUpMessageIncorrectPasscode() {
+        return JOIN_CIRCLE_POP_UP_MESSAGE_INCORRECT_PASSCODE;
+    }
     public void openJoinCirclePage() {
         driver.get("http://opencircle.us/join");
     }
@@ -43,4 +67,3 @@ public class JoinCirclePage extends BasePage {
         WebElement foundElement = driver.findElement(getByObject(getJoinCircleCircleNameInputField()));
         foundElement.sendKeys(circleName);
     }
-}

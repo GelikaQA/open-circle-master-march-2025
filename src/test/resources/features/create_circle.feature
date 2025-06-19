@@ -33,5 +33,5 @@ Feature: Create Circle
     Then error message pops-up "<error message>" below First Name field on Create Circle page
 
     Examples:
-      | admin password    | circle name  | first name | last name    | email               | user password | error message |
+      | admin password    | circle name  | first name | last name    | email               | user password | error message           |
       | 55^tX(A1zd32as2t5 | CircleTester |            | TestLastName | testing123@test.com | Password123   | This input is required. |

@@ -23,10 +23,10 @@ public class TearDown {
 
     @After
     public void afterScenario(Scenario scenario) {
-        if (scenario.isFailed()) {
-            sleep(2000);
-            saveScreenshotsForScenario(scenario);
-        }
+//        if (scenario.isFailed()) {
+//            sleep(2000);
+//            saveScreenshotsForScenario(scenario);
+//        }
         this.driver.quit();
     }
 

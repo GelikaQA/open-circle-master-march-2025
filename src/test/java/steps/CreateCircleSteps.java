@@ -64,4 +64,10 @@ public class CreateCircleSteps {
     public void theyArePromptedByAnErrorMessage() {
         createCirclePage.promptedByErrorMessageOnCreateCirclePage();
     }
+
+
+    @Then("error message pops-up {string}")
+    public void errorMessagePopsUp(String error) {
+        createCirclePage.assertErrorMessageForEmptyFirstNameFieldOnCreateCirclePage(error);
+    }
 }

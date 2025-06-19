@@ -6,7 +6,8 @@ import pages.ProfilePage;
 
 
 
-public class ProfileManagementSteps {
+public class ProfileSteps {
+
     ProfilePage profilePage = new ProfilePage();
 
     @And("they click on the Avatar icon")
@@ -19,10 +20,8 @@ public class ProfileManagementSteps {
         profilePage.clickOnTheDeleteButton();
     }
 
-
     @Then("they see the Upload button")
     public void theySeeTheUploadButton() {
         profilePage.seeTheUploadButton();
     }
 }
-

@@ -9,10 +9,13 @@ Feature: createAlbum
     And they enter "1234Qwer" in "xpath=//input[@id='password']"
 #    And they click Sign In button
     And they click "xpath=//button[@type='submit']"
-#    And they click the Albums button
-    And they click "xpath=//div[text()='Albums']"
+
+
+    And they click the Albums button
+#    And they click "xpath=//div[text()='Albums']"
 #    And click Create new album button on Albums page
-    And they click "xpath=//b[text()='Create new']"
+    And click Create new album button on Albums page
+#    And they click "xpath=//b[text()='Create new']"
 #    And they enter a new unique Album name????
     And they enter "Old" in "xpath=//input[@id='form_in_modal_title']"
 #    And click Create button on Create New Album modal

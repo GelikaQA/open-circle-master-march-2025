@@ -73,4 +73,9 @@ public class SignInSteps {
         signInPage.clickSignInButton();
         homePage.assertCircleNameIsDisplayedOnHomePage();
     }
+
+    @Then("error message under the email field is displayed: {string}")
+    public void errorMessageUnderTheEmailFieldIsDisplayed(String InvalidEmailAddress) {
+        signInPage.assertLoginPageEmailFieldMessageInvalidEmail(InvalidEmailAddress);
+    }
 }

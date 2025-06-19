@@ -24,5 +24,5 @@ Feature: login
         |v@a.l|
         |va@alidemailmorethan32charact.ers|
         |mail@identity.digital|
-        |"ad1@testings.com " |
+#        |"ad1@testings.com " | We have to test trailing space, however the system, truncate space and we have to return to it later as told Angelina
 

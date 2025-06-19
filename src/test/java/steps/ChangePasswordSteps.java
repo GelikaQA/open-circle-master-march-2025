@@ -37,4 +37,5 @@ public class ChangePasswordSteps {
     public void theyVerifyThatTheySeeWarningMessageEmptyCurrentPasswordInputField() {
         changePasswordPage.clickSaveButton();
     }
+
 }

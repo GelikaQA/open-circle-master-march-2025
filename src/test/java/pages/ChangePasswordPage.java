@@ -80,4 +80,5 @@ public class ChangePasswordPage extends BasePage{
                 "Verify that they see Warning message empty current password input field");
         driver.findElement(getByObject(getWarningMessageEmptyCurrentPasswordInputField())).click();
     }
+
 }

@@ -10,4 +10,5 @@ public class AlbumsPage {
     private static final String CREATE_BUTTON_NEW_ALBUM_WINDOW = "xpath=//span[text()='Create']";
     private static final String POP_UP_MSG_IF_ALBUM_ALREADY_EXISTS = "xpath=//span[text()='Album with this name exists']";
     private static final String POP_UP_MSG_WHEN_ALBUM_IS_CREATED = "xpath=//div[@class='ant-notification-notice-with-icon']";
+    private static final String BUCKET_BUTTON_ON_THE_LAST_CREATED_ALBUM = "xpath= (//div[contains(@class, 'albums_bucketIcon')])[1]";
 }

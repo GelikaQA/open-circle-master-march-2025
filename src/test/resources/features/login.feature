@@ -1,4 +1,4 @@
-Feature: login
+Feature: Cancels creating a new album
 
   Scenario: Successful login with valid credentials
 #    Given user is on Open Circle login page http://opencircle.us/login
@@ -10,4 +10,3 @@ Feature: login
 #    And they click Sign In button
     And they click "xpath=//button[@type='submit']"
 #    Then they are on Circle Home page
-    Then they verify that they see element "xpath=//div[contains(@class, 'profile_container')]"

@@ -6,9 +6,6 @@ import org.openqa.selenium.WebElement;
 import static tools.CommonTools.getByObject;
 
 public class ChangePasswordPage extends BasePage{
-    private static final String EMAIL_INPUT_FIELD = "id=email";
-    private static final String PASSWORD_INPUT_FIELD = "id=password";
-    private static final String SIGN_IN_BUTTON = "xpath=//button/span[contains(text(), 'Sign in')]";
     private static final String PROFILE_ICON = "xpath=//span[@class='ant-avatar ant-avatar-circle profile_avatar__Ubcja css-o2xhy3']";
     private static final String CHANGE_PASSWORD_SECTION = "xpath=//span[text()='Change password']";
     private static final String CURRENT_PASSWORD_INPUT_FIELD = "xpath=//input[@id='oldPassword']";
@@ -27,15 +24,6 @@ public class ChangePasswordPage extends BasePage{
     public void openLoginPage() {
         driver.get("http://opencircle.us/login");
     }
-    public static String getEmailInputField() {
-        return EMAIL_INPUT_FIELD;
-    }
-    public static String getPasswordInputField() {
-        return PASSWORD_INPUT_FIELD;
-    }
-    public static String getSignInButton() {
-        return SIGN_IN_BUTTON;
-    }
     public static String getProfileIcon() {
         return PROFILE_ICON;
     }
@@ -53,26 +41,6 @@ public class ChangePasswordPage extends BasePage{
     }
     public static String getWarningMessageEmptyCurrentPasswordInputField() {
         return WARNING_MESSAGE_EMPTY_CURRENT_PASSWORD_INPUT_FIELD;
-    }
-    public void enterEmailOnLoginPage(String email) {
-        wait.forElementToBeDisplayed(10,
-                getByObject(getEmailInputField()),
-                "Email input field on login page");
-        WebElement foundElement = driver.findElement(getByObject(getEmailInputField()));
-        foundElement.sendKeys(email);
-    }
-    public void enterPasswordOnLoginPage(String password) {
-        wait.forElementToBeDisplayed(10,
-                getByObject(getPasswordInputField()),
-                "Password input field on login page");
-        WebElement foundElement = driver.findElement(getByObject(getPasswordInputField()));
-        foundElement.sendKeys(password);
-    }
-    public void clickSignInButton() {
-        wait.forElementToBeDisplayed(10,
-                getByObject(getSignInButton()),
-                "Sign in button");
-        driver.findElement(getByObject(getSignInButton())).click();
     }
     public void clickProfileIcon() {
         wait.forElementToBeDisplayed(10,

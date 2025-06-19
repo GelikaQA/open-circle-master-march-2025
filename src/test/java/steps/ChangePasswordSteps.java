@@ -13,18 +13,6 @@ public class ChangePasswordSteps {
     public void theUserIsSignedInToOpenCircle() {
         changePasswordPage.openLoginPage();
     }
-    @When("they enter {string} in Email input field on login page")
-    public void theyEnterInEmailInputFieldOnLoginPage(String email) {
-        changePasswordPage.enterEmailOnLoginPage(email);
-    }
-    @And("they enter {string} in Password input field on login page")
-    public void theyEnterInPasswordInputFieldOnLoginPage(String password) {
-        changePasswordPage.enterPasswordOnLoginPage(password);
-    }
-    @And("they click Sign in button on login page")
-    public void theyClickSignInButtonOnLoginPage() {
-        changePasswordPage.clickSignInButton();
-    }
     @And("they click Profile icon")
     public void theyClickProfileIcon() {
         changePasswordPage.clickProfileIcon();

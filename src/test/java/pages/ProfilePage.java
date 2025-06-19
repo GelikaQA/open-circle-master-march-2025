@@ -39,6 +39,30 @@ public class ProfilePage extends BasePage{
         return PROFILE_SAVE_BUTTON;
     }
 
+    public static String getProfilePageTitle() {
+        return PROFILE_PAGE_TITLE;
+    }
+
+    public static String getProfileFirstNameInputField() {
+        return PROFILE_FIRST_NAME_INPUT_FIELD;
+    }
+
+    public static String getProfileCloseButton() {
+        return PROFILE_CLOSE_BUTTON;
+    }
+
+    public static String getProfileResetButton() {
+        return PROFILE_RESET_BUTTON;
+    }
+
+    public static String getErrorMessageSpecChars() {
+        return ERROR_MESSAGE_SPEC_CHARS;
+    }
+
+    public static String getErrorMessageEmptyField () {
+        return ERROR_MESSAGE_EMPTY_FIELD;
+    }
+
     public void clickOnTheAvatarIcon() {
         wait.forElementToBeDisplayed(10, getByObject(getProfileAvatarIcon()), "Avatar Icon");
         WebElement foundElement = driver.findElement(getByObject(getProfileAvatarIcon()));

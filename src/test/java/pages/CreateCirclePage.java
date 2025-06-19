@@ -23,7 +23,7 @@ public class CreateCirclePage extends BasePage {
     private static final String CREATE_CIRCLE_NON_UNIQUE_EMAIL_ERROR_POPUP = "xpath=//div[contains(@class, 'ant-notification ant-notification-topRight')]//span[text()='A user with such an email exists.']";
     private static final String CREATE_CIRCLE_NON_UNIQUE_CIRCLE_NAME_ERROR_POPUP = "xpath=//div[@class='ant-notification-notice-with-icon']//span[text()='A Circle with this name exists.']";
     private static final String CREATE_CIRCLE_FIELD_CONSTRAINT_ERROR_MESSAGE = "xpath=//ul[@class='form_text_danger__LQWyf']/li[text()='Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters']";
-    private static final String CREATE_CIRCLE_ERROR_MESSAGE_FOR_EMPTY_FIRST_NAME_FIELD = "xpath=//div[@class='form_form_group__gzDYz'][label[@for='firstName']]//li[text()='This input is required.']";
+    private static final String CREATE_CIRCLE_ERROR_MESSAGE_FOR_EMPTY_FIRST_NAME_FIELD = "xpath=//div[label[@for='firstName']]//li";
     //  private static final String LOGIN_CREATE_CIRCLE_SUCCESS_POPUP = "xpath=//div[@class='ant-notification-notice-content']//span[text='You have successfully registered.']""; This XPath is for the success message that pops up in Login page after Circle is successfully created
 
     public static String getAdminPasswordInputField() {

@@ -1,13 +1,10 @@
 package pages;
 
-import hooks.Wait;
 import org.openqa.selenium.WebElement;
-
 import static hooks.Setup.driver;
 import static tools.CommonTools.getByObject;
 
-public class TopicsPage {
-
+public class TopicsPage extends BasePage {
 
     private static final String TOPIC_PLUS_ICON_BUTTON = "xpath=//div[contains(@class, 'crateChannelBtn')]";
     private static final String PLACEHOLDER_INPUT_NEW_TOPIC_NAME = "xpath=//input[@placeholder]";
@@ -29,20 +26,23 @@ public class TopicsPage {
     private static final String MESSAGE_INPUT_FIELD_HEADING_1_OPTION_STYLE = "xpath=//span[contains(@class, 'picker-item')][@data-value='1']";
     private static final String MESSAGE_INPUT_FIELD_HEADING_2_OPTION_STYLE = "xpath=//span[contains(@class, 'picker-item')][@data-value='2']";
     private static final String MESSAGE_INPUT_FIELD_NORMAL_OPTION_STYLE = "xpath=//span[contains(@class, 'picker-item ql-selected')]";
-    private Wait wait;
+
 
     public static String getTopicPlusIconButton() {
-        return TOPIC_PLUS_ICON_BUTTON;}
+        return TOPIC_PLUS_ICON_BUTTON;
+    }
 
     public static String getPlaceholderInputNewTopicName() {
-        return PLACEHOLDER_INPUT_NEW_TOPIC_NAME;}
+        return PLACEHOLDER_INPUT_NEW_TOPIC_NAME;
+    }
 
     public static String getCreateNewTopicCreateButton() {
-        return CREATE_NEW_TOPIC_CREATE_BUTTON;}
+        return CREATE_NEW_TOPIC_CREATE_BUTTON;
+    }
 
     public static String getTopicCreationSuccessMessage() {
-        return TOPIC_CREATION_SUCCESS_MESSAGE;}
-
+        return TOPIC_CREATION_SUCCESS_MESSAGE;
+    }
 
     public void clickCreateTopicPlusButton() {
         wait.forElementToBeDisplayed(
@@ -52,7 +52,6 @@ public class TopicsPage {
         WebElement foundElement = driver.findElement(getByObject(getTopicPlusIconButton()));
         foundElement.click();
     }
-
 
     public void enterTopicNameOnInputPlaceholder(String uniqueTopicName) {
         wait.forElementToBeDisplayed(

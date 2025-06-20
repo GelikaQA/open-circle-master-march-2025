@@ -156,7 +156,7 @@ public class CreateCirclePage extends BasePage {
         foundElement.click();
     }
 
-    public void promptedByErrorMessageOnCreateCirclePage() {
+    public void anErrorMessagePopulatesBelowTheFirstNameFieldOnTheCreateCirclePage() {
         wait.forElementToBeDisplayed(
                 10,
                 getByObject(getCreateCircleFieldConstraintErrorMessage()),

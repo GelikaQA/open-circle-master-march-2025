@@ -12,7 +12,7 @@ Feature: Create Circle
     And they enter "<email>" in the email field on the Create Circle page
     And they enter "<user password>" in the Password field on the Create Circle page
     And they click the Create button on the Create Circle page
-    Then they are prompted by an error message
+    Then an error message populates below the First Name field on the Create Circle page
 
     Examples:
       | admin password    | circle name     | first name                        | last name    | email              | user password |

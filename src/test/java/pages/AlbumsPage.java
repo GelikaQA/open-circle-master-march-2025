@@ -77,3 +77,4 @@ public class AlbumsPage {
         el.click();
     }
 }
+

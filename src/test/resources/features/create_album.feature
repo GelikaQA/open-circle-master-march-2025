@@ -1,6 +1,7 @@
 Feature: createAlbum
 
   Scenario: A user creates a photo album
+
 #    Given they are registered and joined the Circle
     Given open page "http://opencircle.us/login"
 #    When they enter valid existing email on Login page
@@ -9,12 +10,14 @@ Feature: createAlbum
     And they enter "1234Qwer" in "xpath=//input[@id='password']"
 #    And they click Sign In button
     And they click "xpath=//button[@type='submit']"
+
+
     And they click the Albums button
     And click Create new album button on Albums page
 #    And they enter a new unique Album name
-    And they enter "New" unique Album name in the pop up field
-#    And they enter "Ker" in "xpath=//input[@id='form_in_modal_title']"
-#    And click Create button on Create New Album modal
+#    And they enter "New" unique Album name in the pop up field
+    And they enter "Mew" in "xpath=//input[@id='form_in_modal_title']"
+#    And click Create Album button on Create New Album modal
     And they click "xpath=//span[text()='Create']"
 #    Then a confirmation message appears "Success Album has been created"
     Then they verify that they see element "xpath=//div[@class='ant-notification-notice-with-icon']"

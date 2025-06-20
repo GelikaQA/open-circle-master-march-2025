@@ -16,6 +16,9 @@ public class AlbumsPage extends BasePage {
     private static final String POP_UP_MSG_IF_ALBUM_ALREADY_EXISTS = "xpath=//span[text()='Album with this name exists']";
     private static final String POP_UP_MSG_WHEN_ALBUM_IS_CREATED = "xpath=//div[@class='ant-notification-notice-with-icon']";
     private static final String BUCKET_BUTTON_ON_THE_LAST_CREATED_ALBUM = "xpath= (//div[contains(@class, 'albums_bucketIcon')])[1]";
+    private static final String EXISTING_EMAIL = "arkadiy.popovtest@gmail.com";
+    private static final String EXISTING_PASSWORD = "1234Qwer";
+
 
     public void clickAlbumsButtonOnHomePage() {
         wait.forElementToBeDisplayed(10, getByObject(getAlbumsButtonOnHomePage()), "Element");
@@ -29,6 +32,12 @@ public class AlbumsPage extends BasePage {
     }
     public static String getAlbumsButtonOnHomePage() {
         return ALBUMS_BUTTON_ON_HOME_PAGE;
+    }
+    public static String getExistingEmail() {
+        return EXISTING_EMAIL;
+    }
+    public static String getExistingPassword() {
+        return EXISTING_PASSWORD;
     }
     public static String getCreateNewAlbumButton() {
         return CREATE_NEW_ALBUM_BUTTON;

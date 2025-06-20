@@ -8,13 +8,26 @@ public class PropertiesLoader {
     private static final Properties properties = new Properties();
 
     static {
-        try (InputStream input = PropertiesLoader.class.getClassLoader().getResourceAsStream("config.properties")) {
-            if (input == null) {
-                throw new RuntimeException("Sorry, unable to find config.properties");
+        try (InputStream configInput = PropertiesLoader.class.getClassLoader().getResourceAsStream("config.properties")) {
+            if (configInput != null) {
+                properties.load(configInput);
+            } else {
+                System.err.println("Warning: config.properties not found");
             }
-            properties.load(input);
         } catch (IOException e) {
             throw new RuntimeException("Error loading config.properties", e);
+        }
+
+        try (InputStream localInput = PropertiesLoader.class.getClassLoader().getResourceAsStream("local.properties")) {
+            if (localInput != null) {
+                Properties localProps = new Properties();
+                localProps.load(localInput);
+                properties.putAll(localProps); // override or add keys from local.properties
+            } else {
+                System.out.println("Info: local.properties not found, using config.properties only");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Error loading local.properties", e);
         }
     }
 

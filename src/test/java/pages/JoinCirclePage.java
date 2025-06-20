@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.WebElement;
 
+import static org.junit.Assert.assertTrue;
 import static tools.CommonTools.getByObject;
 
 public class JoinCirclePage extends BasePage {

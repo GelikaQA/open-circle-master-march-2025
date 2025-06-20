@@ -5,7 +5,7 @@ import io.cucumber.java.en.When;
 import pages.JoinCirclePage;
 
 public class JoinCircleSteps {
-
+    
     JoinCirclePage joinCirclePage = new JoinCirclePage();
 
     @Given("a user opens Join Circle page")

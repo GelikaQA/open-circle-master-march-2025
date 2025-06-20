@@ -28,8 +28,9 @@ public class AlbumsSteps {
         albumsPage.enterNewUniqueAlbumNameOnPopUpWindow(inputFieldInPopUpWindow);
     }
 
-    //@And("they enter a new unique Album name")
-    //public void theyEnterNewUniqueAlbumNameInThePopUpField(String CreateANewAlbum) {
-      //      albumsPage.enterNewUniqueAlbumNameOnPopUpWindow(CreateANewAlbum);
-    //}
+
+    @And("they enter {string} unique Album name in the pop up field")
+    public void theyEnterUniqueAlbumNameInThePopUpField(String arg0) {
+
+    }
 }

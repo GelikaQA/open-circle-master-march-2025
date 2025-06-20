@@ -12,11 +12,11 @@ Feature: Create Circle
     And they enter "<email>" in the email field on the Create Circle page
     And they enter "<user password>" in the Password field on the Create Circle page
     And they click the Create button on the Create Circle page
-    Then an error message populates below the First Name field on the Create Circle page
+    Then an error message "<error message>" populates below the First Name field on the Create Circle page
 
     Examples:
-      | admin password    | circle name     | first name                        | last name    | email              | user password |
-      | 55^tX(A1zd32as2t5 | TestCircleThree | TestFirstNameThatIsExtremelyLongF | TestLastName | testemail@test.com | Password123   |
+      | admin password    | circle name     | first name                        | last name    | email              | user password | error message |
+      | 55^tX(A1zd32as2t5 | TestCircleThree | TestFirstNameThatIsExtremelyLongF | TestLastName | testemail@test.com | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
 
   Scenario Outline: First name field is empty
 

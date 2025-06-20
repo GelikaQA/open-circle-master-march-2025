@@ -60,9 +60,9 @@ public class CreateCircleSteps {
         createCirclePage.clickCreateButtonOnCreateCirclePage();
     }
 
-    @Then("an error message populates below the First Name field on the Create Circle page")
-    public void anErrorMessagePopulatesBelowTheFirstNameFieldOnTheCreateCirclePage() {
-        createCirclePage.anErrorMessagePopulatesBelowTheFirstNameFieldOnTheCreateCirclePage();
+    @Then("an error message {string} populates below the First Name field on the Create Circle page")
+    public void anErrorMessagePopulatesBelowTheFirstNameFieldOnTheCreateCirclePage(String error) {
+        createCirclePage.anErrorMessagePopulatesBelowTheFirstNameFieldOnTheCreateCirclePage(error);
     }
 
     @Then("error message pops-up {string} below First Name field on Create Circle page")

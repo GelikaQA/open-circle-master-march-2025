@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.WebElement;
 
-import static org.junit.Assert.assertTrue;
 import static tools.CommonTools.getByObject;
 
 public class JoinCirclePage extends BasePage {
@@ -31,89 +30,17 @@ public class JoinCirclePage extends BasePage {
     public static String getJoinCircleCircleNameInputField() {
         return JOIN_CIRCLE_CIRCLE_NAME_INPUT_FIELD;
     }
-    public static String getJoinCirclePasscodeInputField() {
-        return JOIN_CIRCLE_PASSCODE_INPUT_FIELD;
-    }
-    public static String getJoinCircleFirstNameInputField() {
-        return JOIN_CIRCLE_FIRST_NAME_INPUT_FIELD;
-    }
-    public static String getJoinCircleLastNameInputField() {
-        return JOIN_CIRCLE_LAST_NAME_INPUT_FIELD;
-    }
-    public static String getJoinCircleEmailInputField() {
-        return JOIN_CIRCLE_EMAIL_INPUT_FIELD;
-    }
-    public static String getJoinCirclePasswordInputField() {
-        return JOIN_CIRCLE_PASSWORD_INPUT_FIELD;
-    }
-    public static String getJoinCircleJoinSubmitButton() {
-        return JOIN_CIRCLE_JOIN_SUBMIT_BUTTON;
-    }
-    public static String getJoinCircleEntirePageVerification() {
-        return JOIN_CIRCLE_ENTIRE_PAGE_VERIFICATION;
-    }
-    public static String getJoinCirclePopUpMessageIncorrectPasscode() {
-        return JOIN_CIRCLE_POP_UP_MESSAGE_INCORRECT_PASSCODE;
-    }
+
     public void openJoinCirclePage() {
         driver.get("http://opencircle.us/join");
     }
 
     public void enterCircleNameOnJoinCirclePage(String circleName) {
-        wait.forElementToBeDisplayed(10, getByObject(getJoinCircleCircleNameInputField()),
+        wait.forElementToBeDisplayed(
+                10,
+                getByObject(getJoinCircleCircleNameInputField()),
                 "Circle name input field");
         WebElement foundElement = driver.findElement(getByObject(getJoinCircleCircleNameInputField()));
         foundElement.sendKeys(circleName);
     }
-    public void enterPasscodeFieldOnTheJoinCirclePage(String Passcode) {
-        wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePasscodeInputField()),
-                "Passcode input field");
-        WebElement foundElement = driver.findElement(getByObject(getJoinCirclePasscodeInputField()));
-        foundElement.sendKeys(Passcode);
-    }
-    public void enterFirstNameOnJoinCirclePage(String FirstName) {
-        wait.forElementToBeDisplayed(10, getByObject(getJoinCircleFirstNameInputField()),
-                "First name input field");
-        WebElement foundElement = driver.findElement(getByObject(getJoinCircleFirstNameInputField()));
-        foundElement.sendKeys(FirstName);
-    }
-    public void enterLastNameOnJoinCirclePage(String LastName) {
-        wait.forElementToBeDisplayed(10, getByObject(getJoinCircleLastNameInputField()),
-                "Last Name input field");
-        WebElement foundElement = driver.findElement(getByObject(getJoinCircleLastNameInputField()));
-        foundElement.sendKeys(LastName);
-    }
-    public void enterEmailOnJoinCirclePage(String Email) {
-        wait.forElementToBeDisplayed(10, getByObject(getJoinCircleEmailInputField()),
-                "Email input field");
-        WebElement foundElement = driver.findElement(getByObject(getJoinCircleEmailInputField()));
-        foundElement.sendKeys(Email);
-    }
-    public void enterPasswordOnJoinCirclePage(String Password) {
-        wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePasswordInputField()),
-                "Password input field");
-        WebElement foundElement = driver.findElement(getByObject(getJoinCirclePasswordInputField()));
-        foundElement.sendKeys(Password);
-    }
-    public void clickElement(String SignInButton) {
-        wait.forElementToBeDisplayed(10, getByObject(getJoinCircleJoinSubmitButton()),
-                "SIGN UP BUTTON");
-        WebElement foundElement = driver.findElement(getByObject(getJoinCircleJoinSubmitButton()));
-        foundElement.click();
-    }
-
-    public void assertTheyAreStillOnJoinCirclePage() {
-        wait.forElementToBeDisplayed(10, getByObject(getJoinCircleEntirePageVerification()),
-                "JOIN CIRCLE PAGE LOCATE/VERIFY");
-        WebElement foundElement = driver.findElement(getByObject(getJoinCircleEntirePageVerification()));
-        assertTrue(foundElement.isDisplayed());
-    }
-    public void assertAtRightSideCornerWarningMessageAppearsIncorrectPasscode(String IncorrectPasscode) {
-        wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePopUpMessageIncorrectPasscode()),
-                "Incorrect Passcode. Please try again");
-        WebElement foundElement = driver.findElement(getByObject(getJoinCirclePopUpMessageIncorrectPasscode()));
-        assertTrue(foundElement.isDisplayed());
-    }
-
-}
 }

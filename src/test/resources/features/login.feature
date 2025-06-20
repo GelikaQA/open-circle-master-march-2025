@@ -24,6 +24,6 @@ Feature: login
         | v@a.l                             |
         | va@alidemailmorethan32charact.ers |
         | mail@identity.digital             |
-        | ad1@testings.com·                 | //testing trailing space. app trimming space and to test it we have to replace symbol · to a space symbol
+        | ad1@testings.com·                 |
 
 

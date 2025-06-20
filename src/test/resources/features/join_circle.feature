@@ -1,3 +1,5 @@
+
+
 Feature: join_circle
 
   Scenario: Show warning When Passcode is less than 6 digits
@@ -26,3 +28,4 @@ Feature: join_circle
     Then they verify that they see element "xpath=//div[contains(@class,'login_auth_body')]//h1[text()='Join Circle']"
 #    And a warning message 'Incorrect Passcode. Please try again' is displayed under the Passcode field
     And they verify that they see element "xpath=//div[@class='ant-notification-notice-description']//span[text()='Incorrect Passcode. Please try again']"
+

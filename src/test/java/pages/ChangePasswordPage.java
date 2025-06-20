@@ -21,9 +21,7 @@ public class ChangePasswordPage extends BasePage{
     private static final String CURRENT_PASSWORD_HIDDEN_BY_DOTS = "xpath=//span[@class='ant-input-affix-wrapper ant-input-password ant-input-affix-wrapper-status-success css-o2xhy3']/child::input[@id='oldPassword' and @type='password']";
     private static final String NEW_PASSWORD_HIDDEN_BY_DOTS = "xpath=//span[@class='ant-input-affix-wrapper ant-input-password ant-input-affix-wrapper-status-success css-o2xhy3']/child::input[@id='newPassword' and @type='password']";
 
-    public void openLoginPage() {
-        driver.get("http://opencircle.us/login");
-    }
+
     public static String getProfileIcon() {
         return PROFILE_ICON;
     }

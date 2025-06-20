@@ -9,11 +9,7 @@ import pages.ChangePasswordPage;
 public class ChangePasswordSteps {
     ChangePasswordPage changePasswordPage = new ChangePasswordPage();
 
-    @Given("the user is signed in to Open Circle")
-    public void theUserIsSignedInToOpenCircle() {
-        changePasswordPage.openLoginPage();
-    }
-    @And("they click Profile icon")
+    @Given("they click Profile icon")
     public void theyClickProfileIcon() {
         changePasswordPage.clickProfileIcon();
     }

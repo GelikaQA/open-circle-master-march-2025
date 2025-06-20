@@ -9,4 +9,3 @@ Feature: Cancels creating a new album
     And they click create new album bottom
     And they type name Album
     And they click the Cancel button
-

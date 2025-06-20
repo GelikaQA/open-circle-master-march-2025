@@ -6,5 +6,5 @@ Feature: Change Password
     And they enter "" in Current password input field
     And they enter "Example123" in New password input field
     And they click Save button
-    Then they verify that they see Warning message empty current password input field is displayed
+    Then assert Warning message empty current password input field is displayed
 

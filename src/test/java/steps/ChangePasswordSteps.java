@@ -29,8 +29,8 @@ public class ChangePasswordSteps {
     public void theySaveButton() {
         changePasswordPage.clickSaveButton();
     }
-    @Then("they verify that they see Warning message empty current password input field is displayed")
-    public void theyVerifyThatTheySeeWarningMessageEmptyCurrentPasswordInputFieldIsDisplayed() {
+    @Then("assert Warning message empty current password input field is displayed")
+    public void assertWarningMessageEmptyCurrentPasswordInputFieldIsDisplayed() {
         changePasswordPage.clickSaveButton();
     }
 

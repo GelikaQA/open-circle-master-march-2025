@@ -68,4 +68,4 @@ public class JoinCircleSteps {
     @And("a warning message {string} is displayed under the Passcode field")
     public void aWarningMessageIsDisplayedUnderThePasscodeField(String arg0) {
     }
-}
+}}

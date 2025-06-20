@@ -115,4 +115,4 @@ public class JoinCirclePage extends BasePage {
         assertTrue(foundElement.isDisplayed());
     }
 
-}
+}}

@@ -156,13 +156,16 @@ public class CreateCirclePage extends BasePage {
         foundElement.click();
     }
 
-    public void promptedByErrorMessageOnCreateCirclePage() {
+    public void anErrorMessagePopulatesBelowTheFirstNameFieldOnTheCreateCirclePage(String error) {
         wait.forElementToBeDisplayed(
                 10,
                 getByObject(getCreateCircleFieldConstraintErrorMessage()),
                 "Error message");
         WebElement foundElement = driver.findElement(getByObject(getCreateCircleFieldConstraintErrorMessage()));
-        assertTrue(foundElement.isDisplayed());
+        String elementText = foundElement.getText();
+
+        String message = "Text '" + error + "' 'in " + getCreateCircleFieldConstraintErrorMessage() + " is presented.";
+        assertTrue(message, elementText.contains(error));
     }
 
 

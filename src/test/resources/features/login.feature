@@ -11,18 +11,19 @@ Feature: login
   Scenario Outline: Error message for invalid email format
 
       Given a user opens Login page
-      When they enter "<invalid email>" in Email input field on Login page
+      When they enter "<invalid_email>" in Email input field on Login page
       And they enter "Test12345!" in Password input field on Login page
       And they click Sign In button on Login page
       Then error message under the email field is displayed: 'Invalid email address, limited to 32 characters'
 
       Examples:
-        | invalid email  |
-        | validemail.com |
-        |v@al|
-        |v@al.|
-        |v@a.l|
-        |va@alidemailmorethan32charact.ers|
-        |mail@identity.digital|
-#        |"ad1@testings.com " | We have to test trailing space, however the system, truncate space and we have to return to it later as told Angelina
+        | invalid_email                     |
+        | validemail.com                    |
+        | v@al                              |
+        | v@al.                             |
+        | v@a.l                             |
+        | va@alidemailmorethan32charact.ers |
+        | mail@identity.digital             |
+        | ad1@testings.com·                 | //testing trailing space. app trimming space and to test it we have to replace symbol · to a space symbol
+
 

@@ -47,6 +47,7 @@ public class SignInSteps {
 
     @When("they enter {string} in Email input field on Login page")
     public void enterValidEmail(String email) {
+        email = email.replace("·", " ");
         signInPage.enterEmailOnSignInPage(email);
     }
 

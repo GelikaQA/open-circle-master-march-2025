@@ -7,4 +7,3 @@ Feature: Change Password
     And they enter "Example123" in New password input field
     And they click Save button
     Then assert Warning message empty current password input field is displayed
-

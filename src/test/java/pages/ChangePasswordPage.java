@@ -1,6 +1,5 @@
 package pages;
 
-import io.cucumber.java.en.When;
 import org.openqa.selenium.WebElement;
 
 import static tools.CommonTools.getByObject;
@@ -21,37 +20,44 @@ public class ChangePasswordPage extends BasePage{
     private static final String CURRENT_PASSWORD_HIDDEN_BY_DOTS = "xpath=//span[@class='ant-input-affix-wrapper ant-input-password ant-input-affix-wrapper-status-success css-o2xhy3']/child::input[@id='oldPassword' and @type='password']";
     private static final String NEW_PASSWORD_HIDDEN_BY_DOTS = "xpath=//span[@class='ant-input-affix-wrapper ant-input-password ant-input-affix-wrapper-status-success css-o2xhy3']/child::input[@id='newPassword' and @type='password']";
 
-
     public static String getProfileIcon() {
         return PROFILE_ICON;
     }
+
     public static String getChangePasswordSection() {
         return CHANGE_PASSWORD_SECTION;
     }
+
     public static String getCurrentPasswordInputField() {
         return CURRENT_PASSWORD_INPUT_FIELD;
     }
+
     public static String getNewPasswordInputField() {
         return NEW_PASSWORD_INPUT_FIELD;
     }
+
     public static String getSaveButton() {
         return SAVE_BUTTON;
     }
+
     public static String getWarningMessageEmptyCurrentPasswordInputField() {
         return WARNING_MESSAGE_EMPTY_CURRENT_PASSWORD_INPUT_FIELD;
     }
+
     public void clickProfileIcon() {
         wait.forElementToBeDisplayed(10,
                 getByObject(getProfileIcon()),
                 "Profile icon");
         driver.findElement(getByObject(getProfileIcon())).click();
     }
+
     public void clickChangePasswordSection() {
         wait.forElementToBeDisplayed(10,
                 getByObject(getChangePasswordSection()),
                 "Change password section");
         driver.findElement(getByObject(getChangePasswordSection())).click();
     }
+
     public void enterPasswordInCurrentPasswordInputField(String password) {
         wait.forElementToBeDisplayed(10,
                 getByObject(getCurrentPasswordInputField()),
@@ -59,6 +65,7 @@ public class ChangePasswordPage extends BasePage{
         WebElement foundElement = driver.findElement(getByObject(getCurrentPasswordInputField()));
         foundElement.sendKeys(password);
     }
+
     public void enterPasswordInNewPasswordInputField(String password) {
         wait.forElementToBeDisplayed(10,
                 getByObject(getNewPasswordInputField()),
@@ -66,17 +73,18 @@ public class ChangePasswordPage extends BasePage{
         WebElement foundElement = driver.findElement(getByObject(getNewPasswordInputField()));
         foundElement.sendKeys(password);
     }
+
     public void clickSaveButton() {
         wait.forElementToBeDisplayed(10,
                 getByObject(getSaveButton()),
                 "Save button");
         driver.findElement(getByObject(getSaveButton())).click();
     }
+
     public void assertWarningMessageEmptyCurrentPasswordInputFieldIsDisplayed() {
         wait.forElementToBeDisplayed(10,
                 getByObject(getWarningMessageEmptyCurrentPasswordInputField()),
                 "assert Warning message empty current password input field is displayed");
         driver.findElement(getByObject(getWarningMessageEmptyCurrentPasswordInputField())).click();
     }
-
 }

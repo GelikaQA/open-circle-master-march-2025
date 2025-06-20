@@ -11,26 +11,21 @@ public class AlbumsSteps {
     CommonSteps commonSteps = new CommonSteps();
     BasePage basePage = new BasePage();
 
-    @And("a user opens Albums Page")
-    public void aUserOpensCreateAlbumsPage() {
-        driver.get("http://opencircle.us/albums");
-    }
 
     @And("they click the Albums button")
-    public void theyClickTheAlbumsButton() {
+    public void clickAlbumsButtonOnHomePage() {
         albumsPage.clickAlbumsButtonOnHomePage();
     }
-    @And("click Create new album button on Albums page")
-    public void theyClickCreateNewAlbumButton() {
-        albumsPage.clickClickCreateNewAlbumButton();
 
+    @And("click Create new album button on Albums page")
+    public void clickCreateNewAlbumButton() {
+        albumsPage.clickCreateNewAlbumButton();
     }
 
 
-
-    @And("they enter a new unique Album name")
-    public void theyEnteraNewUniqueAlbumName(String text, String inputElement) {
-        albumsPage.sendKeyToElement(text, inputElement);
+    @And("And they enter \"Old\" unique Album name in the pop up field")
+    public void enterNewUniqueAlbumNameOnPopUpWindow(String inputFieldInPopUpWindow) {
+        albumsPage.enterNewUniqueAlbumNameOnPopUpWindow(inputFieldInPopUpWindow);
     }
 
     //@And("they enter a new unique Album name")

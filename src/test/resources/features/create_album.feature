@@ -12,15 +12,22 @@ Feature: createAlbum
     And they click "xpath=//button[@type='submit']"
 
 
+#    And they click the Albums button
     And they click the Albums button
-    And click Create new album button on Albums page
+
+#    And click Create new album button on Albums page
+
 #    And they enter a new unique Album name
-#    And they enter "New" unique Album name in the pop up field
-    And they enter "Mew" in "xpath=//input[@id='form_in_modal_title']"
+#    And they enter "Old" unique Album name in the pop up field
+#    And they enter "Mew" in "xpath=//input[@id='form_in_modal_title']"
+
 #    And click Create Album button on Create New Album modal
     And they click "xpath=//span[text()='Create']"
+
 #    Then a confirmation message appears "Success Album has been created"
     Then they verify that they see element "xpath=//div[@class='ant-notification-notice-with-icon']"
+
 #    And delete created Album
     And they click "xpath=(//div[contains(@class, 'albums_bucketIcon')])[1]"
+
 #    And new album with the given name appears and disappears on the page

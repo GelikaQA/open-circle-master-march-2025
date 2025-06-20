@@ -5,15 +5,13 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.BasePage;
-import pages.HomePage;
-import pages.SignInPage;
+import pages.LoginPage;
 
 
 public class SignInSteps {
 
-    SignInPage signInPage = new SignInPage();
+    LoginPage signInPage = new LoginPage();
     BasePage basePage = new BasePage();
-    HomePage homePage = new HomePage();
 
     @Given("a Circle User is on Sign In page")
     public void openSignInPage() {
@@ -38,39 +36,5 @@ public class SignInSteps {
     @Then("they see a warning message")
     public void theySeeWarningMessage() {
         signInPage.assertNoUserWarningMessage();
-    }
-
-    @Given("a user opens Login page")
-    public void aUserOpensLoginPage() {
-        signInPage.openSignInPage();
-    }
-
-    @When("they enter {string} in Email input field on Login page")
-    public void enterValidEmail(String email) {
-        signInPage.enterEmailOnSignInPage(email);
-    }
-
-    @And("they enter {string} in Password input field on Login page")
-    public void theyEnterInPasswordInputFieldOnLoginPage(String password) {
-        signInPage.enterPasswordOnSignInPage(password);
-    }
-
-    @And("they click Sign In button on Login page")
-    public void theyClickSignInButton() {
-        signInPage.clickSignInButton();
-    }
-
-    @Then("they verify that they are on Circle Home page")
-    public void aUserVerifyThatTheyOnCircleHomePage() {
-        homePage.assertCircleNameIsDisplayedOnHomePage();
-    }
-
-    @Given("a user is logged into the account")
-    public void aUserIsLoggedIntoTheAccount() {
-        signInPage.openSignInPage();
-        signInPage.enterEmailOnSignInPage(SignInPage.getExistingEmail());
-        signInPage.enterPasswordOnSignInPage(SignInPage.getExistingPassword());
-        signInPage.clickSignInButton();
-        homePage.assertCircleNameIsDisplayedOnHomePage();
     }
 }

@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import static org.junit.Assert.assertTrue;
@@ -28,9 +29,39 @@ public class ProfilePage extends BasePage{
 
     public static String getProfileUploadButton(){
         return PROFILE_UPLOAD_BUTTON;
-
     }
 
+    public static String getProfileLastNameInputField() {
+        return PROFILE_LAST_NAME_INPUT_FIELD;
+    }
+
+    public static String getProfileSaveButton() {
+        return PROFILE_SAVE_BUTTON;
+    }
+
+    public static String getProfilePageTitle() {
+        return PROFILE_PAGE_TITLE;
+    }
+
+    public static String getProfileFirstNameInputField() {
+        return PROFILE_FIRST_NAME_INPUT_FIELD;
+    }
+
+    public static String getProfileCloseButton() {
+        return PROFILE_CLOSE_BUTTON;
+    }
+
+    public static String getProfileResetButton() {
+        return PROFILE_RESET_BUTTON;
+    }
+
+    public static String getErrorMessageSpecChars() {
+        return ERROR_MESSAGE_SPEC_CHARS;
+    }
+
+    public static String getErrorMessageEmptyField () {
+        return ERROR_MESSAGE_EMPTY_FIELD;
+    }
 
     public void clickOnTheAvatarIcon() {
         wait.forElementToBeDisplayed(10, getByObject(getProfileAvatarIcon()), "Avatar Icon");
@@ -51,4 +82,31 @@ public class ProfilePage extends BasePage{
         assertTrue(foundElement.isDisplayed());
     }
 
+    public void clearLastNameFieldOnTheProfilePage() {
+        WebElement foundElement = driver.findElement(getByObject(getProfileLastNameInputField()));
+        foundElement.click();
+        foundElement.sendKeys(Keys.chord(Keys.COMMAND, "a"), Keys.DELETE);
+    }
+
+    public void enterLastNameOnTheProfilePage(String lastName) {
+        wait.forElementToBeDisplayed(10, getByObject(getProfileLastNameInputField()),
+                "Last name input field");
+        WebElement foundElement = driver.findElement(getByObject(getProfileLastNameInputField()));
+        foundElement.sendKeys(lastName);
+    }
+
+    public void clickTheSaveButton() {
+        wait.forElementToBeDisplayed(10, getByObject(getProfileSaveButton()),
+                "Save button");
+        WebElement foundElement = driver.findElement(getByObject(getProfileSaveButton()));
+        foundElement.click();
+    }
+
+    public void lastNameSmith1PresentedInLastNameField(String lastName) {
+        WebElement foundElement = driver.findElement(getByObject(getProfileLastNameInputField()));
+        String elementText = foundElement.getAttribute("value");
+        String message = "Text '" + lastName + "' 'in Last name input field is not presented. 'Actual text is '"
+                + elementText + "'";
+        assertTrue(message, elementText.contains(lastName));
+    }
 }

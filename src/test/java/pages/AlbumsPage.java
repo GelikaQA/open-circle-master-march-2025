@@ -18,8 +18,8 @@ public class AlbumsPage extends BasePage {
     private static final String BUCKET_BUTTON_ON_THE_LAST_CREATED_ALBUM = "xpath= (//div[contains(@class, 'albums_bucketIcon')])[1]";
 
     public void clickAlbumsButtonOnHomePage() {
-        wait.forElementToBeDisplayed(10, getByObject(ALBUMS_BUTTON_ON_HOME_PAGE), "Element");
-        WebElement foundElement = driver.findElement(getByObject(ALBUMS_BUTTON_ON_HOME_PAGE));
+        wait.forElementToBeDisplayed(10, getByObject(getAlbumsButtonOnHomePage()), "Element");
+        WebElement foundElement = driver.findElement(getByObject(getAlbumsButtonOnHomePage()));
         foundElement.click();
     }
     public void enterNewUniqueAlbumNameOnPopUpWindow(String createANewAlbum) {

@@ -12,7 +12,7 @@ public class SignInPage extends BasePage {
     private static final String EMAIL_INPUT_FIELD_LOCATOR = "id=email";
     private static final String PASSWORD_INPUT_FIELD_LOCATOR = "id=password";
     private static final String WARNING_MESSAGE_LOCATOR = "xpath=(.//*[normalize-space(text()) and normalize-space(.)='Warning'])[1]/following::span[1]";
-    private static final String LOGIN_PAGE_EMAIL_FIELD_MESSAGE_INVALID_EMAIL = "xpath=//li[text()='Invalid email address, limited to 32 characters']";
+    private static final String LOGIN_PAGE_EMAIL_FIELD_MESSAGE_INVALID_EMAIL = "xpath=//ul[contains(@class,'form_text_danger')]/li[contains(text(),'Invalid email address')]";
     private static final String LOGIN_PAGE_MESSAGE_INVALID_PASSWORD = "xpath=//li[contains(text(),'Field should contain at least one upper-case')]";
     private static final String SIGN_IN_MESSAGE_POPUP_INVALID_EMAIL_PASSWORD = "xpath=//span[text()='Invalid email or password.']";
     private static final String EXISTING_EMAIL = "ad1@testings.com";

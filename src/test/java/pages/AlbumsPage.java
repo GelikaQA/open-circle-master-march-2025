@@ -7,7 +7,7 @@ import static tools.CommonTools.getByObject;
 
 public class AlbumsPage extends BasePage {
     private static final String ALBUMS_BUTTON_ON_HOME_PAGE = "xpath=//div[text()='Albums']";
-    private static final String CREATE_NEW_ALBUM_BUTTON = "xpath=//b[text()='Create new']";
+    private static final String CREATE_NEW_ALBUM_BUTTON = "xpath=//img[@alt='Avatar']";
     private static final String LABEL_CREATE_NEW_ALBUM_WINDOW = "xpath=//div[text()='Create a new Album']";
     private static final String INPUT_CREATE_NEW_ALBUM_WINDOW = "xpath=//input[@id='form_in_modal_title']";
     private static final String CLOSE_BUTTON_NEW_ALBUM_WINDOW = "xpath=//span[@role='img']";

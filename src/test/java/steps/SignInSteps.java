@@ -47,6 +47,7 @@ public class SignInSteps {
 
     @When("they enter {string} in Email input field on Login page")
     public void enterValidEmail(String email) {
+        email = email.replace("·", " ");
         signInPage.enterEmailOnSignInPage(email);
     }
 
@@ -72,5 +73,10 @@ public class SignInSteps {
         signInPage.enterPasswordOnSignInPage(SignInPage.getExistingPassword());
         signInPage.clickSignInButton();
         homePage.assertCircleNameIsDisplayedOnHomePage();
+    }
+
+    @Then("error message under the email field is displayed: {string}")
+    public void errorMessageUnderTheEmailFieldIsDisplayed(String InvalidEmailAddress) {
+        signInPage.assertLoginPageEmailFieldMessageInvalidEmail(InvalidEmailAddress);
     }
 }

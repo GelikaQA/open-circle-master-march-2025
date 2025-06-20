@@ -72,10 +72,10 @@ public class ChangePasswordPage extends BasePage{
                 "Save button");
         driver.findElement(getByObject(getSaveButton())).click();
     }
-    public void WarningMessageEmptyCurrentPasswordInputField() {
+    public void assertWarningMessageEmptyCurrentPasswordInputFieldIsDisplayed() {
         wait.forElementToBeDisplayed(10,
                 getByObject(getWarningMessageEmptyCurrentPasswordInputField()),
-                "Verify that they see Warning message empty current password input field");
+                "Verify that they see Warning message empty current password input field is displayed");
         driver.findElement(getByObject(getWarningMessageEmptyCurrentPasswordInputField())).click();
     }
 

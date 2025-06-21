@@ -28,7 +28,7 @@ public class ChangePasswordPage extends BasePage{
         return CHANGE_PASSWORD_SECTION;
     }
 
-    public static String getCurrentPasswordInputField() {
+    public static String getCurrentPasswordInputFieldOnChangePasswordPage() {
         return CURRENT_PASSWORD_INPUT_FIELD;
     }
 
@@ -42,6 +42,10 @@ public class ChangePasswordPage extends BasePage{
 
     public static String getWarningMessageEmptyCurrentPasswordInputField() {
         return WARNING_MESSAGE_EMPTY_CURRENT_PASSWORD_INPUT_FIELD;
+    }
+
+    public static String getWarningMessageEmptyNewPasswordInputField() {
+        return WARNING_POP_UP_MESSAGE_EMPTY_NEW_PASSWORD_FIELD;
     }
 
     public void clickProfileIcon() {
@@ -60,9 +64,9 @@ public class ChangePasswordPage extends BasePage{
 
     public void enterPasswordInCurrentPasswordInputField(String password) {
         wait.forElementToBeDisplayed(10,
-                getByObject(getCurrentPasswordInputField()),
+                getByObject(getCurrentPasswordInputFieldOnChangePasswordPage()),
                 "Current password input field");
-        WebElement foundElement = driver.findElement(getByObject(getCurrentPasswordInputField()));
+        WebElement foundElement = driver.findElement(getByObject(getCurrentPasswordInputFieldOnChangePasswordPage()));
         foundElement.sendKeys(password);
     }
 
@@ -74,7 +78,7 @@ public class ChangePasswordPage extends BasePage{
         foundElement.sendKeys(password);
     }
 
-    public void clickSaveButton() {
+    public void theyClickSaveButtonOnChangePasswordPage() {
         wait.forElementToBeDisplayed(10,
                 getByObject(getSaveButton()),
                 "Save button");
@@ -86,5 +90,20 @@ public class ChangePasswordPage extends BasePage{
                 getByObject(getWarningMessageEmptyCurrentPasswordInputField()),
                 "assert Warning message empty current password input field is displayed");
         driver.findElement(getByObject(getWarningMessageEmptyCurrentPasswordInputField())).click();
+    }
+
+    public void enterValidPasswordInCurrentPasswordInputFieldOnChangePasswordPage(String password) {
+        wait.forElementToBeDisplayed(10,
+                getByObject(getCurrentPasswordInputFieldOnChangePasswordPage()),
+                "New password input field");
+        WebElement foundElement = driver.findElement(getByObject(getCurrentPasswordInputFieldOnChangePasswordPage()));
+        foundElement.sendKeys(password);
+    }
+
+    public void assertWarningMessageEmptyNewPasswordInputFieldIsDisplayed() {
+        wait.forElementToBeDisplayed(10,
+                getByObject(getWarningMessageEmptyNewPasswordInputField()),
+                "assert Warning message empty New password input field is displayed");
+        driver.findElement(getByObject(getWarningMessageEmptyNewPasswordInputField())).click();
     }
 }

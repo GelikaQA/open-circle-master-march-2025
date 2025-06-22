@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.WebElement;
 
+import static org.junit.Assert.assertTrue;
 import static tools.CommonTools.getByObject;
 
 public class ChangePasswordPage extends BasePage{
@@ -44,7 +45,7 @@ public class ChangePasswordPage extends BasePage{
         return WARNING_MESSAGE_EMPTY_CURRENT_PASSWORD_INPUT_FIELD;
     }
 
-    public static String getWarningMessageEmptyNewPasswordInputField() {
+    public static String getWarningPopUpMessageEmptyNewPasswordField() {
         return WARNING_POP_UP_MESSAGE_EMPTY_NEW_PASSWORD_FIELD;
     }
 
@@ -100,10 +101,15 @@ public class ChangePasswordPage extends BasePage{
         foundElement.sendKeys(password);
     }
 
-    public void assertWarningMessageEmptyNewPasswordInputFieldIsDisplayed() {
-        wait.forElementToBeDisplayed(10,
-                getByObject(getWarningMessageEmptyNewPasswordInputField()),
-                "assert Warning message empty New password input field is displayed");
-        driver.findElement(getByObject(getWarningMessageEmptyNewPasswordInputField())).click();
+    public void assertWarningMessageForEmptyNewPasswordFieldOnChangePasswordPage(String warning) {
+        wait.forElementToBeDisplayed(
+                10,
+                getByObject(getWarningPopUpMessageEmptyNewPasswordField()),
+                "Warning message");
+        WebElement foundElement = driver.findElement(getByObject(getWarningPopUpMessageEmptyNewPasswordField()));
+        String elementText = foundElement.getText();
+
+        String message = "Text '" + warning + "' 'in " + getWarningPopUpMessageEmptyNewPasswordField() + " is presented.";
+        assertTrue(message, elementText.contains(warning));
     }
 }

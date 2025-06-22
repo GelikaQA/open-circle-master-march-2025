@@ -40,14 +40,13 @@ public class ChangePasswordSteps {
         changePasswordPage.assertWarningMessageEmptyCurrentPasswordInputFieldIsDisplayed();
     }
 
-
     @And("they enter valid password  {string} in the Current password field on Change Password page")
     public void theyEnterValidPasswordInTheCurrentPasswordFieldOnChangePasswordPage(String password) {
         changePasswordPage.enterValidPasswordInCurrentPasswordInputFieldOnChangePasswordPage(password);
     }
 
-    @Then("assert Warning message empty New password input field is displayed")
-    public void assertWarningMessageEmptyNewPasswordInputFieldIsDisplayed() {
-        changePasswordPage.assertWarningMessageEmptyNewPasswordInputFieldIsDisplayed();
+    @Then("warning message empty new password field {string} pops-up on Change Password page")
+    public void warningMessageEmptyNewPasswordFieldPopsUpOnChangePasswordPage(String warning) {
+        changePasswordPage.assertWarningMessageForEmptyNewPasswordFieldOnChangePasswordPage(warning);
     }
 }

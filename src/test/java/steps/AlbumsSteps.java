@@ -1,6 +1,7 @@
 package steps;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.AlbumsPage;
 import pages.BasePage;
@@ -22,15 +23,19 @@ public class AlbumsSteps {
         albumsPage.clickCreateNewAlbumButton();
     }
 
-
-    @And("And they enter \"Old\" unique Album name in the pop up field")
-    public void enterNewUniqueAlbumNameOnPopUpWindow(String inputFieldInPopUpWindow) {
-        albumsPage.enterNewUniqueAlbumNameOnPopUpWindow(inputFieldInPopUpWindow);
-    }
-
-
     @And("they enter {string} unique Album name in the pop up field")
-    public void theyEnterUniqueAlbumNameInThePopUpField(String arg0) {
-
+    public void enterNewUniqueAlbumNameInPopUpWindow(String uniqueAlbumNameInPopUpWindow) {
+        albumsPage.enterNewUniqueAlbumNameInPopUpWindow(uniqueAlbumNameInPopUpWindow);
     }
+
+    @And("they click Create button")
+    public void clickCreateButtonNewAlbumWindow() {
+        albumsPage.clickCreateButtonNewAlbumWindow();
+    }
+
+    @Then("they verify that they confirmation msg {string}")
+    public void assertPopUpMsgThatAlbumIsCreated() {
+        albumsPage.assertPopUpMsgThatAlbumIsCreated();
+    }
+
 }

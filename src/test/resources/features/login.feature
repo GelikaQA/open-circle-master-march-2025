@@ -9,7 +9,6 @@ Feature: login
 
 
   Scenario Outline: Error message for invalid email format
-
       Given a user opens Login page
       When they enter "<invalid_email>" in Email input field on Login page
       And they enter "Test12345!" in Password input field on Login page
@@ -25,5 +24,3 @@ Feature: login
         | va@alidemailmorethan32charact.ers |
         | mail@identity.digital             |
         | ad1@testings.com·                 |
-
-

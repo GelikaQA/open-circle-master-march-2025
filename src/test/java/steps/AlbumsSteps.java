@@ -12,7 +12,6 @@ public class AlbumsSteps {
     CommonSteps commonSteps = new CommonSteps();
     BasePage basePage = new BasePage();
 
-
     @And("they click the Albums button")
     public void clickAlbumsButtonOnHomePage() {
         albumsPage.clickAlbumsButtonOnHomePage();

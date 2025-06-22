@@ -66,7 +66,6 @@ public class AlbumsPage extends BasePage {
         return POP_UP_MSG_WHEN_ALBUM_IS_CREATED;
     }
 
-
     public static String getExistingEmail() {
         return EXISTING_EMAIL;
     }

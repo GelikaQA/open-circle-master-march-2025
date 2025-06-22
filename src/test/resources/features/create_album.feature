@@ -21,6 +21,5 @@ Feature: createAlbum
 
 
 #    And they delete the Album they just created
-#    And they click "xpath=(//div[contains(@class, 'albums_card')]//div[contains(@class, 'albums_bucketIcon')])[last()]"
-
+#    And they click Bucket Button "xpath=(//div[contains(@class, 'albums_card')]//div[contains(@class, 'albums_bucketIcon')])[last()]"
 #    And new album with the given name appears and disappears on the page

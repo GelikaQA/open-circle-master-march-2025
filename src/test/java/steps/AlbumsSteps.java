@@ -6,6 +6,8 @@ import io.cucumber.java.en.When;
 import pages.AlbumsPage;
 import pages.BasePage;
 
+import javax.swing.text.Element;
+
 public class AlbumsSteps {
 
     AlbumsPage albumsPage = new AlbumsPage();
@@ -22,19 +24,27 @@ public class AlbumsSteps {
         albumsPage.clickCreateNewAlbumButton();
     }
 
-    @And("they enter {string} unique Album name in the pop up field")
+    @And("they enter {string} unique Album name in the pop up field in create new album window")
     public void enterNewUniqueAlbumNameInPopUpWindow(String uniqueAlbumNameInPopUpWindow) {
         albumsPage.enterNewUniqueAlbumNameInPopUpWindow(uniqueAlbumNameInPopUpWindow);
     }
+    @Then("they verify that they see element {string}")
+    public void theyVerifyThatTheySeeElement(String element) {
+        basePage.assertElementIsDisplayed(element);
+    }
 
-    @And("they click Create button")
+    @And("they click Create button in create new album window")
     public void clickCreateButtonNewAlbumWindow() {
         albumsPage.clickCreateButtonNewAlbumWindow();
     }
 
-    @Then("they verify that they confirmation msg {string}")
-    public void assertPopUpMsgThatAlbumIsCreated() {
-        albumsPage.assertPopUpMsgThatAlbumIsCreated();
-    }
+    //@And("click Bucket Button on the Album they just created")
+    //public void clickBucketButtonOnTheAlbumTheyJustCreated() {
+      //  albumsPage.clickBucketButtonOnTheAlbumTheyJustCreated();
+    //}
 
+    @And("they see confirmation pop up window with text {string}")
+    public void theySeeConfirmationPopUpWindowWithText(String message) {
+        albumsPage.assertElementIsDisplayed(message);
+    }
 }

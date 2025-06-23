@@ -14,8 +14,9 @@ public class AlbumsPage extends BasePage {
     private static final String CREATE_BUTTON_NEW_ALBUM_WINDOW = "xpath=//span[text()='Create']";
     private static final String POP_UP_MSG_IF_ALBUM_ALREADY_EXISTS = "xpath=//span[text()='Album with this name exists']";
     private static final String POP_UP_MSG_WHEN_ALBUM_IS_CREATED = "xpath=//div[@class='ant-notification-notice-with-icon']";
+    private static final String POP_UP_TEXT_WHEN_ALBUM_IS_CREATED = "xpath=//div[@class='ant-notification-notice-description']";
     private static final String BUCKET_BUTTON_ON_THE_LAST_CREATED_ALBUM =
-            "xpath=(//div[contains(@class, 'albums_card')]//div[contains(@class, 'albums_bucketIcon')])[last()]";
+            "xpath=(//div[contains(@class, 'albums_bucketIcon')])[last()]";
     private static final String EXISTING_EMAIL = "arkadiy.popovtest@gmail.com";
     private static final String EXISTING_PASSWORD = "1234Qwer";
 
@@ -57,15 +58,40 @@ public class AlbumsPage extends BasePage {
         return CREATE_BUTTON_NEW_ALBUM_WINDOW;
     }
 
-    public void assertPopUpMsgThatAlbumIsCreated() {
+    //public void assertTextPresentedInPopUpMessage(String message) {
+      //  wait.forElementToBeDisplayed(10, getByObject(getPopUpMsgWhenAlbumIsCreated()), "Pop Up Message");
+       // WebElement foundElement = driver.findElement(getByObject(getPopUpMsgWhenAlbumIsCreated()));
+        //String actualText = foundElement.getText();
+        //assertTrue(elementText.contains(PopUpMessage));
+    //}
+
+    public void assertTextPresentedInPopUpMessage(String popUpMessage) {
+        wait.forElementToBeDisplayed(2, getByObject(getPopUpMsgWhenAlbumIsCreated()),"Pop Up Message");
+        WebElement foundElement = driver.findElement(getByObject(getPopUpMsgWhenAlbumIsCreated()));
+        String elementText = foundElement.getText();
+        assertTrue(elementText.contains(popUpMessage));
+    }
+    public void theySeeConfirmationPopUpWindowWithText(String targetElement) {
         wait.forElementToBeDisplayed(10, getByObject(getPopUpMsgWhenAlbumIsCreated()), "Element");
         WebElement foundElement = driver.findElement(getByObject(getPopUpMsgWhenAlbumIsCreated()));
         assertTrue(foundElement.isDisplayed());
     }
+
     public static String getPopUpMsgWhenAlbumIsCreated() {
         return POP_UP_MSG_WHEN_ALBUM_IS_CREATED;
     }
+    public void clickBucketButtonOnTheAlbumTheyJustCreated() {
+        wait.forElementToBeDisplayed(10, getByObject(getBucketButtonOnTheAlbumTheyJustCreated()), "Element");
+        WebElement foundElement = driver.findElement(getByObject(getBucketButtonOnTheAlbumTheyJustCreated()));
+        foundElement.click();
+    }
+    public static String getBucketButtonOnTheAlbumTheyJustCreated() {
+        return BUCKET_BUTTON_ON_THE_LAST_CREATED_ALBUM;
+    }
 
+    public static String getPopUpTextWhenAlbumIsCreated() {
+        return POP_UP_TEXT_WHEN_ALBUM_IS_CREATED;
+    }
     public static String getExistingEmail() {
         return EXISTING_EMAIL;
     }
@@ -86,8 +112,4 @@ public class AlbumsPage extends BasePage {
         return POP_UP_MSG_IF_ALBUM_ALREADY_EXISTS;
     }
 
-    public static String getBucketButtonOnTheLastCreatedAlbum() {
-        return BUCKET_BUTTON_ON_THE_LAST_CREATED_ALBUM;
     }
-
-}

@@ -9,7 +9,9 @@ Feature: createAlbum
     And they enter "Bew" unique Album name in the pop up field in create new album window
     And they click Create button in create new album window
 
-    And they see confirmation pop up window with text "Album has been created"
+    And they verify that they Successful Creation Message
+#    And they see confirmation pop up window with text "Album has been created"
+
 
 
 #    And click Bucket Button on the Album they just created

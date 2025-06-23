@@ -58,12 +58,18 @@ public class AlbumsPage extends BasePage {
         return CREATE_BUTTON_NEW_ALBUM_WINDOW;
     }
 
-    public void assertPopUpMsgThatAlbumIsCreated(String message) {
-        wait.forElementToBeDisplayed(10, getByObject(getPopUpMsgWhenAlbumIsCreated()), "Element");
-        WebElement foundElement = driver.findElement(getByObject(getPopUpMsgWhenAlbumIsCreated()));
-        String actualText = foundElement.getText();
-        assertTrue("Expected message not found! Actual message: " + actualText, actualText.contains(message));
+    //public void assertTextPresentedInPopUpMessage(String message) {
+      //  wait.forElementToBeDisplayed(10, getByObject(getPopUpMsgWhenAlbumIsCreated()), "Pop Up Message");
+       // WebElement foundElement = driver.findElement(getByObject(getPopUpMsgWhenAlbumIsCreated()));
+        //String actualText = foundElement.getText();
+        //assertTrue(elementText.contains(PopUpMessage));
+    //}
 
+    public void assertTextPresentedInPopUpMessage(String popUpMessage) {
+        wait.forElementToBeDisplayed(2, getByObject(getPopUpMsgWhenAlbumIsCreated()),"Pop Up Message");
+        WebElement foundElement = driver.findElement(getByObject(getPopUpMsgWhenAlbumIsCreated()));
+        String elementText = foundElement.getText();
+        assertTrue(elementText.contains(popUpMessage));
     }
     public void theySeeConfirmationPopUpWindowWithText(String targetElement) {
         wait.forElementToBeDisplayed(10, getByObject(getPopUpMsgWhenAlbumIsCreated()), "Element");

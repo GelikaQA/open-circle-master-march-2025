@@ -3,6 +3,7 @@ package pages;
 import hooks.Setup;
 import hooks.Wait;
 import org.openqa.selenium.*;
+import tools.PropertiesLoader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -131,5 +132,13 @@ public class BasePage {
     public void waitForElementIsVisible(String target) {
         wait.forElementToBeDisplayed(10, getByObject(target), "Element");
         wait.forElementToBeInteractable(10, getByObject(target), "Element");
+    }
+
+    public void assertMessageIsDisplayed(String message) {
+        wait.forElementToBeDisplayed(10,
+                getByObject( PropertiesLoader.getProperties("messageLocator")), "Element");
+        WebElement foundElement = driver.findElement(getByObject( PropertiesLoader.getProperties("messageLocator")));
+        String elementText = foundElement.getText();
+        assertTrue(elementText.contains(message));
     }
 }

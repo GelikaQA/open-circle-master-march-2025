@@ -8,8 +8,7 @@ Feature: createAlbum
     And click Create new album button on Albums page
     And they enter "Bew" unique Album name in the pop up field in create new album window
     And they click Create button in create new album window
-
-    And they verify that they Successful Creation Message
+    And they verify that Success Message appears
 #    And they see confirmation pop up window with text "Album has been created"
 
 

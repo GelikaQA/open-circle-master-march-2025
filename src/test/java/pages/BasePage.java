@@ -17,11 +17,16 @@ public class BasePage {
     protected WebDriver driver;
     protected Wait wait;
     HashMap<String, Object> context;
+    public static final String POP_UP_WINDOW_MESSAGE_LOCATOR = "xpath=//div[@class='ant-notification-notice-message']";
 
     public BasePage() {
         this.driver = Setup.driver;
         this.wait = new Wait(this.driver);
         context = new HashMap<>();
+    }
+
+    public static String getPopUpWindowMessageLocator(){
+            return POP_UP_WINDOW_MESSAGE_LOCATOR;
     }
 
     public void clickElement(String targetElement) {
@@ -136,8 +141,8 @@ public class BasePage {
 
     public void assertMessageIsDisplayed(String message) {
         wait.forElementToBeDisplayed(10,
-                getByObject( PropertiesLoader.getProperties("messageLocator")), "Element");
-        WebElement foundElement = driver.findElement(getByObject( PropertiesLoader.getProperties("messageLocator")));
+                getByObject(getPopUpWindowMessageLocator()), "Element");
+        WebElement foundElement = driver.findElement(getByObject(getPopUpWindowMessageLocator()));
         String elementText = foundElement.getText();
         assertTrue(elementText.contains(message));
     }

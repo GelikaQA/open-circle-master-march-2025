@@ -89,17 +89,18 @@ public class JoinCirclePage extends BasePage {
         WebElement foundElement = driver.findElement(getByObject(getJoinCircleEmailInputField()));
         foundElement.sendKeys(Email);
     }
-    public void enterPasswordOnJoinCirclePage(String Password) {
+    public void enterPasswordOnJoinCirclePage(String password) {
         wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePasswordInputField()),
-                "Password input field");
-        WebElement foundElement = driver.findElement(getByObject(getJoinCirclePasswordInputField()));
-        foundElement.sendKeys(Password);
+                "PASSWORD INPUT");
+        WebElement passwordField = driver.findElement(getByObject(getJoinCirclePasswordInputField()));
+        passwordField.sendKeys(password);
     }
-    public void clickElement(String SignInButton) {
-        wait.forElementToBeDisplayed(10, getByObject(getJoinCircleJoinSubmitButton()),
-                "SIGN UP BUTTON");
-        WebElement foundElement = driver.findElement(getByObject(getJoinCircleJoinSubmitButton()));
-        foundElement.click();
+
+    public void theyPressButtonJoinOnTheJoinCirclePage() {
+    wait.forElementToBeDisplayed(10, getByObject(getJoinCircleJoinSubmitButton()),
+            "SIGN UP BUTTON");
+    WebElement signUpButton = driver.findElement(getByObject(getJoinCircleJoinSubmitButton()));
+    signUpButton.click();
     }
 
     public void assertTheyAreStillOnJoinCirclePage() {
@@ -108,11 +109,11 @@ public class JoinCirclePage extends BasePage {
         WebElement foundElement = driver.findElement(getByObject(getJoinCircleEntirePageVerification()));
         assertTrue(foundElement.isDisplayed());
     }
-    public void assertAtRightSideCornerWarningMessageAppearsIncorrectPasscode(String IncorrectPasscode) {
+    public void assertWarningMessageAppearsIncorrectPasscode(String IncorrectPasscode) {
         wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePopUpMessageIncorrectPasscode()),
                 "Incorrect Passcode. Please try again");
         WebElement foundElement = driver.findElement(getByObject(getJoinCirclePopUpMessageIncorrectPasscode()));
         assertTrue(foundElement.isDisplayed());
     }
 
-}}
+}

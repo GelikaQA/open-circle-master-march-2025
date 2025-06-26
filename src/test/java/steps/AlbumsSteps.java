@@ -2,7 +2,6 @@ package steps;
 
 import io.cucumber.java.en.And;
 import pages.AlbumsPage;
-import pages.BasePage;
 
 public class AlbumsSteps {
 

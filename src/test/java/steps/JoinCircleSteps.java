@@ -58,9 +58,8 @@ public class JoinCircleSteps {
         joinCirclePage.assertTheyAreStillOnJoinCirclePage();
     }
 
-
     @And("Warning message appears: {string}")
-    public void warningMessageAppearsIncorrectPasscodePleaseTryAgain(String IncorrectPasscode) {
-        joinCirclePage.assertWarningMessageAppearsIncorrectPasscode(IncorrectPasscode);
+    public void warningMessageAppearsIncorrectPasscodePleaseTryAgain(String incorrectPasscode) {
+        joinCirclePage.assertWarningMessageAppearsIncorrectPasscode(incorrectPasscode);
     }
 }

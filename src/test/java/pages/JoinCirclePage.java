@@ -109,11 +109,14 @@ public class JoinCirclePage extends BasePage {
         WebElement foundElement = driver.findElement(getByObject(getJoinCircleEntirePageVerification()));
         assertTrue(foundElement.isDisplayed());
     }
-    public void assertWarningMessageAppearsIncorrectPasscode(String IncorrectPasscode) {
+
+    public void assertWarningMessageAppearsIncorrectPasscode(String incorrectPasscode) {
         wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePopUpMessageIncorrectPasscode()),
                 "Incorrect Passcode. Please try again");
         WebElement foundElement = driver.findElement(getByObject(getJoinCirclePopUpMessageIncorrectPasscode()));
-        assertTrue(foundElement.isDisplayed());
-    }
+        String elementText = foundElement.getText();
 
+        String message = "Text '" + incorrectPasscode + "' in " + getJoinCirclePopUpMessageIncorrectPasscode() + " is not presented. 'Actual text is '" + elementText + "'";
+        assertTrue(message, elementText.contains(incorrectPasscode));
+    }
 }

@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.BasePage;
+import tools.PropertiesLoader;
 
 public class CommonSteps {
 
@@ -68,5 +69,15 @@ public class CommonSteps {
     @And("wait for {string} is visible")
     public void waitForElementIsVisible(String target) {
         basePage.waitForElementIsVisible(target);
+    }
+
+    @And("they verify that Success Message appears")
+    public void theyVerifyThatSuccessMessageAppears() {
+        basePage.assertMessageIsDisplayed(PropertiesLoader.getProperties("successfulMessage"));
+    }
+
+    @And("they verify that Warning Message appears")
+    public void theyVerifyThatWarningMessageAppears() {
+        basePage.assertMessageIsDisplayed(PropertiesLoader.getProperties("warningMessage"));
     }
 }

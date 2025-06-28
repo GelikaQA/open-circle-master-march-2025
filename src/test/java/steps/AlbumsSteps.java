@@ -1,18 +1,11 @@
 package steps;
 
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import pages.AlbumsPage;
-import pages.BasePage;
-
-import javax.swing.text.Element;
 
 public class AlbumsSteps {
 
     AlbumsPage albumsPage = new AlbumsPage();
-    CommonSteps commonSteps = new CommonSteps();
-    BasePage basePage = new BasePage();
 
     @And("they click the Albums button")
     public void clickAlbumsButtonOnHomePage() {

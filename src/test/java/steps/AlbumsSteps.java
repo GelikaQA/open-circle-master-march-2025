@@ -42,7 +42,7 @@ public class AlbumsSteps {
     }
 
     @And("they verify that they Successful Creation Message")
-    public void theyVerifyThatTheySuccessefulCreationMessage() {
+    public void theyVerifyThatTheySuccessfulCreationMessage() {
         albumsPage.assertTextPresentedInPopUpMessage("Success");
     }
 }

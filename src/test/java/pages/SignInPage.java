@@ -51,6 +51,13 @@ public class SignInPage extends BasePage {
         return LOGIN_PAGE_EMAIL_FIELD_MESSAGE_INVALID_EMAIL;
     }
 
+    public static String getLoginPageEmailFieldMessageThisInputIsRequired(){
+        return LOGIN_PAGE_EMAIL_FIELD_MESSAGE_THIS_INPUT_IS_REQUIRED;
+    }
+
+    public static String getLoginPageMessageInvalidPassword(){
+        return LOGIN_PAGE_MESSAGE_INVALID_PASSWORD;
+    }
     public void openSignInPage() {driver.get(getSignInPage());
     }
 
@@ -78,6 +85,24 @@ public class SignInPage extends BasePage {
     public void assertLoginPageEmailFieldMessageInvalidEmail(String InvalidEmailAddress) {
         wait.forElementToBeDisplayed(10, getByObject(getLoginPageEmailFieldMessageInvalidEmail()), "Element");
         WebElement foundElement = driver.findElement(getByObject(getLoginPageEmailFieldMessageInvalidEmail()));
+        assertTrue(foundElement.isDisplayed());
+    }
+
+    public void clearEmailInputField() {
+        wait.forElementToBeDisplayed(10, getByObject(getEmailInputFieldLocator()), "Element");
+        WebElement foundElement = driver.findElement(getByObject(getEmailInputFieldLocator()));
+        foundElement.clear();
+    }
+
+    public void assertLoginPageEmailFieldRequired(String ThisInputIsRequired) {
+        wait.forElementToBeDisplayed(10, getByObject(getLoginPageEmailFieldMessageThisInputIsRequired()), "Element");
+        WebElement foundElement = driver.findElement(getByObject(getLoginPageEmailFieldMessageThisInputIsRequired()));
+        assertTrue(foundElement.isDisplayed());
+    }
+
+    public void assertLoginPagePasswordFieldMessageInvalidPassword(String InvalidPassword) {
+        wait.forElementToBeDisplayed(10, getByObject(getLoginPageMessageInvalidPassword()), "Element");
+        WebElement foundElement = driver.findElement(getByObject(getLoginPageMessageInvalidPassword()));
         assertTrue(foundElement.isDisplayed());
     }
 }

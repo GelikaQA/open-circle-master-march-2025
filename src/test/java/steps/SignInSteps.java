@@ -79,4 +79,20 @@ public class SignInSteps {
     public void errorMessageUnderTheEmailFieldIsDisplayed(String InvalidEmailAddress) {
         signInPage.assertLoginPageEmailFieldMessageInvalidEmail(InvalidEmailAddress);
     }
+
+    @When("they clear email field")
+    public void theyClearEmailField() {
+        signInPage.clearEmailInputField();
+    }
+
+
+    @Then("error message under the required email field is displayed: {string}")
+    public void errorMessageUnderTheRequiredEmailFieldIsDisplayed(String EmailRequired) {
+        signInPage.assertLoginPageEmailFieldRequired(EmailRequired);
+    }
+
+    @Then("error message under the password field is displayed: {string}")
+    public void errorMessageUnderThePasswordFieldIsDisplayed(String InvalidPassword) {
+        signInPage.assertLoginPagePasswordFieldMessageInvalidPassword(InvalidPassword);
+    }
 }

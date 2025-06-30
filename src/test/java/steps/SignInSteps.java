@@ -7,6 +7,7 @@ import io.cucumber.java.en.When;
 import pages.BasePage;
 import pages.HomePage;
 import pages.SignInPage;
+import tools.PropertiesLoader;
 
 
 public class SignInSteps {
@@ -49,6 +50,11 @@ public class SignInSteps {
     public void enterValidEmail(String email) {
         email = email.replace("·", " ");
         signInPage.enterEmailOnSignInPage(email);
+    }
+
+    @When("they enter existing email in Email input field on Login page")
+    public void theyEnterExistingEmailInEmailInputFieldOnLoginPage() {
+        signInPage.enterEmailOnSignInPage(PropertiesLoader.getProperties("email"));
     }
 
     @And("they enter {string} in Password input field on Login page")

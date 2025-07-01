@@ -55,6 +55,8 @@ public class JoinCirclePage extends BasePage {
     public static String getJoinCirclePopUpMessageIncorrectPasscode() {
         return JOIN_CIRCLE_POP_UP_MESSAGE_INCORRECT_PASSCODE;
     }
+    public static String getJoinCirclePopUpMessageIncorrectFirstName() { return JOIN_CIRCLE_LN_FIELD_MESSAGE_FIELD_ACCEPTS;
+    }
     public void openJoinCirclePage() {
         driver.get("http://opencircle.us/join");
     }
@@ -118,5 +120,15 @@ public class JoinCirclePage extends BasePage {
 
         String message = "Text '" + incorrectPasscode + "' in " + getJoinCirclePopUpMessageIncorrectPasscode() + " is not presented. 'Actual text is '" + elementText + "'";
         assertTrue(message, elementText.contains(incorrectPasscode));
+    }
+
+    public void assertWarningMessageForFirstName(String incorrectFirstName) {
+        wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePopUpMessageIncorrectFirstName()),
+                "Field accepts alphabetical char and digits, no special chars allowed, limited to 32 character");
+        WebElement foundElement = driver.findElement(getByObject(getJoinCirclePopUpMessageIncorrectFirstName()));
+        String elementText = foundElement.getText();
+
+        String message = "Text '" + incorrectFirstName + "' in " + getJoinCirclePopUpMessageIncorrectFirstName() + " is not presented. 'Actual text is '" + elementText + "'";
+        assertTrue(message, elementText.contains(incorrectFirstName));
     }
 }

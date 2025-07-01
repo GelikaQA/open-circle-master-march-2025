@@ -16,8 +16,7 @@ public class AlbumsPage extends BasePage {
     private static final String POP_UP_TEXT_WHEN_ALBUM_IS_CREATED = "xpath=//div[@class='ant-notification-notice-description']";
     private static final String BUCKET_BUTTON_ON_THE_LAST_CREATED_ALBUM =
             "xpath=(//div[contains(@class, 'albums_bucketIcon')])[last()]";
-    private static final String EXISTING_EMAIL = "arkadiy.popovtest@gmail.com";
-    private static final String EXISTING_PASSWORD = "1234Qwer";
+
 
     public static String getAlbumsButtonOnHomePage() {
         return ALBUMS_BUTTON_ON_HOME_PAGE;
@@ -47,15 +46,7 @@ public class AlbumsPage extends BasePage {
         return POP_UP_TEXT_WHEN_ALBUM_IS_CREATED;
     }
 
-    public static String getExistingEmail() {
-        return EXISTING_EMAIL;
-    }
-
-    public static String getExistingPassword() {
-        return EXISTING_PASSWORD;
-    }
-
-    public static String getCloseButtonNewAlbumWindow() {
+        public static String getCloseButtonNewAlbumWindow() {
         return CLOSE_BUTTON_NEW_ALBUM_WINDOW;
     }
 

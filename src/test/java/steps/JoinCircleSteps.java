@@ -46,8 +46,8 @@ public class JoinCircleSteps {
         joinCirclePage.enterPasswordOnJoinCirclePage(password);
     }
 
-    @And("They press button {string} on the Join Circle page")
-    public void theyPressButtonJoinOnTheJoinCirclePage(String signInButton) {
+    @And("They press button Join on the Join Circle page")
+    public void theyPressButtonJoinOnTheJoinCirclePage() {
         joinCirclePage.theyPressButtonJoinOnTheJoinCirclePage();
 
     }

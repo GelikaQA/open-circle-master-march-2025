@@ -21,28 +21,28 @@ public class JoinCircleSteps {
     }
 
 
-    @And("they enters {string} in the Passcode field on the Join Circle page")
+    @And("they enter {string} in the Passcode field on the Join Circle page")
     public void entersInThePasscodeFieldOnTheJoinCirclePage(String Passcode) {
         joinCirclePage.enterPasscodeFieldOnTheJoinCirclePage(Passcode);
 
     }
 
-    @And("they enters {string} in the First Name field on the Join Circle page")
+    @And("they enter {string} in the First Name field on the Join Circle page")
     public void entersInTheFirstNameFieldOnTheJoinCirclePage(String FirstName) {
         joinCirclePage.enterFirstNameOnJoinCirclePage(FirstName);
     }
 
-    @And("they enters {string} in the Last Name field on the Join Circle page")
+    @And("they enter {string} in the Last Name field on the Join Circle page")
     public void entersInTheLastNameFieldOnTheJoinCirclePage(String LastName) {
         joinCirclePage.enterLastNameOnJoinCirclePage(LastName);
     }
 
-    @And("they enters {string} in the Email field on the Join Circle page")
+    @And("they enter {string} in the Email field on the Join Circle page")
     public void entersInTheEmailFieldOnTheJoinCirclePage(String Email) {
         joinCirclePage.enterEmailOnJoinCirclePage(Email);
     }
 
-    @And("they enters {string} in the Password field on the Join Circle page")
+    @And("they enter {string} in the Password field on the Join Circle page")
     public void entersInThePasswordFieldOnTheJoinCirclePage(String Password) {
         joinCirclePage.enterPasswordOnJoinCirclePage(Password);
     }

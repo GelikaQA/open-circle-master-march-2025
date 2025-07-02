@@ -20,7 +20,6 @@ public class JoinCircleSteps {
         joinCirclePage.enterCircleNameOnJoinCirclePage(circleName);
     }
 
-
     @And("they enter {string} in the Passcode field on the Join Circle page")
     public void entersInThePasscodeFieldOnTheJoinCirclePage(String Passcode) {
         joinCirclePage.enterPasscodeFieldOnTheJoinCirclePage(Passcode);

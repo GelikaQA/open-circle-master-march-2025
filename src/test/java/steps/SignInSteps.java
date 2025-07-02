@@ -4,7 +4,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.BasePage;
 import pages.HomePage;
 import pages.SignInPage;
 import tools.PropertiesLoader;
@@ -13,13 +12,7 @@ import tools.PropertiesLoader;
 public class SignInSteps {
 
     SignInPage signInPage = new SignInPage();
-    BasePage basePage = new BasePage();
     HomePage homePage = new HomePage();
-
-    @Given("a Circle User is on Sign In page")
-    public void openSignInPage() {
-        signInPage.openSignInPage();
-    }
 
     @When("they enter {string} address")
     public void enterInvalidEmail(String email) {
@@ -75,8 +68,8 @@ public class SignInSteps {
     @Given("a user is logged into the account")
     public void aUserIsLoggedIntoTheAccount() {
         signInPage.openSignInPage();
-        signInPage.enterEmailOnSignInPage(SignInPage.getExistingEmail());
-        signInPage.enterPasswordOnSignInPage(SignInPage.getExistingPassword());
+        signInPage.enterEmailOnSignInPage(PropertiesLoader.getProperties("email"));
+        signInPage.enterPasswordOnSignInPage(PropertiesLoader.getProperties("password"));
         signInPage.clickSignInButton();
         homePage.assertCircleNameIsDisplayedOnHomePage();
     }
@@ -91,7 +84,6 @@ public class SignInSteps {
         signInPage.clearEmailInputField();
     }
 
-
     @Then("error message under the required email field is displayed: {string}")
     public void errorMessageUnderTheRequiredEmailFieldIsDisplayed(String EmailRequired) {
         signInPage.assertLoginPageEmailFieldRequired(EmailRequired);
@@ -105,5 +97,5 @@ public class SignInSteps {
     @And("they enter valid password in Password input field on Login page")
     public void theyEnterValidPasswordInPasswordInputFieldOnLoginPage() {
         signInPage.enterPasswordOnSignInPage(PropertiesLoader.getProperties("password"));
-        }
+    }
 }

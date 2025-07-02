@@ -8,7 +8,6 @@ Feature: login
      Then they verify that they are on Circle Home page
 
 
-
   Scenario Outline: Error message for invalid email format
       Given a user opens Login page
       When they enter "<invalid_email>" in Email input field on Login page

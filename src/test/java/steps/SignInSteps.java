@@ -101,4 +101,9 @@ public class SignInSteps {
     public void errorMessageUnderThePasswordFieldIsDisplayed(String InvalidPassword) {
         signInPage.assertLoginPagePasswordFieldMessageInvalidPassword(InvalidPassword);
     }
+
+    @And("they enter valid password in Password input field on Login page")
+    public void theyEnterValidPasswordInPasswordInputFieldOnLoginPage() {
+        signInPage.enterPasswordOnSignInPage(PropertiesLoader.getProperties("password"));
+        }
 }

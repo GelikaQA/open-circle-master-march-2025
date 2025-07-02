@@ -1,33 +1,30 @@
 Feature: login
 
-  Scenario Outline: Successful login with valid credentials
+  Scenario: Successful login with valid credentials
      Given a user opens Login page
      When they enter existing email in Email input field on Login page
-     And they enter "<valid_password>" in Password input field on Login page
+     And they enter valid password in Password input field on Login page
      And they click Sign In button on Login page
      Then they verify that they are on Circle Home page
 
-    Examples:
-      | valid_email      | valid_password |
-      | ad1@testings.com | Test12345!     |
 
 
   Scenario Outline: Error message for invalid email format
       Given a user opens Login page
       When they enter "<invalid_email>" in Email input field on Login page
-      And they enter "<valid_password>" in Password input field on Login page
+      And they enter valid password in Password input field on Login page
       And they click Sign In button on Login page
       Then error message under the email field is displayed: 'Invalid email address, limited to 32 characters'
 
       Examples:
-        | invalid_email                     | valid_password |
-        | validemail.com                    | Test12345!     |
-        | v@al                              | Test12345!     |
-        | v@al.                             | Test12345!     |
-        | v@a.l                             | Test12345!     |
-        | va@alidemailmorethan32charact.ers | Test12345!     |
-        | mail@identity.digital             | Test12345!     |
-        | ad1@testings.com·                 | Test12345!     |
+        | invalid_email                     |
+        | validemail.com                    |
+        | v@al                              |
+        | v@al.                             |
+        | v@a.l                             |
+        | va@alidemailmorethan32charact.ers |
+        | mail@identity.digital             |
+        | ad1@testings.com·                 |
 
 
   Scenario: Error message displays for empty email field

@@ -18,6 +18,7 @@ public class CreateTopicSteps {
     public void enterNewTopicNameInputField(String NewTopicName) {
         topicsPage.enterNewTopicNameInputField(NewTopicName);
     }
+
     @And("they click on Create button on topic page")
     public void clickOnCreateButton() {
         topicsPage.clickCreateButtonOnTopicPage();
@@ -27,5 +28,4 @@ public class CreateTopicSteps {
     public void successMessagePopsUpOnTopicPage(String TopicHasBeenCreated) {
         topicsPage.assertSuccessMessagePopsUpOnTopicPage(TopicHasBeenCreated);
     }
-
 }

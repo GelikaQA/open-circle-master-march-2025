@@ -1,6 +1,7 @@
 package steps;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import pages.AlbumsPage;
 
 public class AlbumsSteps {
@@ -21,6 +22,7 @@ public class AlbumsSteps {
     public void enterNewUniqueAlbumNameInPopUpWindow(String uniqueAlbumNameInPopUpWindow) {
         albumsPage.enterNewUniqueAlbumNameInPopUpWindow(uniqueAlbumNameInPopUpWindow);
     }
+
     //@Then("they verify that they see element {string}")
     //public void theyVerifyThatTheySeeElement(String element) {
       //  albumsPage.assertElementIsDisplayed(element);
@@ -31,18 +33,23 @@ public class AlbumsSteps {
         albumsPage.clickCreateButtonNewAlbumWindow();
     }
 
-    //@And("click Bucket Button on the Album they just created")
-    //public void clickBucketButtonOnTheAlbumTheyJustCreated() {
-      //  albumsPage.clickBucketButtonOnTheAlbumTheyJustCreated();
-    //}
-
     @And("they see confirmation pop up window with text {string}")
     public void theySeeConfirmationPopUpWindowWithText(String message) {
         albumsPage.assertElementIsDisplayed(message);
     }
 
     @And("they verify that they Successful Creation Message")
-    public void theyVerifyThatTheySuccessefulCreationMessage() {
+    public void theyVerifyThatTheySuccessfulCreationMessage() {
         albumsPage.assertTextPresentedInPopUpMessage("Success");
+    }
+
+    @Then("they assert the album name {string} presented on Album Page")
+    public void assertAlbumNamePresentedOnAlbumPage(String albumTitle) {
+        albumsPage.assertAlbumIsDisplayed(albumTitle);
+    }
+
+    @And("they delete album named {string} from Album Page")
+    public void deleteAlbumNamed(String album) {
+        albumsPage.clickDeleteAlbum(album);
     }
 }

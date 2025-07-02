@@ -3,7 +3,6 @@ package pages;
 import hooks.Setup;
 import hooks.Wait;
 import org.openqa.selenium.*;
-import tools.PropertiesLoader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,16 +16,17 @@ public class BasePage {
     protected WebDriver driver;
     protected Wait wait;
     HashMap<String, Object> context;
+
     public static final String POP_UP_WINDOW_MESSAGE_LOCATOR = "xpath=//div[@class='ant-notification-notice-message']";
+
+    public static String getPopUpWindowMessageLocator(){
+        return POP_UP_WINDOW_MESSAGE_LOCATOR;
+    }
 
     public BasePage() {
         this.driver = Setup.driver;
         this.wait = new Wait(this.driver);
         context = new HashMap<>();
-    }
-
-    public static String getPopUpWindowMessageLocator(){
-            return POP_UP_WINDOW_MESSAGE_LOCATOR;
     }
 
     public void clickElement(String targetElement) {

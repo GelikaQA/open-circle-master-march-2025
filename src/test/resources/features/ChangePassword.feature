@@ -21,4 +21,3 @@ Feature: Change Password
     Examples:
       | password   | warning message                                                                                                                                 |
       | Test12345! | Field: newPassword; Error: Field should contain at least one upper-case, at least one lower-case and at least one digit and be between 8 and 20 |
-

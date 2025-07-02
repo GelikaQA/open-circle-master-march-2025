@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 
 import static org.junit.Assert.assertTrue;
 import static tools.CommonTools.getByObject;
+
 public class TopicsPage extends BasePage {
     private static final String TOPIC_PLUS_ICON_BUTTON = "xpath=//div[contains(@class, 'crateChannelBtn')]";
     private static final String NEW_TOPIC_NAME_INPUT_FIELD = "xpath=//input[@placeholder]";
@@ -79,5 +80,4 @@ public class TopicsPage extends BasePage {
         String message = "Text '" + TopicHasBeenCreated + "' 'in " + getTopicCreationSuccessMessage() + " is presented.";
         assertTrue(message, elementText.contains(TopicHasBeenCreated));
     }
-
-    }
+}

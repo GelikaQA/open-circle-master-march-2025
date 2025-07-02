@@ -69,5 +69,4 @@ public class CreateCircleSteps {
     public void errorMessagePopsUp(String error) {
         createCirclePage.assertErrorMessageForEmptyFirstNameFieldOnCreateCirclePage(error);
     }
-
 }

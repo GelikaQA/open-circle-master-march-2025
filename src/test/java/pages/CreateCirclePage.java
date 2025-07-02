@@ -1,6 +1,8 @@
 package pages;
 
 import org.openqa.selenium.WebElement;
+import tools.PropertiesLoader;
+
 import static org.junit.Assert.assertTrue;
 import static tools.CommonTools.getByObject;
 
@@ -70,9 +72,8 @@ public class CreateCirclePage extends BasePage {
         return CREATE_CIRCLE_ERROR_MESSAGE_FOR_EMPTY_FIRST_NAME_FIELD;
     }
 
-
     public void openCreateCirclePage() {
-        driver.get("http://opencircle.us/create");
+        driver.get(PropertiesLoader.getProperties("createCircleUrl"));
     }
 
     public void enterAdminPasswordOnAdminPage(String adminPassword) {
@@ -167,8 +168,6 @@ public class CreateCirclePage extends BasePage {
         String message = "Text '" + error + "' 'in " + getCreateCircleFieldConstraintErrorMessage() + " is presented.";
         assertTrue(message, elementText.contains(error));
     }
-
-
 
     public void assertErrorMessageForEmptyFirstNameFieldOnCreateCirclePage(String error) {
         wait.forElementToBeDisplayed(

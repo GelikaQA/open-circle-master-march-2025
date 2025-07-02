@@ -6,7 +6,6 @@ import io.cucumber.java.en.When;
 import pages.ProfilePage;
 
 
-
 public class ProfileSteps {
 
     ProfilePage profilePage = new ProfilePage();

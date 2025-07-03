@@ -59,11 +59,11 @@ public class JoinCircleSteps {
 
     @And("Warning message appears: {string}")
     public void warningMessageAppearsIncorrectPasscodePleaseTryAgain(String incorrectPasscode) {
-        joinCirclePage.assertWarningMessageIncorrectPasscodeIsDisplayedOnJoinCirclePage(incorrectPasscode);
+        joinCirclePage.assertWarningMessageIncorrectPasscodeOnJoinCirclePageIsDisplayed(incorrectPasscode);
     }
 
     @And("Warning message is displayed: {string}")
     public void warningMessageIsDisplayed(String incorrectFirstName) {
-        joinCirclePage.assertWarningMessageForFirstNameIsDisplayedOnJoinCirclePage(incorrectFirstName);
+        joinCirclePage.assertWarningMessageForFirstNameOnJoinCirclePageIsDisplayed(incorrectFirstName);
     }
 }

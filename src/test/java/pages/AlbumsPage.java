@@ -57,6 +57,16 @@ public class AlbumsPage extends BasePage {
         return POP_UP_MSG_IF_ALBUM_ALREADY_EXISTS;
     }
 
+    public static String deleteAlbumLocator(String albumTitle) {
+        return  "xpath=//div[contains(@class,'albums_text')]/descendant::b[text()='" +
+                albumTitle + "']/../../div/div[2]";
+    }
+
+    public static String selectAlbumLocator(String albumTitle) {
+        return "xpath=//div[contains(@class,'albums_text')]/b[text()='"
+                + albumTitle + "']";
+    }
+
     public void clickAlbumsButtonOnHomePage() {
         wait.forElementToBeDisplayed(10, getByObject(getAlbumsButtonOnHomePage()), "Element");
         WebElement foundElement = driver.findElement(getByObject(getAlbumsButtonOnHomePage()));
@@ -95,9 +105,15 @@ public class AlbumsPage extends BasePage {
         assertTrue(foundElement.isDisplayed());
     }
 
-        public void clickBucketButtonOnTheAlbumTheyJustCreated() {
-        wait.forElementToBeDisplayed(10, getByObject(getBucketButtonOnTheAlbumTheyJustCreated()), "Element");
-        WebElement foundElement = driver.findElement(getByObject(getBucketButtonOnTheAlbumTheyJustCreated()));
+    public void assertAlbumIsDisplayed(String albumName) {
+        wait.forElementToBeDisplayed(10, getByObject(selectAlbumLocator(albumName)), "Album Name");
+        WebElement foundElement = driver.findElement(getByObject(selectAlbumLocator(albumName)));
+        assertTrue(foundElement.isDisplayed());
+    }
+
+    public void clickDeleteAlbum(String album) {
+        wait.forElementToBeDisplayed(10, getByObject(selectAlbumLocator(album)), "Select Album");
+        WebElement foundElement = driver.findElement(getByObject(deleteAlbumLocator(album)));
         foundElement.click();
     }
 }

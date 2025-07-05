@@ -3,6 +3,8 @@ package pages;
 import org.openqa.selenium.WebElement;
 import static org.junit.Assert.assertTrue;
 import static tools.CommonTools.getByObject;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 
 public class AlbumsPage extends BasePage {
     private static final String ALBUMS_BUTTON_ON_HOME_PAGE = "xpath=//div[text()='Albums']";
@@ -63,8 +65,7 @@ public class AlbumsPage extends BasePage {
     }
 
     public static String selectAlbumLocator(String albumTitle) {
-        return "xpath=//div[contains(@class,'albums_text')]/b[text()='"
-                + albumTitle + "']";
+        return "xpath=//div[contains(@class,'albums_text')]/b[text()='" + albumTitle + "']";
     }
 
     public void clickAlbumsButtonOnHomePage() {
@@ -110,10 +111,39 @@ public class AlbumsPage extends BasePage {
         WebElement foundElement = driver.findElement(getByObject(selectAlbumLocator(albumName)));
         assertTrue(foundElement.isDisplayed());
     }
-
     public void clickDeleteAlbum(String album) {
-        wait.forElementToBeDisplayed(10, getByObject(selectAlbumLocator(album)), "Select Album");
+        wait.forElementToBeDisplayed(17, getByObject(selectAlbumLocator(album)), "Select Album");
         WebElement foundElement = driver.findElement(getByObject(deleteAlbumLocator(album)));
         foundElement.click();
+    }
+
+//    public void assertDuplicateAlbumNotCreated(String albumName) {
+//        try {
+//            driver.findElement(getByObject(selectAlbumLocator(albumName)));
+//            throw new AssertionError("Duplicate album '" + albumName + "' was unexpectedly created.");
+//        } catch (NoSuchElementException e) {
+//            System.out.println("Duplicate album not found, as expected.");
+//        }
+//    }
+
+    public void assertDuplicateAlbumMessageDisplayed(String expectedText) {
+        wait.forElementToBeDisplayed(10, getByObject(getPopUpMsgIfAlbumAlreadyExists()), "Duplicate Album Error");
+        WebElement foundElement = driver.findElement(getByObject(getPopUpMsgIfAlbumAlreadyExists()));
+        String actualText = foundElement.getText();
+        System.out.println("Actual duplicate error: " + actualText);
+        assertTrue("Expected to see: " + expectedText, actualText.contains(expectedText));
+    }
+
+    public void clickCancelButtonNewAlbumWindow() {
+        wait.forElementToBeDisplayed(10, getByObject(getCancelButtonNewAlbumWindow()), "Cancel button");
+        WebElement cancelButton = driver.findElement(getByObject(getCancelButtonNewAlbumWindow()));
+        cancelButton.click();
+    }
+
+    public void createAlbum(String albumName){
+        clickAlbumsButtonOnHomePage();
+        clickCreateNewAlbumButton();
+        enterNewUniqueAlbumNameInPopUpWindow(albumName);
+        clickCreateButtonNewAlbumWindow();
     }
 }

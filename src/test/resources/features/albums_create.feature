@@ -13,3 +13,18 @@ Feature: createAlbum
     Examples:
       | album name |
       | newAlbum   |
+
+  Scenario Outline: User can not create a photo album without a unique name
+    Given a user is logged into the account
+    And they create new album with the name "<duplicate name>"
+    And they verify that Success Message appears
+    And they create new album with the name "<duplicate name>"
+#    And they verify that Warning Message appears
+#    And they click Cancel button on Create New Button Window
+    Then confirmation message appears "Album with this name exists"
+    And they click Cancel button on Create New Button Window
+    And they delete album named "<duplicate name>" from Album Page
+
+    Examples:
+      | duplicate name |
+      | TEST123        |

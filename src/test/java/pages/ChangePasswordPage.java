@@ -86,13 +86,17 @@ public class ChangePasswordPage extends BasePage{
         driver.findElement(getByObject(getSaveButton())).click();
     }
 
-    public void assertWarningMessageEmptyCurrentPasswordInputFieldIsDisplayed() {
-        wait.forElementToBeDisplayed(10,
+    public void assertWarningMessageEmptyCurrentPasswordInputFieldIsDisplayedOnChangePasswordPage(String warning) {
+        wait.forElementToBeDisplayed(
+                10,
                 getByObject(getWarningMessageEmptyCurrentPasswordInputField()),
-                "assert Warning message empty current password input field is displayed");
-        driver.findElement(getByObject(getWarningMessageEmptyCurrentPasswordInputField())).click();
-    }
+                "Warning message");
+        WebElement foundElement = driver.findElement(getByObject(getWarningMessageEmptyCurrentPasswordInputField()));
+        String elementText = foundElement.getText();
 
+        String message = "Text '" + warning + "' 'in " + getWarningMessageEmptyCurrentPasswordInputField() + " is presented.";
+        assertTrue(message, elementText.contains(warning));
+    }
     public void enterValidPasswordInCurrentPasswordInputFieldOnChangePasswordPage(String password) {
         wait.forElementToBeDisplayed(10,
                 getByObject(getCurrentPasswordInputFieldOnChangePasswordPage()),
@@ -101,7 +105,7 @@ public class ChangePasswordPage extends BasePage{
         foundElement.sendKeys(password);
     }
 
-    public void assertWarningMessageForEmptyNewPasswordFieldOnChangePasswordPage(String warning) {
+    public void assertWarningMessageEmptyNewPasswordInputFieldIsDisplayedOnChangePasswordPage(String warning) {
         wait.forElementToBeDisplayed(
                 10,
                 getByObject(getWarningPopUpMessageEmptyNewPasswordField()),

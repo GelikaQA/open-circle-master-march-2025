@@ -66,4 +66,30 @@ public class JoinCircleSteps {
     public void warningMessageIsDisplayed(String incorrectFirstName) {
         joinCirclePage.assertWarningMessageForFirstNameOnJoinCirclePageIsDisplayed(incorrectFirstName);
     }
+
+    @And("under the field First Name the Warning message is displayed: {string}")
+    public void underTheFieldFirstNameTheWarningMessageThisInputIsRequiredIsDisplayed(String emptyFirstName) {
+        joinCirclePage.assertFirstNameFieldWarningMessageThisInputIsRequiredIsDisplayed(emptyFirstName);
+    }
+
+    @And("they selected and copy entered password on the Join Circle page")
+    public void theySelectedAndCopyEnteredPasswordOnTheJoinCirclePage() {
+        joinCirclePage.theyCopySelectedHiddenPasswordOnTheJoinCirclePage();
+    }
+
+    @And("they activated context menu on the Join Circle page")
+    public void theyActivatedContextMenuOnTheJoinCirclePage() {
+        joinCirclePage.theyActivatedContextMenuOnTheJoinCirclePage();
+    }
+
+    @Then("The password is not copied into clipboard")
+    public void thePasswordIsNotCopiedIntoClipboard() {
+        joinCirclePage.thePasswordIsNotCopiedIntoClipboardFromPasswordField();
+    }
+
+// for next test case
+//    @And("they copy password from the context menu on the Join Circle page")
+//    public void theyCopyPasswordFromTheContextMenuOnTheJoinCirclePage() {
+//        joinCirclePage.theyCopyPasswordFromTheContextMenuOnTheJoinCirclePage();
+//    }
 }

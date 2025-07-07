@@ -6,6 +6,13 @@ import tools.PropertiesLoader;
 import static org.junit.Assert.assertTrue;
 import static tools.CommonTools.getByObject;
 
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.Keys;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import static org.junit.Assert.assertNotEquals;
+
 public class JoinCirclePage extends BasePage {
     private static final String JOIN_CIRCLE_ENTIRE_PAGE_VERIFICATION = "xpath=//div[contains(@class,'login_auth_body')]//h1[text()='Join Circle']";
     private static final String JOIN_CIRCLE_CIRCLE_NAME_INPUT_FIELD = "name=circleId";
@@ -26,7 +33,7 @@ public class JoinCirclePage extends BasePage {
     private static final String JOIN_CIRCLE_EMAIL_FIELD_MESSAGE_INVALID_EMAIL = "xpath=//ul[contains(@class,'form_text_danger')]//li[contains(text(),'Invalid email address')]";
     private static final String JOIN_CIRCLE_PASSWORD_FIELD_MESSAGE_FIELD_SHOULD = "xpath=//ul[contains(@class,'form_text_danger')]//li[contains(text(),'Field should contain at least one')]";
     private static final String JOIN_CIRCLE_POP_UP_MESSAGE_EMAIL_EXIST = "xpath=//span[text()='A user with such an email exists.']";
-    private static final String JOIN_CIRCLE_PASSWORD_FIELD_ENTERED_VALUE_123456zZ = "xpath=//input[@id='password' and @value='123456zZ']";
+    private static final String JOIN_CIRCLE_PASSWORD_FIELD_ENTERED_VALUE_123456z = "xpath=//input[@id='password' and @value='123456z']";
     private static final String JOIN_CIRCLE_POP_UP_MESSAGE_INCORRECT_CIRCLE_NAME = "xpath=//div[contains(@class,'ant-notification-notice-description')]//span[text()='Incorrect Circle Name. Please try again']";
 
     public static String getJoinCircleCircleNameInputField() {
@@ -67,6 +74,10 @@ public class JoinCirclePage extends BasePage {
 
     public static String getJoinCirclePopUpMessageIncorrectFirstName() {
         return JOIN_CIRCLE_LN_FIELD_MESSAGE_FIELD_ACCEPTS;
+    }
+
+    public static String getJoinCirclePageFirstNameEmailPasswordFieldIsRequired () {
+        return JOIN_CIRCLE_FN__CIRCLE_EMAIL_PASSWORD_FIELD_MESSAGE_INPUT_IS_REQUIRED;
     }
 
     public void openJoinCirclePage() {
@@ -147,5 +158,67 @@ public class JoinCirclePage extends BasePage {
 
         String message = "Text '" + incorrectFirstName + "' in " + getJoinCirclePopUpMessageIncorrectFirstName() + " is not presented. 'Actual text is '" + elementText + "'";
         assertTrue(message, elementText.contains(incorrectFirstName));
+    }
+
+    public void assertFirstNameFieldWarningMessageThisInputIsRequiredIsDisplayed(String incorrectFirstName) {
+        wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePageFirstNameEmailPasswordFieldIsRequired()),
+                "This input is required");
+        WebElement foundElement = driver.findElement(getByObject(getJoinCirclePageFirstNameEmailPasswordFieldIsRequired()));
+        String elementText = foundElement.getText();
+
+        String message = "Text '" + incorrectFirstName + "' in " + getJoinCirclePageFirstNameEmailPasswordFieldIsRequired() + " is not presented. 'Actual text is '" + elementText + "'";
+        assertTrue(message, elementText.contains(incorrectFirstName));
+    }
+
+    public void theyCopySelectedHiddenPasswordOnTheJoinCirclePage() {
+        wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePasswordInputField()),
+                "This input is required");
+        WebElement passwordField = driver.findElement(getByObject(getJoinCirclePasswordInputField()));
+
+        Actions actions = new Actions(driver);
+        actions
+                .moveToElement(passwordField)
+                .click()
+                .keyDown(Keys.CONTROL)
+                .sendKeys("a", "c")
+                .keyUp(Keys.CONTROL)
+                .perform();
+        }
+
+    public void thePasswordIsNotCopiedIntoClipboardFromPasswordField() {
+        String clipboardContent = getClipboardContents();
+        String actualPassword = getPasswordInputValue(); // Gets the password field value
+        System.out.println("Clipboard: " + clipboardContent);
+        System.out.println("Entered password: " + actualPassword);
+
+        assertNotEquals("ERROR: password should not be copied into clipboard", actualPassword, clipboardContent); //Asserts that clipboard ≠ password
+    }
+
+    private String getClipboardContents() { // Additional method to get clipboard data
+        try {
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+            return (String) clipboard.getData(DataFlavor.stringFlavor);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private String getPasswordInputValue() { // Additional method get text from the password input field
+        WebElement passwordField = driver.findElement(getByObject(getJoinCirclePasswordInputField()));
+        return passwordField.getAttribute("value");
+    }
+
+
+//    for next test case
+    public void theyActivatedContextMenuOnTheJoinCirclePage(){
+        WebElement passwordField = driver.findElement(getByObject(getJoinCirclePasswordInputField()));
+
+        Actions actions = new Actions(driver);
+        actions
+                .moveToElement(passwordField)
+                .contextClick() // Mouse right click button simulation
+                .perform();
+
     }
 }

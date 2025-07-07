@@ -7,10 +7,9 @@ Feature: createAlbum
     And they enter "<album name>" unique Album name in the pop up field in create new album window
     And they click Create button in create new album window
     And they verify that Success Message appears
-#    And they see confirmation pop up window with text "Album has been created"
-#    And click Bucket Button on the Album they just created
-#    And they click Bucket Button "xpath=(//div[contains(@class, 'albums_card')]//div[contains(@class, 'albums_bucketIcon')])[last()]"
-#    And new album with the given name appears and disappears on the page
+    Then they assert the album name "<album name>" presented on Album Page
+    And they delete album named "<album name>" from Album Page
+
     Examples:
       | album name |
       | newAlbum   |

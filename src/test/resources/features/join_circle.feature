@@ -8,7 +8,7 @@ Feature: join_circle
     And they enter "<last name>" in the Last Name field on the Join Circle page
     And they enter "<email>" in the Email field on the Join Circle page
     And they enter "<password>" in the Password field on the Join Circle page
-    And They press button 'Join' on the Join Circle page
+    And They press button Join on the Join Circle page
     Then they are still on the Join Circle page as the registration was not completed
     And Warning message appears: "<error message>"
 
@@ -28,7 +28,7 @@ Feature: join_circle
     And they enter "<last name>" in the Last Name field on the Join Circle page
     And they enter "<email>" in the Email field on the Join Circle page
     And they enter "<password>" in the Password field on the Join Circle page
-    And They press button 'Join' on the Join Circle page
+    And They press button Join on the Join Circle page
     Then they are still on the Join Circle page as the registration was not completed
     And Warning message is displayed: "<error message>"
 

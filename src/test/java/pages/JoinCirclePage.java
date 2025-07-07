@@ -129,7 +129,7 @@ public class JoinCirclePage extends BasePage {
         assertTrue(foundElement.isDisplayed());
     }
 
-    public void assertWarningMessageAppearsIncorrectPasscode(String incorrectPasscode) {
+    public void assertWarningMessageIncorrectPasscodeOnJoinCirclePageIsDisplayed(String incorrectPasscode) {
         wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePopUpMessageIncorrectPasscode()),
                 "Incorrect Passcode. Please try again");
         WebElement foundElement = driver.findElement(getByObject(getJoinCirclePopUpMessageIncorrectPasscode()));
@@ -139,7 +139,7 @@ public class JoinCirclePage extends BasePage {
         assertTrue(message, elementText.contains(incorrectPasscode));
     }
 
-    public void assertWarningMessageForFirstName(String incorrectFirstName) {
+    public void assertWarningMessageForFirstNameOnJoinCirclePageIsDisplayed(String incorrectFirstName) {
         wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePopUpMessageIncorrectFirstName()),
                 "Field accepts alphabetical char and digits, no special chars allowed, limited to 32 character");
         WebElement foundElement = driver.findElement(getByObject(getJoinCirclePopUpMessageIncorrectFirstName()));

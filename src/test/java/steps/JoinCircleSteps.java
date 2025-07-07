@@ -21,33 +21,33 @@ public class JoinCircleSteps {
     }
 
     @And("they enter {string} in the Passcode field on the Join Circle page")
-    public void entersInThePasscodeFieldOnTheJoinCirclePage(String Passcode) {
-        joinCirclePage.enterPasscodeFieldOnTheJoinCirclePage(Passcode);
+    public void entersInThePasscodeFieldOnTheJoinCirclePage(String passcode) {
+        joinCirclePage.enterPasscodeFieldOnTheJoinCirclePage(passcode);
 
     }
 
     @And("they enter {string} in the First Name field on the Join Circle page")
-    public void entersInTheFirstNameFieldOnTheJoinCirclePage(String FirstName) {
-        joinCirclePage.enterFirstNameOnJoinCirclePage(FirstName);
+    public void entersInTheFirstNameFieldOnTheJoinCirclePage(String firstName) {
+        joinCirclePage.enterFirstNameOnJoinCirclePage(firstName);
     }
 
     @And("they enter {string} in the Last Name field on the Join Circle page")
-    public void entersInTheLastNameFieldOnTheJoinCirclePage(String LastName) {
-        joinCirclePage.enterLastNameOnJoinCirclePage(LastName);
+    public void entersInTheLastNameFieldOnTheJoinCirclePage(String lastName) {
+        joinCirclePage.enterLastNameOnJoinCirclePage(lastName);
     }
 
     @And("they enter {string} in the Email field on the Join Circle page")
-    public void entersInTheEmailFieldOnTheJoinCirclePage(String Email) {
-        joinCirclePage.enterEmailOnJoinCirclePage(Email);
+    public void entersInTheEmailFieldOnTheJoinCirclePage(String email) {
+        joinCirclePage.enterEmailOnJoinCirclePage(email);
     }
 
     @And("they enter {string} in the Password field on the Join Circle page")
-    public void entersInThePasswordFieldOnTheJoinCirclePage(String Password) {
-        joinCirclePage.enterPasswordOnJoinCirclePage(Password);
+    public void entersInThePasswordFieldOnTheJoinCirclePage(String password) {
+        joinCirclePage.enterPasswordOnJoinCirclePage(password);
     }
 
-    @And("They press button {string} on the Join Circle page")
-    public void theyPressButtonJoinOnTheJoinCirclePage(String SignInButton) {
+    @And("They press button Join on the Join Circle page")
+    public void theyPressButtonJoinOnTheJoinCirclePage() {
         joinCirclePage.theyPressButtonJoinOnTheJoinCirclePage();
 
     }
@@ -59,11 +59,11 @@ public class JoinCircleSteps {
 
     @And("Warning message appears: {string}")
     public void warningMessageAppearsIncorrectPasscodePleaseTryAgain(String incorrectPasscode) {
-        joinCirclePage.assertWarningMessageAppearsIncorrectPasscode(incorrectPasscode);
+        joinCirclePage.assertWarningMessageIncorrectPasscodeOnJoinCirclePageIsDisplayed(incorrectPasscode);
     }
 
     @And("Warning message is displayed: {string}")
     public void warningMessageIsDisplayed(String incorrectFirstName) {
-        joinCirclePage.assertWarningMessageForFirstName(incorrectFirstName);
+        joinCirclePage.assertWarningMessageForFirstNameOnJoinCirclePageIsDisplayed(incorrectFirstName);
     }
 }

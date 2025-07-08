@@ -69,7 +69,7 @@ public class TopicsPage extends BasePage {
         driver.findElement(getByObject(getCreateNewTopicCreateButton())).click();
     }
 
-    public void assertSuccessMessagePopsUpOnTopicPage(String TopicHasBeenCreated) {
+    public void assertSuccessMessagePopsUpOnTopicPageisDisplayed(String TopicHasBeenCreated) {
         wait.forElementToBeDisplayed(
                 10,
                 getByObject(getTopicCreationSuccessMessage()),

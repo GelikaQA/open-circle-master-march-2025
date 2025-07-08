@@ -42,11 +42,11 @@ public class ChangePasswordSteps {
 
     @Then("warning message empty new password field {string} pops-up on Change Password page")
     public void warningMessageEmptyNewPasswordFieldPopsUpOnChangePasswordPage(String warning) {
-        changePasswordPage.assertWarningMessageEmptyNewPasswordInputFieldIsDisplayedOnChangePasswordPage(warning);
+        changePasswordPage.assertWarningMessageEmptyNewPasswordInputFieldOnChangePasswordPageIsDisplayed(warning);
     }
 
     @Then("warning message empty current password field {string} pops-up on Change Password page")
     public void warningMessageEmptyCurrentPasswordFieldPopsUpOnChangePasswordPage(String warning) {
-        changePasswordPage.assertWarningMessageEmptyCurrentPasswordInputFieldIsDisplayedOnChangePasswordPage(warning);
+        changePasswordPage.assertWarningMessageEmptyCurrentPasswordInputFieldOnChangePasswordPageIsDisplayed(warning);
     }
 }

@@ -86,7 +86,7 @@ public class ChangePasswordPage extends BasePage{
         driver.findElement(getByObject(getSaveButton())).click();
     }
 
-    public void assertWarningMessageEmptyCurrentPasswordInputFieldIsDisplayedOnChangePasswordPage(String warning) {
+    public void assertWarningMessageEmptyCurrentPasswordInputFieldOnChangePasswordPageIsDisplayed(String warning) {
         wait.forElementToBeDisplayed(
                 10,
                 getByObject(getWarningMessageEmptyCurrentPasswordInputField()),
@@ -105,7 +105,7 @@ public class ChangePasswordPage extends BasePage{
         foundElement.sendKeys(password);
     }
 
-    public void assertWarningMessageEmptyNewPasswordInputFieldIsDisplayedOnChangePasswordPage(String warning) {
+    public void assertWarningMessageEmptyNewPasswordInputFieldOnChangePasswordPageIsDisplayed(String warning) {
         wait.forElementToBeDisplayed(
                 10,
                 getByObject(getWarningPopUpMessageEmptyNewPasswordField()),

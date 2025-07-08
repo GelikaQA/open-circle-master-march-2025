@@ -76,7 +76,7 @@ public class ProfilePage extends BasePage{
         foundElement.click();
     }
 
-    public void seeTheUploadButton() {
+    public void assertTheUploadButtonIsPresent() {
         wait.forElementToBeDisplayed(10, getByObject(getProfileUploadButton()), "Upload Button");
         WebElement foundElement = driver.findElement(getByObject(getProfileUploadButton()));
         assertTrue(foundElement.isDisplayed());
@@ -102,7 +102,7 @@ public class ProfilePage extends BasePage{
         foundElement.click();
     }
 
-    public void lastNameSmith1PresentedInLastNameField(String lastName) {
+    public void assertLastNameInLastNameFieldOnProfilePageIsPresent(String lastName) {
         WebElement foundElement = driver.findElement(getByObject(getProfileLastNameInputField()));
         String elementText = foundElement.getAttribute("value");
         String message = "Text '" + lastName + "' 'in Last name input field is not presented. 'Actual text is '"

@@ -52,4 +52,24 @@ public class AlbumsSteps {
     public void deleteAlbumNamed(String album) {
         albumsPage.clickDeleteAlbum(album);
     }
+
+    @Then("confirmation message appears {string}")
+    public void confirmationMessageAppears(String warningMessage) {
+        albumsPage.assertDuplicateAlbumMessageDisplayed(warningMessage);
+    }
+
+//    @Then("new album with the given name is not present on the page")
+//    public void new_album_with_the_given_name_is_not_present_on_the_page() {
+//        albumsPage.assertDuplicateAlbumNotCreated("Test12345");
+//    }
+
+    @And("they click Cancel button on Create New Button Window")
+    public void theyClickTheCancelButton() {
+        albumsPage.clickCancelButtonNewAlbumWindow();
+    }
+
+    @And("they create new album with the name {string}")
+    public void theyCreateNewAlbumWithTheName(String albumName) {
+        albumsPage.createAlbum(albumName);
+    }
 }

@@ -62,6 +62,11 @@ public class SignInPage extends BasePage {
         driver.findElement(getByObject(getEmailInputFieldLocator())).sendKeys(email);
     }
 
+    public void enterEmailOnSignInPage() {
+        wait.forElementToBeDisplayed(10, getByObject(getEmailInputFieldLocator()), "Email input field");
+        driver.findElement(getByObject(getEmailInputFieldLocator())).sendKeys(PropertiesLoader.getProperties("email"));
+    }
+
     public void enterPasswordOnSignInPage(String email) {
         wait.forElementToBeDisplayed(10, getByObject(getPasswordInputFieldLocator()), "Password input field");
         driver.findElement(getByObject(getPasswordInputFieldLocator())).sendKeys(email);

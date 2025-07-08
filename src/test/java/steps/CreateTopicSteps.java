@@ -26,6 +26,6 @@ public class CreateTopicSteps {
 
     @Then("success message {string} pops-up on Topic page")
     public void successMessagePopsUpOnTopicPage(String TopicHasBeenCreated) {
-        topicsPage.assertSuccessMessagePopsUpOnTopicPage(TopicHasBeenCreated);
+        topicsPage.assertSuccessMessageOnTopicPageIsDisplayed(TopicHasBeenCreated);
     }
 }

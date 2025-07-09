@@ -146,4 +146,9 @@ public class BasePage {
         String elementText = foundElement.getText();
         assertTrue(elementText.contains(message));
     }
+
+    public static String generateUniqueName(String name) {
+        String timestamp = String.valueOf(System.currentTimeMillis());
+        return name + timestamp;
+    }
 }

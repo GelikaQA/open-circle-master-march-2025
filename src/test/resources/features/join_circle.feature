@@ -39,7 +39,7 @@ Feature: join_circle
       Given a user opens Join Circle page
     When they enter "<circle name>" in the field Circle Name on the Join Circle page
     And they enter "<passcode>" in the Passcode field on the Join Circle page
-#    And field "First Name" is Empty on the Join Circle page
+    And they enter "<first name>" in the First Name field on the Join Circle page
     And they enter "<last name>" in the Last Name field on the Join Circle page
     And they enter "<email>" in the Email field on the Join Circle page
     And they enter "<password>" in the Password field on the Join Circle page
@@ -63,6 +63,12 @@ Feature: join_circle
     Examples:
       | password |
       | 123456z  |
+
+  Scenario: The password is masked
+
+    Given a user opens Join Circle page
+    When they enter a valid password in the password field on the Join Circle page
+    Then The password is masked
 
 #  Scenario Outline: the password should not be copied from context menu
 #

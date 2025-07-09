@@ -26,16 +26,23 @@ public class JoinCirclePage extends BasePage {
     private static final String JOIN_CIRCLE_CREATE_CIRCLE_REDIRECT_BUTTON = "xpath=//button[@type='button']//span[text()='Create Circle']";
     private static final String JOIN_CIRCLE_POP_UP_MESSAGE_SUCCESS_REGISTRATION = "xpath=//div[@class='ant-notification-notice-description']//span[text()='You have successfully registered.']";
     private static final String JOIN_CIRCLE_POP_UP_MESSAGE_INCORRECT_PASSCODE = "xpath=//div[@class='ant-notification-notice-description']//span[text()='Incorrect Passcode. Please try again']";
-    private static final String JOIN_CIRCLE_FN_FIELD_MESSAGE_FIELD_ACCEPTS = "xpath=//ul[contains(@class, 'form_text_danger')]//li[contains(text(), 'Field accepts alphabetical')]";
-    private static final String JOIN_CIRCLE_FN__CIRCLE_EMAIL_PASSWORD_FIELD_MESSAGE_INPUT_IS_REQUIRED = "xpath=//ul[contains(@class,'form_text_danger')]//li[text()='This input is required.']";
-    private static final String JOIN_CIRCLE_LN_FIELD_MESSAGE_FIELD_ACCEPTS = "xpath=//ul[contains(@class,'form_text_danger')]//li[starts-with(text(),'Field accepts alphabetical')]";
-    private static final String JOIN_CIRCLE_LN_FIELD_MESSAGE_INPUT_IS_REQUIRED = "xpath=//ul[contains(@class,'form_text_danger')]//li[contains(text(),'This input is required.')]";
+    private static final String JOIN_CIRCLE_FIRST_NAME_FIELD_MESSAGE_FIELD_ACCEPTS = "xpath=//ul[contains(@class, 'form_text_danger')]//li[contains(text(), 'Field accepts alphabetical')]";
+    private static final String JOIN_CIRCLE_CIRCLE_FIELD_MESSAGE_INPUT_IS_REQUIRED = "xpath=//label[@for='circleId']/following-sibling::ul[contains(@class,'form_text_danger')]/li";
+    private static final String JOIN_CIRCLE_PASSCODE_FIELD_MESSAGE_INPUT_IS_REQUIRED = "xpath=//label[@for='passCode']/following-sibling::ul[contains(@class,'form_text_danger')]/li";
+    private static final String JOIN_CIRCLE_FIRST_NAME_FIELD_MESSAGE_INPUT_IS_REQUIRED = "xpath=//label[@for='firstName']/following-sibling::ul[contains(@class,'form_text_danger')]/li";
+    private static final String JOIN_CIRCLE_LAST_NAME_FIELD_MESSAGE_INPUT_IS_REQUIRED = "xpath=//label[@for='lastName']/following-sibling::ul[contains(@class,'form_text_danger')]/li";
+    private static final String JOIN_CIRCLE_EMAIL_FIELD_MESSAGE_INPUT_IS_REQUIRED = "xpath=//label[@for='email']/following-sibling::ul[contains(@class,'form_text_danger')]/li";
+    private static final String JOIN_CIRCLE_PASSWORD_FIELD_MESSAGE_INPUT_IS_REQUIRED = "xpath=//label[@for='password']/following-sibling::ul[contains(@class,'form_text_danger')]/li";
+    private static final String JOIN_CIRCLE_LAST_NAME_FIELD_MESSAGE_FIELD_ACCEPTS = "xpath=//ul[contains(@class,'form_text_danger')]//li[starts-with(text(),'Field accepts alphabetical')]";
     private static final String JOIN_CIRCLE_EMAIL_FIELD_MESSAGE_INVALID_EMAIL = "xpath=//ul[contains(@class,'form_text_danger')]//li[contains(text(),'Invalid email address')]";
     private static final String JOIN_CIRCLE_PASSWORD_FIELD_MESSAGE_FIELD_SHOULD = "xpath=//ul[contains(@class,'form_text_danger')]//li[contains(text(),'Field should contain at least one')]";
     private static final String JOIN_CIRCLE_POP_UP_MESSAGE_EMAIL_EXIST = "xpath=//span[text()='A user with such an email exists.']";
-    private static final String JOIN_CIRCLE_PASSWORD_FIELD_ENTERED_VALUE_123456z = "xpath=//input[@id='password' and @value='123456z']";
+    private static final String JOIN_CIRCLE_PASSWORD_FIELD_MASKED = "xpath=//input[@name='password' and @type='password']";
     private static final String JOIN_CIRCLE_POP_UP_MESSAGE_INCORRECT_CIRCLE_NAME = "xpath=//div[contains(@class,'ant-notification-notice-description')]//span[text()='Incorrect Circle Name. Please try again']";
 
+    public static String getJoinCirclePagePasswordFieldMasked() {
+        return JOIN_CIRCLE_PASSWORD_FIELD_MASKED;
+    }
     public static String getJoinCircleCircleNameInputField() {
         return JOIN_CIRCLE_CIRCLE_NAME_INPUT_FIELD;
     }
@@ -73,11 +80,11 @@ public class JoinCirclePage extends BasePage {
     }
 
     public static String getJoinCirclePopUpMessageIncorrectFirstName() {
-        return JOIN_CIRCLE_LN_FIELD_MESSAGE_FIELD_ACCEPTS;
+        return JOIN_CIRCLE_LAST_NAME_FIELD_MESSAGE_FIELD_ACCEPTS;
     }
 
-    public static String getJoinCirclePageFirstNameEmailPasswordFieldIsRequired () {
-        return JOIN_CIRCLE_FN__CIRCLE_EMAIL_PASSWORD_FIELD_MESSAGE_INPUT_IS_REQUIRED;
+    public static String getJoinCirclePageFirstNameFieldIsRequired() {
+        return JOIN_CIRCLE_FIRST_NAME_FIELD_MESSAGE_INPUT_IS_REQUIRED;
     }
 
     public void openJoinCirclePage() {
@@ -121,7 +128,7 @@ public class JoinCirclePage extends BasePage {
 
     public void enterPasswordOnJoinCirclePage(String password) {
         wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePasswordInputField()),
-                "PASSWORD INPUT");
+                "Password input field");
         WebElement passwordField = driver.findElement(getByObject(getJoinCirclePasswordInputField()));
         passwordField.sendKeys(password);
     }
@@ -160,19 +167,19 @@ public class JoinCirclePage extends BasePage {
         assertTrue(message, elementText.contains(incorrectFirstName));
     }
 
-    public void assertFirstNameFieldWarningMessageThisInputIsRequiredIsDisplayed(String incorrectFirstName) {
-        wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePageFirstNameEmailPasswordFieldIsRequired()),
+    public void assertFirstNameFieldWarningMessageIsDisplayed(String incorrectFirstName) {
+        wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePageFirstNameFieldIsRequired()),
                 "This input is required");
-        WebElement foundElement = driver.findElement(getByObject(getJoinCirclePageFirstNameEmailPasswordFieldIsRequired()));
+        WebElement foundElement = driver.findElement(getByObject(getJoinCirclePageFirstNameFieldIsRequired()));
         String elementText = foundElement.getText();
 
-        String message = "Text '" + incorrectFirstName + "' in " + getJoinCirclePageFirstNameEmailPasswordFieldIsRequired() + " is not presented. 'Actual text is '" + elementText + "'";
+        String message = "Text '" + incorrectFirstName + "' in " + getJoinCirclePageFirstNameFieldIsRequired() + " is not presented. 'Actual text is '" + elementText + "'";
         assertTrue(message, elementText.contains(incorrectFirstName));
     }
 
-    public void theyCopySelectedHiddenPasswordOnTheJoinCirclePage() {
+    public void theyCopyHiddenPasswordOnTheJoinCirclePage() {
         wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePasswordInputField()),
-                "This input is required");
+                "Password input field");
         WebElement passwordField = driver.findElement(getByObject(getJoinCirclePasswordInputField()));
 
         Actions actions = new Actions(driver);
@@ -209,6 +216,16 @@ public class JoinCirclePage extends BasePage {
         return passwordField.getAttribute("value");
     }
 
+    public void theyEnterValidPasswordInPasswordFieldOnJoinCirclePage(String password) {
+        wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePasswordInputField()),
+                "Password input field");
+        driver.findElement(getByObject(getJoinCirclePasswordInputField())).sendKeys(password);
+    }
+
+    public void thePasswordIsMasked() {
+        wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePagePasswordFieldMasked()),
+                "Password is masked");
+       }
 
 //    for next test case
     public void theyActivatedContextMenuOnTheJoinCirclePage(){

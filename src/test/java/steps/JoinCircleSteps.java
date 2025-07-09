@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.JoinCirclePage;
+import tools.PropertiesLoader;
 
 public class JoinCircleSteps {
     
@@ -69,12 +70,12 @@ public class JoinCircleSteps {
 
     @And("under the field First Name the Warning message is displayed: {string}")
     public void underTheFieldFirstNameTheWarningMessageThisInputIsRequiredIsDisplayed(String emptyFirstName) {
-        joinCirclePage.assertFirstNameFieldWarningMessageThisInputIsRequiredIsDisplayed(emptyFirstName);
+        joinCirclePage.assertFirstNameFieldWarningMessageIsDisplayed(emptyFirstName);
     }
 
     @And("they selected and copy entered password on the Join Circle page")
     public void theySelectedAndCopyEnteredPasswordOnTheJoinCirclePage() {
-        joinCirclePage.theyCopySelectedHiddenPasswordOnTheJoinCirclePage();
+        joinCirclePage.theyCopyHiddenPasswordOnTheJoinCirclePage();
     }
 
     @And("they activated context menu on the Join Circle page")
@@ -85,6 +86,16 @@ public class JoinCircleSteps {
     @Then("The password is not copied into clipboard")
     public void thePasswordIsNotCopiedIntoClipboard() {
         joinCirclePage.thePasswordIsNotCopiedIntoClipboardFromPasswordField();
+    }
+
+    @When("they enter a valid password in the password field on the Join Circle page")
+    public void theyEnterValidPasswordInPasswordFieldOnJoinCirclePage() {
+        joinCirclePage.theyEnterValidPasswordInPasswordFieldOnJoinCirclePage(PropertiesLoader.getProperties("password"));
+    }
+
+    @Then("The password is masked")
+    public void thePasswordIsMasked() {
+        joinCirclePage.thePasswordIsMasked();
     }
 
 // for next test case

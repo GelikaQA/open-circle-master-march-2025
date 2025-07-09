@@ -20,9 +20,9 @@ public class ProfileSteps {
         profilePage.clickOnTheDeleteButton();
     }
 
-    @Then("they see the Upload button")
-    public void theySeeTheUploadButton() {
-        profilePage.seeTheUploadButton();
+    @Then("the Upload button is present")
+    public void theUploadButtonIsPresent() {
+        profilePage.assertTheUploadButtonIsPresent();
     }
 
     @When("they clear Last name field on the Profile Page")
@@ -31,7 +31,7 @@ public class ProfileSteps {
     }
 
     @And("they enter {string} in Last name field on the Profile Page")
-    public void theyEnterSmith1InTheLastNameFieldOnTheProfilePage(String lastName) {
+    public void theyEnterLastNameInLastNameFieldOnTheProfilePage(String lastName) {
         profilePage.enterLastNameOnTheProfilePage(lastName);
     }
 
@@ -40,8 +40,8 @@ public class ProfileSteps {
         profilePage.clickTheSaveButton();
     }
 
-    @Then("Last name {string} presented in Last name field")
-    public void lastNameSmith1PresentedInLastNameField(String lastName) {
-        profilePage.lastNameSmith1PresentedInLastNameField(lastName);
+    @Then("Last name {string} in Last Name field on Profile Page is present")
+    public void lastNameInLastNameFieldOnProfilePageIsPresent(String lastName) {
+        profilePage.assertLastNameInLastNameFieldOnProfilePageIsPresent(lastName);
     }
 }

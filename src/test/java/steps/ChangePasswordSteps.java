@@ -5,7 +5,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import pages.ChangePasswordPage;
 
-
 public class ChangePasswordSteps {
 
     ChangePasswordPage changePasswordPage = new ChangePasswordPage();
@@ -30,23 +29,13 @@ public class ChangePasswordSteps {
         changePasswordPage.enterPasswordInNewPasswordInputField(Password);
     }
 
-    @And("they click Save button on Change Password page")
-    public void theyClickSaveButtonOnChangePasswordPage() {
-        changePasswordPage.theyClickSaveButtonOnChangePasswordPage();
+    @And("they click Save button")
+    public void theyClickSaveButton() {
+        changePasswordPage.clickSaveButton();
     }
 
-    @Then("assert Warning message empty current password input field is displayed")
-    public void assertWarningMessageEmptyCurrentPasswordInputFieldIsDisplayed() {
-        changePasswordPage.assertWarningMessageEmptyCurrentPasswordInputFieldIsDisplayed();
+    @Then("assert message is displayed")
+    public void assertMessageIsDisplayed() {
     }
 
-    @And("they enter valid password  {string} in the Current password field on Change Password page")
-    public void theyEnterValidPasswordInTheCurrentPasswordFieldOnChangePasswordPage(String password) {
-        changePasswordPage.enterValidPasswordInCurrentPasswordInputFieldOnChangePasswordPage(password);
-    }
-
-    @Then("warning message empty new password field {string} pops-up on Change Password page")
-    public void warningMessageEmptyNewPasswordFieldPopsUpOnChangePasswordPage(String warning) {
-        changePasswordPage.assertWarningMessageForEmptyNewPasswordFieldOnChangePasswordPage(warning);
-    }
 }

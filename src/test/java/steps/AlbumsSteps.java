@@ -23,11 +23,6 @@ public class AlbumsSteps {
         albumsPage.enterNewUniqueAlbumNameInPopUpWindow(uniqueAlbumNameInPopUpWindow);
     }
 
-    //@Then("they verify that they see element {string}")
-    //public void theyVerifyThatTheySeeElement(String element) {
-      //  albumsPage.assertElementIsDisplayed(element);
-    //}
-
     @And("they click Create button in create new album window")
     public void clickCreateButtonNewAlbumWindow() {
         albumsPage.clickCreateButtonNewAlbumWindow();
@@ -55,13 +50,8 @@ public class AlbumsSteps {
 
     @Then("confirmation message appears {string}")
     public void confirmationMessageAppears(String warningMessage) {
-        albumsPage.assertDuplicateAlbumMessageDisplayed(warningMessage);
+        albumsPage.assertDuplicateAlbumMessageisDisplayed(warningMessage);
     }
-
-//    @Then("new album with the given name is not present on the page")
-//    public void new_album_with_the_given_name_is_not_present_on_the_page() {
-//        albumsPage.assertDuplicateAlbumNotCreated("Test12345");
-//    }
 
     @And("they click Cancel button on Create New Button Window")
     public void theyClickTheCancelButton() {
@@ -71,5 +61,10 @@ public class AlbumsSteps {
     @And("they create new album with the name {string}")
     public void theyCreateNewAlbumWithTheName(String albumName) {
         albumsPage.createAlbum(albumName);
+    }
+
+    @Then("they verify no duplicate album with the name {string} was created")
+    public void verifyNoDuplicateAlbumCreated(String albumName) {
+        albumsPage.assertDuplicateAlbumNotCreated(albumName);
     }
 }

@@ -19,8 +19,7 @@ Feature: createAlbum
     And they create new album with the name "<duplicate name>"
     And they verify that Success Message appears
     And they create new album with the name "<duplicate name>"
-#    And they verify that Warning Message appears
-#    And they click Cancel button on Create New Button Window
+    Then they verify no duplicate album with the name "<duplicate name>" was created
     Then confirmation message appears "Album with this name exists"
     And they click Cancel button on Create New Button Window
     And they delete album named "<duplicate name>" from Album Page

@@ -44,4 +44,19 @@ public class ProfileSteps {
     public void lastNameInLastNameFieldOnProfilePageIsPresent(String lastName) {
         profilePage.assertLastNameInLastNameFieldOnProfilePageIsPresent(lastName);
     }
+
+    @When("they clear First name field on the Profile page")
+    public void theyClearFirstNameFieldOnTheProfilePage() {
+        profilePage.clearFirstNameFieldOnTheProfilePage();
+    }
+
+    @And("they enter {string} in lowercase letters in the First name field")
+    public void theyEnterInLowercaseLettersInTheFirstNameField(String firstName) {
+        profilePage.enterInLowercaseLettersInTheFirstNameField(firstName);
+    }
+
+    @Then("First name on Profile page is updated to {string}")
+    public void assertFirstNameOnProfilePageIsDisplayed(String firstName) {
+        profilePage.assertFirstNameOnProfilePageIsDisplayed(firstName);
+    }
 }

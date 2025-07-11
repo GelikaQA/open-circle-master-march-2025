@@ -8,9 +8,11 @@ import static tools.CommonTools.getByObject;
 
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.Keys;
+
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
+
 import static org.junit.Assert.assertNotEquals;
 
 public class JoinCirclePage extends BasePage {
@@ -37,12 +39,8 @@ public class JoinCirclePage extends BasePage {
     private static final String JOIN_CIRCLE_EMAIL_FIELD_MESSAGE_INVALID_EMAIL = "xpath=//ul[contains(@class,'form_text_danger')]//li[contains(text(),'Invalid email address')]";
     private static final String JOIN_CIRCLE_PASSWORD_FIELD_MESSAGE_FIELD_SHOULD = "xpath=//ul[contains(@class,'form_text_danger')]//li[contains(text(),'Field should contain at least one')]";
     private static final String JOIN_CIRCLE_POP_UP_MESSAGE_EMAIL_EXIST = "xpath=//span[text()='A user with such an email exists.']";
-    private static final String JOIN_CIRCLE_PASSWORD_FIELD_MASKED = "xpath=//input[@name='password' and @type='password']";
     private static final String JOIN_CIRCLE_POP_UP_MESSAGE_INCORRECT_CIRCLE_NAME = "xpath=//div[contains(@class,'ant-notification-notice-description')]//span[text()='Incorrect Circle Name. Please try again']";
 
-    public static String getJoinCirclePagePasswordFieldMasked() {
-        return JOIN_CIRCLE_PASSWORD_FIELD_MASKED;
-    }
     public static String getJoinCircleCircleNameInputField() {
         return JOIN_CIRCLE_CIRCLE_NAME_INPUT_FIELD;
     }
@@ -190,7 +188,7 @@ public class JoinCirclePage extends BasePage {
                 .sendKeys("a", "c")
                 .keyUp(Keys.CONTROL)
                 .perform();
-        }
+    }
 
     public void thePasswordIsNotCopiedIntoClipboardFromPasswordField() {
         String clipboardContent = getClipboardContents();
@@ -223,12 +221,14 @@ public class JoinCirclePage extends BasePage {
     }
 
     public void thePasswordIsMasked() {
-        wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePagePasswordFieldMasked()),
+        wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePasswordInputField()),
                 "Password is masked");
-       }
-
-//    for next test case
-    public void theyActivatedContextMenuOnTheJoinCirclePage(){
+        WebElement passwordField = driver.findElement(getByObject(getJoinCirclePasswordInputField()));
+        String typeAttribute = passwordField.getAttribute("type");
+        assertTrue("The password field is not masked. Can't find attribute in tag 'type=password' ", typeAttribute.equals("password"));
+    }
+    //    for next test case
+    public void theyActivatedContextMenuOnTheJoinCirclePage() {
         WebElement passwordField = driver.findElement(getByObject(getJoinCirclePasswordInputField()));
 
         Actions actions = new Actions(driver);

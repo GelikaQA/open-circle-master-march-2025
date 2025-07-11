@@ -50,7 +50,7 @@ public class AlbumsSteps {
 
     @Then("confirmation message appears {string}")
     public void confirmationMessageAppears(String warningMessage) {
-        albumsPage.assertDuplicateAlbumMessageisDisplayed(warningMessage);
+        albumsPage.assertDuplicateAlbumMessageIsDisplayed(warningMessage);
     }
 
     @And("they click Cancel button on Create New Button Window")

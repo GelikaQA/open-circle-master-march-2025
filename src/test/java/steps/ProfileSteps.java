@@ -50,9 +50,9 @@ public class ProfileSteps {
         profilePage.clearFirstNameFieldOnTheProfilePage();
     }
 
-    @And("they enter {string} in lowercase letters in the First name field")
-    public void theyEnterInLowercaseLettersInTheFirstNameField(String firstName) {
-        profilePage.enterInLowercaseLettersInTheFirstNameField(firstName);
+    @And("they enter {string} in First name field on the Profile Page")
+    public void theyEnterFirstNameOnProfilePage(String firstName) {
+        profilePage.enterFirstNameOnProfilePage(firstName);
     }
 
     @Then("First name on Profile page is updated to {string}")

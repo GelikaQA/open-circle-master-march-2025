@@ -83,6 +83,7 @@ public class ProfilePage extends BasePage {
     }
 
     public void clearLastNameFieldOnTheProfilePage() {
+        wait.forElementToBeInteractable(10,getByObject(getProfileLastNameInputField()),"Last Name Input Field");
         WebElement foundElement = driver.findElement(getByObject(getProfileLastNameInputField()));
         foundElement.click();
         foundElement.sendKeys(Keys.chord(Keys.COMMAND, "a"), Keys.DELETE);
@@ -111,12 +112,13 @@ public class ProfilePage extends BasePage {
     }
 
     public void clearFirstNameFieldOnTheProfilePage() {
+        wait.forElementToBeInteractable(10,getByObject(getProfileFirstNameInputField()),"First Name Input Field");
         WebElement foundElement1 = driver.findElement(getByObject(getProfileFirstNameInputField()));
         foundElement1.click();
         foundElement1.sendKeys(Keys.chord(Keys.COMMAND, "a"), Keys.DELETE);
     }
 
-    public void enterInLowercaseLettersInTheFirstNameField(String firstName) {
+    public void enterFirstNameOnProfilePage(String firstName) {
         wait.forElementToBeDisplayed(10, getByObject(getProfileFirstNameInputField()), "First Name Input Field");
         WebElement foundElement = driver.findElement(getByObject(getProfileFirstNameInputField()));
         foundElement.sendKeys(firstName);

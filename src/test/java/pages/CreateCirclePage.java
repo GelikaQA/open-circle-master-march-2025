@@ -17,7 +17,6 @@ public class CreateCirclePage extends BasePage {
     private static final String CREATE_CIRCLE_PASSWORD_INPUT_FIELD = "id=password";
     private static final String CREATE_CIRCLE_CREATE_BUTTON = "xpath=//button[contains(@class, 'login_submit')]";
     private static final String CREATE_CIRCLE_FIRST_NAME_VALIDATION = "xpath=//div[label[@for='firstName']]//li";
-    //  private static final String LOGIN_CREATE_CIRCLE_SUCCESS_POPUP = "xpath=//div[@class='ant-notification-notice-content']//span[text='You have successfully registered.']""; This XPath is for the success message that pops up in Login page after Circle is successfully created
 
     public static String getAdminPasswordInputField() {
         return ADMIN_PASSWORD_INPUT_FIELD;
@@ -143,18 +142,6 @@ public class CreateCirclePage extends BasePage {
         WebElement foundElement = driver.findElement(getByObject(getCreateCircleCreateButton()));
         foundElement.click();
     }
-
-//    public void anErrorMessagePopulatesBelowTheFirstNameFieldOnTheCreateCirclePage(String error) {
-//        wait.forElementToBeDisplayed(
-//                10,
-//                getByObject(getCreateCircleFieldConstraintErrorMessage()),
-//                "Error message");
-//        WebElement foundElement = driver.findElement(getByObject(getCreateCircleFieldConstraintErrorMessage()));
-//        String elementText = foundElement.getText();
-//
-//        String message = "Text '" + error + "' 'in " + getCreateCircleFieldConstraintErrorMessage() + " is presented.";
-//        assertTrue(message, elementText.contains(error));
-//    }
 
     public void checkMessageExistsForFirstNameFieldOnCreateCirclePage(String error) {
         wait.forElementToBeDisplayed(

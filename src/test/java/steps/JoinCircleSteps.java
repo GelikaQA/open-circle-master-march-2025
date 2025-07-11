@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.JoinCirclePage;
+import tools.PropertiesLoader;
 
 public class JoinCircleSteps {
     
@@ -66,4 +67,40 @@ public class JoinCircleSteps {
     public void warningMessageIsDisplayed(String incorrectFirstName) {
         joinCirclePage.assertWarningMessageForFirstNameOnJoinCirclePageIsDisplayed(incorrectFirstName);
     }
+
+    @And("under the field First Name the Warning message is displayed: {string}")
+    public void underTheFieldFirstNameTheWarningMessageThisInputIsRequiredIsDisplayed(String emptyFirstName) {
+        joinCirclePage.assertFirstNameFieldWarningMessageIsDisplayed(emptyFirstName);
+    }
+
+    @And("they selected and copy entered password on the Join Circle page")
+    public void theySelectedAndCopyEnteredPasswordOnTheJoinCirclePage() {
+        joinCirclePage.theyCopyHiddenPasswordOnTheJoinCirclePage();
+    }
+
+    @And("they activated context menu on the Join Circle page")
+    public void theyActivatedContextMenuOnTheJoinCirclePage() {
+        joinCirclePage.theyActivatedContextMenuOnTheJoinCirclePage();
+    }
+
+    @Then("The password is not copied into clipboard")
+    public void thePasswordIsNotCopiedIntoClipboard() {
+        joinCirclePage.thePasswordIsNotCopiedIntoClipboardFromPasswordField();
+    }
+
+    @When("they enter a valid password in the password field on the Join Circle page")
+    public void theyEnterValidPasswordInPasswordFieldOnJoinCirclePage() {
+        joinCirclePage.theyEnterValidPasswordInPasswordFieldOnJoinCirclePage(PropertiesLoader.getProperties("password"));
+    }
+
+    @Then("The password is masked on Join Circle Page")
+    public void thePasswordIsMaskedOnJoinCirclePage() {
+        joinCirclePage.thePasswordIsMaskedOnJoinCirclePage();
+    }
+
+// for next test case
+//    @And("they copy password from the context menu on the Join Circle page")
+//    public void theyCopyPasswordFromTheContextMenuOnTheJoinCirclePage() {
+//        joinCirclePage.theyCopyPasswordFromTheContextMenuOnTheJoinCirclePage();
+//    }
 }

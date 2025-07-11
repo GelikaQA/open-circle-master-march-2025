@@ -18,3 +18,16 @@ Feature: profile_management
     Examples:
       | last name |
       | Smith1    |
+
+
+  Scenario Outline: First Name can be in lowercase letters
+    Given a user is logged into the account
+    And they click on the Avatar icon
+    When they clear First name field on the Profile page
+    And they enter "<first name>" in First name field on the Profile Page
+    And they click the Save button
+    Then First name on Profile page is updated to "<first name>"
+
+    Examples:
+      | first name |
+      | mary       |

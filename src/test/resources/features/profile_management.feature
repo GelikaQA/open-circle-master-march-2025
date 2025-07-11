@@ -7,7 +7,7 @@ Feature: profile_management
     Then the Upload button is present
 
 
-  Scenario Outline: Updating last name containing number
+  Scenario Outline: Updating last name with valid input
     Given a user is logged into the account
     And they click on the Avatar icon
     When they clear Last name field on the Profile Page
@@ -16,11 +16,14 @@ Feature: profile_management
     Then Last name "<last name>" in Last Name field on Profile Page is present
 
     Examples:
-      | last name |
-      | Smith1    |
+      | last name                        |
+      | Smith1                           |
+      | SMITH                            |
+      | smith                            |
+      | Namenamenamenamenamenamenamename |
 
 
-  Scenario Outline: First Name can be in lowercase letters
+  Scenario Outline: Updating First Name with valid input
     Given a user is logged into the account
     And they click on the Avatar icon
     When they clear First name field on the Profile page
@@ -29,5 +32,8 @@ Feature: profile_management
     Then First name on Profile page is updated to "<first name>"
 
     Examples:
-      | first name |
-      | mary       |
+      | first name                       |
+      | mary                             |
+      | MARY                             |
+      | Mary1                            |
+      | Namenamenamenamenamenamenamename |

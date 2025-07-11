@@ -220,7 +220,7 @@ public class JoinCirclePage extends BasePage {
         driver.findElement(getByObject(getJoinCirclePasswordInputField())).sendKeys(password);
     }
 
-    public void thePasswordIsMasked() {
+    public void thePasswordIsMaskedOnJoinCirclePage() {
         wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePasswordInputField()),
                 "Password is masked");
         WebElement passwordField = driver.findElement(getByObject(getJoinCirclePasswordInputField()));

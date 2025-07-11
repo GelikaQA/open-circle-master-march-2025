@@ -67,7 +67,7 @@ Feature: join_circle
   Scenario: The password is masked
 
     Given a user opens Join Circle page
-    Then The password is masked
+    Then The password is masked on Join Circle Page
 
 #  Scenario Outline: the password should not be copied from context menu
 #

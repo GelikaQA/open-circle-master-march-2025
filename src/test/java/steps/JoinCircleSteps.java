@@ -93,9 +93,9 @@ public class JoinCircleSteps {
         joinCirclePage.theyEnterValidPasswordInPasswordFieldOnJoinCirclePage(PropertiesLoader.getProperties("password"));
     }
 
-    @Then("The password is masked")
-    public void thePasswordIsMasked() {
-        joinCirclePage.thePasswordIsMasked();
+    @Then("The password is masked on Join Circle Page")
+    public void thePasswordIsMaskedOnJoinCirclePage() {
+        joinCirclePage.thePasswordIsMaskedOnJoinCirclePage();
     }
 
 // for next test case

@@ -148,4 +148,15 @@ public class JoinCirclePage extends BasePage {
         String message = "Text '" + incorrectFirstName + "' in " + getJoinCirclePopUpMessageIncorrectFirstName() + " is not presented. 'Actual text is '" + elementText + "'";
         assertTrue(message, elementText.contains(incorrectFirstName));
     }
+    public String getConfirmationMessage() {
+        wait.forElementToBeDisplayed(10, getByObject(JOIN_CIRCLE_POP_UP_MESSAGE_SUCCESS_REGISTRATION),
+                "Success message after registration");
+        WebElement messageElement = driver.findElement(getByObject(JOIN_CIRCLE_POP_UP_MESSAGE_SUCCESS_REGISTRATION));
+        return messageElement.getText();
+    }
+    public String getCurrentUrl() {
+        return driver.getCurrentUrl();
+    }
+
+
 }

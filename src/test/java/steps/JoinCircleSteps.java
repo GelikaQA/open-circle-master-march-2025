@@ -5,10 +5,14 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.JoinCirclePage;
+import org.junit.Assert;
+
 
 public class JoinCircleSteps {
     
     JoinCirclePage joinCirclePage = new JoinCirclePage();
+
+
 
     @Given("a user opens Join Circle page")
     public void aUserOpensJoinCirclePage() {
@@ -66,4 +70,26 @@ public class JoinCircleSteps {
     public void warningMessageIsDisplayed(String incorrectFirstName) {
         joinCirclePage.assertWarningMessageForFirstNameOnJoinCirclePageIsDisplayed(incorrectFirstName);
     }
+    @Then("a confirmation message {string} should be displayed")
+    public void aConfirmationMessageShouldBeDisplayed(String expectedMessage) {
+        String actualMessage = joinCirclePage.getConfirmationMessage();
+        Assert.assertEquals("Confirmation message doesn't match!", expectedMessage, actualMessage);
+    }
+
+    @Then("the user is successfully registered")
+    public void theUserIsSuccessfullyRegistered() {
+        String actualMessage = joinCirclePage.getConfirmationMessage();
+        String expectedMessage = "Successful user has been successfully registered";
+        System.out.println("Actual: " + actualMessage);
+        Assert.assertEquals("Message mismatch! User might not be registered!", expectedMessage, actualMessage);
+    }
+    @Then("the user is redirected to {string}")
+    public void theUserIsRedirectedTo(String expectedCircleName) {
+        String currentUrl = joinCirclePage.getCurrentUrl();
+        System.out.println("Redirected to URL: " + currentUrl);
+        Assert.assertTrue("User was not redirected correctly! Expected URL to contain: " + expectedCircleName,
+                currentUrl.contains(expectedCircleName));
+    }
+
 }
+

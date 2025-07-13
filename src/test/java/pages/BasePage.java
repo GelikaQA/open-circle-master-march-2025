@@ -141,10 +141,12 @@ public class BasePage {
 
     public void assertMessageIsDisplayed(String message) {
         wait.forElementToBeDisplayed(10,
-                getByObject(getPopUpWindowMessageLocator()), "Element");
+                getByObject(getPopUpWindowMessageLocator()), "PopUp Message");
         WebElement foundElement = driver.findElement(getByObject(getPopUpWindowMessageLocator()));
         String elementText = foundElement.getText();
         assertTrue(elementText.contains(message));
+        wait.forElementToBeNotDisplayed(10,
+                getByObject(getPopUpWindowMessageLocator()), "PopUp Message");
     }
 
     public static String generateUniqueName(String name) {

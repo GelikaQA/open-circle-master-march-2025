@@ -72,12 +72,12 @@ public class JoinCircleSteps {
 
     @And("they selected and copy entered password on the Join Circle page")
     public void theySelectedAndCopyEnteredPasswordOnTheJoinCirclePage() {
-        joinCirclePage.CopyHiddenPasswordOnTheJoinCirclePage();
+        joinCirclePage.CopyHiddenPasswordOnJoinCirclePage();
     }
 
     @And("they activated context menu on the Join Circle page")
     public void theyActivatedContextMenuOnTheJoinCirclePage() {
-        joinCirclePage.OpenedContextMenuOnTheJoinCirclePage();
+        joinCirclePage.OpenedContextMenuOnJoinCirclePage();
     }
 
     @Then("The password is not copied into clipboard")
@@ -98,6 +98,6 @@ public class JoinCircleSteps {
 // for next test case
 //    @And("they copy password from the context menu on the Join Circle page")
 //    public void theyCopyPasswordFromTheContextMenuOnTheJoinCirclePage() {
-//        joinCirclePage.theyCopyPasswordFromTheContextMenuOnTheJoinCirclePage();
+//        joinCirclePage.CopyPasswordFromContextMenuOnJoinCirclePage();
 //    }
 }

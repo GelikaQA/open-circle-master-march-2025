@@ -160,7 +160,7 @@ public class JoinCirclePage extends BasePage {
         assertTrue(message, elementText.contains(incorrectFirstName));
     }
 
-    public void CopyHiddenPasswordOnTheJoinCirclePage() {
+    public void CopyHiddenPasswordOnJoinCirclePage() {
         wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePasswordInputField()),
                 "Password input field");
         WebElement passwordField = driver.findElement(getByObject(getJoinCirclePasswordInputField()));
@@ -206,7 +206,7 @@ public class JoinCirclePage extends BasePage {
     }
 
     //    for next test case
-    public void OpenedContextMenuOnTheJoinCirclePage() {
+    public void OpenedContextMenuOnJoinCirclePage() {
         WebElement passwordField = driver.findElement(getByObject(getJoinCirclePasswordInputField()));
 
         Actions actions = new Actions(driver);

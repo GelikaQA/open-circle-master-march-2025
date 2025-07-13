@@ -22,6 +22,7 @@ Feature: Change Password
     And they click Save button on Change password page
     Then assert warning message pops-up "<warning message>"
 
+
     Examples:
       | valid password | warning message                                                                                                                                 |
       | Test12345!     | Field: newPassword; Error: Field should contain at least one upper-case, at least one lower-case and at least one digit and be between 8 and 20 |

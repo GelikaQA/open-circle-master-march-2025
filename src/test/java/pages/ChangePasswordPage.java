@@ -62,6 +62,7 @@ public class ChangePasswordPage extends BasePage{
         foundElement.sendKeys(password);
     }
 
+
     public void enterPasswordInNewPasswordInputFieldOnChangePasswordPage(String password) {
         wait.forElementToBeDisplayed(10,
                 getByObject(getNewPasswordInputFieldOnChangePasswordPage()),

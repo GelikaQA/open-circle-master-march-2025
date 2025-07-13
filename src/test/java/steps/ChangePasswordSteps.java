@@ -32,6 +32,7 @@ public class ChangePasswordSteps {
         changePasswordPage.enterPasswordInNewPasswordInputFieldOnChangePasswordPage(Password);
     }
 
+
     @And("they click Save button on Change password page")
     public void theyClickSaveButtonOnChangePasswordPage() {
         changePasswordPage.clickSaveButtonOnChangePasswordPage();

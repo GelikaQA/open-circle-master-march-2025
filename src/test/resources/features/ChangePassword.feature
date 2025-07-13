@@ -4,23 +4,23 @@ Feature: Change Password
     Given a user is logged into the account
     And they click Profile icon
     When they click Change password section
-    And they enter "" in Current password input field
-    And they enter "<password>" in New password input field
-    And they click Save button
-    Then assert message is displayed
+    And they enter "" in Current password input field on Change password page
+    And they enter "<password>" in New password input field on Change password page
+    And they click Save button on Change password page
+    Then assert warning message pops-up "<warning message>"
 
     Examples:
-      | password   |
-      | Example123 |
+      | password   | warning message                                                                                                                                 |
+      | Example123 | Field: oldPassword; Error: Field should contain at least one upper-case, at least one lower-case and at least one digit and be between 8 and 20|
 
   Scenario Outline:  Leaving the new password field empty triggers a warning message
     Given a user is logged into the account
     And they click Profile icon
     When they click Change password section
-    And they enter "<valid password>" in Current password input field
-    When they enter "" in New password input field
-    And they click Save button
-    Then assert message is displayed
+    And they enter "<valid password>" in Current password input field on Change password page
+    When they enter "" in New password input field on Change password page
+    And they click Save button on Change password page
+    Then assert warning message pops-up "<warning message>"
 
     Examples:
       | valid password | warning message                                                                                                                                 |
@@ -30,11 +30,11 @@ Feature: Change Password
     Given a user is logged into the account
     And they click Profile icon
     When they click Change password section
-    And they enter "<invalid password>" in Current password input field
-    And they enter "<valid password>" in New password input field
-    And they click Save button
-    Then assert message is displayed
+    And they enter "<invalid password>" in Current password input field on Change password page
+    And they enter "<valid password>" in New password input field on Change password page
+    And they click Save button on Change password page
+    Then assert warning message pops-up "<warning message>"
 
     Examples:
-      | valid password | invalid password |
-      | Example123     | theExample123    |
+      | valid password | invalid password | warning message    |
+      | Example123     | theExample123    | Incorrect password |

@@ -1,18 +1,21 @@
 package pages;
 
 import org.openqa.selenium.WebElement;
+
+import static org.junit.Assert.assertTrue;
 import static tools.CommonTools.getByObject;
 
 public class ChangePasswordPage extends BasePage{
     private static final String PROFILE_ICON = "xpath=//span[@class='ant-avatar-string']";
     private static final String CHANGE_PASSWORD_SECTION = "xpath=//span[text()='Change password']";
-    private static final String CURRENT_PASSWORD_INPUT_FIELD = "xpath=//input[@id='oldPassword']";
-    private static final String NEW_PASSWORD_INPUT_FIELD = "xpath=//input[@id='newPassword']";
+    private static final String CURRENT_PASSWORD_INPUT_FIELD = "id=oldPassword";
+    private static final String NEW_PASSWORD_INPUT_FIELD = "id=newPassword";
     private static final String SAVE_BUTTON = "xpath=//div[contains(@class,'profile_passwordSave')]";
     private static final String CURRENT_PASSWORD_VISIBILITY_TOGGLE = "xpath=//input[@id='oldPassword']/following-sibling::span/child::span";
     private static final String NEW_PASSWORD_VISIBILITY_TOGGLE = "xpath=//input[@id='newPassword']/following-sibling::span/child::span";
-    private static final String CURRENT_PASSWORD_HIDDEN_BY_DOTS = "xpath=//input[@id='oldPassword']";
-    private static final String NEW_PASSWORD_HIDDEN_BY_DOTS = "xpath=//input[@id='newPassword']";
+    private static final String CURRENT_PASSWORD_HIDDEN_BY_DOTS = "id=oldPassword";
+    private static final String NEW_PASSWORD_HIDDEN_BY_DOTS = "id=newPassword";
+    private static final String WARNING_MESSAGE_ON_CHANGE_PASSWORD_PAGE = "xpath=//div[@class='ant-notification-notice-content']";
 
     public static String getProfileIcon() {
         return PROFILE_ICON;
@@ -22,17 +25,20 @@ public class ChangePasswordPage extends BasePage{
         return CHANGE_PASSWORD_SECTION;
     }
 
-    public static String getCurrentPasswordInputField() {
+    public static String getCurrentPasswordInputFieldOnChangePasswordPage() {
         return CURRENT_PASSWORD_INPUT_FIELD;
     }
 
-    public static String getNewPasswordInputField() {
+    public static String getNewPasswordInputFieldOnChangePasswordPage() {
         return NEW_PASSWORD_INPUT_FIELD;
     }
 
-    public static String getSaveButton() {
+    public static String getSaveButtonOnChangePasswordPage() {
         return SAVE_BUTTON;
     }
+
+    public static String getWarningMessageOnChangePasswordPage() {
+        return WARNING_MESSAGE_ON_CHANGE_PASSWORD_PAGE;}
 
     public void clickProfileIcon() {
         wait.forElementToBeDisplayed(10,
@@ -48,27 +54,38 @@ public class ChangePasswordPage extends BasePage{
         driver.findElement(getByObject(getChangePasswordSection())).click();
     }
 
-    public void enterPasswordInCurrentPasswordInputField(String password) {
+    public void enterPasswordInCurrentPasswordInputFieldOnChangePasswordPage(String password) {
         wait.forElementToBeDisplayed(10,
-                getByObject(getCurrentPasswordInputField()),
+                getByObject(getCurrentPasswordInputFieldOnChangePasswordPage()),
                 "Current password input field");
-        WebElement foundElement = driver.findElement(getByObject(getCurrentPasswordInputField()));
+        WebElement foundElement = driver.findElement(getByObject(getCurrentPasswordInputFieldOnChangePasswordPage()));
         foundElement.sendKeys(password);
     }
 
-    public void enterPasswordInNewPasswordInputField(String password) {
+    public void enterPasswordInNewPasswordInputFieldOnChangePasswordPage(String password) {
         wait.forElementToBeDisplayed(10,
-                getByObject(getNewPasswordInputField()),
+                getByObject(getNewPasswordInputFieldOnChangePasswordPage()),
                 "New password input field");
-        WebElement foundElement = driver.findElement(getByObject(getNewPasswordInputField()));
+        WebElement foundElement = driver.findElement(getByObject(getNewPasswordInputFieldOnChangePasswordPage()));
         foundElement.sendKeys(password);
     }
 
-    public void clickSaveButton() {
+    public void clickSaveButtonOnChangePasswordPage() {
         wait.forElementToBeDisplayed(10,
-                getByObject(getSaveButton()),
+                getByObject(getSaveButtonOnChangePasswordPage()),
                 "Save button");
-        driver.findElement(getByObject(getSaveButton())).click();
+        driver.findElement(getByObject(getSaveButtonOnChangePasswordPage())).click();
+    }
+
+    public void assertWarningMessagePopsUp(String warning) {
+        wait.forElementToBeDisplayed(
+                10,
+                getByObject(getWarningMessageOnChangePasswordPage()),
+                "Warning message");
+        WebElement foundElement = driver.findElement(getByObject(getWarningMessageOnChangePasswordPage()));
+        String elementText = foundElement.getText();
+
+        assertTrue(warning, elementText.contains(warning));
     }
 
 }

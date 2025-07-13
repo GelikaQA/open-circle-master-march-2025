@@ -3,7 +3,10 @@ package steps;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.bouncycastle.crypto.agreement.srp.SRP6Client;
 import pages.ChangePasswordPage;
+import tools.PropertiesLoader;
 
 public class ChangePasswordSteps {
 
@@ -14,28 +17,29 @@ public class ChangePasswordSteps {
         changePasswordPage.clickProfileIcon();
     }
 
-    @And("they click Change password section")
+    @When("they click Change password section")
     public void theyClickChangePasswordSection() {
         changePasswordPage.clickChangePasswordSection();
     }
 
-    @And("they enter {string} in Current password input field")
-    public void theyEnterPasswordInCurrentPasswordInputField(String Password) {
-        changePasswordPage.enterPasswordInCurrentPasswordInputField(Password);
+    @And("they enter {string} in Current password input field on Change password page")
+    public void theyEnterPasswordInCurrentPasswordInputFieldOnChangePasswordPage(String Password) {
+        changePasswordPage.enterPasswordInCurrentPasswordInputFieldOnChangePasswordPage(Password);
     }
 
-    @And("they enter {string} in New password input field")
-    public void theyEnterPasswordInNewPasswordInputField(String Password) {
-        changePasswordPage.enterPasswordInNewPasswordInputField(Password);
+    @And("they enter {string} in New password input field on Change password page")
+    public void theyEnterPasswordInNewPasswordInputFieldOnChangePasswordPage(String Password) {
+        changePasswordPage.enterPasswordInNewPasswordInputFieldOnChangePasswordPage(Password);
     }
 
-    @And("they click Save button")
-    public void theyClickSaveButton() {
-        changePasswordPage.clickSaveButton();
+    @And("they click Save button on Change password page")
+    public void theyClickSaveButtonOnChangePasswordPage() {
+        changePasswordPage.clickSaveButtonOnChangePasswordPage();
     }
 
-    @Then("assert message is displayed")
-    public void assertMessageIsDisplayed() {
+    @Then("assert warning message pops-up {string}")
+    public void assertWarningMessagePopsUp(String message) {
+        changePasswordPage.assertWarningMessagePopsUp(message);
     }
 
 }

@@ -4,7 +4,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import pages.BasePage;
 import pages.JoinCirclePage;
+import tools.PropertiesLoader;
+
+import static pages.JoinCirclePage.getJoinCirclePasswordInputField;
+import static tools.CommonTools.getByObject;
 
 public class JoinCircleSteps {
     
@@ -22,7 +27,7 @@ public class JoinCircleSteps {
 
     @And("they enter {string} in the Passcode field on the Join Circle page")
     public void entersInThePasscodeFieldOnTheJoinCirclePage(String passcode) {
-        joinCirclePage.enterPasscodeFieldOnTheJoinCirclePage(passcode);
+        joinCirclePage.enterPasscodeOnJoinCirclePage(passcode);
 
     }
 
@@ -48,13 +53,13 @@ public class JoinCircleSteps {
 
     @And("They press button Join on the Join Circle page")
     public void theyPressButtonJoinOnTheJoinCirclePage() {
-        joinCirclePage.theyPressButtonJoinOnTheJoinCirclePage();
+        joinCirclePage.PressButtonJoinOnJoinCirclePage();
 
     }
 
     @Then("they are still on the Join Circle page as the registration was not completed")
     public void theyAreStillOnTheJoinCirclePageAsTheRegistrationWasNotCompleted() {
-        joinCirclePage.assertTheyAreStillOnJoinCirclePage();
+        joinCirclePage.assertTheyAreOnJoinCirclePage();
     }
 
     @And("Warning message appears: {string}")
@@ -62,8 +67,39 @@ public class JoinCircleSteps {
         joinCirclePage.assertWarningMessageIncorrectPasscodeOnJoinCirclePageIsDisplayed(incorrectPasscode);
     }
 
-    @And("Warning message is displayed: {string}")
-    public void warningMessageIsDisplayed(String incorrectFirstName) {
-        joinCirclePage.assertWarningMessageForFirstNameOnJoinCirclePageIsDisplayed(incorrectFirstName);
+    @And("under the field First Name the Warning message is displayed: {string}")
+    public void underTheFieldFirstNameTheWarningMessageThisInputIsRequiredIsDisplayed(String incorrectFirstName) {
+        joinCirclePage.assertFirstNameFieldWarningMessageIsDisplayed(incorrectFirstName);
     }
+
+    @And("they selected and copy entered password on the Join Circle page")
+    public void theySelectedAndCopyEnteredPasswordOnTheJoinCirclePage() {
+        joinCirclePage.copyHiddenPasswordOnJoinCirclePage();
+    }
+
+    @And("they activated context menu on the Join Circle page")
+    public void theyActivatedContextMenuOnTheJoinCirclePage() {
+        joinCirclePage.OpenedContextMenuOnJoinCirclePage();
+    }
+
+    @Then("The password is not copied into clipboard")
+    public void thePasswordIsNotCopiedIntoClipboard() {
+        joinCirclePage.PasswordIsNotCopiedIntoClipboardFromPasswordField();
+    }
+
+    @When("they enter a valid password in the password field on the Join Circle page")
+    public void theyEnterValidPasswordInPasswordFieldOnJoinCirclePage() {
+        joinCirclePage.EnterValidPasswordInPasswordFieldOnJoinCirclePage(PropertiesLoader.getProperties("password"));
+    }
+
+    @Then("The password is masked on Join Circle Page")
+    public void thePasswordIsMaskedOnJoinCirclePage() {
+        joinCirclePage.assertPasswordIsMasked(getByObject(getJoinCirclePasswordInputField()));
+    }
+
+// for next test case
+//    @And("they copy password from the context menu on the Join Circle page")
+//    public void theyCopyPasswordFromTheContextMenuOnTheJoinCirclePage() {
+//        joinCirclePage.CopyPasswordFromContextMenuOnJoinCirclePage();
+//    }
 }

@@ -11,19 +11,18 @@ public class ProfileSteps {
     ProfilePage profilePage = new ProfilePage();
 
     @And("they click on the Avatar icon")
-    public void theyClickOnTheAvatarIcon() {
-        profilePage.clickOnTheAvatarIcon();
+    public void theyClickOnTheAvatarIconOnTheProfilePage() {
+        profilePage.clickOnTheAvatarIconOnTheProfilePage();
     }
 
     @And("they click on the Delete button")
-    public void theyClickOnTheDeleteButton() {
-        profilePage.clickOnTheDeleteButton();
+    public void theyClickOnTheDeleteButtonOnTheProfilePage() {
+        profilePage.clickOnTheDeleteButtonOnTheProfilePage();
     }
 
-    @Then("they see the Upload button")
-    public void theySeeTheUploadButton() {
-        profilePage.seeTheUploadButton();
-    }
+    @Then("the Upload button is present")
+    public void theUploadButtonOnTheProfilePageIsPresent() {
+        profilePage.assertTheUploadButtonOnTheProfilePageIsPresent();}
 
     @When("they clear Last name field on the Profile Page")
     public void theyClearLastNameFieldOnTheProfilePage() {
@@ -31,17 +30,32 @@ public class ProfileSteps {
     }
 
     @And("they enter {string} in Last name field on the Profile Page")
-    public void theyEnterSmith1InTheLastNameFieldOnTheProfilePage(String lastName) {
+    public void theyEnterLastNameInLastNameFieldOnTheProfilePage(String lastName) {
         profilePage.enterLastNameOnTheProfilePage(lastName);
     }
 
     @And("they click the Save button")
-    public void theyClickTheSaveButton() {
-        profilePage.clickTheSaveButton();
+    public void theyClickTheSaveButtonOnTheProfilePage() {
+        profilePage.clickTheSaveButtonOnTheProfilePage();
     }
 
-    @Then("Last name {string} presented in Last name field")
-    public void lastNameSmith1PresentedInLastNameField(String lastName) {
-        profilePage.lastNameSmith1PresentedInLastNameField(lastName);
+    @Then("Last name {string} in Last Name field on Profile Page is present")
+    public void lastNameInLastNameFieldOnProfilePageIsPresent(String lastName) {
+        profilePage.assertLastNameInLastNameFieldOnProfilePageIsPresent(lastName);
+    }
+
+    @When("they clear First name field on the Profile page")
+    public void theyClearFirstNameFieldOnTheProfilePage() {
+        profilePage.clearFirstNameFieldOnTheProfilePage();
+    }
+
+    @And("they enter {string} in First name field on the Profile Page")
+    public void theyEnterFirstNameOnProfilePage(String firstName) {
+        profilePage.enterFirstNameOnProfilePage(firstName);
+    }
+
+    @Then("First name on Profile page is updated to {string}")
+    public void assertFirstNameOnProfilePageIsDisplayed(String firstName) {
+        profilePage.assertFirstNameOnProfilePageIsDisplayed(firstName);
     }
 }

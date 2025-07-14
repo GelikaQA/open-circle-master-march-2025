@@ -53,13 +53,14 @@ public class TopicsPage extends BasePage {
         foundElement.click();
     }
 
-    public void enterNewTopicNameInputField(String NewTopicName) {
+    public void enterNewTopicNameInputField(String newTopicName) {
         wait.forElementToBeDisplayed(
                 10,
                 getByObject(getNewTopicNameInputField()),
                 "New Topic Name Input Field");
         WebElement foundElement = driver.findElement(getByObject(getNewTopicNameInputField()));
-        foundElement.sendKeys(NewTopicName);
+        String uniqueTopicName = generateUniqueName(newTopicName);
+        foundElement.sendKeys(uniqueTopicName);
     }
 
     public void clickCreateButtonOnTopicPage() {
@@ -69,7 +70,7 @@ public class TopicsPage extends BasePage {
         driver.findElement(getByObject(getCreateNewTopicCreateButton())).click();
     }
 
-    public void assertSuccessMessagePopsUpOnTopicPage(String TopicHasBeenCreated) {
+    public void assertSuccessMessageOnTopicPageIsDisplayed(String TopicHasBeenCreated) {
         wait.forElementToBeDisplayed(
                 10,
                 getByObject(getTopicCreationSuccessMessage()),

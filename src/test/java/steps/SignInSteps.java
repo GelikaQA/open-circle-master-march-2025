@@ -14,16 +14,6 @@ public class SignInSteps {
     SignInPage signInPage = new SignInPage();
     HomePage homePage = new HomePage();
 
-    @When("they enter {string} address")
-    public void enterInvalidEmail(String email) {
-        signInPage.enterEmailOnSignInPage(email);
-    }
-
-    @And("they enter {string}")
-    public void theyEnterPassword(String password) {
-        signInPage.enterPasswordOnSignInPage(password);
-    }
-
     @And("click Sign In button")
     public void clickSignInButton() {
         signInPage.clickSignInButton();
@@ -47,7 +37,7 @@ public class SignInSteps {
 
     @When("they enter existing email in Email input field on Login page")
     public void theyEnterExistingEmailInEmailInputFieldOnLoginPage() {
-        signInPage.enterEmailOnSignInPage(PropertiesLoader.getProperties("email"));
+        signInPage.enterEmailOnSignInPage();
     }
 
     @And("they enter {string} in Password input field on Login page")

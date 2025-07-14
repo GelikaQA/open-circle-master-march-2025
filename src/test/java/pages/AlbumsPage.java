@@ -110,6 +110,7 @@ public class AlbumsPage extends BasePage {
         WebElement foundElement = driver.findElement(getByObject(selectAlbumLocator(albumName)));
         assertTrue(foundElement.isDisplayed());
     }
+
     public void clickDeleteAlbum(String album) {
         wait.forElementToBeDisplayed(10, getByObject(selectAlbumLocator(album)), "Select Album");
         WebElement foundElement = driver.findElement(getByObject(deleteAlbumLocator(album)));

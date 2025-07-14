@@ -14,7 +14,6 @@ import static tools.CommonTools.getByObject;
 public class JoinCircleSteps {
     
     JoinCirclePage joinCirclePage = new JoinCirclePage();
-    BasePage basePage = new BasePage();
 
     @Given("a user opens Join Circle page")
     public void aUserOpensJoinCirclePage() {

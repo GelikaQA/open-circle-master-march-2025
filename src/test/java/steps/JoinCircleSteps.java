@@ -8,10 +8,12 @@ import pages.BasePage;
 import pages.JoinCirclePage;
 import tools.PropertiesLoader;
 
+import static pages.JoinCirclePage.getJoinCirclePasswordInputField;
+import static tools.CommonTools.getByObject;
+
 public class JoinCircleSteps {
     
     JoinCirclePage joinCirclePage = new JoinCirclePage();
-    BasePage basePage = new BasePage();
 
     @Given("a user opens Join Circle page")
     public void aUserOpensJoinCirclePage() {
@@ -72,7 +74,7 @@ public class JoinCircleSteps {
 
     @And("they selected and copy entered password on the Join Circle page")
     public void theySelectedAndCopyEnteredPasswordOnTheJoinCirclePage() {
-        joinCirclePage.CopyHiddenPasswordOnJoinCirclePage();
+        joinCirclePage.copyHiddenPasswordOnJoinCirclePage();
     }
 
     @And("they activated context menu on the Join Circle page")
@@ -92,7 +94,7 @@ public class JoinCircleSteps {
 
     @Then("The password is masked on Join Circle Page")
     public void thePasswordIsMaskedOnJoinCirclePage() {
-        basePage.PasswordIsMasked();
+        joinCirclePage.assertPasswordIsMasked(getByObject(getJoinCirclePasswordInputField()));
     }
 
 // for next test case

@@ -12,6 +12,7 @@ import org.openqa.selenium.Keys;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
 
 import static org.junit.Assert.assertNotEquals;
 
@@ -160,7 +161,7 @@ public class JoinCirclePage extends BasePage {
         assertTrue(message, elementText.contains(incorrectFirstName));
     }
 
-    public void CopyHiddenPasswordOnJoinCirclePage() {
+    public void copyHiddenPasswordOnJoinCirclePage() {
         wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePasswordInputField()),
                 "Password input field");
         WebElement passwordField = driver.findElement(getByObject(getJoinCirclePasswordInputField()));
@@ -176,6 +177,7 @@ public class JoinCirclePage extends BasePage {
     }
 
     public void PasswordIsNotCopiedIntoClipboardFromPasswordField() {
+        clearClipboard();
         String clipboardContent = getClipboardContents();
         String actualPassword = getPasswordInputValue(); // Gets the password field value
         System.out.println("Clipboard: " + clipboardContent);
@@ -191,6 +193,16 @@ public class JoinCirclePage extends BasePage {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    private void clearClipboard() {
+        try {
+            StringSelection stringSelection = new StringSelection("");
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboard.setContents(stringSelection, null);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

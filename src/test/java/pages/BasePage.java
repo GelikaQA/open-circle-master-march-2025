@@ -7,8 +7,7 @@ import org.openqa.selenium.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static tools.CommonTools.getByObject;
 
 public class BasePage {
@@ -179,11 +178,12 @@ public class BasePage {
         String timestamp = String.valueOf(System.currentTimeMillis());
         return name + timestamp;
     }
-    public void PasswordIsMasked() {
-        wait.forElementToBeDisplayed(10, getByObject(getPasswordInputField()),
+    public void assertPasswordIsMasked(By element) {
+        wait.forElementToBeDisplayed(10, element,
                 "Password is masked");
-        WebElement passwordField = driver.findElement(getByObject(getPasswordInputField()));
+        WebElement passwordField = driver.findElement(element);
         String typeAttribute = passwordField.getAttribute("type");
-        assertTrue("The password field is not masked. Can't find attribute in tag 'type=password' ", typeAttribute.equals("password"));
+        assertEquals("The password field is not masked. Can't find attribute in tag 'type=password' ",
+                "password", typeAttribute);
     }
 }

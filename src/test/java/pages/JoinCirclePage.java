@@ -27,7 +27,7 @@ public class JoinCirclePage extends BasePage {
     private static final String JOIN_CIRCLE_SIGN_IN_REDIRECT_BUTTON = "xpath=//button[@type='button']//span[text()='Sign in']";
     private static final String JOIN_CIRCLE_CREATE_CIRCLE_REDIRECT_BUTTON = "xpath=//button[@type='button']//span[text()='Create Circle']";
     private static final String JOIN_CIRCLE_POP_UP_MESSAGE_SUCCESS_REGISTRATION = "xpath=//div[@class='ant-notification-notice-description']//span[text()='You have successfully registered.']";
-    private static final String JOIN_CIRCLE_POP_UP_MESSAGE_INCORRECT_PASSCODE = "xpath=//div[@class='ant-notification-notice-description']//span[text()='Incorrect Passcode. Please try again']";
+    private static final String JOIN_CIRCLE_POP_UP_MESSAGE_INCORRECT_PASSCODE = "xpath=//div[@class='ant-notification-notice-description']/span";
     private static final String JOIN_CIRCLE_FIRST_NAME_FIELD_MESSAGE_FIELD_ACCEPTS = "xpath=//ul[contains(@class, 'form_text_danger')]//li[contains(text(), 'Field accepts alphabetical')]";
     private static final String JOIN_CIRCLE_CIRCLE_FIELD_MESSAGE = "xpath=//label[@for='circleId']/following-sibling::ul[contains(@class,'form_text_danger')]/li";
     private static final String JOIN_CIRCLE_PASSCODE_FIELD_MESSAGE = "xpath=//label[@for='passCode']/following-sibling::ul[contains(@class,'form_text_danger')]/li";

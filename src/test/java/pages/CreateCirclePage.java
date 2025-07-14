@@ -16,7 +16,7 @@ public class CreateCirclePage extends BasePage {
     private static final String EMAIL_ON_CREATE_CIRCLE_PAGE = "id=email";
     private static final String CREATE_CIRCLE_PASSWORD_INPUT_FIELD = "id=password";
     private static final String CREATE_CIRCLE_CREATE_BUTTON = "xpath=//button[contains(@class, 'login_submit')]";
-    private static final String CREATE_CIRCLE_FIRST_NAME_VALIDATION = "xpath=//div[label[@for='firstName']]//li";
+    private static final String CREATE_CIRCLE_FIRST_NAME_VALIDATION_MESSAGE = "xpath=//div[label[@for='firstName']]//li";
 
     public static String getAdminPasswordInputField() {
         return ADMIN_PASSWORD_INPUT_FIELD;
@@ -54,8 +54,8 @@ public class CreateCirclePage extends BasePage {
         return CREATE_CIRCLE_CREATE_BUTTON;
     }
 
-    public static String getCreateCircleFirstNameValidation() {
-        return CREATE_CIRCLE_FIRST_NAME_VALIDATION;
+    public static String getCreateCircleFirstNameValidationMessage() {
+        return CREATE_CIRCLE_FIRST_NAME_VALIDATION_MESSAGE;
     }
 
     public void openCreateCirclePage() {
@@ -143,15 +143,15 @@ public class CreateCirclePage extends BasePage {
         foundElement.click();
     }
 
-    public void checkMessageExistsForFirstNameFieldOnCreateCirclePage(String error) {
+    public void assertFirstNameValidationMessageOnCreateCirclePage(String error) {
         wait.forElementToBeDisplayed(
                 10,
-                getByObject(getCreateCircleFirstNameValidation()),
+                getByObject(getCreateCircleFirstNameValidationMessage()),
                 "Error message");
-        WebElement foundElement = driver.findElement(getByObject(getCreateCircleFirstNameValidation()));
+        WebElement foundElement = driver.findElement(getByObject(getCreateCircleFirstNameValidationMessage()));
         String elementText = foundElement.getText();
 
-        String message = "Text '" + error + "' 'in " + getCreateCircleFirstNameValidation() + " is presented.";
+        String message = "Text '" + error + "' 'in " + getCreateCircleFirstNameValidationMessage() + " is presented.";
         assertTrue(message, elementText.contains(error));
     }
 }

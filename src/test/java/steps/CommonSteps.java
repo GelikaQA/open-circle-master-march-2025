@@ -71,13 +71,18 @@ public class CommonSteps {
         basePage.waitForElementIsVisible(target);
     }
 
-    @And("they verify that Success Message appears")
-    public void theyVerifyThatSuccessMessageAppears() {
-        basePage.assertMessageIsDisplayed(PropertiesLoader.getProperties("successfulMessage"));
+    @And("they see a success popup message {string}")
+    public void theyVerifyThatSuccessMessageAppears(String messageText) {
+        basePage.assertPopUpMessageIsDisplayed(PropertiesLoader.getProperties("successfulMessage"));
+        basePage.assertPopUpMessageDescriptionIsDisplayed(messageText);
+        basePage.closePopUpWindow();
+
     }
 
-    @And("they verify that Warning Message appears")
-    public void theyVerifyThatWarningMessageAppears() {
-        basePage.assertMessageIsDisplayed(PropertiesLoader.getProperties("warningMessage"));
+    @And("they see a warning popup message {string}")
+    public void theyVerifyThatWarningMessageAppears(String messageText) {
+        basePage.assertPopUpMessageIsDisplayed(PropertiesLoader.getProperties("warningMessage"));
+        basePage.assertPopUpMessageDescriptionIsDisplayed(messageText);
+        basePage.closePopUpWindow();
     }
 }

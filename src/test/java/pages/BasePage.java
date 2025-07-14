@@ -17,12 +17,23 @@ public class BasePage {
     protected Wait wait;
     HashMap<String, Object> context;
 
-    public static final String POP_UP_WINDOW_MESSAGE_LOCATOR = "xpath=//div[@class='ant-notification-notice-message']";
+    public static final String POPUP_MESSAGE_LOCATOR = "xpath=//div[@class='ant-notification-notice-message']";
+    public static final String POPUP_MESSAGE_DESCRIPTION_LOCATOR = "xpath=//div[@class='ant-notification-notice-description']/span";
+    public static final String CLOSE_POPUP_MESSAGE_LOCATOR = "xpath=//a[@class='ant-notification-notice-close']";
     public static final String PASSWORD_INPUT_FIELD = "name=password";
 
-    public static String getPopUpWindowMessageLocator(){
-        return POP_UP_WINDOW_MESSAGE_LOCATOR;
+    public static String getPopUpMessageLocator(){
+        return POPUP_MESSAGE_LOCATOR;
     }
+
+    public static String getPopUpMessageDescriptionLocator(){
+        return POPUP_MESSAGE_DESCRIPTION_LOCATOR;
+    }
+
+    public static String getClosePopupMessageLocator(){
+        return CLOSE_POPUP_MESSAGE_LOCATOR;
+    }
+
     public static String getPasswordInputField() { return PASSWORD_INPUT_FIELD; }
 
     public BasePage() {
@@ -141,14 +152,27 @@ public class BasePage {
         wait.forElementToBeInteractable(10, getByObject(target), "Element");
     }
 
-    public void assertMessageIsDisplayed(String message) {
+    public void assertPopUpMessageIsDisplayed(String messageType) {
         wait.forElementToBeDisplayed(10,
-                getByObject(getPopUpWindowMessageLocator()), "PopUp Message");
-        WebElement foundElement = driver.findElement(getByObject(getPopUpWindowMessageLocator()));
-        String elementText = foundElement.getText();
-        assertTrue(elementText.contains(message));
+                getByObject(getPopUpMessageLocator()), "PopUp Message");
+        WebElement firstElement = driver.findElement(getByObject(getPopUpMessageLocator()));
+        String element1Text = firstElement.getText();
+        assertTrue(element1Text.contains(messageType));
+    }
+
+    public void assertPopUpMessageDescriptionIsDisplayed(String messageDescription) {
+        wait.forElementToBeDisplayed(10,
+                getByObject(getPopUpMessageDescriptionLocator()), "PopUp Message Description");
+        WebElement secondElement = driver.findElement(getByObject(getPopUpMessageDescriptionLocator()));
+        String element2Text = secondElement.getText();
+        assertTrue(element2Text.contains(messageDescription));
+    }
+
+    public void closePopUpWindow(){
+        WebElement foundElement = driver.findElement(getByObject(getClosePopupMessageLocator()));
+        foundElement.click();
         wait.forElementToBeNotDisplayed(10,
-                getByObject(getPopUpWindowMessageLocator()), "PopUp Message");
+                getByObject(getClosePopupMessageLocator()), "PopUp Message Close Button");
     }
 
     public static String generateUniqueName(String name) {

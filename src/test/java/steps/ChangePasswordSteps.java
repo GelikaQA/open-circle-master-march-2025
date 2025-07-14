@@ -4,9 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.bouncycastle.crypto.agreement.srp.SRP6Client;
 import pages.ChangePasswordPage;
-import tools.PropertiesLoader;
 
 public class ChangePasswordSteps {
 
@@ -42,5 +40,4 @@ public class ChangePasswordSteps {
     public void assertWarningMessagePopsUp(String message) {
         changePasswordPage.assertWarningMessagePopsUp(message);
     }
-
 }

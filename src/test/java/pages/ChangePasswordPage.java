@@ -88,5 +88,4 @@ public class ChangePasswordPage extends BasePage{
 
         assertTrue(warning, elementText.contains(warning));
     }
-
 }

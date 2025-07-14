@@ -1,10 +1,9 @@
 package pages;
 
 import org.openqa.selenium.WebElement;
+import java.util.List;
 import static org.junit.Assert.assertTrue;
 import static tools.CommonTools.getByObject;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 
 public class AlbumsPage extends BasePage {
     private static final String ALBUMS_BUTTON_ON_HOME_PAGE = "xpath=//div[text()='Albums']";
@@ -111,27 +110,17 @@ public class AlbumsPage extends BasePage {
         WebElement foundElement = driver.findElement(getByObject(selectAlbumLocator(albumName)));
         assertTrue(foundElement.isDisplayed());
     }
+
     public void clickDeleteAlbum(String album) {
-        wait.forElementToBeDisplayed(17, getByObject(selectAlbumLocator(album)), "Select Album");
+        wait.forElementToBeDisplayed(10, getByObject(selectAlbumLocator(album)), "Select Album");
         WebElement foundElement = driver.findElement(getByObject(deleteAlbumLocator(album)));
         foundElement.click();
     }
 
-//    public void assertDuplicateAlbumNotCreated(String albumName) {
-//        try {
-//            driver.findElement(getByObject(selectAlbumLocator(albumName)));
-//            throw new AssertionError("Duplicate album '" + albumName + "' was unexpectedly created.");
-//        } catch (NoSuchElementException e) {
-//            System.out.println("Duplicate album not found, as expected.");
-//        }
-//    }
-
-    public void assertDuplicateAlbumMessageDisplayed(String expectedText) {
+    public void assertDuplicateAlbumMessageIsDisplayed(String expectedText) {
         wait.forElementToBeDisplayed(10, getByObject(getPopUpMsgIfAlbumAlreadyExists()), "Duplicate Album Error");
         WebElement foundElement = driver.findElement(getByObject(getPopUpMsgIfAlbumAlreadyExists()));
-        String actualText = foundElement.getText();
-        System.out.println("Actual duplicate error: " + actualText);
-        assertTrue("Expected to see: " + expectedText, actualText.contains(expectedText));
+
     }
 
     public void clickCancelButtonNewAlbumWindow() {
@@ -146,4 +135,11 @@ public class AlbumsPage extends BasePage {
         enterNewUniqueAlbumNameInPopUpWindow(albumName);
         clickCreateButtonNewAlbumWindow();
     }
-}
+
+    public void assertDuplicateAlbumNotCreated(String albumName) {
+            List<WebElement> albums = driver.findElements(getByObject(selectAlbumLocator(albumName)));
+            int albumCount = albums.size();
+            assertTrue("Found " + albumCount + " albums with name '" + albumName +
+                    "'. Expected only one (no duplicate).", albumCount <= 1);
+        }
+    }

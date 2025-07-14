@@ -17,12 +17,10 @@ public class BasePage {
     HashMap<String, Object> context;
 
     public static final String POP_UP_WINDOW_MESSAGE_LOCATOR = "xpath=//div[@class='ant-notification-notice-message']";
-    public static final String PASSWORD_INPUT_FIELD = "name=password";
 
     public static String getPopUpWindowMessageLocator(){
         return POP_UP_WINDOW_MESSAGE_LOCATOR;
     }
-    public static String getPasswordInputField() { return PASSWORD_INPUT_FIELD; }
 
     public BasePage() {
         this.driver = Setup.driver;

@@ -11,19 +11,18 @@ public class ProfileSteps {
     ProfilePage profilePage = new ProfilePage();
 
     @And("they click on the Avatar icon")
-    public void theyClickOnTheAvatarIcon() {
-        profilePage.clickOnTheAvatarIcon();
+    public void theyClickOnTheAvatarIconOnTheProfilePage() {
+        profilePage.clickOnTheAvatarIconOnTheProfilePage();
     }
 
     @And("they click on the Delete button")
-    public void theyClickOnTheDeleteButton() {
-        profilePage.clickOnTheDeleteButton();
+    public void theyClickOnTheDeleteButtonOnTheProfilePage() {
+        profilePage.clickOnTheDeleteButtonOnTheProfilePage();
     }
 
     @Then("the Upload button is present")
-    public void theUploadButtonIsPresent() {
-        profilePage.assertTheUploadButtonIsPresent();
-    }
+    public void theUploadButtonOnTheProfilePageIsPresent() {
+        profilePage.assertTheUploadButtonOnTheProfilePageIsPresent();}
 
     @When("they clear Last name field on the Profile Page")
     public void theyClearLastNameFieldOnTheProfilePage() {
@@ -36,8 +35,8 @@ public class ProfileSteps {
     }
 
     @And("they click the Save button")
-    public void theyClickTheSaveButton() {
-        profilePage.clickTheSaveButton();
+    public void theyClickTheSaveButtonOnTheProfilePage() {
+        profilePage.clickTheSaveButtonOnTheProfilePage();
     }
 
     @Then("Last name {string} in Last Name field on Profile Page is present")

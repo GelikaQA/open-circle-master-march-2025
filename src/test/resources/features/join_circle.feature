@@ -42,7 +42,7 @@ Feature: join_circle
     Given a user opens Join Circle page
     When they enter "<password>" in the Password field on the Join Circle page
     And they selected and copy entered password on the Join Circle page
-    Then The password is not copied into clipboard
+    Then The "<password>" is not copied into clipboard
 
     Examples:
       | password |

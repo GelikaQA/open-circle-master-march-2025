@@ -4,7 +4,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.BasePage;
 import pages.JoinCirclePage;
 import tools.PropertiesLoader;
 
@@ -82,9 +81,9 @@ public class JoinCircleSteps {
         joinCirclePage.OpenedContextMenuOnJoinCirclePage();
     }
 
-    @Then("The password is not copied into clipboard")
-    public void thePasswordIsNotCopiedIntoClipboard() {
-        joinCirclePage.PasswordIsNotCopiedIntoClipboardFromPasswordField();
+    @Then("The {string} is not copied into clipboard")
+    public void thePasswordIsNotCopiedIntoClipboard(String password) {
+        joinCirclePage.assertPasswordIsNotCopiedIntoClipboardFromPasswordField(password);
     }
 
     @When("they enter a valid password in the password field on the Join Circle page")

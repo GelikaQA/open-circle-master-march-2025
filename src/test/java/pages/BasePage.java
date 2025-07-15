@@ -178,10 +178,11 @@ public class BasePage {
         String timestamp = String.valueOf(System.currentTimeMillis());
         return name + timestamp;
     }
-    public void assertPasswordIsMasked(By element) {
-        wait.forElementToBeDisplayed(10, element,
+
+    public void assertPasswordIsMasked(String element) {
+        wait.forElementToBeDisplayed(10, getByObject(element),
                 "Password is masked");
-        WebElement passwordField = driver.findElement(element);
+        WebElement passwordField = driver.findElement(getByObject(element));
         String typeAttribute = passwordField.getAttribute("type");
         assertEquals("The password field is not masked. Can't find attribute in tag 'type=password' ",
                 "password", typeAttribute);

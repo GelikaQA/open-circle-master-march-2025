@@ -5,6 +5,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.ChangePasswordPage;
+import tools.PropertiesLoader;
+
+import static tools.CommonTools.*;
 
 public class ChangePasswordSteps {
 
@@ -30,7 +33,6 @@ public class ChangePasswordSteps {
         changePasswordPage.enterPasswordInNewPasswordInputFieldOnChangePasswordPage(Password);
     }
 
-
     @And("they click Save button on Change password page")
     public void theyClickSaveButtonOnChangePasswordPage() {
         changePasswordPage.clickSaveButtonOnChangePasswordPage();
@@ -39,5 +41,16 @@ public class ChangePasswordSteps {
     @Then("assert warning message pops-up {string}")
     public void assertWarningMessagePopsUp(String message) {
         changePasswordPage.assertWarningMessagePopsUp(message);
+    }
+
+    @Then("success message password has been changed displayed")
+    public void verifySuccessMessage() {
+        changePasswordPage.assertWarningMessagePopsUp("Password has been changed");
+        putInContext("passwordWasChanged", true);
+    }
+
+    @And("they enter current valid password in Current password input field on Change password page")
+    public void theyEnterCurrentValidPasswordInCurrentPasswordInputFieldOnChangePasswordPage() {
+        changePasswordPage.enterPasswordInCurrentPasswordInputFieldOnChangePasswordPage(PropertiesLoader.getProperties("password"));
     }
 }

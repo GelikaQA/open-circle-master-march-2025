@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import pages.BasePage;
 import pages.ChangePasswordPage;
 import tools.PropertiesLoader;
 
@@ -40,7 +41,7 @@ public class ChangePasswordSteps {
 
     @Then("assert warning message pops-up {string}")
     public void assertWarningMessagePopsUp(String message) {
-        changePasswordPage.assertWarningMessagePopsUp(message);
+        changePasswordPage.assertPopUpMessageDescriptionIsDisplayed(message);
     }
 
     @Then("success message password has been changed displayed")

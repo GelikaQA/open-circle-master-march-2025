@@ -125,7 +125,7 @@ public class JoinCirclePage extends BasePage {
         passwordField.sendKeys(password);
     }
 
-    public void PressButtonJoinOnJoinCirclePage() {
+    public void clickJoinButtonOnJoinCirclePage() {
         wait.forElementToBeDisplayed(10, getByObject(getJoinCircleJoinSubmitButton()),
                 "SIGN UP BUTTON");
         WebElement signUpButton = driver.findElement(getByObject(getJoinCircleJoinSubmitButton()));
@@ -208,14 +208,14 @@ public class JoinCirclePage extends BasePage {
         return passwordField.getAttribute("value");
     }
 
-    public void EnterValidPasswordInPasswordFieldOnJoinCirclePage(String password) {
+    public void enterValidPasswordInPasswordFieldOnJoinCirclePage(String password) {
         wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePasswordInputField()),
                 "Password input field");
         driver.findElement(getByObject(getJoinCirclePasswordInputField())).sendKeys(password);
     }
 
     //    for next test case
-    public void OpenedContextMenuOnJoinCirclePage() {
+    public void openedContextMenuOnJoinCirclePage() {
         WebElement passwordField = driver.findElement(getByObject(getJoinCirclePasswordInputField()));
 
         Actions actions = new Actions(driver);

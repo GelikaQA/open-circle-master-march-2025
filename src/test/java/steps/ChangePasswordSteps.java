@@ -4,11 +4,13 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import pages.BasePage;
 import pages.ChangePasswordPage;
 
 public class ChangePasswordSteps {
 
     ChangePasswordPage changePasswordPage = new ChangePasswordPage();
+    BasePage basePage = new BasePage();
 
     @Given("they click Profile icon")
     public void theyClickProfileIcon() {
@@ -38,6 +40,6 @@ public class ChangePasswordSteps {
 
     @Then("assert warning message pops-up {string}")
     public void assertWarningMessagePopsUp(String message) {
-        changePasswordPage.assertWarningMessagePopsUp(message);
+        basePage.assertPopUpMessageDescriptionIsDisplayed(message);
     }
 }

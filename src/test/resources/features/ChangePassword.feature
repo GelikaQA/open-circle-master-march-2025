@@ -7,7 +7,7 @@ Feature: Change Password
     And they enter "" in Current password input field on Change password page
     And they enter "<password>" in New password input field on Change password page
     And they click Save button on Change password page
-    Then assert warning message pops-up "<warning message>"
+    Then they see a warning popup message "<warning message>"
 
     Examples:
       | password   | warning message                                                                                                                                 |
@@ -20,8 +20,7 @@ Feature: Change Password
     And they enter "<valid password>" in Current password input field on Change password page
     When they enter "" in New password input field on Change password page
     And they click Save button on Change password page
-    Then assert warning message pops-up "<warning message>"
-
+    Then they see a warning popup message "<warning message>"
 
     Examples:
       | valid password | warning message                                                                                                                                 |
@@ -34,7 +33,7 @@ Feature: Change Password
     And they enter "<invalid password>" in Current password input field on Change password page
     And they enter "<valid password>" in New password input field on Change password page
     And they click Save button on Change password page
-    Then assert warning message pops-up "<warning message>"
+    Then they see a warning popup message "<warning message>"
 
     Examples:
       | valid password | invalid password | warning message    |

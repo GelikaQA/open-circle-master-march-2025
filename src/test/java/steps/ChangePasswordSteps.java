@@ -10,7 +10,6 @@ import pages.ChangePasswordPage;
 public class ChangePasswordSteps {
 
     ChangePasswordPage changePasswordPage = new ChangePasswordPage();
-    BasePage basePage = new BasePage();
 
     @Given("they click Profile icon")
     public void theyClickProfileIcon() {
@@ -40,6 +39,6 @@ public class ChangePasswordSteps {
 
     @Then("assert warning message pops-up {string}")
     public void assertWarningMessagePopsUp(String message) {
-        basePage.assertPopUpMessageDescriptionIsDisplayed(message);
+        changePasswordPage.assertPopUpMessageDescriptionIsDisplayed(message);
     }
 }

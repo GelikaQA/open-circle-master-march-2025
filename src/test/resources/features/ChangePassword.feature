@@ -39,3 +39,18 @@ Feature: Change Password
     Examples:
       | valid password | invalid password | warning message    |
       | Example123     | theExample123    | Incorrect password |
+
+
+  @changePassword
+  Scenario Outline: Success message is displayed on clicking Save with valid current password
+    Given a user is logged into the account
+    And they click Profile icon
+    When they click Change password section
+    And they enter current valid password in Current password input field on Change password page
+    And they enter "<new password>" in New password input field on Change password page
+    And they click Save button on Change password page
+    Then success message password has been changed displayed
+
+    Examples:
+      | new password |
+      | Example122   |

@@ -6,22 +6,39 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import pages.ChangePasswordPage;
+import tools.PropertiesLoader;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static tools.CommonTools.sleep;
+import static tools.CommonTools.getFromContext;
 
 public class TearDown {
     private final WebDriver driver;
+    ChangePasswordPage changePasswordPage = new ChangePasswordPage();
 
     public TearDown() {
         this.driver = Setup.driver;
     }
 
-    @After
+    @After(value = "@changePassword", order = 2)
+    public void revertPasswordIfChanged() {
+        Boolean passwordWasChanged = (Boolean) getFromContext("passwordWasChanged");
+        if (passwordWasChanged != null && passwordWasChanged) {
+            try {
+                changePasswordPage.enterPasswordInCurrentPasswordInputFieldOnChangePasswordPage((String) getFromContext("newPassword"));
+                changePasswordPage.enterPasswordInNewPasswordInputFieldOnChangePasswordPage(PropertiesLoader.getProperties("password"));
+                changePasswordPage.clickSaveButtonOnChangePasswordPage();
+            } catch (Exception e) {
+                System.err.println("Failed to revert password: " + e.getMessage());
+            }
+        }
+    }
+
+    @After(order = 1)
     public void afterScenario(Scenario scenario) {
 //        if (scenario.isFailed()) {
 //            sleep(2000);

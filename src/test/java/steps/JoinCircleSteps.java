@@ -66,4 +66,8 @@ public class JoinCircleSteps {
     public void warningMessageIsDisplayed(String incorrectFirstName) {
         joinCirclePage.assertWarningMessageForFirstNameOnJoinCirclePageIsDisplayed(incorrectFirstName);
     }
+    @Then("under the field 'Last Name' the Warning message is displayed: {string}")
+    public void warningMessageUnderLastNameFieldIsDisplayed(String expectedWarningMessage) {
+        joinCirclePage.assertWarningMessageForLastNameOnJoinCirclePageIsDisplayed(expectedWarningMessage);
+    }
 }

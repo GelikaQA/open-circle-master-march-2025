@@ -148,4 +148,23 @@ public class JoinCirclePage extends BasePage {
         String message = "Text '" + incorrectFirstName + "' in " + getJoinCirclePopUpMessageIncorrectFirstName() + " is not presented. 'Actual text is '" + elementText + "'";
         assertTrue(message, elementText.contains(incorrectFirstName));
     }
+    public void assertWarningMessageForLastNameOnJoinCirclePageIsDisplayed(String expectedMessage) {
+        String locator;
+        if (expectedMessage.contains("This input is required")) {
+            locator = JOIN_CIRCLE_LN_FIELD_MESSAGE_INPUT_IS_REQUIRED;
+        } else if (expectedMessage.contains("Field accepts alphabetical")) {
+            locator = JOIN_CIRCLE_LN_FIELD_MESSAGE_FIELD_ACCEPTS;
+        } else {
+            throw new IllegalArgumentException("Unexpected warning message: " + expectedMessage);
+        }
+
+        wait.forElementToBeDisplayed(10, getByObject(locator), "Last Name warning message should appear");
+
+        WebElement foundElement = driver.findElement(getByObject(locator));
+        String actualMessage = foundElement.getText();
+
+        String message = "Expected '" + expectedMessage + "', but found '" + actualMessage + "'";
+        assertTrue(message, actualMessage.contains(expectedMessage));
+    }
+
 }

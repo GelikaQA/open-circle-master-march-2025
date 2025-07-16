@@ -2,8 +2,9 @@ package pages;
 
 import org.openqa.selenium.WebElement;
 import java.util.List;
-import static org.junit.Assert.assertTrue;
-import static tools.CommonTools.getByObject;
+
+import static org.junit.Assert.*;
+import static tools.CommonTools.*;
 
 public class AlbumsPage extends BasePage {
     private static final String ALBUMS_BUTTON_ON_HOME_PAGE = "xpath=//div[text()='Albums']";
@@ -12,11 +13,6 @@ public class AlbumsPage extends BasePage {
     private static final String CLOSE_BUTTON_NEW_ALBUM_WINDOW = "xpath=//span[@role='img']";
     private static final String CANCEL_BUTTON_NEW_ALBUM_WINDOW = "xpath=//span[text()='Cancel']";
     private static final String CREATE_BUTTON_NEW_ALBUM_WINDOW = "xpath=//span[text()='Create']";
-    private static final String POP_UP_MSG_IF_ALBUM_ALREADY_EXISTS = "xpath=//span[text()='Album with this name exists']";
-    private static final String POP_UP_MSG_WHEN_ALBUM_IS_CREATED = "xpath=//div[@class='ant-notification-notice-with-icon']";
-    private static final String POP_UP_TEXT_WHEN_ALBUM_IS_CREATED = "xpath=//div[@class='ant-notification-notice-description']";
-    private static final String BUCKET_BUTTON_ON_THE_LAST_CREATED_ALBUM =
-            "xpath=(//div[contains(@class, 'albums_bucketIcon')])[last()]";
 
     public static String getAlbumsButtonOnHomePage() {
         return ALBUMS_BUTTON_ON_HOME_PAGE;
@@ -34,28 +30,12 @@ public class AlbumsPage extends BasePage {
         return CREATE_BUTTON_NEW_ALBUM_WINDOW;
     }
 
-    public static String getPopUpMsgWhenAlbumIsCreated() {
-        return POP_UP_MSG_WHEN_ALBUM_IS_CREATED;
-    }
-
-    public static String getBucketButtonOnTheAlbumTheyJustCreated() {
-        return BUCKET_BUTTON_ON_THE_LAST_CREATED_ALBUM;
-    }
-
-    public static String getPopUpTextWhenAlbumIsCreated() {
-        return POP_UP_TEXT_WHEN_ALBUM_IS_CREATED;
-    }
-
     public static String getCloseButtonNewAlbumWindow() {
         return CLOSE_BUTTON_NEW_ALBUM_WINDOW;
     }
 
     public static String getCancelButtonNewAlbumWindow() {
         return CANCEL_BUTTON_NEW_ALBUM_WINDOW;
-    }
-
-    public static String getPopUpMsgIfAlbumAlreadyExists() {
-        return POP_UP_MSG_IF_ALBUM_ALREADY_EXISTS;
     }
 
     public static String deleteAlbumLocator(String albumTitle) {
@@ -67,6 +47,20 @@ public class AlbumsPage extends BasePage {
         return "xpath=//div[contains(@class,'albums_text')]/b[text()='" + albumTitle + "']";
     }
 
+    public static String albumIconsListLocator(String albumTitle) {
+        return  "xpath=//div[contains(@class,'albums_text')]/descendant::b[text()='" +
+                albumTitle + "']/../../div/div";
+    }
+
+    public static void saveAlbumName(String albumName){
+        String uniqueName = generateUniqueName(albumName).substring(0,14);
+        putInContext(albumName, uniqueName);
+    }
+
+    public static String getSavedAlbumName(String albumName){
+        return getFromContext(albumName).toString();
+
+    }
     public void clickAlbumsButtonOnHomePage() {
         wait.forElementToBeDisplayed(10, getByObject(getAlbumsButtonOnHomePage()), "Element");
         WebElement foundElement = driver.findElement(getByObject(getAlbumsButtonOnHomePage()));
@@ -79,11 +73,12 @@ public class AlbumsPage extends BasePage {
         foundElement.click();
     }
 
-    public void enterNewUniqueAlbumNameInPopUpWindow(String uniqueAlbumNameInPopUpWindow) {
+    public void enterNewUniqueAlbumNameInPopUpWindow(String uniqueAlbumName) {
+        saveAlbumName(uniqueAlbumName);
         wait.forElementToBeDisplayed(10, getByObject(getInputFieldCreateNewAlbumWindow()),
                 "Input field create new album");
         WebElement foundElement = driver.findElement(getByObject(getInputFieldCreateNewAlbumWindow()));
-        foundElement.sendKeys(uniqueAlbumNameInPopUpWindow);
+        foundElement.sendKeys(getSavedAlbumName(uniqueAlbumName));
     }
 
     public void clickCreateButtonNewAlbumWindow() {
@@ -92,35 +87,17 @@ public class AlbumsPage extends BasePage {
         foundElement.click();
     }
 
-    public void assertTextPresentedInPopUpMessage(String popUpMessage) {
-        wait.forElementToBeDisplayed(2, getByObject(getPopUpMsgWhenAlbumIsCreated()),"Pop Up Message");
-        WebElement foundElement = driver.findElement(getByObject(getPopUpMsgWhenAlbumIsCreated()));
-        String elementText = foundElement.getText();
-        assertTrue(elementText.contains(popUpMessage));
-    }
-
-    public void theySeeConfirmationPopUpWindowWithText(String targetElement) {
-        wait.forElementToBeDisplayed(10, getByObject(getPopUpMsgWhenAlbumIsCreated()), "Element");
-        WebElement foundElement = driver.findElement(getByObject(getPopUpMsgWhenAlbumIsCreated()));
-        assertTrue(foundElement.isDisplayed());
-    }
-
     public void assertAlbumIsDisplayed(String albumName) {
-        wait.forElementToBeDisplayed(10, getByObject(selectAlbumLocator(albumName)), "Album Name");
-        WebElement foundElement = driver.findElement(getByObject(selectAlbumLocator(albumName)));
+        wait.forElementToBeDisplayed(10, getByObject(selectAlbumLocator(getSavedAlbumName(albumName))), "Album Name");
+        WebElement foundElement = driver.findElement(getByObject(selectAlbumLocator(getSavedAlbumName(albumName))));
         assertTrue(foundElement.isDisplayed());
     }
 
     public void clickDeleteAlbum(String album) {
-        wait.forElementToBeDisplayed(10, getByObject(selectAlbumLocator(album)), "Select Album");
-        WebElement foundElement = driver.findElement(getByObject(deleteAlbumLocator(album)));
+        wait.forElementToBeDisplayed(10, getByObject(selectAlbumLocator(getSavedAlbumName(album))), "Album");
+        WebElement foundElement = driver.findElement(getByObject(deleteAlbumLocator(getSavedAlbumName(album))));
         foundElement.click();
-    }
-
-    public void assertDuplicateAlbumMessageIsDisplayed(String expectedText) {
-        wait.forElementToBeDisplayed(10, getByObject(getPopUpMsgIfAlbumAlreadyExists()), "Duplicate Album Error");
-        WebElement foundElement = driver.findElement(getByObject(getPopUpMsgIfAlbumAlreadyExists()));
-
+        wait.forElementToBeNotDisplayed(10, getByObject(selectAlbumLocator(getSavedAlbumName(album))), "Select Album");
     }
 
     public void clickCancelButtonNewAlbumWindow() {
@@ -137,9 +114,24 @@ public class AlbumsPage extends BasePage {
     }
 
     public void assertDuplicateAlbumNotCreated(String albumName) {
-            List<WebElement> albums = driver.findElements(getByObject(selectAlbumLocator(albumName)));
-            int albumCount = albums.size();
-            assertTrue("Found " + albumCount + " albums with name '" + albumName +
-                    "'. Expected only one (no duplicate).", albumCount <= 1);
+        List<WebElement> albums = driver.findElements(getByObject(selectAlbumLocator(getSavedAlbumName(albumName))));
+        int albumCount = albums.size();
+        assertTrue("Found " + albumCount + " albums with name '" + getSavedAlbumName(albumName) +
+                "'. Expected only one (no duplicate).", albumCount <= 1);
+    }
+
+    public void assertAlbumIsNotDisplayed(String albumName) {
+        List<WebElement> listOfAlbums = driver.findElements(getByObject(selectAlbumLocator(getSavedAlbumName(albumName))));
+            assertTrue(listOfAlbums.isEmpty());
+    }
+
+    public void assertBucketIconIsDisplayed(String albumName, boolean canDelete) {
+        wait.forElementToBeDisplayed(10, getByObject(selectAlbumLocator(getSavedAlbumName(albumName))), "Album");
+        List<WebElement> albumIcons = driver.findElements(getByObject(albumIconsListLocator(getSavedAlbumName(albumName))));
+        if (canDelete){
+            assertEquals(2,albumIcons.size());
+        }else {
+            assertEquals(1,albumIcons.size());
         }
     }
+}

@@ -17,6 +17,7 @@ public class ProfilePage extends BasePage {
     private static final String PROFILE_CLOSE_BUTTON = "xpath=//button[@class='ant-drawer-close']";
     private static final String PROFILE_RESET_BUTTON = "xpath=//button[contains(@class, 'profile_reset__m5oZY')]";
     private static final String ERROR_MESSAGE_PROFILE_PAGE = "xpath=//div[@class='ant-form-item-explain-error']";
+    private static final String LOG_OUT_BUTTON = "xpath=//span[text()='Log Out']";
 
     public static String getProfileAvatarIcon() {
         return PROFILE_AVATAR_ICON;
@@ -56,6 +57,10 @@ public class ProfilePage extends BasePage {
 
     public static String getErrorMessageProfilePage() {
         return ERROR_MESSAGE_PROFILE_PAGE;
+    }
+
+    public static String getLogOutButton() {
+        return LOG_OUT_BUTTON;
     }
 
     public void clickOnTheAvatarIconOnTheProfilePage() {
@@ -135,5 +140,11 @@ public class ProfilePage extends BasePage {
         String message = "Text '" + firstName + "' 'in Last name input field is not presented. 'Actual text is '"
                 + elementText + "'";
         assertTrue(message, elementText.contains(firstName));
+    }
+
+    public void clickLogOutButton() {
+        wait.forElementToBeDisplayed(10, getByObject(getLogOutButton()), "Log Out");
+        WebElement foundElement = driver.findElement(getByObject(getLogOutButton()));
+        foundElement.click();
     }
 }

@@ -58,4 +58,10 @@ public class ProfileSteps {
     public void assertFirstNameOnProfilePageIsDisplayed(String firstName) {
         profilePage.assertFirstNameOnProfilePageIsDisplayed(firstName);
     }
+
+    @And("a user is logged out of the account")
+    public void aUserIsLoggedOutOfTheAccount() {
+        profilePage.clickOnTheAvatarIconOnTheProfilePage();
+        profilePage.clickLogOutButton();
+    }
 }

@@ -58,4 +58,9 @@ public class ProfileSteps {
     public void assertFirstNameOnProfilePageIsDisplayed(String firstName) {
         profilePage.assertFirstNameOnProfilePageIsDisplayed(firstName);
     }
+
+    @When("they delete profile picture")
+    public void theyDeleteProfilePicture() {
+        profilePage.deleteProfilePictureIfExists();
+    }
 }

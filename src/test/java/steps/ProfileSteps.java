@@ -58,4 +58,9 @@ public class ProfileSteps {
     public void assertFirstNameOnProfilePageIsDisplayed(String firstName) {
         profilePage.assertFirstNameOnProfilePageIsDisplayed(firstName);
     }
+
+    @Then("user friendly error is displayed {string}")
+    public void userFriendlyErrorIsShown(String errorMessage) {
+        profilePage.assertErrorMessageOnProfilePageIsDisplayed(errorMessage);
+    }
 }

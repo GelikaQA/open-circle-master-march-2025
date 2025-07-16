@@ -28,6 +28,7 @@ public class JoinCirclePage extends BasePage {
     private static final String JOIN_CIRCLE_POP_UP_MESSAGE_EMAIL_EXIST = "xpath=//span[text()='A user with such an email exists.']";
     private static final String JOIN_CIRCLE_PASSWORD_FIELD_ENTERED_VALUE_123456zZ = "xpath=//input[@id='password' and @value='123456zZ']";
     private static final String JOIN_CIRCLE_POP_UP_MESSAGE_INCORRECT_CIRCLE_NAME = "xpath=//div[contains(@class,'ant-notification-notice-description')]//span[text()='Incorrect Circle Name. Please try again']";
+    private static final String JOIN_CIRCLE_LAST_NAME_FIELD_MESSAGE = "xpath=//ul[contains(@class,'form_text_danger')]//li[contains(text(),'')]";
 
     public static String getJoinCircleCircleNameInputField() {
         return JOIN_CIRCLE_CIRCLE_NAME_INPUT_FIELD;
@@ -149,22 +150,11 @@ public class JoinCirclePage extends BasePage {
         assertTrue(message, elementText.contains(incorrectFirstName));
     }
     public void assertWarningMessageForLastNameOnJoinCirclePageIsDisplayed(String expectedMessage) {
-        String locator;
-        if (expectedMessage.contains("This input is required")) {
-            locator = JOIN_CIRCLE_LN_FIELD_MESSAGE_INPUT_IS_REQUIRED;
-        } else if (expectedMessage.contains("Field accepts alphabetical")) {
-            locator = JOIN_CIRCLE_LN_FIELD_MESSAGE_FIELD_ACCEPTS;
-        } else {
-            throw new IllegalArgumentException("Unexpected warning message: " + expectedMessage);
-        }
+        wait.forElementToBeDisplayed(10, getByObject(JOIN_CIRCLE_LAST_NAME_FIELD_MESSAGE), "Last Name warning message should appear");
 
-        wait.forElementToBeDisplayed(10, getByObject(locator), "Last Name warning message should appear");
-
-        WebElement foundElement = driver.findElement(getByObject(locator));
+        WebElement foundElement = driver.findElement(getByObject(JOIN_CIRCLE_LAST_NAME_FIELD_MESSAGE));
         String actualMessage = foundElement.getText();
 
-        String message = "Expected '" + expectedMessage + "', but found '" + actualMessage + "'";
+        String message = "Expected: '" + expectedMessage + "', but found: '" + actualMessage + "'";
         assertTrue(message, actualMessage.contains(expectedMessage));
-    }
-
-}
+    }}

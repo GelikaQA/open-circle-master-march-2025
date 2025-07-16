@@ -26,3 +26,10 @@ Feature: createAlbum
     Examples:
       | duplicate name |
       | TEST123        |
+
+  Scenario: User cancels creating a new album
+    Given a user is logged into the account
+    And they click the Albums button
+    And click Create new album button on Albums page
+    And they click Cancel button on Create New Album Window
+    #Then there is no new album

@@ -67,4 +67,8 @@ public class AlbumsSteps {
     public void verifyNoDuplicateAlbumCreated(String albumName) {
         albumsPage.assertDuplicateAlbumNotCreated(albumName);
     }
+
+    @And("they click Cancel button on Create New Album Window")
+    public void theyClickCancelButtonOnCreateNewAlbumWindow() {
+    }
 }

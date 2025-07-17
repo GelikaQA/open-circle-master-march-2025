@@ -13,6 +13,7 @@ Feature: Change Password
       | password   | warning message                                                                                                                                 |
       | Example123 | Field: oldPassword; Error: Field should contain at least one upper-case, at least one lower-case and at least one digit and be between 8 and 20|
 
+
   Scenario Outline:  Leaving the new password field empty triggers a warning message
     Given a user is logged into the account
     And they click Profile icon
@@ -25,6 +26,7 @@ Feature: Change Password
     Examples:
       | valid password | warning message                                                                                                                                 |
       | Test12345!     | Field: newPassword; Error: Field should contain at least one upper-case, at least one lower-case and at least one digit and be between 8 and 20 |
+
 
   Scenario Outline: Submitting an invalid current password displays an error message
     Given a user is logged into the account

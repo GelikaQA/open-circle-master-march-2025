@@ -39,3 +39,4 @@ build/
 
 #secrets
 local.properties
+/src/test/resources/images/

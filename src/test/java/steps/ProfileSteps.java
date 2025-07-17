@@ -17,7 +17,7 @@ public class ProfileSteps {
 
     @And("they click on the Delete button")
     public void theyClickOnTheDeleteButtonOnTheProfilePage() {
-        profilePage.clickOnTheDeleteButtonOnTheProfilePage();
+        profilePage.clickDeleteButtonOnProfilePage();
     }
 
     @Then("the Upload button is present")

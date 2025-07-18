@@ -16,7 +16,27 @@ Feature: Create Circle
     Then error message pops-up "<error message>" below First Name field on Create Circle page
 
     Examples:
-      | admin password    | circle name  | first name | last name    | email               | user password | error message           |
-      | 55^tX(A1zd32as2t5 | TestCircleThree | TestFirstNameThatIsExtremelyLongF | TestLastName | testemail@test.com   | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
-      | 55^tX(A1zd32as2t5 | CircleTester    |                                   | TestLastName | testing123@test.com  | Password123   | This input is required. |
-      | 55^tX(A1zd32as2t5 | TestCircleThree | TestFirstName@                    | TestLastName | testemail@test.com   | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
+      | admin password    | circle name     | first name                        | last name    | email               | user password | error message                                                                                  |
+      | 55^tX(A1zd32as2t5 | TestCircleThree | TestFirstNameThatIsExtremelyLongF | TestLastName | testemail@test.com  | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
+      | 55^tX(A1zd32as2t5 | CircleTester    |                                   | TestLastName | testing123@test.com | Password123   | This input is required.                                                                        |
+      | 55^tX(A1zd32as2t5 | TestCircleThree | TestFirstName@                    | TestLastName | testemail@test.com  | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
+
+  Scenario Outline: Attempting to enter input into passcode field
+    Given a user opens Create Circle page
+    When they enter "<admin password>" in the Password field on the Create Circle page
+    And they click the Submit button on the Admin page
+    And they enter "<passcode>" in Passcode field on Create Circle page
+    Then Passcode field contains ""
+    Examples:
+      | admin password    | passcode |
+      | 55^tX(A1zd32as2t5 | Abcd12@  |
+
+  Scenario Outline:  Pushing copy button while passcode field is empty
+      Given a user opens Create Circle page
+      When they enter "<admin password>" in the Password field on the Create Circle page
+      And they click the Submit button on the Admin page
+      And they click copy button
+      Then they see a warning popup message "<error popup>"
+      Examples:
+        | admin password    | error popup               |
+        | 55^tX(A1zd32as2t5 | Generate PassCode firstly |

@@ -60,8 +60,23 @@ public class CreateCircleSteps {
         createCirclePage.clickCreateButtonOnCreateCirclePage();
     }
 
+    @And("they click copy button")
+    public void theyClickCopyButton() {
+        createCirclePage.clickCopyPasscodeButtonOnCreateCirclePage();
+    }
+
+    @And("they enter {string} in Passcode field on Create Circle page")
+    public void theyEnterInPasscodeFieldOnCreateCirclePage(String passcodeInput) {
+        createCirclePage.enterPasscodeOnCreateCirclePage(passcodeInput);
+    }
+
     @Then("error message pops-up {string} below First Name field on Create Circle page")
     public void errorMessagePopsUp(String error) {
         createCirclePage.assertFirstNameValidationMessageOnCreateCirclePage(error);
+    }
+
+    @Then("Passcode field contains {string}")
+    public void passcodeFieldContains(String passcode) {
+        createCirclePage.assertCreateCirclePasscodeFieldInput(passcode);
     }
 }

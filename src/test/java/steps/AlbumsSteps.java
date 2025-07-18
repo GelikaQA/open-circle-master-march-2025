@@ -53,7 +53,7 @@ public class AlbumsSteps {
         albumsPage.assertDuplicateAlbumMessageIsDisplayed(warningMessage);
     }
 
-    @And("they click Cancel button on Create New Button Window")
+    @And("they click Cancel button on Create New Album Window")
     public void theyClickTheCancelButton() {
         albumsPage.clickCancelButtonNewAlbumWindow();
     }
@@ -68,7 +68,8 @@ public class AlbumsSteps {
         albumsPage.assertDuplicateAlbumNotCreated(albumName);
     }
 
-    @And("they click Cancel button on Create New Album Window")
-    public void theyClickCancelButtonOnCreateNewAlbumWindow() {
+    @And("they verify no album with the name {string} was created")
+    public void theyVerifyNoAlbumWithTheNameWasCreated(String albumName) {
+        albumsPage.assertAlbumIsNotDisplayed(albumName);
     }
 }

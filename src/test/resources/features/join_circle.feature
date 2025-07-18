@@ -65,3 +65,22 @@ Feature: join_circle
 #    Examples:
 #      | password |
 #      | 123456z  |
+
+  Scenario Outline: Verify Last Name field validations
+    Given a user opens Join Circle page
+    When they enter "<circleName>" in the field Circle Name on the Join Circle page
+    And they enter "<passcode>" in the Passcode field on the Join Circle page
+    And they enter "<firstName>" in the First Name field on the Join Circle page
+    And they enter "<lastName>" in the Last Name field on the Join Circle page
+    And they enter "<email>" in the Email field on the Join Circle page
+    And they enter "<password>" in the Password field on the Join Circle page
+    And They press button Join on the Join Circle page
+    Then they are still on the Join Circle page as the registration was not completed
+    And under the field 'Last Name' the Warning message is displayed: "<warningMessage>"
+
+
+    Examples:
+      | circleName | passcode | firstName | lastName                          | email         | password  | warningMessage                                                                                 |
+      | JoinCircle | 555666   | Victoria  |                                   | test@test.com | Password1 | This input is required.                                                                        |
+      | JoinCircle | 555666   | Victoria  | PaleesPaleesPaleesPaleesPaleesPal | test@test.com | Password1 | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
+

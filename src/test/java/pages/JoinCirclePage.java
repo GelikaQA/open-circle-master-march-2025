@@ -1,5 +1,6 @@
 package pages;
 
+import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebElement;
 import tools.PropertiesLoader;
 
@@ -225,4 +226,17 @@ public class JoinCirclePage extends BasePage {
                 .perform();
 
     }
+
+    public void assertWarningMessageForLastNameOnJoinCirclePageIsDisplayed(String expectedMessage) {
+        wait.forElementToBeDisplayed(10, getByObject(JOIN_CIRCLE_LAST_NAME_FIELD_MESSAGE), "Last Name warning message should appear");
+
+
+        WebElement foundElement = driver.findElement(getByObject(JOIN_CIRCLE_LAST_NAME_FIELD_MESSAGE));
+        String actualMessage = foundElement.getText();
+
+
+        String message = "Expected: '" + expectedMessage + "', but found: '" + actualMessage + "'";
+        assertTrue(message, actualMessage.contains(expectedMessage));
+    }
 }
+

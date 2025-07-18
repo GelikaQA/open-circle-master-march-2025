@@ -234,7 +234,6 @@ public class JoinCirclePage extends BasePage {
         WebElement foundElement = driver.findElement(getByObject(JOIN_CIRCLE_LAST_NAME_FIELD_MESSAGE));
         String actualMessage = foundElement.getText();
 
-
         String message = "Expected: '" + expectedMessage + "', but found: '" + actualMessage + "'";
         assertTrue(message, actualMessage.contains(expectedMessage));
     }

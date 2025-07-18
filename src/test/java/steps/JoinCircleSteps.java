@@ -104,6 +104,5 @@ public class JoinCircleSteps {
 public void warningMessageUnderLastNameFieldIsDisplayed(String expectedWarningMessage) {
     joinCirclePage.assertWarningMessageForLastNameOnJoinCirclePageIsDisplayed(expectedWarningMessage);
 }
-
 }
 

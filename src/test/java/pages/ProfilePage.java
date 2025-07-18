@@ -171,4 +171,13 @@ public class ProfilePage extends BasePage {
                 + elementText + "'";
         assertTrue(message, elementText.contains(firstName));
     }
+
+    public void assertErrorMessageOnProfilePageIsDisplayed(String errorMessage) {
+        wait.forElementToBeDisplayed(10,getByObject(getErrorMessageProfilePage()),"Error message");
+        WebElement foundElement = driver.findElement(getByObject(getErrorMessageProfilePage()));
+        String elementText = foundElement.getText();
+        String message = "Text '" + errorMessage + "' 'in "  + " is not presented. 'Actual text is '"
+                + elementText + "'";
+        assertTrue(message, elementText.contains(errorMessage));
+    }
 }

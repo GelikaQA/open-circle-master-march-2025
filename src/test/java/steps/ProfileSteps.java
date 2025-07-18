@@ -59,6 +59,11 @@ public class ProfileSteps {
         profilePage.assertFirstNameOnProfilePageIsDisplayed(firstName);
     }
 
+    @Then("user friendly error is displayed {string}")
+    public void userFriendlyErrorIsShown(String errorMessage) {
+        profilePage.assertErrorMessageOnProfilePageIsDisplayed(errorMessage);
+    }
+
     @When("they delete profile picture")
     public void theyDeleteProfilePicture() {
         profilePage.deleteProfilePictureIfExists();

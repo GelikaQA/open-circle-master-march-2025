@@ -19,7 +19,6 @@ public class BasePage {
     public static final String POPUP_MESSAGE_LOCATOR = "xpath=//div[@class='ant-notification-notice-message']";
     public static final String POPUP_MESSAGE_DESCRIPTION_LOCATOR = "xpath=//div[@class='ant-notification-notice-description']/span";
     public static final String CLOSE_POPUP_MESSAGE_LOCATOR = "xpath=//a[@class='ant-notification-notice-close']";
-    public static final String PASSWORD_INPUT_FIELD = "name=password";
 
     public static String getPopUpMessageLocator(){
         return POPUP_MESSAGE_LOCATOR;
@@ -32,8 +31,6 @@ public class BasePage {
     public static String getClosePopupMessageLocator(){
         return CLOSE_POPUP_MESSAGE_LOCATOR;
     }
-
-    public static String getPasswordInputField() { return PASSWORD_INPUT_FIELD; }
 
     public BasePage() {
         this.driver = Setup.driver;

@@ -3,7 +3,7 @@ Feature: profile_management
   Scenario: Deleting profile picture
     Given a user is logged into the account
     And they click on the Avatar icon
-    When they click on the Delete button
+    When they delete profile picture
     Then the Upload button is present
 
 

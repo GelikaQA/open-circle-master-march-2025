@@ -17,7 +17,7 @@ public class ProfileSteps {
 
     @And("they click on the Delete button")
     public void theyClickOnTheDeleteButtonOnTheProfilePage() {
-        profilePage.clickOnTheDeleteButtonOnTheProfilePage();
+        profilePage.clickDeleteButtonOnProfilePage();
     }
 
     @Then("the Upload button is present")
@@ -62,5 +62,10 @@ public class ProfileSteps {
     @Then("user friendly error is displayed {string}")
     public void userFriendlyErrorIsShown(String errorMessage) {
         profilePage.assertErrorMessageOnProfilePageIsDisplayed(errorMessage);
+    }
+
+    @When("they delete profile picture")
+    public void theyDeleteProfilePicture() {
+        profilePage.deleteProfilePictureIfExists();
     }
 }

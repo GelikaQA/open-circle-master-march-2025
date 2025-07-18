@@ -1,7 +1,12 @@
 package pages;
 
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
+import tools.PropertiesLoader;
+
+import java.io.File;
+import java.util.NoSuchElementException;
 
 import static org.junit.Assert.assertTrue;
 import static tools.CommonTools.getByObject;
@@ -12,11 +17,13 @@ public class ProfilePage extends BasePage {
     private static final String PROFILE_FIRST_NAME_INPUT_FIELD = "id=firstName";
     private static final String PROFILE_LAST_NAME_INPUT_FIELD = "id=lastName";
     private static final String PROFILE_SAVE_BUTTON = "xpath=//button[contains(@class, 'profile_saveNames__LN7Zn')]";
-    private static final String PROFILE_AVATAR_DELETE_BUTTON = "xpath=//button[contains(@class, 'profile_deleteImage__3FHe2')]";
-    private static final String PROFILE_UPLOAD_BUTTON = "xpath=//div[contains(@class, 'ant-upload')]";
+    private static final String PROFILE_AVATAR_DELETE_BUTTON = "xpath=//*[@type='button'][contains(@class, 'profile_deleteImage')]";
+    private static final String PROFILE_UPLOAD_BUTTON = "xpath=//input[@type='file']";
+    private static final String PROFILE_VISIBLE_UPLOAD_BUTTON = "xpath=//div[text()='Upload']/ancestor::span[@role='button']";
     private static final String PROFILE_CLOSE_BUTTON = "xpath=//button[@class='ant-drawer-close']";
     private static final String PROFILE_RESET_BUTTON = "xpath=//button[contains(@class, 'profile_reset__m5oZY')]";
     private static final String ERROR_MESSAGE_PROFILE_PAGE = "xpath=//div[@class='ant-form-item-explain-error']";
+    private static final String OK_BUTTON = "xpath=//*[@type='button']/span[contains(text(), 'OK')]";
 
     public static String getProfileAvatarIcon() {
         return PROFILE_AVATAR_ICON;
@@ -58,27 +65,55 @@ public class ProfilePage extends BasePage {
         return ERROR_MESSAGE_PROFILE_PAGE;
     }
 
+    public static String getOkButton() {
+        return OK_BUTTON;
+    }
+
+    public static String getProfileVisibleUploadButton() {
+        return PROFILE_VISIBLE_UPLOAD_BUTTON;
+    }
+
     public void clickOnTheAvatarIconOnTheProfilePage() {
         wait.forElementToBeDisplayed(10, getByObject(getProfileAvatarIcon()), "Avatar Icon");
         WebElement foundElement = driver.findElement(getByObject(getProfileAvatarIcon()));
         foundElement.click();
     }
 
-    public void clickOnTheDeleteButtonOnTheProfilePage() {
-        wait.forElementToBeDisplayed(10, getByObject(getProfileAvatarDeleteButton()),
+    public void clickDeleteButtonOnProfilePage() {
+        wait.forElementToBeDisplayed(10,
+                getByObject(getProfileAvatarDeleteButton()),
                 "Avatar Delete Button");
         WebElement foundElement = driver.findElement(getByObject(getProfileAvatarDeleteButton()));
         foundElement.click();
     }
 
+    public void deleteProfilePictureIfExists() {
+        try {
+            wait.forElementToBeDisplayed(3, getByObject(getProfileAvatarDeleteButton()), "Delete Button");
+            driver.findElement(getByObject(getProfileAvatarDeleteButton())).click();
+        } catch (TimeoutException | NoSuchElementException e) {
+            uploadPhoto();
+            wait.forElementToBeDisplayed(10, getByObject(getProfileAvatarDeleteButton()), "Delete Button After Upload");
+            driver.findElement(getByObject(getProfileAvatarDeleteButton())).click();
+        }
+    }
+
+    private void uploadPhoto() {
+        WebElement fileInput = driver.findElement(getByObject(getProfileUploadButton()));
+        fileInput.sendKeys(new File(PropertiesLoader.getProperties("fileJpg")).getAbsolutePath());
+
+        wait.forElementToBeDisplayed(10, getByObject(getOkButton()), "Ok Button");
+        driver.findElement(getByObject(getOkButton())).click();
+
+        wait.forElementToBeDisplayed(10, getByObject(getProfileAvatarDeleteButton()), "Avatar Delete Button");
+    }
+
     public void assertTheUploadButtonOnTheProfilePageIsPresent() {
-        wait.forElementToBeDisplayed(10, getByObject(getProfileUploadButton()), "Upload Button");
-        WebElement foundElement = driver.findElement(getByObject(getProfileUploadButton()));
-        assertTrue(foundElement.isDisplayed());
+        wait.forPresenceOfElementLocated(10, getByObject(getProfileVisibleUploadButton()), "Visible Upload Button");
     }
 
     public void clearLastNameFieldOnTheProfilePage() {
-        wait.forElementToBeInteractable(10,getByObject(getProfileLastNameInputField()),"Last Name Input Field");
+        wait.forElementToBeInteractable(10, getByObject(getProfileLastNameInputField()), "Last Name Input Field");
         WebElement foundElement = driver.findElement(getByObject(getProfileLastNameInputField()));
         foundElement.click();
         String os = System.getProperty("os.name").toLowerCase();
@@ -112,7 +147,7 @@ public class ProfilePage extends BasePage {
     }
 
     public void clearFirstNameFieldOnTheProfilePage() {
-        wait.forElementToBeInteractable(10,getByObject(getProfileFirstNameInputField()),"First Name Input Field");
+        wait.forElementToBeInteractable(10, getByObject(getProfileFirstNameInputField()), "First Name Input Field");
         WebElement foundElement1 = driver.findElement(getByObject(getProfileFirstNameInputField()));
         foundElement1.click();
         String os = System.getProperty("os.name").toLowerCase();

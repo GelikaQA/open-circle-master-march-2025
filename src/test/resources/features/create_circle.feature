@@ -36,7 +36,7 @@ Feature: Create Circle
       When they enter "<admin password>" in the Password field on the Create Circle page
       And they click the Submit button on the Admin page
       And they click copy button
-      Then pop up get displayed saying "<error popup>"
+      Then they see a warning popup message "<error popup>"
       Examples:
         | admin password    | error popup               |
         | 55^tX(A1zd32as2t5 | Generate PassCode firstly |

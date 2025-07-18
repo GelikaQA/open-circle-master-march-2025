@@ -79,9 +79,4 @@ public class CreateCircleSteps {
     public void passcodeFieldContains(String passcode) {
         createCirclePage.assertCreateCirclePasscodeFieldInput(passcode);
     }
-
-    @Then("pop up get displayed saying {string}")
-    public void popUpGetDisplayedSaying(String popupMessage) {
-        createCirclePage.assertPopUpMessageDescriptionIsDisplayed(popupMessage);
-    }
 }

@@ -188,5 +188,4 @@ public class CreateCirclePage extends BasePage {
         String message = "Text '" + passcodeInput + "' 'in " + getPasscodeOnCreateCirclePage() + " is not presented. 'Actual text is '" + "" + "'";
         assertTrue(message, elementText.contains(passcodeInput));
     }
-
 }

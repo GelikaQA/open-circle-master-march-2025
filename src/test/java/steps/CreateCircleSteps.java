@@ -3,8 +3,8 @@ package steps;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import pages.CreateCirclePage;
+import tools.PropertiesLoader;
 
 public class CreateCircleSteps {
 
@@ -13,15 +13,7 @@ public class CreateCircleSteps {
     @Given("a user opens Create Circle page")
     public void aUserOpensCreateCirclePage() {
         createCirclePage.openCreateCirclePage();
-    }
-
-    @When("they enter {string} in the Password field on the Create Circle page")
-    public void theyEnterTXAZdAsTInThePasswordFieldOnTheCreateCirclePage(String adminPassword) {
-        createCirclePage.enterAdminPasswordOnAdminPage(adminPassword);
-    }
-
-    @And("they click the Submit button on the Admin page")
-    public void theyClickTheSubmitButtonOnTheAdminPage() {
+        createCirclePage.enterAdminPasswordOnAdminPage(PropertiesLoader.getProperties("adminPassword"));
         createCirclePage.clickSubmitButton();
     }
 

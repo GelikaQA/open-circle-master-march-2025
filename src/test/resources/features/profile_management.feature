@@ -2,14 +2,14 @@ Feature: profile_management
 
   Scenario: Deleting profile picture
     Given a user is logged into the account
-    And they click on the Avatar icon
+    And they click the Avatar icon
     When they delete profile picture
     Then the Upload button is present
 
 
   Scenario Outline: Updating last name with valid input
     Given a user is logged into the account
-    And they click on the Avatar icon
+    And they click the Avatar icon
     When they clear Last name field on the Profile Page
     And they enter "<last name>" in Last name field on the Profile Page
     And they click the Save button
@@ -25,7 +25,7 @@ Feature: profile_management
 
   Scenario Outline: Updating First Name with valid input
     Given a user is logged into the account
-    And they click on the Avatar icon
+    And they click the Avatar icon
     When they clear First name field on the Profile page
     And they enter "<first name>" in First name field on the Profile Page
     And they click the Save button
@@ -40,11 +40,11 @@ Feature: profile_management
 
   Scenario Outline: Updating last name with invalid input
     Given a user is logged into the account
-    And they click on the Avatar icon
+    And they click the Avatar icon
     When they clear Last name field on the Profile Page
     And they enter "<last name>" in Last name field on the Profile Page
     And they click the Save button
-    Then user friendly error is displayed "<error message>"
+    Then error on the Profile Page is displayed "<error message>"
 
     Examples:
       | last name                         | error message                                                        |

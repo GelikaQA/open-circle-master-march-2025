@@ -73,17 +73,9 @@ public class ProfilePage extends BasePage {
         return PROFILE_VISIBLE_UPLOAD_BUTTON;
     }
 
-    public void clickOnTheAvatarIconOnTheProfilePage() {
+    public void clickTheAvatarIconOnTheProfilePage() {
         wait.forElementToBeDisplayed(10, getByObject(getProfileAvatarIcon()), "Avatar Icon");
         WebElement foundElement = driver.findElement(getByObject(getProfileAvatarIcon()));
-        foundElement.click();
-    }
-
-    public void clickDeleteButtonOnProfilePage() {
-        wait.forElementToBeDisplayed(10,
-                getByObject(getProfileAvatarDeleteButton()),
-                "Avatar Delete Button");
-        WebElement foundElement = driver.findElement(getByObject(getProfileAvatarDeleteButton()));
         foundElement.click();
     }
 
@@ -92,13 +84,13 @@ public class ProfilePage extends BasePage {
             wait.forElementToBeDisplayed(3, getByObject(getProfileAvatarDeleteButton()), "Delete Button");
             driver.findElement(getByObject(getProfileAvatarDeleteButton())).click();
         } catch (TimeoutException | NoSuchElementException e) {
-            uploadPhoto();
+            uploadAvatarPhoto();
             wait.forElementToBeDisplayed(10, getByObject(getProfileAvatarDeleteButton()), "Delete Button After Upload");
             driver.findElement(getByObject(getProfileAvatarDeleteButton())).click();
         }
     }
 
-    private void uploadPhoto() {
+    private void uploadAvatarPhoto() {
         WebElement fileInput = driver.findElement(getByObject(getProfileUploadButton()));
         fileInput.sendKeys(new File(PropertiesLoader.getProperties("fileJpg")).getAbsolutePath());
 

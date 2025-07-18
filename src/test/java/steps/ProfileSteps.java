@@ -68,4 +68,10 @@ public class ProfileSteps {
     public void theyDeleteProfilePicture() {
         profilePage.deleteProfilePictureIfExists();
     }
+
+    @And("a user is logged out of the account")
+    public void aUserIsLoggedOutOfTheAccount() {
+        profilePage.clickOnTheAvatarIconOnTheProfilePage();
+        profilePage.clickLogOutButton();
+    }
 }

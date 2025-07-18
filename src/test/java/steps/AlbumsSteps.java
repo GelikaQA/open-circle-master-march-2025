@@ -28,16 +28,6 @@ public class AlbumsSteps {
         albumsPage.clickCreateButtonNewAlbumWindow();
     }
 
-    @And("they see confirmation pop up window with text {string}")
-    public void theySeeConfirmationPopUpWindowWithText(String message) {
-        albumsPage.assertElementIsDisplayed(message);
-    }
-
-    @And("they verify that they Successful Creation Message")
-    public void theyVerifyThatTheySuccessfulCreationMessage() {
-        albumsPage.assertTextPresentedInPopUpMessage("Success");
-    }
-
     @Then("they assert the album name {string} presented on Album Page")
     public void assertAlbumNamePresentedOnAlbumPage(String albumTitle) {
         albumsPage.assertAlbumIsDisplayed(albumTitle);
@@ -46,11 +36,6 @@ public class AlbumsSteps {
     @And("they delete album named {string} from Album Page")
     public void deleteAlbumNamed(String album) {
         albumsPage.clickDeleteAlbum(album);
-    }
-
-    @Then("confirmation message appears {string}")
-    public void confirmationMessageAppears(String warningMessage) {
-        albumsPage.assertDuplicateAlbumMessageIsDisplayed(warningMessage);
     }
 
     @And("they click Cancel button on Create New Button Window")
@@ -66,5 +51,20 @@ public class AlbumsSteps {
     @Then("they verify no duplicate album with the name {string} was created")
     public void verifyNoDuplicateAlbumCreated(String albumName) {
         albumsPage.assertDuplicateAlbumNotCreated(albumName);
+    }
+
+    @And("they assert delete icon for the album {string} is not displayed")
+    public void theyAssertDeleteIconForTheAlbumIsNotDisplayed(String albumName) {
+        albumsPage.assertBucketIconIsDisplayed(albumName, false);
+    }
+
+    @And("they assert delete icon for the album {string} is displayed")
+    public void theyAssertDeleteIconForTheAlbumIsDisplayed(String albumName) {
+        albumsPage.assertBucketIconIsDisplayed(albumName, true);
+    }
+
+    @Then("they do not see the album name {string} on Album Page")
+    public void theyDoNotSeeTheAlbumNameOnAlbumPage(String albumName) {
+        albumsPage.assertAlbumIsNotDisplayed(albumName);
     }
 }

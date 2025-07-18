@@ -82,6 +82,6 @@ public class CreateCircleSteps {
 
     @Then("pop up get displayed saying {string}")
     public void popUpGetDisplayedSaying(String popupMessage) {
-        createCirclePage.assertCreateCircleEmptyPasscodeFieldCopyInputPopup(popupMessage);
+        createCirclePage.assertPopUpMessageDescriptionIsDisplayed(popupMessage);
     }
 }

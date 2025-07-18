@@ -189,14 +189,4 @@ public class CreateCirclePage extends BasePage {
         assertTrue(message, elementText.contains(passcodeInput));
     }
 
-    public void assertCreateCircleEmptyPasscodeFieldCopyInputPopup(String copyPopupMessage) {
-        wait.forElementToBeDisplayed(10,
-                getByObject(getPopUpMessageDescriptionLocator()),
-                "Create circle copy empty passcode field popup message");
-        WebElement foundElement = driver.findElement(getByObject(getPopUpMessageDescriptionLocator()));
-        String elementText = foundElement.getText();
-
-        String message = "Text '" + copyPopupMessage + "' 'in " + getPopUpMessageDescriptionLocator() + " is presented.";
-        assertTrue(message, elementText.contains(copyPopupMessage));
-    }
 }

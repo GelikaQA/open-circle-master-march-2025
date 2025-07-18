@@ -19,7 +19,6 @@ public class BasePage {
     public static final String POPUP_MESSAGE_LOCATOR = "xpath=//div[@class='ant-notification-notice-message']";
     public static final String POPUP_MESSAGE_DESCRIPTION_LOCATOR = "xpath=//div[@class='ant-notification-notice-description']/span";
     public static final String CLOSE_POPUP_MESSAGE_LOCATOR = "xpath=//a[@class='ant-notification-notice-close']";
-    public static final String PASSWORD_INPUT_FIELD = "name=password";
 
     public static String getPopUpMessageLocator(){
         return POPUP_MESSAGE_LOCATOR;
@@ -32,8 +31,6 @@ public class BasePage {
     public static String getClosePopupMessageLocator(){
         return CLOSE_POPUP_MESSAGE_LOCATOR;
     }
-
-    public static String getPasswordInputField() { return PASSWORD_INPUT_FIELD; }
 
     public BasePage() {
         this.driver = Setup.driver;
@@ -178,10 +175,11 @@ public class BasePage {
         String timestamp = String.valueOf(System.currentTimeMillis());
         return name + timestamp;
     }
-    public void assertPasswordIsMasked(By element) {
-        wait.forElementToBeDisplayed(10, element,
+
+    public void assertPasswordIsMasked(String element) {
+        wait.forElementToBeDisplayed(10, getByObject(element),
                 "Password is masked");
-        WebElement passwordField = driver.findElement(element);
+        WebElement passwordField = driver.findElement(getByObject(element));
         String typeAttribute = passwordField.getAttribute("type");
         assertEquals("The password field is not masked. Can't find attribute in tag 'type=password' ",
                 "password", typeAttribute);

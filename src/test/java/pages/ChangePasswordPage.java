@@ -3,14 +3,14 @@ package pages;
 import org.openqa.selenium.WebElement;
 
 import static org.junit.Assert.assertTrue;
-import static tools.CommonTools.getByObject;
+import static tools.CommonTools.*;
 
 public class ChangePasswordPage extends BasePage{
     private static final String PROFILE_ICON = "xpath=//span[@class='ant-avatar-string']";
     private static final String CHANGE_PASSWORD_SECTION = "xpath=//span[text()='Change password']";
     private static final String CURRENT_PASSWORD_INPUT_FIELD = "id=oldPassword";
     private static final String NEW_PASSWORD_INPUT_FIELD = "id=newPassword";
-    private static final String SAVE_BUTTON = "xpath=//div[contains(@class,'profile_passwordSave')]";
+    private static final String SAVE_BUTTON = "xpath=//div[contains(@class,'profile_passwordSave')]//button";
     private static final String CURRENT_PASSWORD_VISIBILITY_TOGGLE = "xpath=//input[@id='oldPassword']/following-sibling::span/child::span";
     private static final String NEW_PASSWORD_VISIBILITY_TOGGLE = "xpath=//input[@id='newPassword']/following-sibling::span/child::span";
     private static final String CURRENT_PASSWORD_HIDDEN_BY_DOTS = "id=oldPassword";
@@ -69,6 +69,7 @@ public class ChangePasswordPage extends BasePage{
                 "New password input field");
         WebElement foundElement = driver.findElement(getByObject(getNewPasswordInputFieldOnChangePasswordPage()));
         foundElement.sendKeys(password);
+        putInContext("newPassword", password);
     }
 
     public void clickSaveButtonOnChangePasswordPage() {
@@ -76,6 +77,7 @@ public class ChangePasswordPage extends BasePage{
                 getByObject(getSaveButtonOnChangePasswordPage()),
                 "Save button");
         driver.findElement(getByObject(getSaveButtonOnChangePasswordPage())).click();
+        wait.forElementToBeDisplayed(10, getByObject(getPopUpMessageLocator()), "Pop-up message");
     }
 
     public void assertWarningMessagePopsUp(String warning) {
@@ -87,5 +89,6 @@ public class ChangePasswordPage extends BasePage{
         String elementText = foundElement.getText();
 
         assertTrue(warning, elementText.contains(warning));
+        driver.findElement(getByObject(getClosePopupMessageLocator())).click();
     }
 }

@@ -16,7 +16,7 @@ Feature: Create Circle
     Then error message pops-up "<error message>" below First Name field on Create Circle page
 
     Examples:
-      | admin password    | circle name  | first name | last name    | email               | user password | error message           |
-      | 55^tX(A1zd32as2t5 | TestCircleThree | TestFirstNameThatIsExtremelyLongF | TestLastName | testemail@test.com   | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
-      | 55^tX(A1zd32as2t5 | CircleTester    |                                   | TestLastName | testing123@test.com  | Password123   | This input is required. |
-      | 55^tX(A1zd32as2t5 | TestCircleThree | TestFirstName@                    | TestLastName | testemail@test.com   | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
+      | admin password    | circle name     | first name                        | last name    | email               | user password | error message                                                                                  |
+      | 55^tX(A1zd32as2t5 | TestCircleThree | TestFirstNameThatIsExtremelyLongF | TestLastName | testemail@test.com  | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
+      | 55^tX(A1zd32as2t5 | CircleTester    |                                   | TestLastName | testing123@test.com | Password123   | This input is required.                                                                        |
+      | 55^tX(A1zd32as2t5 | TestCircleThree | TestFirstName@                    | TestLastName | testemail@test.com  | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |

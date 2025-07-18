@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.WebElement;
 import tools.PropertiesLoader;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static tools.CommonTools.getByObject;
 
 import org.openqa.selenium.interactions.Actions;
@@ -13,8 +13,6 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
-
-import static org.junit.Assert.assertNotEquals;
 
 public class JoinCirclePage extends BasePage {
     private static final String JOIN_CIRCLE_ENTIRE_PAGE_VERIFICATION = "xpath=//div[contains(@class,'login_auth_body')]//h1[text()='Join Circle']";
@@ -127,7 +125,7 @@ public class JoinCirclePage extends BasePage {
         passwordField.sendKeys(password);
     }
 
-    public void PressButtonJoinOnJoinCirclePage() {
+    public void clickJoinButtonOnJoinCirclePage() {
         wait.forElementToBeDisplayed(10, getByObject(getJoinCircleJoinSubmitButton()),
                 "SIGN UP BUTTON");
         WebElement signUpButton = driver.findElement(getByObject(getJoinCircleJoinSubmitButton()));
@@ -162,6 +160,7 @@ public class JoinCirclePage extends BasePage {
     }
 
     public void copyHiddenPasswordOnJoinCirclePage() {
+        clearClipboard();
         wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePasswordInputField()),
                 "Password input field");
         WebElement passwordField = driver.findElement(getByObject(getJoinCirclePasswordInputField()));
@@ -176,14 +175,12 @@ public class JoinCirclePage extends BasePage {
                 .perform();
     }
 
-    public void PasswordIsNotCopiedIntoClipboardFromPasswordField() {
-        clearClipboard();
+    public void assertPasswordIsNotCopiedIntoClipboardFromPasswordField(String password) {
         String clipboardContent = getClipboardContents();
-        String actualPassword = getPasswordInputValue(); // Gets the password field value
-        System.out.println("Clipboard: " + clipboardContent);
-        System.out.println("Entered password: " + actualPassword);
+        String actualPassword = getPasswordInputValue();
 
-        assertNotEquals("ERROR: password should not be copied into clipboard", actualPassword, clipboardContent); //Asserts that clipboard ≠ password
+        assertEquals("Password field does not contain the expected value", password, actualPassword);
+        assertNotEquals("ERROR: password should not be copied into clipboard", actualPassword, clipboardContent);
     }
 
     private String getClipboardContents() { // Additional method to get clipboard data
@@ -211,14 +208,14 @@ public class JoinCirclePage extends BasePage {
         return passwordField.getAttribute("value");
     }
 
-    public void EnterValidPasswordInPasswordFieldOnJoinCirclePage(String password) {
+    public void enterValidPasswordInPasswordFieldOnJoinCirclePage(String password) {
         wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePasswordInputField()),
                 "Password input field");
         driver.findElement(getByObject(getJoinCirclePasswordInputField())).sendKeys(password);
     }
 
     //    for next test case
-    public void OpenedContextMenuOnJoinCirclePage() {
+    public void openedContextMenuOnJoinCirclePage() {
         WebElement passwordField = driver.findElement(getByObject(getJoinCirclePasswordInputField()));
 
         Actions actions = new Actions(driver);

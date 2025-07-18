@@ -98,4 +98,10 @@ public class Wait {
         String timeoutMessage = webElementName + " wasn't interactable after " + timeout + " seconds.";
         waitUntilCondition(clickableCondition, timeoutMessage, timeout);
     }
+
+    public void forPresenceOfElementLocated(int timeout, By webElement, String webElementName) {
+        ExpectedCondition<WebElement> condition = ExpectedConditions.presenceOfElementLocated(webElement);
+        String timeoutMessage = webElementName + " wasn't displayed after " + timeout + " seconds.";
+        waitUntilCondition(condition, timeoutMessage, timeout);
+    }
 }

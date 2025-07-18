@@ -17,7 +17,7 @@ public class ProfileSteps {
 
     @And("they click on the Delete button")
     public void theyClickOnTheDeleteButtonOnTheProfilePage() {
-        profilePage.clickOnTheDeleteButtonOnTheProfilePage();
+        profilePage.clickDeleteButtonOnProfilePage();
     }
 
     @Then("the Upload button is present")
@@ -57,6 +57,11 @@ public class ProfileSteps {
     @Then("First name on Profile page is updated to {string}")
     public void assertFirstNameOnProfilePageIsDisplayed(String firstName) {
         profilePage.assertFirstNameOnProfilePageIsDisplayed(firstName);
+    }
+
+    @When("they delete profile picture")
+    public void theyDeleteProfilePicture() {
+        profilePage.deleteProfilePictureIfExists();
     }
 
     @And("a user is logged out of the account")

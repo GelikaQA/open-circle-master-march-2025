@@ -4,12 +4,10 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.BasePage;
 import pages.JoinCirclePage;
 import tools.PropertiesLoader;
 
 import static pages.JoinCirclePage.getJoinCirclePasswordInputField;
-import static tools.CommonTools.getByObject;
 
 public class JoinCircleSteps {
     
@@ -53,7 +51,7 @@ public class JoinCircleSteps {
 
     @And("They press button Join on the Join Circle page")
     public void theyPressButtonJoinOnTheJoinCirclePage() {
-        joinCirclePage.PressButtonJoinOnJoinCirclePage();
+        joinCirclePage.clickJoinButtonOnJoinCirclePage();
 
     }
 
@@ -79,22 +77,22 @@ public class JoinCircleSteps {
 
     @And("they activated context menu on the Join Circle page")
     public void theyActivatedContextMenuOnTheJoinCirclePage() {
-        joinCirclePage.OpenedContextMenuOnJoinCirclePage();
+        joinCirclePage.openedContextMenuOnJoinCirclePage();
     }
 
-    @Then("The password is not copied into clipboard")
-    public void thePasswordIsNotCopiedIntoClipboard() {
-        joinCirclePage.PasswordIsNotCopiedIntoClipboardFromPasswordField();
+    @Then("The {string} is not copied into clipboard")
+    public void thePasswordIsNotCopiedIntoClipboard(String password) {
+        joinCirclePage.assertPasswordIsNotCopiedIntoClipboardFromPasswordField(password);
     }
 
     @When("they enter a valid password in the password field on the Join Circle page")
     public void theyEnterValidPasswordInPasswordFieldOnJoinCirclePage() {
-        joinCirclePage.EnterValidPasswordInPasswordFieldOnJoinCirclePage(PropertiesLoader.getProperties("password"));
+        joinCirclePage.enterValidPasswordInPasswordFieldOnJoinCirclePage(PropertiesLoader.getProperties("password"));
     }
 
     @Then("The password is masked on Join Circle Page")
     public void thePasswordIsMaskedOnJoinCirclePage() {
-        joinCirclePage.assertPasswordIsMasked(getByObject(getJoinCirclePasswordInputField()));
+        joinCirclePage.assertPasswordIsMasked(getJoinCirclePasswordInputField());
     }
 
 // for next test case

@@ -37,3 +37,18 @@ Feature: profile_management
       | MARY                             |
       | Mary1                            |
       | Namenamenamenamenamenamenamename |
+
+  Scenario Outline: Updating last name with invalid input
+    Given a user is logged into the account
+    And they click on the Avatar icon
+    When they clear Last name field on the Profile Page
+    And they enter "<last name>" in Last name field on the Profile Page
+    And they click the Save button
+    Then user friendly error is displayed "<error message>"
+
+    Examples:
+      | last name                         | error message                                                        |
+      | Smith@                            | Field accepts alphabetical char and digits, no special chars allowed |
+      | Smit h                            | Field accepts alphabetical char and digits, no special chars allowed |
+      |                                   | Please input your Last Name                                          |
+      | Namenamenamenamenamenamenamenamen | Last Name must be between 1 and 32                                   |

@@ -12,7 +12,7 @@ public class TopicsPage extends BasePage {
     private static final String CREATE_NEW_TOPIC_CREATE_BUTTON = "xpath=//button[@type='button' and contains(@class, 'ant-btn-primary')]/span";
     private static final String CREATE_NEW_TOPIC_CANCEL_BUTTON = "xpath=//button[@type='button' and contains(@class, 'ant-btn-default')]/span";
     private static final String TOPIC_CREATION_SUCCESS_MESSAGE = "xpath=//span[contains(text(), 'Topic has been created')]";
-    private static final String TOPIC_CREATION_ERROR_MESSAGE = "xpath=//span[contains(text(), 'Topic with this name exists')]";
+    private static final String TOPIC_CREATION_WARNING_MESSAGE = "xpath=//span[contains(text(), 'Topic with this name exists')]";
     private static final String TOPIC_CREATION_CHAR_ERROR_MESSAGE = "xpath=//span[contains(text(), 'Topic name must be between 1 and 80')]";
     private static final String FIRST_TOPIC_CONTAINER = "xpath= //ul[contains(@id, 'rc-menu')]/child::li[1]/span";
     private static final String MESSAGE_INPUT_FIELD = "xpath=//div[contains(@class, 'editor')]/p";
@@ -44,6 +44,9 @@ public class TopicsPage extends BasePage {
         return TOPIC_CREATION_SUCCESS_MESSAGE;
     }
 
+    public static String getTopicCreationWarningMessage() {
+        return TOPIC_CREATION_WARNING_MESSAGE;}
+
     public void clickCreateTopicPlusButton() {
         wait.forElementToBeDisplayed(
                 10,
@@ -63,6 +66,16 @@ public class TopicsPage extends BasePage {
         foundElement.sendKeys(uniqueTopicName);
     }
 
+    public void enterExistsTopicNameInputField(String existsTopicName) {
+        wait.forElementToBeDisplayed(
+                10,
+                getByObject(getNewTopicNameInputField()),
+                "Exists Topic Name Input Field");
+        WebElement foundElement = driver.findElement(getByObject(getNewTopicNameInputField()));
+        foundElement.sendKeys(existsTopicName);
+    }
+
+
     public void clickCreateButtonOnTopicPage() {
         wait.forElementToBeDisplayed(10,
                 getByObject(getCreateNewTopicCreateButton()),
@@ -81,4 +94,16 @@ public class TopicsPage extends BasePage {
         String message = "Text '" + TopicHasBeenCreated + "' 'in " + getTopicCreationSuccessMessage() + " is presented.";
         assertTrue(message, elementText.contains(TopicHasBeenCreated));
     }
+//
+//    public void assertWarningMessageOnTopicPageIsDisplayed(String TopicWithThisNameExists) {
+//        wait.forElementToBeDisplayed(
+//                15,
+//                getByObject(getTopicCreationWarningMessage()),
+//                "Warning pop-up message");
+//        WebElement foundElement = driver.findElement(getByObject(getTopicCreationWarningMessage()));
+//        String elementText = foundElement.getText();
+//
+//        String message = "Text'" + TopicWithThisNameExists + "' 'in " + getTopicCreationWarningMessage() + " is presented.";
+//        assertTrue(message, elementText.contains(TopicWithThisNameExists));
+//        }
 }

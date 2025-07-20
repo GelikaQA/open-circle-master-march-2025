@@ -19,6 +19,11 @@ public class CreateTopicSteps {
         topicsPage.enterNewTopicNameInputField(NewTopicName);
     }
 
+    @And("they enter {string} in topic name input field")
+    public void enterExistsTopicNameInputField(String ExistsTopicName) {
+        topicsPage.enterExistsTopicNameInputField(ExistsTopicName);
+    }
+
     @And("they click on Create button on topic page")
     public void clickOnCreateButton() {
         topicsPage.clickCreateButtonOnTopicPage();
@@ -28,4 +33,9 @@ public class CreateTopicSteps {
     public void successMessagePopsUpOnTopicPage(String TopicHasBeenCreated) {
         topicsPage.assertSuccessMessageOnTopicPageIsDisplayed(TopicHasBeenCreated);
     }
+
+//    @Then("they see warning message {string} pop-up on Topic page")
+//    public void warningMessagePopUpOnTopicPage(String TopicWithThisNameExists) {
+//        topicsPage.assertWarningMessageOnTopicPageIsDisplayed(TopicWithThisNameExists);
+//    }
 }

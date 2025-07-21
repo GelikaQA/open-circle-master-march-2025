@@ -27,6 +27,7 @@ Feature: Create Circle
       | passcode |
       | Abcd12@  |
 
+
   Scenario Outline:  Pushing copy button while passcode field is empty
       Given a user opens Create Circle page
       And they click copy button
@@ -34,3 +35,20 @@ Feature: Create Circle
       Examples:
         | error popup               |
         | Generate PassCode firstly |
+
+
+  @DeleteCircle
+  Scenario: New circle is created, and user is logged into the newly created circle
+    Given a user opens Create Circle page
+    When they enter "TestCircle2025" in the Circle name field on the Create Circle page
+    And they click the Generate button on the Create Circle page
+    And they enter "FirstName" in the First Name field on the Create Circle Page
+    And they enter "LastName" in the Last Name field on the Create Circle page
+    And they enter a new email in the email field on the Create Circle page
+    And they enter new password in the password field on the Create Circle page
+    And they click the Create button on the Create Circle page
+    Then they see a success popup message "You have successfully registered."
+    And they enter new circle email in Email input field on Login page
+    And they enter new circle password in Password input field on Login page
+    And they click Sign In button on Login page
+    And they verify that they are on Circle Home page

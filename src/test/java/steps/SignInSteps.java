@@ -40,6 +40,11 @@ public class SignInSteps {
         signInPage.enterEmailOnSignInPage();
     }
 
+    @And("they enter new circle email in Email input field on Login page")
+    public void theyEnterNewCircleEmailInEmailInputFieldOnLoginPage() {
+        signInPage.enterEmailOnSignInPage(PropertiesLoader.getProperties("newCircleEmail"));
+    }
+
     @And("they enter {string} in Password input field on Login page")
     public void theyEnterInPasswordInputFieldOnLoginPage(String password) {
         signInPage.enterPasswordOnSignInPage(password);
@@ -87,5 +92,10 @@ public class SignInSteps {
     @And("they enter valid password in Password input field on Login page")
     public void theyEnterValidPasswordInPasswordInputFieldOnLoginPage() {
         signInPage.enterPasswordOnSignInPage(PropertiesLoader.getProperties("password"));
+    }
+
+    @And("they enter new circle password in Password input field on Login page")
+    public void theyEnterNewCirclePasswordInPasswordInputFieldOnLoginPage() {
+        signInPage.enterPasswordOnSignInPage(PropertiesLoader.getProperties("newCirclePassword"));
     }
 }

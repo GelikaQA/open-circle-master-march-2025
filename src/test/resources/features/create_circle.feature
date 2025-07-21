@@ -32,7 +32,6 @@ Feature: Create Circle
     And they enter "<circle name>" in the Circle name field on the Create Circle page
     And they click the Generate button on the Create Circle page
     And they click copy button
-    And they paste input into first name field on Create Circle form
     Then Input in first name field is the same as input in passcode field
     Examples:
       | circle name |

@@ -88,4 +88,21 @@ public class SignInSteps {
     public void theyEnterValidPasswordInPasswordInputFieldOnLoginPage() {
         signInPage.enterPasswordOnSignInPage(PropertiesLoader.getProperties("password"));
     }
+
+    @And("another user {int} is logged into the account")
+    public void anotherUserIsLoggedIntoTheAccount(int userNumber) {
+        String email = "email";
+        String password = "password";
+        if (userNumber == 1) {
+            email = "email";
+            password = "password";
+        }else {
+            email += userNumber;
+            password += userNumber;
+        }
+        signInPage.enterEmailOnSignInPage(PropertiesLoader.getProperties(email));
+        signInPage.enterPasswordOnSignInPage(PropertiesLoader.getProperties(password));
+        signInPage.clickSignInButton();
+        homePage.assertCircleNameIsDisplayedOnHomePage();
+    }
 }

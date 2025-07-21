@@ -7,25 +7,56 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import pages.ChangePasswordPage;
+import tools.ApiHelper;
 import tools.PropertiesLoader;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 import static tools.CommonTools.getFromContext;
 
 public class TearDown {
     private final WebDriver driver;
-    ChangePasswordPage changePasswordPage = new ChangePasswordPage();
 
     public TearDown() {
         this.driver = Setup.driver;
     }
 
-    @After(value = "@changePassword", order = 2)
+    @After(order = 1)
+    public void afterScenario(Scenario scenario) {
+        this.driver.quit();
+    }
+
+    @After(value = "@DeleteCircle", order = 2)
+    public void deleteCircleAfterScenario(Scenario scenario) {
+        ApiHelper api = new ApiHelper();
+
+        try {
+            String csrfToken = api.getCsrfToken();
+            Map<String, String> loginCookies = api.login(
+                    PropertiesLoader.getProperties("newCircleEmail"),
+                    PropertiesLoader.getProperties("newCirclePassword"),
+                    csrfToken);
+            api.deleteCircle(loginCookies);
+
+            String userId = api.getUserIdByEmail(PropertiesLoader.getProperties("newCircleEmail"));
+            if (userId != null) {
+                api.deleteUserById(userId);
+                System.out.println("User deleted.");
+            } else {
+                System.err.println("User not found.");
+            }
+        } catch (Exception e) {
+            System.err.println("Cleanup failed: " + e.getMessage());
+        }
+    }
+
+    @After(value = "@changePassword", order = 3)
     public void revertPasswordIfChanged() {
+        ChangePasswordPage changePasswordPage = new ChangePasswordPage();
+
         Boolean passwordWasChanged = (Boolean) getFromContext("passwordWasChanged");
         if (passwordWasChanged != null && passwordWasChanged) {
             try {
@@ -36,15 +67,6 @@ public class TearDown {
                 System.err.println("Failed to revert password: " + e.getMessage());
             }
         }
-    }
-
-    @After(order = 1)
-    public void afterScenario(Scenario scenario) {
-//        if (scenario.isFailed()) {
-//            sleep(2000);
-//            saveScreenshotsForScenario(scenario);
-//        }
-        this.driver.quit();
     }
 
     private void saveScreenshotsForScenario(final Scenario scenario) {

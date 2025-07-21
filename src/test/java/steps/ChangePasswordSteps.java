@@ -54,4 +54,9 @@ public class ChangePasswordSteps {
     public void theyEnterCurrentValidPasswordInCurrentPasswordInputFieldOnChangePasswordPage() {
         changePasswordPage.enterPasswordInCurrentPasswordInputFieldOnChangePasswordPage(PropertiesLoader.getProperties("password"));
     }
+
+    @And("they logged out from the account")
+    public void theyLoggedOutFromTheAccount() {
+        changePasswordPage.clickLogOutButton();
+    }
 }

@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import static org.junit.Assert.assertTrue;
 import static tools.CommonTools.*;
 
-public class ChangePasswordPage extends BasePage{
+public class ChangePasswordPage extends BasePage {
     private static final String PROFILE_ICON = "xpath=//span[@class='ant-avatar-string']";
     private static final String CHANGE_PASSWORD_SECTION = "xpath=//span[text()='Change password']";
     private static final String CURRENT_PASSWORD_INPUT_FIELD = "id=oldPassword";
@@ -16,6 +16,11 @@ public class ChangePasswordPage extends BasePage{
     private static final String CURRENT_PASSWORD_HIDDEN_BY_DOTS = "id=oldPassword";
     private static final String NEW_PASSWORD_HIDDEN_BY_DOTS = "id=newPassword";
     private static final String WARNING_MESSAGE_ON_CHANGE_PASSWORD_PAGE = "xpath=//div[@class='ant-notification-notice-content']";
+    private static final String LOGOUT_BUTTON = "xpath=//div[contains(@class,'profile_logout')]";
+
+    public static String getLogOutButton() {
+        return LOGOUT_BUTTON;
+    }
 
     public static String getProfileIcon() {
         return PROFILE_ICON;
@@ -38,7 +43,8 @@ public class ChangePasswordPage extends BasePage{
     }
 
     public static String getWarningMessageOnChangePasswordPage() {
-        return WARNING_MESSAGE_ON_CHANGE_PASSWORD_PAGE;}
+        return WARNING_MESSAGE_ON_CHANGE_PASSWORD_PAGE;
+    }
 
     public void clickProfileIcon() {
         wait.forElementToBeDisplayed(10,
@@ -90,5 +96,12 @@ public class ChangePasswordPage extends BasePage{
 
         assertTrue(warning, elementText.contains(warning));
         driver.findElement(getByObject(getClosePopupMessageLocator())).click();
+    }
+
+    public void clickLogOutButton() {
+        wait.forElementToBeDisplayed(10,
+                getByObject(getLogOutButton()),
+                "Logout Button");
+        driver.findElement(getByObject(getLogOutButton())).click();
     }
 }

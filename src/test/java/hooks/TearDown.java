@@ -68,30 +68,4 @@ public class TearDown {
             System.out.println("Failed to save screenshot: " + e.getMessage());
         }
     }
-
-//    @After(value = "@changePasswordRevert", order = 2)
-//    public void revertPasswordIfChanged() {
-//        Boolean passwordWasChanged = (Boolean) getFromContext("passwordWasChanged");
-//        if (passwordWasChanged != null && passwordWasChanged) {
-//            try {
-//                changePasswordPage.enterPasswordInCurrentPasswordInputFieldOnChangePasswordPage((String) getFromContext("newPassword"));
-//                changePasswordPage.enterPasswordInNewPasswordInputFieldOnChangePasswordPage(PropertiesLoader.getProperties("password"));
-//                changePasswordPage.clickSaveButtonOnChangePasswordPage();
-//                changePasswordPage.enterEmailOnSignInPage(PropertiesLoader.getProperties("email"));
-//                changePasswordPage.enterPasswordOnSignInPage((String) getFromContext("newPassword"));
-//                changePasswordPage.clickSignInButton();
-//            } catch (Exception e) {
-//                System.err.println("Failed to revert password: " + e.getMessage());
-//            }
-//        }
-//    }
-//
-//    @After(order = 1)
-//    public void afterScenario(Scenario scenario) {
-////        if (scenario.isFailed()) {
-////            sleep(2000);
-////            saveScreenshotsForScenario(scenario);
-////        }
-//        this.driver.quit();
-//    }
 }

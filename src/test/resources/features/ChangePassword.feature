@@ -57,7 +57,6 @@ Feature: Change Password
       | Example122   |
 
 
-#  @changePassword
   Scenario Outline: the user re-login with the new password
     Given a user is logged into the account
     And they click Profile icon
@@ -67,8 +66,7 @@ Feature: Change Password
     And they click Save button on Change password page
     And success message password has been changed displayed
     And they logged out from the account
-#    Then a user is logged into the account
-    And they enter "<username>" in Email input field on Login page
+    And they enter existing email in Email input field on Login page
     And they enter "<new password>" in Password input field on Login page
     Then they click Sign In button on Login page
     And they click Profile icon
@@ -76,8 +74,8 @@ Feature: Change Password
     And they enter "<new password>" in Current password input field on Change password page
     And they enter "<password>" in New password input field on Change password page
     And they click Save button on Change password page
+    And they verify that they are on Circle Home page
 
-
-   Examples:
-     | new password | | username               || password |
-     | Example122   | | lamiratestdj@gmail.com || Amir2202 |
+    Examples:
+     |new password || password |
+     | Example122  || Amir2202 |

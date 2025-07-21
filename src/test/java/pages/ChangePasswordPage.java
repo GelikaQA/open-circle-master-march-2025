@@ -104,4 +104,13 @@ public class ChangePasswordPage extends BasePage {
                 "Logout Button");
         driver.findElement(getByObject(getLogOutButton())).click();
     }
+
+    public void enterExistingPasswordInNewPasswordInputFieldOnChangePasswordPage(String password) {
+        wait.forElementToBeDisplayed(10,
+                getByObject(getNewPasswordInputFieldOnChangePasswordPage()),
+                "New password input field");
+        WebElement foundElement = driver.findElement(getByObject(getNewPasswordInputFieldOnChangePasswordPage()));
+        foundElement.sendKeys(password);
+        putInContext("newPassword", password);
+    }
 }

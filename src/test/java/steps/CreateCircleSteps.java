@@ -6,6 +6,8 @@ import io.cucumber.java.en.Then;
 import pages.CreateCirclePage;
 import tools.PropertiesLoader;
 
+import static tools.CommonTools.putInContext;
+
 public class CreateCircleSteps {
 
     CreateCirclePage createCirclePage = new CreateCirclePage();
@@ -80,5 +82,15 @@ public class CreateCircleSteps {
     @And("they enter new password in the password field on the Create Circle page")
     public void theyEnterNewPasswordInThePasswordFieldOnTheCreateCirclePage() {
         createCirclePage.enterPasswordOnCreateCirclePage(PropertiesLoader.getProperties("newCirclePassword"));
+    }
+
+    @And("they paste input into first name field on Create Circle form")
+    public void theyPasteInputIntoFirstNameFieldOnCreateCircleForm() {
+        createCirclePage.pasteValueIntoFirstNameField();
+    }
+
+    @Then("Input in first name field is the same as input in passcode field")
+    public void inputInFirstNameFieldIsTheSameAsInputInPasscodeField() {
+        putInContext(createCirclePage.getPasscodeValueOnCreateCirclePage(), createCirclePage.pasteValueIntoFirstNameField());
     }
 }

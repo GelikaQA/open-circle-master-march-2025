@@ -27,6 +27,17 @@ Feature: Create Circle
       | passcode |
       | Abcd12@  |
 
+  Scenario Outline: Pushing copy button to copy generated data in passcode field
+    Given a user opens Create Circle page
+    And they enter "<circle name>" in the Circle name field on the Create Circle page
+    And they click the Generate button on the Create Circle page
+    And they click copy button
+    And they paste input into first name field on Create Circle form
+    Then Input in first name field is the same as input in passcode field
+    Examples:
+      | circle name |
+      | TestCircle5 |
+
 
   Scenario Outline:  Pushing copy button while passcode field is empty
       Given a user opens Create Circle page

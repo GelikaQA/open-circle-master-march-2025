@@ -78,6 +78,8 @@ public class JoinCirclePage extends BasePage {
 
     public static String getJoinCirclePopUpMessageInvalidEmail() { return JOIN_CIRCLE_EMAIL_FIELD_MESSAGE_INVALID_EMAIL; }
 
+    public static String getJoinCirclePopUpMessageEmailRequired() { return JOIN_CIRCLE_EMAIL_FIELD_MESSAGE; }
+
     public static String getJoinCircleMessageIncorrectFirstName() {
         return JOIN_CIRCLE_FIRST_NAME_FIELD_MESSAGE;
     }
@@ -246,8 +248,18 @@ public class JoinCirclePage extends BasePage {
         WebElement foundElement = driver.findElement(getByObject(getJoinCirclePopUpMessageInvalidEmail()));
         String elementText = foundElement.getText();
 
-        String message = "Text '" + incorrectEmail + "' in " + getJoinCirclePopUpMessageIncorrectPasscode() + " is not presented. 'Actual text is '" + elementText + "'";
+        String message = "Text '" + incorrectEmail + "' in " + getJoinCirclePopUpMessageInvalidEmail() + " is not presented. 'Actual text is '" + elementText + "'";
         assertTrue(message, elementText.contains(incorrectEmail));
+    }
+
+    public void assertWarningMessageEmailRequiredOnJoinCirclePageIsDisplayed(String EmailRequired) {
+        wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePopUpMessageEmailRequired()),
+                "This input is required.");
+        WebElement foundElement = driver.findElement(getByObject(getJoinCirclePopUpMessageEmailRequired()));
+        String elementText = foundElement.getText();
+
+        String message = "Text '" + EmailRequired + "' in " + getJoinCirclePopUpMessageEmailRequired() + " is not presented. 'Actual text is '" + elementText + "'";
+        assertTrue(message, elementText.contains(EmailRequired));
     }
 }
 

@@ -59,4 +59,14 @@ public class ChangePasswordSteps {
     public void theySeeAnUnderTheNewPasswordInputFieldOnChangePasswordPage(String invalidNewPassword) {
         changePasswordPage.assertErrorMessageUnderNewPasswordField (invalidNewPassword);
     }
+
+    @And("they logged out from the account")
+    public void theyLoggedOutFromTheAccount() {
+        changePasswordPage.clickLogOutButton();
+    }
+
+    @And("they enter existing password in New password input field on Change password page")
+    public void theyEnterExistingPasswordInNewPasswordInputFieldOnChangePasswordPage() {
+        changePasswordPage.enterExistingPasswordInNewPasswordInputFieldOnChangePasswordPage(PropertiesLoader.getProperties("password"));
+    }
 }

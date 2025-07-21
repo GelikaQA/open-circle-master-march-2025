@@ -33,9 +33,19 @@ public class AlbumsSteps {
         albumsPage.assertAlbumIsDisplayed(albumTitle);
     }
 
+    @Then("they assert the unique album name is present on Album Page")
+    public void assertUniqueAlbumNamePresentedOnAlbumPage() {
+        albumsPage.assertUniqueAlbumIsDisplayed();
+    }
+
     @And("they delete album named {string} from Album Page")
     public void deleteAlbumNamed(String album) {
         albumsPage.clickDeleteAlbum(album);
+    }
+
+    @And("they delete unique album from Album Page")
+    public void deleteAlbumNamed() {
+        albumsPage.clickDeleteUniqueAlbum();
     }
 
     @And("they click Cancel button on Create New Button Window")
@@ -48,6 +58,11 @@ public class AlbumsSteps {
         albumsPage.createAlbum(albumName);
     }
 
+    @And("they create new album with unique name")
+    public void theyCreateNewAlbumWithUniqueName() {
+        albumsPage.createAlbumWithUniqueName();
+    }
+
     @Then("they verify no duplicate album with the name {string} was created")
     public void verifyNoDuplicateAlbumCreated(String albumName) {
         albumsPage.assertDuplicateAlbumNotCreated(albumName);
@@ -58,13 +73,28 @@ public class AlbumsSteps {
         albumsPage.assertBucketIconIsDisplayed(albumName, false);
     }
 
+    @And("they assert delete icon for unique album is not displayed")
+    public void theyAssertDeleteIconForUniqueAlbumIsNotDisplayed() {
+        albumsPage.assertBucketIconIsDisplayed(false);
+    }
+
     @And("they assert delete icon for the album {string} is displayed")
     public void theyAssertDeleteIconForTheAlbumIsDisplayed(String albumName) {
         albumsPage.assertBucketIconIsDisplayed(albumName, true);
     }
 
+    @And("they assert delete icon for unique album is displayed")
+    public void theyAssertDeleteIconForUniqueAlbumIsDisplayed() {
+        albumsPage.assertBucketIconIsDisplayed(true);
+    }
+
     @Then("they do not see the album name {string} on Album Page")
     public void theyDoNotSeeTheAlbumNameOnAlbumPage(String albumName) {
         albumsPage.assertAlbumIsNotDisplayed(albumName);
+    }
+
+    @Then("they do not see the album with unique name on Album Page")
+    public void theyDoNotSeeTheAlbumNameOnAlbumPage() {
+        albumsPage.assertAlbumIsNotDisplayed();
     }
 }

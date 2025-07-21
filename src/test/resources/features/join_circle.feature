@@ -83,3 +83,19 @@ Feature: join_circle
       | JoinCircle | 555666   | Victoria  |                                   | test@test.com | Password1 | This input is required.                                                                        |
       | JoinCircle | 555666   | Victoria  | PaleesPaleesPaleesPaleesPaleesPal | test@test.com | Password1 | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
 
+  Scenario Outline: Error message for invalid "Email"
+    Given a user opens Join Circle page
+    When they enter "<circleName>" in the field Circle Name on the Join Circle page
+    And they enter "<passcode>" in the Passcode field on the Join Circle page
+    And they enter "<firstName>" in the First Name field on the Join Circle page
+    And they enter "<lastName>" in the Last Name field on the Join Circle page
+    And they enter "<email>" in the Email field on the Join Circle page
+    And they enter "<password>" in the Password field on the Join Circle page
+    And They press button Join on the Join Circle page
+    Then they are still on the Join Circle page as the registration was not completed
+    And under the field 'Email' the Warning message is displayed: "<warningMessage>"
+
+    Examples:
+      | circleName | passcode | firstName | lastName | email        | password  | warningMessage                                  |
+      | JoinCircle | 555666   | Victoria  | Palees   | testtest.com | Password1 | Invalid email address, limited to 32 characters |
+

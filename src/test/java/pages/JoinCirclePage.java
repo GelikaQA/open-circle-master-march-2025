@@ -76,6 +76,8 @@ public class JoinCirclePage extends BasePage {
         return JOIN_CIRCLE_POP_UP_MESSAGE_INCORRECT_PASSCODE;
     }
 
+    public static String getJoinCirclePopUpMessageInvalidEmail() { return JOIN_CIRCLE_EMAIL_FIELD_MESSAGE_INVALID_EMAIL; }
+
     public static String getJoinCircleMessageIncorrectFirstName() {
         return JOIN_CIRCLE_FIRST_NAME_FIELD_MESSAGE;
     }
@@ -237,5 +239,16 @@ public class JoinCirclePage extends BasePage {
         String message = "Expected: '" + expectedMessage + "', but found: '" + actualMessage + "'";
         assertTrue(message, actualMessage.contains(expectedMessage));
     }
+
+    public void assertWarningMessageInvalidEmailOnJoinCirclePageIsDisplayed(String incorrectEmail) {
+        wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePopUpMessageInvalidEmail()),
+                "Invalid email address, limited to 32 characters");
+        WebElement foundElement = driver.findElement(getByObject(getJoinCirclePopUpMessageInvalidEmail()));
+        String elementText = foundElement.getText();
+
+        String message = "Text '" + incorrectEmail + "' in " + getJoinCirclePopUpMessageIncorrectPasscode() + " is not presented. 'Actual text is '" + elementText + "'";
+        assertTrue(message, elementText.contains(incorrectEmail));
+    }
 }
+
 

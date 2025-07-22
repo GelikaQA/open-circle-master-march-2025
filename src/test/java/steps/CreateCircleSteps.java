@@ -3,8 +3,8 @@ package steps;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import pages.CreateCirclePage;
+import tools.PropertiesLoader;
 
 public class CreateCircleSteps {
 
@@ -13,15 +13,7 @@ public class CreateCircleSteps {
     @Given("a user opens Create Circle page")
     public void aUserOpensCreateCirclePage() {
         createCirclePage.openCreateCirclePage();
-    }
-
-    @When("they enter {string} in the Password field on the Create Circle page")
-    public void theyEnterTXAZdAsTInThePasswordFieldOnTheCreateCirclePage(String adminPassword) {
-        createCirclePage.enterAdminPasswordOnAdminPage(adminPassword);
-    }
-
-    @And("they click the Submit button on the Admin page")
-    public void theyClickTheSubmitButtonOnTheAdminPage() {
+        createCirclePage.enterAdminPasswordOnAdminPage(PropertiesLoader.getProperties("adminPassword"));
         createCirclePage.clickSubmitButton();
     }
 
@@ -78,5 +70,20 @@ public class CreateCircleSteps {
     @Then("Passcode field contains {string}")
     public void passcodeFieldContains(String passcode) {
         createCirclePage.assertCreateCirclePasscodeFieldInput(passcode);
+    }
+
+    @And("they enter a new email in the email field on the Create Circle page")
+    public void theyEnterANewUserEmailInTheEmailFieldOnTheCreateCirclePage() {
+        createCirclePage.enterEmailOnCreateCirclePage(PropertiesLoader.getProperties("newCircleEmail"));
+    }
+
+    @And("they enter new password in the password field on the Create Circle page")
+    public void theyEnterNewPasswordInThePasswordFieldOnTheCreateCirclePage() {
+        createCirclePage.enterPasswordOnCreateCirclePage(PropertiesLoader.getProperties("newCirclePassword"));
+    }
+
+    @Then("Input in first name field is the same as input in passcode field")
+    public void inputInFirstNameFieldIsTheSameAsInputInPasscodeField() {
+        createCirclePage.assertCopiedPasscodeMatchesDisplayedValue();
     }
 }

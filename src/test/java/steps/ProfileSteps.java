@@ -10,14 +10,9 @@ public class ProfileSteps {
 
     ProfilePage profilePage = new ProfilePage();
 
-    @And("they click on the Avatar icon")
-    public void theyClickOnTheAvatarIconOnTheProfilePage() {
+    @And("they click the Avatar icon")
+    public void theyClickTheAvatarIconOnTheProfilePage() {
         profilePage.clickOnTheAvatarIconOnTheProfilePage();
-    }
-
-    @And("they click on the Delete button")
-    public void theyClickOnTheDeleteButtonOnTheProfilePage() {
-        profilePage.clickDeleteButtonOnProfilePage();
     }
 
     @Then("the Upload button is present")
@@ -59,8 +54,8 @@ public class ProfileSteps {
         profilePage.assertFirstNameOnProfilePageIsDisplayed(firstName);
     }
 
-    @Then("user friendly error is displayed {string}")
-    public void userFriendlyErrorIsShown(String errorMessage) {
+    @Then("error on the Profile Page is displayed {string}")
+    public void errorOnTheProfilePageIsDisplayed(String errorMessage) {
         profilePage.assertErrorMessageOnProfilePageIsDisplayed(errorMessage);
     }
 

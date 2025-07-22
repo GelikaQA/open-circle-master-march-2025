@@ -13,7 +13,7 @@ Feature: topics
 
   Scenario Outline: User creates topic with valid characters and length
     Given a user is logged into the account
-    When they lick New Topic Plus Button
+    When they click New Topic Plus Button
     And they enter "<Topic name>" in new topic name input field
     And they click on Create button on topic page
     Then success message "<Success message>" pops-up on Topic page
@@ -27,13 +27,12 @@ Feature: topics
 
   Scenario Outline: the user creates a topic without a unique name
     Given a user is logged into the account
-    When they lick New Topic Plus Button
-    And they enter "<Exists Topic name>" in topic name input field
-    And they click on Create button on topic page
-    Then they see a warning popup message "<Warning message>"
+    When they enter "<New Topic Name>" and create New Topic
+    And success message "<Success message>" pops-up on Topic page
+    Then they enter "<New Topic Name>" and create New Topic
+    And warning message "<Warning message>" pop-up on Topic Page
 
     Examples:
-      | Exists Topic name          | Warning message             |
-      | qwerty_QWERTY1752805336376 | Topic with this name exists |
-      | qwerty-Qwerty1752805340732 | Topic with this name exists |
-      | qwertyQWERTY1752805331988  | Topic with this name exists |
+      | New Topic Name |  | Success message        | Warning message             |
+      | newTopic1      |  | Topic has been created | Topic with this name exists |
+#      | newTopic2      | |                         |                             |

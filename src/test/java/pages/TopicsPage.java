@@ -66,13 +66,13 @@ public class TopicsPage extends BasePage {
         foundElement.sendKeys(uniqueTopicName);
     }
 
-    public void enterExistsTopicNameInputField(String existsTopicName) {
+    public void enterNewTopicName(String newTopicName) {
         wait.forElementToBeDisplayed(
                 10,
                 getByObject(getNewTopicNameInputField()),
-                "Exists Topic Name Input Field");
+                "New Topic Name Input Field");
         WebElement foundElement = driver.findElement(getByObject(getNewTopicNameInputField()));
-        foundElement.sendKeys(existsTopicName);
+        foundElement.sendKeys(newTopicName);
     }
 
 
@@ -94,16 +94,16 @@ public class TopicsPage extends BasePage {
         String message = "Text '" + TopicHasBeenCreated + "' 'in " + getTopicCreationSuccessMessage() + " is presented.";
         assertTrue(message, elementText.contains(TopicHasBeenCreated));
     }
-//
-//    public void assertWarningMessageOnTopicPageIsDisplayed(String TopicWithThisNameExists) {
-//        wait.forElementToBeDisplayed(
-//                15,
-//                getByObject(getTopicCreationWarningMessage()),
-//                "Warning pop-up message");
-//        WebElement foundElement = driver.findElement(getByObject(getTopicCreationWarningMessage()));
-//        String elementText = foundElement.getText();
-//
-//        String message = "Text'" + TopicWithThisNameExists + "' 'in " + getTopicCreationWarningMessage() + " is presented.";
-//        assertTrue(message, elementText.contains(TopicWithThisNameExists));
-//        }
-}
+
+    public void assertWarningMessageOnTopicPageIsDisplayed(String TopicWithThisNameExists) {
+        wait.forElementToBeDisplayed(
+                15,
+                getByObject(getTopicCreationWarningMessage()),
+                "Warning pop-up message");
+        WebElement foundElement = driver.findElement(getByObject(getTopicCreationWarningMessage()));
+       String elementText = foundElement.getText();
+
+        String message = "Text'" + TopicWithThisNameExists + "' 'in " + getTopicCreationWarningMessage() + " is presented.";
+        assertTrue(message, elementText.contains(TopicWithThisNameExists));
+        }
+    }

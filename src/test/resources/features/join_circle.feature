@@ -8,7 +8,7 @@ Feature: join_circle
     And they enter "<last name>" in the Last Name field on the Join Circle page
     And they enter "<email>" in the Email field on the Join Circle page
     And they enter "<password>" in the Password field on the Join Circle page
-    And They press button Join on the Join Circle page
+    And they press button Join on the Join Circle page
     Then they are still on the Join Circle page as the registration was not completed
     And Warning message appears: "<error message>"
 
@@ -27,7 +27,7 @@ Feature: join_circle
     And they enter "<last name>" in the Last Name field on the Join Circle page
     And they enter "<email>" in the Email field on the Join Circle page
     And they enter "<password>" in the Password field on the Join Circle page
-    And They press button Join on the Join Circle page
+    And they press button Join on the Join Circle page
     Then they are still on the Join Circle page as the registration was not completed
     And under the field First Name the Warning message is displayed: "<error message>"
 
@@ -37,12 +37,12 @@ Feature: join_circle
       | JoinCircle  | 55566    | VictoriaVictoriaVictoriaVictoriaVictoria | Palees    | test@test.com | Password1 | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 character |
       | JoinCircle  | 55566    |                                          | Palees    | test@test.com | Password1 | This input is required                                                                        |
 
-  Scenario Outline: the password should not be copied from context menu
+  Scenario Outline: The password should not be copied from context menu
 
     Given a user opens Join Circle page
     When they enter "<password>" in the Password field on the Join Circle page
     And they selected and copy entered password on the Join Circle page
-    Then The "<password>" is not copied into clipboard
+    Then the "<password>" is not copied into clipboard
 
     Examples:
       | password |
@@ -51,7 +51,7 @@ Feature: join_circle
   Scenario: The password is masked
 
     Given a user opens Join Circle page
-    Then The password is masked on Join Circle Page
+    Then the password is masked on Join Circle Page
 
 #  Scenario Outline: the password should not be copied from context menu
 #
@@ -74,7 +74,7 @@ Feature: join_circle
     And they enter "<lastName>" in the Last Name field on the Join Circle page
     And they enter "<email>" in the Email field on the Join Circle page
     And they enter "<password>" in the Password field on the Join Circle page
-    And They press button Join on the Join Circle page
+    And they press button Join on the Join Circle page
     Then they are still on the Join Circle page as the registration was not completed
     And under the field 'Last Name' the Warning message is displayed: "<warningMessage>"
 
@@ -82,4 +82,26 @@ Feature: join_circle
       | circleName | passcode | firstName | lastName                          | email         | password  | warningMessage                                                                                 |
       | JoinCircle | 555666   | Victoria  |                                   | test@test.com | Password1 | This input is required.                                                                        |
       | JoinCircle | 555666   | Victoria  | PaleesPaleesPaleesPaleesPaleesPal | test@test.com | Password1 | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
+
+  Scenario Outline: Password must meet complexity requirements (uppercase, lowercase, digit, 8-20 characters), no more than 20 characters
+
+    Given a user opens Join Circle page
+    When they enter "<circleName>" in the field Circle Name on the Join Circle page
+    And they enter "<passcode>" in the Passcode field on the Join Circle page
+    And they enter "<firstName>" in the First Name field on the Join Circle page
+    And they enter "<lastName>" in the Last Name field on the Join Circle page
+    And they enter "<email>" in the Email field on the Join Circle page
+    And they enter "<password>" in the Password field on the Join Circle page
+    And they press button Join on the Join Circle page
+    Then they are still on the Join Circle page as the registration was not completed
+    And under the field 'Password' the Warning message is displayed: "<warningMessage>"
+
+    Examples:
+      | circleName | passcode | firstName | lastName | email         | password              | warningMessage                                                                                                       |
+      | JoinCircle | 555666   | Victoria  | Palees   | test@test.com | Pass1                 | Field should contain at least one upper-case, at least one lower-case and at least one digit and be between 8 and 20 |
+      | JoinCircle | 555666   | Victoria  | Palees   | test@test.com | Password15556667Victo | Field should contain at least one upper-case, at least one lower-case and at least one digit and be between 8 and 20 |
+      | JoinCircle | 555666   | Victoria  | Palees   | test@test.com | password1             | Field should contain at least one upper-case, at least one lower-case and at least one digit and be between 8 and 20 |
+      | JoinCircle | 555666   | Victoria  | Palees   | test@test.com | PASSWORD1             | Field should contain at least one upper-case, at least one lower-case and at least one digit and be between 8 and 20 |
+      | JoinCircle | 555666   | Victoria  | Palees   | test@test.com | Password              | Field should contain at least one upper-case, at least one lower-case and at least one digit and be between 8 and 20 |
+      | JoinCircle | 555666   | Victoria  | Palees   | test@test.com |                       | This input is required                                                                                               |
 

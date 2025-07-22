@@ -36,7 +36,6 @@ public class JoinCirclePage extends BasePage {
     private static final String JOIN_CIRCLE_EMAIL_FIELD_MESSAGE = "xpath=//label[@for='email']/following-sibling::ul[contains(@class,'form_text_danger')]/li";
     private static final String JOIN_CIRCLE_PASSWORD_FIELD_MESSAGE = "xpath=//label[@for='password']/following-sibling::ul[contains(@class,'form_text_danger')]/li";
     private static final String JOIN_CIRCLE_EMAIL_FIELD_MESSAGE_INVALID_EMAIL = "xpath=//ul[contains(@class,'form_text_danger')]//li[contains(text(),'Invalid email address')]";
-    private static final String JOIN_CIRCLE_PASSWORD_FIELD_MESSAGE_FIELD_SHOULD = "xpath=//ul[contains(@class,'form_text_danger')]//li[contains(text(),'Field should contain at least one')]";
     private static final String JOIN_CIRCLE_POP_UP_MESSAGE_EMAIL_EXIST = "xpath=//span[text()='A user with such an email exists.']";
     private static final String JOIN_CIRCLE_POP_UP_MESSAGE_INCORRECT_CIRCLE_NAME = "xpath=//div[contains(@class,'ant-notification-notice-description')]//span[text()='Incorrect Circle Name. Please try again']";
 
@@ -83,6 +82,10 @@ public class JoinCirclePage extends BasePage {
     public void openJoinCirclePage() {
         driver.get(PropertiesLoader.getProperties("joinCircleUrl"));
     }
+
+    public static String getJoinCircleMessageIncorrectLastNameField() { return JOIN_CIRCLE_LAST_NAME_FIELD_MESSAGE;}
+
+    public static String getJoinCircleMessageIncorrectPassword() { return JOIN_CIRCLE_PASSWORD_FIELD_MESSAGE;}
 
     public void enterCircleNameOnJoinCirclePage(String circleName) {
         wait.forElementToBeDisplayed(10, getByObject(getJoinCircleCircleNameInputField()),
@@ -228,14 +231,24 @@ public class JoinCirclePage extends BasePage {
     }
 
     public void assertWarningMessageForLastNameOnJoinCirclePageIsDisplayed(String expectedMessage) {
-        wait.forElementToBeDisplayed(10, getByObject(JOIN_CIRCLE_LAST_NAME_FIELD_MESSAGE), "Last Name warning message should appear");
+        wait.forElementToBeDisplayed(10, getByObject(getJoinCircleMessageIncorrectLastNameField()), "Last Name warning message should appear");
 
 
-        WebElement foundElement = driver.findElement(getByObject(JOIN_CIRCLE_LAST_NAME_FIELD_MESSAGE));
+        WebElement foundElement = driver.findElement(getByObject(getJoinCircleMessageIncorrectLastNameField()));
         String actualMessage = foundElement.getText();
 
         String message = "Expected: '" + expectedMessage + "', but found: '" + actualMessage + "'";
         assertTrue(message, actualMessage.contains(expectedMessage));
+    }
+
+    public void assertUnderPasswordFieldOnJoinCircleWarningMessageIsDisplayed(String incorrectPasswordWarning) {
+        wait.forElementToBeDisplayed(10, getByObject(getJoinCircleMessageIncorrectPassword()),
+                "Field should contain at least one upper-case, at least one lower-case and at least one digit and be between 8 and 20");
+        WebElement foundElement = driver.findElement(getByObject(getJoinCircleMessageIncorrectPassword()));
+        String elementText = foundElement.getText();
+
+        String message = "Text '" + incorrectPasswordWarning + "' in " + getJoinCircleMessageIncorrectPassword() + " is not presented. 'Actual text is '" + elementText + "'";
+        assertTrue(message, elementText.contains(incorrectPasswordWarning));
     }
 }
 

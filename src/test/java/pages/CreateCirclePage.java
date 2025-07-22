@@ -1,10 +1,12 @@
 package pages;
 
+import org.junit.Assert;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import tools.PropertiesLoader;
 
 import static org.junit.Assert.assertTrue;
-import static tools.CommonTools.getByObject;
+import static tools.CommonTools.*;
 
 public class CreateCirclePage extends BasePage {
     private static final String ADMIN_PASSWORD_INPUT_FIELD = "xpath=//input[contains(@class, 'form_form_control')]";
@@ -116,6 +118,14 @@ public class CreateCirclePage extends BasePage {
         foundElement.click();
     }
 
+    public String getPasscodeValueOnCreateCirclePage(){
+        wait.forElementToBeDisplayed(10,
+                getByObject(getPasscodeOnCreateCirclePage()),
+                "Passcode input field in create circle");
+        WebElement foundElement = driver.findElement(getByObject(getPasscodeOnCreateCirclePage()));
+        return foundElement.getAttribute("value");
+    }
+
     public void enterFirstNameOnCreateCirclePage(String firstName) {
         wait.forElementToBeDisplayed(
                 10,
@@ -187,5 +197,22 @@ public class CreateCirclePage extends BasePage {
 
         String message = "Text '" + passcodeInput + "' 'in " + getPasscodeOnCreateCirclePage() + " is not presented. 'Actual text is '" + "" + "'";
         assertTrue(message, elementText.contains(passcodeInput));
+    }
+
+    public Object pasteValueIntoFirstNameField() {
+        wait.forElementToBeDisplayed(10,
+                getByObject(getFirstnameOnCreateCirclePage()),
+                "First name input field in create circle");
+        WebElement foundElement = driver.findElement(getByObject(getFirstnameOnCreateCirclePage()));
+        foundElement.sendKeys(Keys.LEFT_CONTROL, "v", Keys.NULL);
+        return foundElement.getAttribute("value");
+    }
+
+
+    public void assertCopiedPasscodeMatchesDisplayedValue() {
+        putInContext("firstNameValue", pasteValueIntoFirstNameField());
+        Assert.assertEquals("Assertion failed",
+                getFromContext("firstNameValue"),
+                getPasscodeValueOnCreateCirclePage());
     }
 }

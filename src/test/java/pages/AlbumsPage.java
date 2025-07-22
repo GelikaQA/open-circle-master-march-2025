@@ -92,19 +92,6 @@ public class AlbumsPage extends BasePage {
         foundElement.click();
     }
 
-//    public void assertTextPresentedInPopUpMessage(String popUpMessage) {
-//        wait.forElementToBeDisplayed(2, getByObject(getPopUpMsgWhenAlbumIsCreated()), "Pop Up Message");
-//        WebElement foundElement = driver.findElement(getByObject(getPopUpMsgWhenAlbumIsCreated()));
-//        String elementText = foundElement.getText();
-//        assertTrue(elementText.contains(popUpMessage));
-//    }
-//
-//    public void theySeeConfirmationPopUpWindowWithText(String targetElement) {
-//        wait.forElementToBeDisplayed(10, getByObject(getPopUpMsgWhenAlbumIsCreated()), "Element");
-//        WebElement foundElement = driver.findElement(getByObject(getPopUpMsgWhenAlbumIsCreated()));
-//        assertTrue(foundElement.isDisplayed());
-//    }
-
     public void assertAlbumIsDisplayed(String albumName) {
         wait.forElementToBeDisplayed(10, getByObject(selectAlbumLocator(albumName)), "Album Name");
         WebElement foundElement = driver.findElement(getByObject(selectAlbumLocator(albumName)));
@@ -116,7 +103,7 @@ public class AlbumsPage extends BasePage {
     }
 
     public void clickDeleteAlbum(String album) {
-        wait.forElementToBeDisplayed(10, getByObject(selectAlbumLocator(album)), "Bucket Icon");
+        wait.forElementToBeDisplayed(10, getByObject(selectAlbumLocator(album)), "Select Album");
         WebElement foundElement = driver.findElement(getByObject(deleteAlbumLocator((album))));
         foundElement.click();
         wait.forElementToBeNotDisplayed(10, getByObject(selectAlbumLocator((album))), "Select Album");
@@ -152,16 +139,6 @@ public class AlbumsPage extends BasePage {
         assertTrue("Found " + albumCount + " albums with name '" + albumName +
                 "'. Expected only one (no duplicate).", albumCount <= 1);
     }
-
-//    public void assertAlbumIsNotDisplayed(String albumName) {
-//        List<WebElement> listOfAlbums =
-//                driver.findElements(getByObject(selectAlbumLocator(albumName)));
-//        assertTrue(listOfAlbums.isEmpty());
-//        List<WebElement> albums = driver.findElements(getByObject(selectAlbumLocator(albumName)));
-//        int albumCount = albums.size();
-//        assertTrue("Found " + albumCount + " albums with name '" + albumName +
-//                "'. Expected only one (no duplicate).", albumCount <= 1);
-//    }
 
     public void assertAlbumIsNotDisplayed(String albumName) {
         List<WebElement> listOfAlbums = driver.findElements(getByObject(selectAlbumLocator(albumName)));

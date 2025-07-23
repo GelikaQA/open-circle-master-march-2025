@@ -52,7 +52,7 @@ public class CreateCircleSteps {
         createCirclePage.clickCreateButtonOnCreateCirclePage();
     }
 
-    @And("they click copy button")
+    @And("they click copy button on Create Circle page")
     public void theyClickCopyButton() {
         createCirclePage.clickCopyPasscodeButtonOnCreateCirclePage();
     }

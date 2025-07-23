@@ -48,7 +48,7 @@ Feature: Create Circle
   Scenario: Pushing copy button to copy generated data in passcode field
     Given a user opens Create Circle page
     When they click the Generate button on the Create Circle page
-    And they click copy button
+    And they click copy button on Create Circle page
     And they paste input into first name field on Create Circle form
     Then Input in first name field is the same as input in passcode field
 

@@ -1,10 +1,10 @@
 package pages;
 
-import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import tools.PropertiesLoader;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static tools.CommonTools.*;
 
@@ -204,7 +204,7 @@ public class CreateCirclePage extends BasePage {
         assertTrue(message, elementText.contains(passcodeInput));
     }
 
-    public Object pasteValueIntoFirstNameField() {
+    public void pasteValueIntoFirstNameField() {
         wait.forElementToBeDisplayed(10,
                 getByObject(getFirstnameOnCreateCirclePage()),
                 "First name input field in create circle");
@@ -215,12 +215,11 @@ public class CreateCirclePage extends BasePage {
         } else {
             foundElement.sendKeys(Keys.LEFT_CONTROL, "v", Keys.NULL);
         }
-        return foundElement.getAttribute("value");
+        putInContext("firstNameValue", foundElement.getAttribute("value"));
     }
 
     public void assertCopiedPasscodeMatchesDisplayedValue() {
-        putInContext("firstNameValue", pasteValueIntoFirstNameField());
-        Assert.assertEquals("Assertion failed",
+        assertEquals("Assertion failed, passcode field value and first name field value are different",
                 getFromContext("firstNameValue"),
                 getPasscodeValueOnCreateCirclePage());
     }

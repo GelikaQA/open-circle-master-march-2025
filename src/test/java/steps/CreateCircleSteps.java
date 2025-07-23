@@ -82,6 +82,11 @@ public class CreateCircleSteps {
         createCirclePage.enterPasswordOnCreateCirclePage(PropertiesLoader.getProperties("newCirclePassword"));
     }
 
+    @And("they paste input into first name field on Create Circle form")
+    public void theyPasteInputIntoFirstNameFieldOnCreateCircleForm() {
+        createCirclePage.pasteValueIntoFirstNameField();
+    }
+
     @Then("Input in first name field is the same as input in passcode field")
     public void inputInFirstNameFieldIsTheSameAsInputInPasscodeField() {
         createCirclePage.assertCopiedPasscodeMatchesDisplayedValue();

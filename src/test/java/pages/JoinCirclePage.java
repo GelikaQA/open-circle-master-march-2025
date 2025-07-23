@@ -1,6 +1,5 @@
 package pages;
 
-import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebElement;
 import tools.PropertiesLoader;
 
@@ -33,9 +32,9 @@ public class JoinCirclePage extends BasePage {
     private static final String JOIN_CIRCLE_PASSCODE_FIELD_MESSAGE = "xpath=//label[@for='passCode']/following-sibling::ul[contains(@class,'form_text_danger')]/li";
     private static final String JOIN_CIRCLE_FIRST_NAME_FIELD_MESSAGE = "xpath=//label[@for='firstName']/following-sibling::ul[contains(@class,'form_text_danger')]/li";
     private static final String JOIN_CIRCLE_LAST_NAME_FIELD_MESSAGE = "xpath=//label[@for='lastName']/following-sibling::ul[contains(@class,'form_text_danger')]/li";
-    private static final String JOIN_CIRCLE_EMAIL_FIELD_MESSAGE = "xpath=//label[@for='email']/following-sibling::ul[contains(@class,'form_text_danger')]/li";
+    private static final String JOIN_CIRCLE_EMAIL_FIELD_MESSAGE = "xpath=//ul[contains(@class,'form_text_danger')]//li[contains(text(),'This input is required')]";
     private static final String JOIN_CIRCLE_PASSWORD_FIELD_MESSAGE = "xpath=//label[@for='password']/following-sibling::ul[contains(@class,'form_text_danger')]/li";
-    private static final String JOIN_CIRCLE_EMAIL_FIELD_MESSAGE_INVALID_EMAIL = "xpath=//ul[contains(@class,'form_text_danger')]//li[contains(text(),'Invalid email address')]";
+    private static final String JOIN_CIRCLE_EMAIL_FIELD_WARNING_MESSAGE = "xpath=//ul[contains(@class,'form_text_danger')]//li";
     private static final String JOIN_CIRCLE_PASSWORD_FIELD_MESSAGE_FIELD_SHOULD = "xpath=//ul[contains(@class,'form_text_danger')]//li[contains(text(),'Field should contain at least one')]";
     private static final String JOIN_CIRCLE_POP_UP_MESSAGE_EMAIL_EXIST = "xpath=//span[text()='A user with such an email exists.']";
     private static final String JOIN_CIRCLE_POP_UP_MESSAGE_INCORRECT_CIRCLE_NAME = "xpath=//div[contains(@class,'ant-notification-notice-description')]//span[text()='Incorrect Circle Name. Please try again']";
@@ -76,9 +75,7 @@ public class JoinCirclePage extends BasePage {
         return JOIN_CIRCLE_POP_UP_MESSAGE_INCORRECT_PASSCODE;
     }
 
-    public static String getJoinCirclePopUpMessageInvalidEmail() { return JOIN_CIRCLE_EMAIL_FIELD_MESSAGE_INVALID_EMAIL; }
-
-    public static String getJoinCirclePopUpMessageEmailRequired() { return JOIN_CIRCLE_EMAIL_FIELD_MESSAGE; }
+    public static String getJoinCircleWarningMessageUnderEmailField() { return JOIN_CIRCLE_EMAIL_FIELD_WARNING_MESSAGE; }
 
     public static String getJoinCircleMessageIncorrectFirstName() {
         return JOIN_CIRCLE_FIRST_NAME_FIELD_MESSAGE;
@@ -242,25 +239,13 @@ public class JoinCirclePage extends BasePage {
         assertTrue(message, actualMessage.contains(expectedMessage));
     }
 
-    public void assertWarningMessageInvalidEmailOnJoinCirclePageIsDisplayed(String incorrectEmail) {
-        wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePopUpMessageInvalidEmail()),
+    public void assertWarningMessageUnderEmailFieldOnJoinCirclePageIsDisplayed(String incorrectEmail) {
+        wait.forElementToBeDisplayed(10, getByObject(getJoinCircleWarningMessageUnderEmailField()),
                 "Invalid email address, limited to 32 characters");
-        WebElement foundElement = driver.findElement(getByObject(getJoinCirclePopUpMessageInvalidEmail()));
+        WebElement foundElement = driver.findElement(getByObject(getJoinCircleWarningMessageUnderEmailField()));
         String elementText = foundElement.getText();
 
-        String message = "Text '" + incorrectEmail + "' in " + getJoinCirclePopUpMessageInvalidEmail() + " is not presented. 'Actual text is '" + elementText + "'";
+        String message = "Text '" + incorrectEmail + "' in " + getJoinCircleWarningMessageUnderEmailField() + " is not presented. 'Actual text is '" + elementText + "'";
         assertTrue(message, elementText.contains(incorrectEmail));
     }
-
-    public void assertWarningMessageEmailRequiredOnJoinCirclePageIsDisplayed(String EmailRequired) {
-        wait.forElementToBeDisplayed(10, getByObject(getJoinCirclePopUpMessageEmailRequired()),
-                "This input is required.");
-        WebElement foundElement = driver.findElement(getByObject(getJoinCirclePopUpMessageEmailRequired()));
-        String elementText = foundElement.getText();
-
-        String message = "Text '" + EmailRequired + "' in " + getJoinCirclePopUpMessageEmailRequired() + " is not presented. 'Actual text is '" + elementText + "'";
-        assertTrue(message, elementText.contains(EmailRequired));
-    }
 }
-
-

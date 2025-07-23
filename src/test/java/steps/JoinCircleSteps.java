@@ -105,16 +105,8 @@ public void warningMessageUnderLastNameFieldIsDisplayed(String expectedWarningMe
     joinCirclePage.assertWarningMessageForLastNameOnJoinCirclePageIsDisplayed(expectedWarningMessage);
 }
 
-    @Then("under the field 'Email' the Warning message is displayed: {string}")
+    @Then("under the field Email the Warning message is displayed: {string}")
     public void warningMessageUnderEmailFieldIsDisplayed(String expectedWarningMessage) {
-        joinCirclePage.assertWarningMessageInvalidEmailOnJoinCirclePageIsDisplayed(expectedWarningMessage);
+        joinCirclePage.assertWarningMessageUnderEmailFieldOnJoinCirclePageIsDisplayed(expectedWarningMessage);
     }
-
-    @And("the Warning message is displayed under the field 'Email': {string}")
-    public void theWarningMessageIsDisplayedUnderTheFieldEmail(String expectedWarningMessage) {
-        joinCirclePage.assertWarningMessageEmailRequiredOnJoinCirclePageIsDisplayed(expectedWarningMessage);
     }
-}
-
-
-

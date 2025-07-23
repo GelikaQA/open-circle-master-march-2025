@@ -54,7 +54,7 @@ Feature: Create Circle
 
   Scenario Outline:  Pushing copy button while passcode field is empty
       Given a user opens Create Circle page
-      And they click copy button
+      And they click copy button on Create Circle page
       Then they see a warning popup message "<error popup>"
       Examples:
         | error popup               |

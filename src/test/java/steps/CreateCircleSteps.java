@@ -81,4 +81,14 @@ public class CreateCircleSteps {
     public void theyEnterNewPasswordInThePasswordFieldOnTheCreateCirclePage() {
         createCirclePage.enterPasswordOnCreateCirclePage(PropertiesLoader.getProperties("newCirclePassword"));
     }
+
+    @Then("Input in first name field is the same as input in passcode field")
+    public void inputInFirstNameFieldIsTheSameAsInputInPasscodeField() {
+        createCirclePage.assertCopiedPasscodeMatchesDisplayedValue();
+    }
+
+    @Then("error message pops-up {string} below Last Name field on Create Circle page")
+    public void errorMessagePopsUpBelowLastNameFieldOnCreateCirclePage(String error) {
+        createCirclePage.assertLastNameValidationMessageOnCreateCirclePage(error);
+    }
 }

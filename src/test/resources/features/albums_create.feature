@@ -36,5 +36,14 @@ Feature: createAlbum
     And they verify no album with the name "<album name>" was created
 
     Examples:
-    | album name |
-    | alex_album |
+      | album name |
+      | alex_album |
+
+  Scenario: User can not create a photo album with the same name
+    Given a user is logged into the account
+    And they create new album with unique name
+    And they see a success popup message "Album has been created"
+    And they create new album with unique name
+    And they see a warning popup message "Album with this name exists"
+    And they click Cancel button on Create New Album Window
+    And they delete unique album from Album Page

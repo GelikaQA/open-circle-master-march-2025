@@ -28,19 +28,14 @@ public class AlbumsSteps {
         albumsPage.clickCreateButtonNewAlbumWindow();
     }
 
-    @And("they see confirmation pop up window with text {string}")
-    public void theySeeConfirmationPopUpWindowWithText(String message) {
-        albumsPage.assertElementIsDisplayed(message);
-    }
-
-    @And("they verify that they Successful Creation Message")
-    public void theyVerifyThatTheySuccessfulCreationMessage() {
-        albumsPage.assertTextPresentedInPopUpMessage("Success");
-    }
-
     @Then("they assert the album name {string} presented on Album Page")
     public void assertAlbumNamePresentedOnAlbumPage(String albumTitle) {
         albumsPage.assertAlbumIsDisplayed(albumTitle);
+    }
+
+    @Then("they assert the unique album name is present on Album Page")
+    public void assertUniqueAlbumNamePresentedOnAlbumPage() {
+        albumsPage.assertUniqueAlbumIsDisplayed();
     }
 
     @And("they delete album named {string} from Album Page")
@@ -48,9 +43,9 @@ public class AlbumsSteps {
         albumsPage.clickDeleteAlbum(album);
     }
 
-    @Then("confirmation message appears {string}")
-    public void confirmationMessageAppears(String warningMessage) {
-        albumsPage.assertDuplicateAlbumMessageIsDisplayed(warningMessage);
+    @And("they delete unique album from Album Page")
+    public void deleteAlbumNamed() {
+        albumsPage.clickDeleteUniqueAlbum();
     }
 
     @And("they click Cancel button on Create New Album Window")
@@ -63,6 +58,11 @@ public class AlbumsSteps {
         albumsPage.createAlbum(albumName);
     }
 
+    @And("they create new album with unique name")
+    public void theyCreateNewAlbumWithUniqueName() {
+        albumsPage.createAlbumWithUniqueName();
+    }
+
     @Then("they verify no duplicate album with the name {string} was created")
     public void verifyNoDuplicateAlbumCreated(String albumName) {
         albumsPage.assertDuplicateAlbumNotCreated(albumName);
@@ -71,5 +71,35 @@ public class AlbumsSteps {
     @And("they verify no album with the name {string} was created")
     public void theyVerifyNoAlbumWithTheNameWasCreated(String albumName) {
         albumsPage.assertAlbumIsNotDisplayed(albumName);
+    }
+
+    @And("they assert delete icon for the album {string} is not displayed")
+    public void theyAssertDeleteIconForTheAlbumIsNotDisplayed(String albumName) {
+        albumsPage.assertBucketIconIsDisplayed(albumName, false);
+    }
+
+    @And("they assert delete icon for unique album is not displayed")
+    public void theyAssertDeleteIconForUniqueAlbumIsNotDisplayed() {
+        albumsPage.assertBucketIconIsDisplayed(false);
+    }
+
+    @And("they assert delete icon for the album {string} is displayed")
+    public void theyAssertDeleteIconForTheAlbumIsDisplayed(String albumName) {
+        albumsPage.assertBucketIconIsDisplayed(albumName, true);
+    }
+
+    @And("they assert delete icon for unique album is displayed")
+    public void theyAssertDeleteIconForUniqueAlbumIsDisplayed() {
+        albumsPage.assertBucketIconIsDisplayed(true);
+    }
+
+    @Then("they do not see the album name {string} on Album Page")
+    public void theyDoNotSeeTheAlbumNameOnAlbumPage(String albumName) {
+        albumsPage.assertAlbumIsNotDisplayed(albumName);
+    }
+
+    @Then("they do not see the album with unique name on Album Page")
+    public void theyDoNotSeeTheAlbumNameOnAlbumPage() {
+        albumsPage.assertAlbumIsNotDisplayed();
     }
 }

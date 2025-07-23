@@ -71,4 +71,14 @@ public class CreateCircleSteps {
     public void passcodeFieldContains(String passcode) {
         createCirclePage.assertCreateCirclePasscodeFieldInput(passcode);
     }
+
+    @And("they enter a new email in the email field on the Create Circle page")
+    public void theyEnterANewUserEmailInTheEmailFieldOnTheCreateCirclePage() {
+        createCirclePage.enterEmailOnCreateCirclePage(PropertiesLoader.getProperties("newCircleEmail"));
+    }
+
+    @And("they enter new password in the password field on the Create Circle page")
+    public void theyEnterNewPasswordInThePasswordFieldOnTheCreateCirclePage() {
+        createCirclePage.enterPasswordOnCreateCirclePage(PropertiesLoader.getProperties("newCirclePassword"));
+    }
 }

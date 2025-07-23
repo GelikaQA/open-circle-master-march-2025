@@ -86,4 +86,9 @@ public class CreateCircleSteps {
     public void inputInFirstNameFieldIsTheSameAsInputInPasscodeField() {
         createCirclePage.assertCopiedPasscodeMatchesDisplayedValue();
     }
+
+    @Then("error message pops-up {string} below Last Name field on Create Circle page")
+    public void errorMessagePopsUpBelowLastNameFieldOnCreateCirclePage(String error) {
+        createCirclePage.assertLastNameValidationMessageOnCreateCirclePage(error);
+    }
 }

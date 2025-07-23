@@ -21,6 +21,7 @@ public class CreateCirclePage extends BasePage {
     private static final String CREATE_CIRCLE_PASSWORD_INPUT_FIELD = "id=password";
     private static final String CREATE_CIRCLE_CREATE_BUTTON = "xpath=//button[contains(@class, 'login_submit')]";
     private static final String CREATE_CIRCLE_FIRST_NAME_VALIDATION_MESSAGE = "xpath=//div[label[@for='firstName']]//li";
+    private static final String CREATE_CIRCLE_LAST_NAME_VALIDATION_MESSAGE = "xpath=//div[label[@for='lastName']]//li";
 
     public static String getAdminPasswordInputField() {
         return ADMIN_PASSWORD_INPUT_FIELD;
@@ -68,6 +69,10 @@ public class CreateCirclePage extends BasePage {
 
     public static String getCreateCircleFirstNameValidationMessage() {
         return CREATE_CIRCLE_FIRST_NAME_VALIDATION_MESSAGE;
+    }
+
+    public static String getCreateCircleLastNameValidationMessage() {
+        return CREATE_CIRCLE_LAST_NAME_VALIDATION_MESSAGE;
     }
 
     public void openCreateCirclePage() {
@@ -218,5 +223,17 @@ public class CreateCirclePage extends BasePage {
         Assert.assertEquals("Assertion failed",
                 getFromContext("firstNameValue"),
                 getPasscodeValueOnCreateCirclePage());
+    }
+
+    public void assertLastNameValidationMessageOnCreateCirclePage(String error) {
+        wait.forElementToBeDisplayed(
+                10,
+                getByObject(getCreateCircleLastNameValidationMessage()),
+                "Error message");
+        WebElement foundElement = driver.findElement(getByObject(getCreateCircleLastNameValidationMessage()));
+        String elementText = foundElement.getText();
+
+        String message = "Text '" + error + "' 'in " + getCreateCircleLastNameValidationMessage() + " is presented.";
+        assertTrue(message, elementText.contains(error));
     }
 }

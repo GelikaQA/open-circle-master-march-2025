@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.ChangePasswordPage;
+import pages.ProfilePage;
 import tools.PropertiesLoader;
 
 import static tools.CommonTools.*;
@@ -12,6 +13,7 @@ import static tools.CommonTools.*;
 public class ChangePasswordSteps {
 
     ChangePasswordPage changePasswordPage = new ChangePasswordPage();
+    ProfilePage profilePage = new ProfilePage();
 
     @Given("they click Profile icon")
     public void theyClickProfileIcon() {
@@ -59,9 +61,9 @@ public class ChangePasswordSteps {
         changePasswordPage.assertErrorMessageUnderNewPasswordField (invalidNewPassword);
     }
 
-    @And("they logged out from the account")
+    @And("they click Log out button")
     public void theyLoggedOutFromTheAccount() {
-        changePasswordPage.clickLogOutButton();
+        profilePage.clickLogOutButton();
     }
 
     @And("they enter existing password in New password input field on Change password page")

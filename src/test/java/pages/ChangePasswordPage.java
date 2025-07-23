@@ -17,15 +17,11 @@ public class ChangePasswordPage extends BasePage {
     private static final String NEW_PASSWORD_HIDDEN_BY_DOTS = "id=newPassword";
     private static final String WARNING_MESSAGE_ON_CHANGE_PASSWORD_PAGE = "xpath=//div[@class='ant-notification-notice-content']";
     private static final String NEW_INVALID_PASSWORD_ERROR_MESSAGE = "xpath=//div[@id='newPassword_help']";
-    private static final String LOGOUT_BUTTON = "xpath=//div[contains(@class,'profile_logout')]";
-
-    public static String getLogOutButton() {
-        return LOGOUT_BUTTON;
-    }
 
     public static String getNewInvalidPasswordErrorMessage() {
         return NEW_INVALID_PASSWORD_ERROR_MESSAGE;
     }
+
     public static String getProfileIcon() {
         return PROFILE_ICON;
     }
@@ -108,13 +104,6 @@ public class ChangePasswordPage extends BasePage {
                 "Error message");
         WebElement foundElement = driver.findElement(getByObject(getNewInvalidPasswordErrorMessage()));
         assertTrue(foundElement.isDisplayed());
-    }
-
-    public void clickLogOutButton() {
-        wait.forElementToBeDisplayed(10,
-                getByObject(getLogOutButton()),
-                "Logout Button");
-        driver.findElement(getByObject(getLogOutButton())).click();
     }
 
     public void enterExistingPasswordInNewPasswordInputFieldOnChangePasswordPage(String password) {

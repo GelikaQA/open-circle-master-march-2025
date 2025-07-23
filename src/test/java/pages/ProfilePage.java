@@ -24,7 +24,7 @@ public class ProfilePage extends BasePage {
     private static final String PROFILE_RESET_BUTTON = "xpath=//button[contains(@class, 'profile_reset__m5oZY')]";
     private static final String ERROR_MESSAGE_PROFILE_PAGE = "xpath=//div[@class='ant-form-item-explain-error']";
     private static final String OK_BUTTON = "xpath=//*[@type='button']/span[contains(text(), 'OK')]";
-    private static final String LOG_OUT_BUTTON = "xpath=//span[text()='Log Out']";
+    private static final String LOG_OUT_BUTTON = "xpath=//div[contains(@class,'profile_logout')]";
 
     public static String getProfileAvatarIcon() {
         return PROFILE_AVATAR_ICON;
@@ -171,9 +171,10 @@ public class ProfilePage extends BasePage {
     }
 
     public void clickLogOutButton() {
-        wait.forElementToBeDisplayed(10, getByObject(getLogOutButton()), "Log Out");
-        WebElement foundElement = driver.findElement(getByObject(getLogOutButton()));
-        foundElement.click();
+        wait.forElementToBeDisplayed(10,
+                getByObject(getLogOutButton()),
+                "Logout Button");
+        driver.findElement(getByObject(getLogOutButton())).click();
     }
 
     public void assertErrorMessageOnProfilePageIsDisplayed(String errorMessage) {

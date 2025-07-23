@@ -104,5 +104,9 @@ public class JoinCircleSteps {
 public void warningMessageUnderLastNameFieldIsDisplayed(String expectedWarningMessage) {
     joinCirclePage.assertWarningMessageForLastNameOnJoinCirclePageIsDisplayed(expectedWarningMessage);
 }
-}
 
+    @Then("under the field Email the Warning message is displayed: {string}")
+    public void warningMessageUnderEmailFieldIsDisplayed(String expectedWarningMessage) {
+        joinCirclePage.assertWarningMessageUnderEmailFieldOnJoinCirclePageIsDisplayed(expectedWarningMessage);
+    }
+    }

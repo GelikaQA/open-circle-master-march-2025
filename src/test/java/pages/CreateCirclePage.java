@@ -204,10 +204,14 @@ public class CreateCirclePage extends BasePage {
                 getByObject(getFirstnameOnCreateCirclePage()),
                 "First name input field in create circle");
         WebElement foundElement = driver.findElement(getByObject(getFirstnameOnCreateCirclePage()));
-        foundElement.sendKeys(Keys.LEFT_CONTROL, "v", Keys.NULL);
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("mac")) {
+            foundElement.sendKeys(Keys.chord(Keys.COMMAND, "v", Keys.NULL));
+        } else {
+            foundElement.sendKeys(Keys.LEFT_CONTROL, "v", Keys.NULL);
+        }
         return foundElement.getAttribute("value");
     }
-
 
     public void assertCopiedPasscodeMatchesDisplayedValue() {
         putInContext("firstNameValue", pasteValueIntoFirstNameField());

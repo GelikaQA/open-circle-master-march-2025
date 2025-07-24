@@ -50,12 +50,12 @@ public class ApiHelper {
         return loginResponse.getCookies();
     }
 
-    public void deleteCircle(Map<String, String> cookies) {
+    public void deleteCircle() {
         given()
+                .filter(cookieFilter)
                 .baseUri(PropertiesLoader.getProperties("apiBaseUrl"))
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .cookies(cookies)
                 .body("{}")
         .when()
                 .delete(PropertiesLoader.getProperties("circle.endpoint"))

@@ -11,6 +11,7 @@ Feature: topics
       | Topic name | Success message        |
       | LadyInRed  | Topic has been created |
 
+
   Scenario Outline: User creates topic with valid characters and length
     Given a user is logged into the account
     When they lick New Topic Plus Button

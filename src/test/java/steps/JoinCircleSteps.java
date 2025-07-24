@@ -41,6 +41,7 @@ public class JoinCircleSteps {
 
     @And("they enter {string} in the Email field on the Join Circle page")
     public void entersInTheEmailFieldOnTheJoinCirclePage(String email) {
+        email = email.replace("·", " ");
         joinCirclePage.enterEmailOnJoinCirclePage(email);
     }
 

@@ -32,11 +32,8 @@ public class JoinCirclePage extends BasePage {
     private static final String JOIN_CIRCLE_PASSCODE_FIELD_MESSAGE = "xpath=//label[@for='passCode']/following-sibling::ul[contains(@class,'form_text_danger')]/li";
     private static final String JOIN_CIRCLE_FIRST_NAME_FIELD_MESSAGE = "xpath=//label[@for='firstName']/following-sibling::ul[contains(@class,'form_text_danger')]/li";
     private static final String JOIN_CIRCLE_LAST_NAME_FIELD_MESSAGE = "xpath=//label[@for='lastName']/following-sibling::ul[contains(@class,'form_text_danger')]/li";
-    private static final String JOIN_CIRCLE_EMAIL_FIELD_MESSAGE = "xpath=//ul[contains(@class,'form_text_danger')]//li[contains(text(),'This input is required')]";
     private static final String JOIN_CIRCLE_PASSWORD_FIELD_MESSAGE = "xpath=//label[@for='password']/following-sibling::ul[contains(@class,'form_text_danger')]/li";
     private static final String JOIN_CIRCLE_EMAIL_FIELD_WARNING_MESSAGE = "xpath=//ul[contains(@class,'form_text_danger')]//li";
-    private static final String JOIN_CIRCLE_PASSWORD_FIELD_MESSAGE_FIELD_SHOULD = "xpath=//ul[contains(@class,'form_text_danger')]//li[contains(text(),'Field should contain at least one')]";
-    private static final String JOIN_CIRCLE_EMAIL_FIELD_MESSAGE_INVALID_EMAIL = "xpath=//ul[contains(@class,'form_text_danger')]//li[contains(text(),'Invalid email address')]";
     private static final String JOIN_CIRCLE_POP_UP_MESSAGE_EMAIL_EXIST = "xpath=//span[text()='A user with such an email exists.']";
     private static final String JOIN_CIRCLE_POP_UP_MESSAGE_INCORRECT_CIRCLE_NAME = "xpath=//div[contains(@class,'ant-notification-notice-description')]//span[text()='Incorrect Circle Name. Please try again']";
 

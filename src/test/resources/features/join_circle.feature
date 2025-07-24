@@ -96,10 +96,13 @@ Feature: join_circle
     And under the field Email the Warning message is displayed: "<warningMessage>"
 
     Examples:
-      | circleName | passcode | firstName | lastName | email        | password  | warningMessage                                  |
-      | JoinCircle | 555666   | Victoria  | Palees   | testtest.com | Password1 | Invalid email address, limited to 32 characters |
-      | JoinCircle | 555666   | Victoria  | Palees   |              | Password1 | This input is required.                         |
-  Scenario Outline: Password must meet complexity requirements (uppercase, lowercase, digit, 8-20 characters), no more than 20 characters
+      | circleName | passcode | firstName | lastName | email                      | password  | warningMessage                                  |
+      | JoinCircle | 555666   | Victoria  | Palees   | testtest.com               | Password1 | Invalid email address, limited to 32 characters |
+      | JoinCircle | 555666   | Victoria  | Palees   |                            | Password1 | This input is required.                         |
+      | JoinCircle | 555666   | Victoria  | Palees   | stripetester999@gmail.com· | Password1 | Invalid email address, limited to 32 characters |
+
+
+  Scenario Outline: Password must meet complexity requirements (uppercase, lowercase, digit, 8-20 characters)
 
     Given a user opens Join Circle page
     When they enter "<circleName>" in the field Circle Name on the Join Circle page
@@ -120,4 +123,3 @@ Feature: join_circle
       | JoinCircle | 555666   | Victoria  | Palees   | test@test.com | PASSWORD1             | Field should contain at least one upper-case, at least one lower-case and at least one digit and be between 8 and 20 |
       | JoinCircle | 555666   | Victoria  | Palees   | test@test.com | Password              | Field should contain at least one upper-case, at least one lower-case and at least one digit and be between 8 and 20 |
       | JoinCircle | 555666   | Victoria  | Palees   | test@test.com |                       | This input is required                                                                                               |
-

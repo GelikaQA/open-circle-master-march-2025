@@ -56,7 +56,6 @@ public class ApiHelper {
                 .baseUri(PropertiesLoader.getProperties("apiBaseUrl"))
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                //.cookies(cookies)
                 .body("{}")
         .when()
                 .delete(PropertiesLoader.getProperties("circle.endpoint"))

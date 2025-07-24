@@ -2,7 +2,7 @@ Feature: topics
 
   Scenario Outline: Success message displayed when user created new topic
     Given a user is logged into the account
-    When they lick New Topic Plus Button
+    When they click New Topic Plus Button
     And they enter "<Topic name>" in new topic name input field
     And they click on Create button on topic page
     Then success message "<Success message>" pops-up on Topic page
@@ -27,12 +27,11 @@ Feature: topics
 
   Scenario Outline: the user creates a topic without a unique name
     Given a user is logged into the account
-    When they enter "<New Topic Name>" and create New Topic
-    And success message "<Success message>" pops-up on Topic page
-    Then they enter "<New Topic Name>" and create New Topic
-    And warning message "<Warning message>" pop-up on Topic Page
+    When they create a new topic
+    And they see a success popup message "<Success message>"
+    Then they create a new topic
+    And they see a warning popup message "<Warning message>"
 
     Examples:
-      | New Topic Name |  | Success message        | Warning message             |
-      | newTopic1      |  | Topic has been created | Topic with this name exists |
-#      | newTopic2      | |                         |                             |
+      | Success message        | Warning message             |
+      | Topic has been created | Topic with this name exists |

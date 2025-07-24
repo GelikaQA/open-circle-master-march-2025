@@ -1,10 +1,12 @@
 package pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import tools.PropertiesLoader;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static tools.CommonTools.getByObject;
+import static tools.CommonTools.*;
 
 public class CreateCirclePage extends BasePage {
     private static final String ADMIN_PASSWORD_INPUT_FIELD = "xpath=//input[contains(@class, 'form_form_control')]";
@@ -19,6 +21,7 @@ public class CreateCirclePage extends BasePage {
     private static final String CREATE_CIRCLE_PASSWORD_INPUT_FIELD = "id=password";
     private static final String CREATE_CIRCLE_CREATE_BUTTON = "xpath=//button[contains(@class, 'login_submit')]";
     private static final String CREATE_CIRCLE_FIRST_NAME_VALIDATION_MESSAGE = "xpath=//div[label[@for='firstName']]//li";
+    private static final String CREATE_CIRCLE_LAST_NAME_VALIDATION_MESSAGE = "xpath=//div[label[@for='lastName']]//li";
 
     public static String getAdminPasswordInputField() {
         return ADMIN_PASSWORD_INPUT_FIELD;
@@ -68,6 +71,10 @@ public class CreateCirclePage extends BasePage {
         return CREATE_CIRCLE_FIRST_NAME_VALIDATION_MESSAGE;
     }
 
+    public static String getCreateCircleLastNameValidationMessage() {
+        return CREATE_CIRCLE_LAST_NAME_VALIDATION_MESSAGE;
+    }
+
     public void openCreateCirclePage() {
         driver.get(PropertiesLoader.getProperties("createCircleUrl"));
     }
@@ -114,6 +121,14 @@ public class CreateCirclePage extends BasePage {
                 "Copy button in create circle");
         WebElement foundElement = driver.findElement(getByObject(getCopyPasscodeButtonOnCreateCirclePage()));
         foundElement.click();
+    }
+
+    public String getPasscodeValueOnCreateCirclePage(){
+        wait.forElementToBeDisplayed(10,
+                getByObject(getPasscodeOnCreateCirclePage()),
+                "Passcode input field in create circle");
+        WebElement foundElement = driver.findElement(getByObject(getPasscodeOnCreateCirclePage()));
+        return foundElement.getAttribute("value");
     }
 
     public void enterFirstNameOnCreateCirclePage(String firstName) {
@@ -187,5 +202,37 @@ public class CreateCirclePage extends BasePage {
 
         String message = "Text '" + passcodeInput + "' 'in " + getPasscodeOnCreateCirclePage() + " is not presented. 'Actual text is '" + "" + "'";
         assertTrue(message, elementText.contains(passcodeInput));
+    }
+
+    public void pasteValueIntoFirstNameField() {
+        wait.forElementToBeDisplayed(10,
+                getByObject(getFirstnameOnCreateCirclePage()),
+                "First name input field in create circle");
+        WebElement foundElement = driver.findElement(getByObject(getFirstnameOnCreateCirclePage()));
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("mac")) {
+            foundElement.sendKeys(Keys.chord(Keys.COMMAND, "v", Keys.NULL));
+        } else {
+            foundElement.sendKeys(Keys.LEFT_CONTROL, "v", Keys.NULL);
+        }
+        putInContext("firstNameValue", foundElement.getAttribute("value"));
+    }
+
+    public void assertCopiedPasscodeMatchesDisplayedValue() {
+        assertEquals("Assertion failed, passcode field value and first name field value are different",
+                getFromContext("firstNameValue"),
+                getPasscodeValueOnCreateCirclePage());
+    }
+
+    public void assertLastNameValidationMessageOnCreateCirclePage(String error) {
+        wait.forElementToBeDisplayed(
+                10,
+                getByObject(getCreateCircleLastNameValidationMessage()),
+                "Error message");
+        WebElement foundElement = driver.findElement(getByObject(getCreateCircleLastNameValidationMessage()));
+        String elementText = foundElement.getText();
+
+        String message = "Text '" + error + "' 'in " + getCreateCircleLastNameValidationMessage() + " is presented.";
+        assertTrue(message, elementText.contains(error));
     }
 }

@@ -52,7 +52,7 @@ public class CreateCircleSteps {
         createCirclePage.clickCreateButtonOnCreateCirclePage();
     }
 
-    @And("they click copy button")
+    @And("they click copy button on Create Circle page")
     public void theyClickCopyButton() {
         createCirclePage.clickCopyPasscodeButtonOnCreateCirclePage();
     }
@@ -80,5 +80,20 @@ public class CreateCircleSteps {
     @And("they enter new password in the password field on the Create Circle page")
     public void theyEnterNewPasswordInThePasswordFieldOnTheCreateCirclePage() {
         createCirclePage.enterPasswordOnCreateCirclePage(PropertiesLoader.getProperties("newCirclePassword"));
+    }
+
+    @And("they paste input into first name field on Create Circle form")
+    public void theyPasteInputIntoFirstNameFieldOnCreateCircleForm() {
+        createCirclePage.pasteValueIntoFirstNameField();
+    }
+
+    @Then("Input in first name field is the same as input in passcode field")
+    public void inputInFirstNameFieldIsTheSameAsInputInPasscodeField() {
+        createCirclePage.assertCopiedPasscodeMatchesDisplayedValue();
+    }
+
+    @Then("error message pops-up {string} below Last Name field on Create Circle page")
+    public void errorMessagePopsUpBelowLastNameFieldOnCreateCirclePage(String error) {
+        createCirclePage.assertLastNameValidationMessageOnCreateCirclePage(error);
     }
 }

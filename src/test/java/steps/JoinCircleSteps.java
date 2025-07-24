@@ -76,11 +76,6 @@ public class JoinCircleSteps {
         joinCirclePage.copyHiddenPasswordOnJoinCirclePage();
     }
 
-    @And("they activated context menu on the Join Circle page")
-    public void theyActivatedContextMenuOnTheJoinCirclePage() {
-        joinCirclePage.openedContextMenuOnJoinCirclePage();
-    }
-
     @Then("the {string} is not copied into clipboard")
     public void thePasswordIsNotCopiedIntoClipboard(String password) {
         joinCirclePage.assertPasswordIsNotCopiedIntoClipboardFromPasswordField(password);
@@ -96,11 +91,6 @@ public class JoinCircleSteps {
         joinCirclePage.assertPasswordIsMasked(getJoinCirclePasswordInputField());
     }
 
-// for next test case
-//    @And("they copy password from the context menu on the Join Circle page")
-//    public void theyCopyPasswordFromTheContextMenuOnTheJoinCirclePage() {
-//        joinCirclePage.CopyPasswordFromContextMenuOnJoinCirclePage();
-//    }
 @Then("under the field 'Last Name' the Warning message is displayed: {string}")
 public void warningMessageUnderLastNameFieldIsDisplayed(String expectedWarningMessage) {
     joinCirclePage.assertWarningMessageForLastNameOnJoinCirclePageIsDisplayed(expectedWarningMessage);

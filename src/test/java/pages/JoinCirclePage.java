@@ -222,18 +222,6 @@ public class JoinCirclePage extends BasePage {
         driver.findElement(getByObject(getJoinCirclePasswordInputField())).sendKeys(password);
     }
 
-    //    for next test case
-    public void openedContextMenuOnJoinCirclePage() {
-        WebElement passwordField = driver.findElement(getByObject(getJoinCirclePasswordInputField()));
-
-        Actions actions = new Actions(driver);
-        actions
-                .moveToElement(passwordField)
-                .contextClick() // Mouse right click button simulation
-                .perform();
-
-    }
-
     public void assertWarningMessageForLastNameOnJoinCirclePageIsDisplayed(String expectedMessage) {
         wait.forElementToBeDisplayed(10, getByObject(getJoinCircleMessageIncorrectLastNameField()), "Last Name warning message should appear");
 

@@ -83,9 +83,13 @@ public class JoinCirclePage extends BasePage {
         driver.get(PropertiesLoader.getProperties("joinCircleUrl"));
     }
 
-    public static String getJoinCircleMessageIncorrectLastNameField() { return JOIN_CIRCLE_LAST_NAME_FIELD_MESSAGE;}
+    public static String getJoinCircleMessageIncorrectLastNameField() {
+        return JOIN_CIRCLE_LAST_NAME_FIELD_MESSAGE;
+    }
 
-    public static String getJoinCircleMessageIncorrectPassword() { return JOIN_CIRCLE_PASSWORD_FIELD_MESSAGE;}
+    public static String getJoinCircleMessageIncorrectPassword() {
+        return JOIN_CIRCLE_PASSWORD_FIELD_MESSAGE;
+    }
 
     public void enterCircleNameOnJoinCirclePage(String circleName) {
         wait.forElementToBeDisplayed(10, getByObject(getJoinCircleCircleNameInputField()),
@@ -153,7 +157,7 @@ public class JoinCirclePage extends BasePage {
         assertTrue(message, elementText.contains(incorrectPasscode));
     }
 
-        public void assertFirstNameFieldWarningMessageIsDisplayed(String incorrectFirstName) {
+    public void assertFirstNameFieldWarningMessageIsDisplayed(String incorrectFirstName) {
         wait.forElementToBeDisplayed(10, getByObject(getJoinCircleMessageIncorrectFirstName()),
                 "Field accepts alphabetical char and digits, no special chars allowed, limited to 32 character or This input is required");
         WebElement foundElement = driver.findElement(getByObject(getJoinCircleMessageIncorrectFirstName()));

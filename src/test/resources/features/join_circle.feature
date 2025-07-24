@@ -38,7 +38,6 @@ Feature: join_circle
       | JoinCircle  | 55566    |                                          | Palees    | test@test.com | Password1 | This input is required                                                                        |
 
   Scenario Outline: The password should not be copied from context menu
-
     Given a user opens Join Circle page
     When they enter "<password>" in the Password field on the Join Circle page
     And they selected and copy entered password on the Join Circle page
@@ -49,7 +48,6 @@ Feature: join_circle
       | 123456z  |
 
   Scenario: The password is masked
-
     Given a user opens Join Circle page
     Then the password is masked on Join Circle Page
 
@@ -90,7 +88,6 @@ Feature: join_circle
 
 
   Scenario Outline: Password must meet complexity requirements (uppercase, lowercase, digit, 8-20 characters)
-
     Given a user opens Join Circle page
     When they enter "<circleName>" in the field Circle Name on the Join Circle page
     And they enter "<passcode>" in the Passcode field on the Join Circle page

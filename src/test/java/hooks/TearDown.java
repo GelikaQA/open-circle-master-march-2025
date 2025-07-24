@@ -29,17 +29,40 @@ public class TearDown {
         this.driver.quit();
     }
 
-    @After(value = "@DeleteCircle", order = 2)
+    @After(value = "@DeleteCircleAndUser", order = 2)
     public void deleteCircleAfterScenario(Scenario scenario) {
         ApiHelper api = new ApiHelper();
 
         try {
             String csrfToken = api.getCsrfToken();
-            Map<String, String> loginCookies = api.login(
+            api.login(
                     PropertiesLoader.getProperties("newCircleEmail"),
                     PropertiesLoader.getProperties("newCirclePassword"),
                     csrfToken);
-            api.deleteCircle(loginCookies);
+            api.deleteCircle();
+
+            String userId = api.getUserIdByEmail(PropertiesLoader.getProperties("newCircleEmail"));
+            if (userId != null) {
+                api.deleteUserById(userId);
+                System.out.println("User deleted.");
+            } else {
+                System.err.println("User not found.");
+            }
+        } catch (Exception e) {
+            System.err.println("Cleanup failed: " + e.getMessage());
+        }
+    }
+
+    @After(value = "@DeleteUser", order = 2)
+    public void deleteUserAfterScenario(Scenario scenario) {
+        ApiHelper api = new ApiHelper();
+
+        try {
+            String csrfToken = api.getCsrfToken();
+            api.login(
+                    PropertiesLoader.getProperties("newCircleEmail"),
+                    PropertiesLoader.getProperties("newCirclePassword"),
+                    csrfToken);
 
             String userId = api.getUserIdByEmail(PropertiesLoader.getProperties("newCircleEmail"));
             if (userId != null) {

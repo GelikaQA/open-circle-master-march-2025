@@ -1,6 +1,5 @@
 Feature: Create Circle
 
-
   Scenario Outline: First name field error message validation
 
     Given a user opens Create Circle page
@@ -18,6 +17,7 @@ Feature: Create Circle
       | TestCircleThree | TestFirstNameThatIsExtremelyLongF | TestLastName | testemail@test.com  | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
       | CircleTester    |                                   | TestLastName | testing123@test.com | Password123   | This input is required.                                                                        |
       | TestCircleThree | TestFirstName@                    | TestLastName | testemail@test.com  | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
+
 
   Scenario Outline: Last name field error message validation
 
@@ -37,6 +37,8 @@ Feature: Create Circle
       | CircleTester    | TestFirstName |                                              | testing123@test.com | Password123   | This input is required.                                                                        |
       | TestCircleThree | TestFirstName | TestLastName@                                | testemail@test.com  | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
 
+
+    @DeleteUser
   Scenario Outline: Attempting to enter input into passcode field
     Given a user opens Create Circle page
     And they enter "<passcode>" in Passcode field on Create Circle page
@@ -44,6 +46,7 @@ Feature: Create Circle
     Examples:
       | passcode |
       | Abcd12@  |
+
 
   Scenario: Pushing copy button to copy generated data in passcode field
     Given a user opens Create Circle page
@@ -61,7 +64,7 @@ Feature: Create Circle
         | Generate PassCode firstly |
 
 
-  @DeleteCircle
+  @DeleteCircleAndUser
   Scenario: New circle is created, and user is logged into the newly created circle
     Given a user opens Create Circle page
     When they enter "TestCircle2025" in the Circle name field on the Create Circle page

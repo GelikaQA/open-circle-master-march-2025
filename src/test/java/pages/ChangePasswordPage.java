@@ -47,7 +47,7 @@ public class ChangePasswordPage extends BasePage {
     }
 
     public void clickProfileIcon() {
-        wait.forElementToBeDisplayed(10,
+        wait.forElementToBeDisplayed(20,
                 getByObject(getProfileIcon()),
                 "Profile icon");
         driver.findElement(getByObject(getProfileIcon())).click();

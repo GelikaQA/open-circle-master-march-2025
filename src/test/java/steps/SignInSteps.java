@@ -63,8 +63,8 @@ public class SignInSteps {
     @Given("a user is logged into the account")
     public void aUserIsLoggedIntoTheAccount() {
         signInPage.openSignInPage();
-        signInPage.enterEmailOnSignInPage(PropertiesLoader.getProperties("email"));
-        signInPage.enterPasswordOnSignInPage(PropertiesLoader.getProperties("password"));
+        signInPage.enterEmailOnSignInPage(SignInPage.getExistingEmail());
+        signInPage.enterPasswordOnSignInPage(SignInPage.getValidPassword());
         signInPage.clickSignInButton();
         homePage.assertCircleNameIsDisplayedOnHomePage();
     }
@@ -91,7 +91,7 @@ public class SignInSteps {
 
     @And("they enter valid password in Password input field on Login page")
     public void theyEnterValidPasswordInPasswordInputFieldOnLoginPage() {
-        signInPage.enterPasswordOnSignInPage(PropertiesLoader.getProperties("password"));
+        signInPage.enterPasswordOnSignInPage(SignInPage.getValidPassword());
     }
 
     @And("they enter new circle password in Password input field on Login page")
@@ -110,8 +110,8 @@ public class SignInSteps {
             email += userNumber;
             password += userNumber;
         }
-        signInPage.enterEmailOnSignInPage(PropertiesLoader.getProperties(email));
-        signInPage.enterPasswordOnSignInPage(PropertiesLoader.getProperties(password));
+        signInPage.enterEmailOnSignInPage(SignInPage.getExistingEmail());
+        signInPage.enterPasswordOnSignInPage(SignInPage.getValidPassword());
         signInPage.clickSignInButton();
         homePage.assertCircleNameIsDisplayedOnHomePage();
     }

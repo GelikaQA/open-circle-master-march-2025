@@ -31,10 +31,26 @@ public class SignInPage extends BasePage {
         return email;
     }
 
+    public static String getSecondUserEmail(){
+        String email = System.getenv("EMAIL2");
+        if (email == null || email.isEmpty()) {
+            email = PropertiesLoader.getProperties("email2");
+        }
+        return email;
+    }
+
     public static String getValidPassword() {
         String password = System.getenv("PASSWORD");
         if (password == null || password.isEmpty()) {
             password = PropertiesLoader.getProperties("password");
+        }
+        return password;
+    }
+
+    public static String getSecondUserPassword() {
+        String password = System.getenv("PASSWORD2");
+        if (password == null || password.isEmpty()) {
+            password = PropertiesLoader.getProperties("password2");
         }
         return password;
     }

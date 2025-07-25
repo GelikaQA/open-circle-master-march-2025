@@ -177,6 +177,7 @@ public class ProfilePage extends BasePage {
                 getByObject(getLogOutButton()),
                 "Logout Button");
         driver.findElement(getByObject(getLogOutButton())).click();
+        wait.forElementToBeNotDisplayed(10, getByObject(getLogOutButton()),"Logout Button");
     }
 
     public void assertErrorMessageOnProfilePageIsDisplayed(String errorMessage) {

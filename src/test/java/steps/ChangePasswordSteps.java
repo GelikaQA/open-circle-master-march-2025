@@ -67,6 +67,6 @@ public class ChangePasswordSteps {
 
     @And("they enter existing password in New password input field on Change password page")
     public void theyEnterExistingPasswordInNewPasswordInputFieldOnChangePasswordPage() {
-        changePasswordPage.enterExistingPasswordInNewPasswordInputFieldOnChangePasswordPage(PropertiesLoader.getProperties("password"));
+        changePasswordPage.enterExistingPasswordInNewPasswordInputFieldOnChangePasswordPage(SignInPage.getValidPassword());
     }
 }

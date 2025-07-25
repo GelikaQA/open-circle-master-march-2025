@@ -45,6 +45,7 @@ jobs:
           EMAIL2: ${{ secrets.EMAIL2 }}
           PASSWORD2: ${{ secrets.PASSWORD2 }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          FILE_JPG_PATH: ${{ secrets.FILE_JPG_PATH }}
           NEW_CIRCLE_EMAIL: ${{ secrets.NEW_CIRCLE_EMAIL }}
           NEW_CIRCLE_PASSWORD: ${{ secrets.NEW_CIRCLE_PASSWORD }}
           DISPLAY: :99

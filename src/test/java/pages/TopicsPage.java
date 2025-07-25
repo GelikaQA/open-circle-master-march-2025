@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.WebElement;
 
 import static org.junit.Assert.assertTrue;
-import static tools.CommonTools.getByObject;
+import static tools.CommonTools.*;
 
 public class TopicsPage extends BasePage {
     private static final String TOPIC_PLUS_ICON_BUTTON = "xpath=//div[contains(@class, 'crateChannelBtn')]";
@@ -40,8 +40,16 @@ public class TopicsPage extends BasePage {
         return CREATE_NEW_TOPIC_CREATE_BUTTON;
     }
 
+    public static String getUniqueTopicName(String topicName) {
+        return getFromContext(topicName).toString();
+    }
+
     public static String getTopicCreationSuccessMessage() {
         return TOPIC_CREATION_SUCCESS_MESSAGE;
+    }
+
+    public static void saveUniqueTopicName(String topicName) {
+        putInContext("uniqueTopicName", generateUniqueName(topicName));
     }
 
     public static String getTopicCreationWarningMessage() {
@@ -64,6 +72,15 @@ public class TopicsPage extends BasePage {
         WebElement foundElement = driver.findElement(getByObject(getNewTopicNameInputField()));
         String uniqueTopicName = generateUniqueName(newTopicName);
         foundElement.sendKeys(uniqueTopicName);
+    }
+
+    public void enterNewUniqueTopicName(String topicName) {
+        wait.forElementToBeDisplayed(
+                10,
+                getByObject(getNewTopicNameInputField()),
+                "New Topic Name Input Field");
+        WebElement foundElement = driver.findElement(getByObject(getNewTopicNameInputField()));
+        foundElement.sendKeys(topicName);
     }
 
     public void enterNewTopicName(String newTopicName) {
@@ -95,15 +112,10 @@ public class TopicsPage extends BasePage {
         assertTrue(message, elementText.contains(TopicHasBeenCreated));
     }
 
-    public void assertWarningMessageOnTopicPageIsDisplayed(String TopicWithThisNameExists) {
-        wait.forElementToBeDisplayed(
-                15,
-                getByObject(getTopicCreationWarningMessage()),
-                "Warning pop-up message");
-        WebElement foundElement = driver.findElement(getByObject(getTopicCreationWarningMessage()));
-       String elementText = foundElement.getText();
-
-        String message = "Text'" + TopicWithThisNameExists + "' 'in " + getTopicCreationWarningMessage() + " is presented.";
-        assertTrue(message, elementText.contains(TopicWithThisNameExists));
+    public void generateNewUniqueTopicNameInPopUpWindow() {
+        if (!scenarioContext.containsKey("uniqueTopicName")) {
+            saveUniqueTopicName("topic");
         }
+        enterNewUniqueTopicName(getUniqueTopicName("uniqueTopicName"));
     }
+}

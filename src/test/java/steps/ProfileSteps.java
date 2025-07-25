@@ -10,14 +10,9 @@ public class ProfileSteps {
 
     ProfilePage profilePage = new ProfilePage();
 
-    @And("they click on the Avatar icon")
-    public void theyClickOnTheAvatarIconOnTheProfilePage() {
+    @And("they click the Avatar icon")
+    public void theyClickTheAvatarIconOnTheProfilePage() {
         profilePage.clickOnTheAvatarIconOnTheProfilePage();
-    }
-
-    @And("they click on the Delete button")
-    public void theyClickOnTheDeleteButtonOnTheProfilePage() {
-        profilePage.clickDeleteButtonOnProfilePage();
     }
 
     @Then("the Upload button is present")
@@ -59,8 +54,29 @@ public class ProfileSteps {
         profilePage.assertFirstNameOnProfilePageIsDisplayed(firstName);
     }
 
+    @Then("error on the Profile Page is displayed {string}")
+    public void errorOnTheProfilePageIsDisplayed(String errorMessage) {
+        profilePage.assertErrorMessageOnProfilePageIsDisplayed(errorMessage);
+    }
+
     @When("they delete profile picture")
     public void theyDeleteProfilePicture() {
         profilePage.deleteProfilePictureIfExists();
+    }
+
+    @And("a user is logged out of the account")
+    public void aUserIsLoggedOutOfTheAccount() {
+        profilePage.clickOnTheAvatarIconOnTheProfilePage();
+        profilePage.clickLogOutButton();
+    }
+
+    @When("they replace the profile picture")
+    public void theyReplaceTheProfilePicture() {
+            profilePage.replaceProfilePictureIfExists();
+    }
+
+    @Then("The Delete button on Profile page is displayed")
+    public void theDeleteButtonOnProfilePageIsDisplayed() {
+        profilePage.assertTheDeleteButtonOnTheProfilePageIsPresent();
     }
 }

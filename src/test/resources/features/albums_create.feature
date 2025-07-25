@@ -14,15 +14,39 @@ Feature: createAlbum
       | album name |
       | newAlbum   |
 
+
   Scenario Outline: User can not create a photo album without a unique name
     Given a user is logged into the account
     And they create new album with the name "<duplicate name>"
     And they see a success popup message "Album has been created"
     And they create new album with the name "<duplicate name>"
     And they see a warning popup message "Album with this name exists"
-    And they click Cancel button on Create New Button Window
+    And they click Cancel button on Create New Album Window
     And they delete album named "<duplicate name>" from Album Page
 
     Examples:
       | duplicate name |
-      | TEST123        |
+      | TEST124        |
+
+
+  Scenario Outline: User cancels creating a new album
+    Given a user is logged into the account
+    And they click the Albums button
+    And click Create new album button on Albums page
+    And they enter "<album name>" unique Album name in the pop up field in create new album window
+    And they click Cancel button on Create New Album Window
+    And they verify no album with the name "<album name>" was created
+
+    Examples:
+      | album name |
+      | alex_album |
+
+
+  Scenario: User can not create a photo album with the same name
+    Given a user is logged into the account
+    And they create new album with unique name
+    And they see a success popup message "Album has been created"
+    And they create new album with unique name
+    And they see a warning popup message "Album with this name exists"
+    And they click Cancel button on Create New Album Window
+    And they delete unique album from Album Page

@@ -3,8 +3,8 @@ package steps;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import pages.CreateCirclePage;
+import tools.PropertiesLoader;
 
 public class CreateCircleSteps {
 
@@ -13,15 +13,7 @@ public class CreateCircleSteps {
     @Given("a user opens Create Circle page")
     public void aUserOpensCreateCirclePage() {
         createCirclePage.openCreateCirclePage();
-    }
-
-    @When("they enter {string} in the Password field on the Create Circle page")
-    public void theyEnterTXAZdAsTInThePasswordFieldOnTheCreateCirclePage(String adminPassword) {
-        createCirclePage.enterAdminPasswordOnAdminPage(adminPassword);
-    }
-
-    @And("they click the Submit button on the Admin page")
-    public void theyClickTheSubmitButtonOnTheAdminPage() {
+        createCirclePage.enterAdminPasswordOnAdminPage(CreateCirclePage.getAdminPassword());
         createCirclePage.clickSubmitButton();
     }
 
@@ -60,8 +52,48 @@ public class CreateCircleSteps {
         createCirclePage.clickCreateButtonOnCreateCirclePage();
     }
 
+    @And("they click copy button on Create Circle page")
+    public void theyClickCopyButton() {
+        createCirclePage.clickCopyPasscodeButtonOnCreateCirclePage();
+    }
+
+    @And("they enter {string} in Passcode field on Create Circle page")
+    public void theyEnterInPasscodeFieldOnCreateCirclePage(String passcodeInput) {
+        createCirclePage.enterPasscodeOnCreateCirclePage(passcodeInput);
+    }
+
     @Then("error message pops-up {string} below First Name field on Create Circle page")
     public void errorMessagePopsUp(String error) {
         createCirclePage.assertFirstNameValidationMessageOnCreateCirclePage(error);
+    }
+
+    @Then("Passcode field contains {string}")
+    public void passcodeFieldContains(String passcode) {
+        createCirclePage.assertCreateCirclePasscodeFieldInput(passcode);
+    }
+
+    @And("they enter a new email in the email field on the Create Circle page")
+    public void theyEnterANewUserEmailInTheEmailFieldOnTheCreateCirclePage() {
+        createCirclePage.enterEmailOnCreateCirclePage(PropertiesLoader.getProperties("newCircleEmail"));
+    }
+
+    @And("they enter new password in the password field on the Create Circle page")
+    public void theyEnterNewPasswordInThePasswordFieldOnTheCreateCirclePage() {
+        createCirclePage.enterPasswordOnCreateCirclePage(PropertiesLoader.getProperties("newCirclePassword"));
+    }
+
+    @And("they paste input into first name field on Create Circle form")
+    public void theyPasteInputIntoFirstNameFieldOnCreateCircleForm() {
+        createCirclePage.pasteValueIntoFirstNameField();
+    }
+
+    @Then("Input in first name field is the same as input in passcode field")
+    public void inputInFirstNameFieldIsTheSameAsInputInPasscodeField() {
+        createCirclePage.assertCopiedPasscodeMatchesDisplayedValue();
+    }
+
+    @Then("error message pops-up {string} below Last Name field on Create Circle page")
+    public void errorMessagePopsUpBelowLastNameFieldOnCreateCirclePage(String error) {
+        createCirclePage.assertLastNameValidationMessageOnCreateCirclePage(error);
     }
 }

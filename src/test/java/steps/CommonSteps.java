@@ -76,7 +76,6 @@ public class CommonSteps {
         basePage.assertPopUpMessageIsDisplayed(PropertiesLoader.getProperties("successfulMessage"));
         basePage.assertPopUpMessageDescriptionIsDisplayed(messageText);
         basePage.closePopUpWindow();
-
     }
 
     @And("they see a warning popup message {string}")

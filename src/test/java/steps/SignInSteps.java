@@ -40,6 +40,11 @@ public class SignInSteps {
         signInPage.enterEmailOnSignInPage();
     }
 
+    @And("they enter new circle email in Email input field on Login page")
+    public void theyEnterNewCircleEmailInEmailInputFieldOnLoginPage() {
+        signInPage.enterEmailOnSignInPage(PropertiesLoader.getProperties("newCircleEmail"));
+    }
+
     @And("they enter {string} in Password input field on Login page")
     public void theyEnterInPasswordInputFieldOnLoginPage(String password) {
         signInPage.enterPasswordOnSignInPage(password);
@@ -58,8 +63,8 @@ public class SignInSteps {
     @Given("a user is logged into the account")
     public void aUserIsLoggedIntoTheAccount() {
         signInPage.openSignInPage();
-        signInPage.enterEmailOnSignInPage(PropertiesLoader.getProperties("email"));
-        signInPage.enterPasswordOnSignInPage(PropertiesLoader.getProperties("password"));
+        signInPage.enterEmailOnSignInPage(SignInPage.getExistingEmail());
+        signInPage.enterPasswordOnSignInPage(SignInPage.getValidPassword());
         signInPage.clickSignInButton();
         homePage.assertCircleNameIsDisplayedOnHomePage();
     }
@@ -86,6 +91,28 @@ public class SignInSteps {
 
     @And("they enter valid password in Password input field on Login page")
     public void theyEnterValidPasswordInPasswordInputFieldOnLoginPage() {
-        signInPage.enterPasswordOnSignInPage(PropertiesLoader.getProperties("password"));
+        signInPage.enterPasswordOnSignInPage(SignInPage.getValidPassword());
+    }
+
+    @And("they enter new circle password in Password input field on Login page")
+    public void theyEnterNewCirclePasswordInPasswordInputFieldOnLoginPage() {
+        signInPage.enterPasswordOnSignInPage(PropertiesLoader.getProperties("newCirclePassword"));
+    }
+
+    @And("another user {int} is logged into the account")
+    public void anotherUserIsLoggedIntoTheAccount(int userNumber) {
+        String email = "email";
+        String password = "password";
+        if (userNumber == 1) {
+            email = "email";
+            password = "password";
+        }else {
+            email += userNumber;
+            password += userNumber;
+        }
+        signInPage.enterEmailOnSignInPage(SignInPage.getExistingEmail());
+        signInPage.enterPasswordOnSignInPage(SignInPage.getValidPassword());
+        signInPage.clickSignInButton();
+        homePage.assertCircleNameIsDisplayedOnHomePage();
     }
 }

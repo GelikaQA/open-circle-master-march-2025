@@ -24,7 +24,11 @@ public class CreateCirclePage extends BasePage {
     private static final String CREATE_CIRCLE_LAST_NAME_VALIDATION_MESSAGE = "xpath=//div[label[@for='lastName']]//li";
 
     public static String getAdminPassword() {
-        return System.getenv("ADMIN_PASSWORD");
+        String adminPassword = System.getenv("ADMIN_PASSWORD");
+        if (adminPassword == null || adminPassword.isEmpty()) {
+            adminPassword = PropertiesLoader.getProperties("adminPassword");
+        }
+        return adminPassword;
     }
 
     public static String getAdminPasswordInputField() {

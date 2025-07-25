@@ -24,11 +24,19 @@ public class SignInPage extends BasePage {
     private static final String CHAT_PAGE_HEADER_LOCATOR = "xpath=//div[starts-with(@class,'header_organization')]";
 
     public static String getExistingEmail(){
-        return System.getenv("EMAIL");
+        String email = System.getenv("EMAIL");
+        if (email == null || email.isEmpty()) {
+            email = PropertiesLoader.getProperties("email");
+        }
+        return email;
     }
 
     public static String getValidPassword() {
-        return System.getenv("PASSWORD");
+        String password = System.getenv("PASSWORD");
+        if (password == null || password.isEmpty()) {
+            password = PropertiesLoader.getProperties("password");
+        }
+        return password;
     }
 
     public static String getEmailInputFieldLocator() {

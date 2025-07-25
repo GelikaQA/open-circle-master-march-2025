@@ -10,7 +10,7 @@ import tools.PropertiesLoader;
 import static pages.JoinCirclePage.getJoinCirclePasswordInputField;
 
 public class JoinCircleSteps {
-    
+
     JoinCirclePage joinCirclePage = new JoinCirclePage();
 
     @Given("a user opens Join Circle page")
@@ -41,6 +41,7 @@ public class JoinCircleSteps {
 
     @And("they enter {string} in the Email field on the Join Circle page")
     public void entersInTheEmailFieldOnTheJoinCirclePage(String email) {
+        email = email.replace("·", " ");
         joinCirclePage.enterEmailOnJoinCirclePage(email);
     }
 
@@ -49,7 +50,7 @@ public class JoinCircleSteps {
         joinCirclePage.enterPasswordOnJoinCirclePage(password);
     }
 
-    @And("They press button Join on the Join Circle page")
+    @And("they press button Join on the Join Circle page")
     public void theyPressButtonJoinOnTheJoinCirclePage() {
         joinCirclePage.clickJoinButtonOnJoinCirclePage();
 
@@ -75,12 +76,7 @@ public class JoinCircleSteps {
         joinCirclePage.copyHiddenPasswordOnJoinCirclePage();
     }
 
-    @And("they activated context menu on the Join Circle page")
-    public void theyActivatedContextMenuOnTheJoinCirclePage() {
-        joinCirclePage.openedContextMenuOnJoinCirclePage();
-    }
-
-    @Then("The {string} is not copied into clipboard")
+    @Then("the {string} is not copied into clipboard")
     public void thePasswordIsNotCopiedIntoClipboard(String password) {
         joinCirclePage.assertPasswordIsNotCopiedIntoClipboardFromPasswordField(password);
     }
@@ -90,16 +86,11 @@ public class JoinCircleSteps {
         joinCirclePage.enterValidPasswordInPasswordFieldOnJoinCirclePage(PropertiesLoader.getProperties("password"));
     }
 
-    @Then("The password is masked on Join Circle Page")
+    @Then("the password is masked on Join Circle Page")
     public void thePasswordIsMaskedOnJoinCirclePage() {
         joinCirclePage.assertPasswordIsMasked(getJoinCirclePasswordInputField());
     }
 
-// for next test case
-//    @And("they copy password from the context menu on the Join Circle page")
-//    public void theyCopyPasswordFromTheContextMenuOnTheJoinCirclePage() {
-//        joinCirclePage.CopyPasswordFromContextMenuOnJoinCirclePage();
-//    }
 @Then("under the field 'Last Name' the Warning message is displayed: {string}")
 public void warningMessageUnderLastNameFieldIsDisplayed(String expectedWarningMessage) {
     joinCirclePage.assertWarningMessageForLastNameOnJoinCirclePageIsDisplayed(expectedWarningMessage);
@@ -108,5 +99,9 @@ public void warningMessageUnderLastNameFieldIsDisplayed(String expectedWarningMe
     @Then("under the field Email the Warning message is displayed: {string}")
     public void warningMessageUnderEmailFieldIsDisplayed(String expectedWarningMessage) {
         joinCirclePage.assertWarningMessageUnderEmailFieldOnJoinCirclePageIsDisplayed(expectedWarningMessage);
+    }
+    @And("under the field 'Password' the Warning message is displayed: {string}")
+    public void WarningMessageUnderPasswordFieldIsDisplayed(String incorrectPasswordWarning) {
+        joinCirclePage.assertUnderPasswordFieldOnJoinCircleWarningMessageIsDisplayed(incorrectPasswordWarning);
     }
     }

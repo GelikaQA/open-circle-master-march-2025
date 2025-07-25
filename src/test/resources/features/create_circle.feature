@@ -65,9 +65,9 @@ Feature: Create Circle
 
 
   @DeleteCircleAndUser
-  Scenario: New circle is created, and user is logged into the newly created circle
+  Scenario Outline: New circle is created, and user is logged into the newly created circle
     Given a user opens Create Circle page
-    When they enter "TestCircle2025" in the Circle name field on the Create Circle page
+    When they enter "<circle name>" in the Circle name field on the Create Circle page
     And they click the Generate button on the Create Circle page
     And they enter "FirstName" in the First Name field on the Create Circle Page
     And they enter "LastName" in the Last Name field on the Create Circle page
@@ -78,4 +78,8 @@ Feature: Create Circle
     And they enter new circle email in Email input field on Login page
     And they enter new circle password in Password input field on Login page
     And they click Sign In button on Login page
-    And they verify that they are on Circle Home page
+    And they see a Circle Name "<circle name>" on Home Page
+
+    Examples:
+      | circle name    |
+      | TestCircle2025 |

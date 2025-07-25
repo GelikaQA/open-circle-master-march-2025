@@ -87,7 +87,7 @@ Feature: Change Password
     And they enter existing email in Email input field on Login page
     And they enter "<new password>" in Password input field on Login page
     Then they click Sign In button on Login page
-    And they verify that they are on Circle Home page
+    And they see a Circle Name on Home Page
     And they click Profile icon
     And they click Change password section
     And they enter "<new password>" in Current password input field on Change password page

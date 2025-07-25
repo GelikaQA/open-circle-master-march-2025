@@ -12,7 +12,7 @@ public class ProfileSteps {
 
     @And("they click the Avatar icon")
     public void theyClickTheAvatarIconOnTheProfilePage() {
-        profilePage.clickTheAvatarIconOnTheProfilePage();
+        profilePage.clickOnTheAvatarIconOnTheProfilePage();
     }
 
     @Then("the Upload button is present")
@@ -64,6 +64,12 @@ public class ProfileSteps {
         profilePage.deleteProfilePictureIfExists();
     }
 
+    @And("a user is logged out of the account")
+    public void aUserIsLoggedOutOfTheAccount() {
+        profilePage.clickOnTheAvatarIconOnTheProfilePage();
+        profilePage.clickLogOutButton();
+    }
+
     @When("they replace the profile picture")
     public void theyReplaceTheProfilePicture() {
             profilePage.replaceProfilePictureIfExists();
@@ -71,5 +77,6 @@ public class ProfileSteps {
 
     @Then("The Delete button on Profile page is displayed")
     public void theDeleteButtonOnProfilePageIsDisplayed() {
-        profilePage.assertTheDeleteButtonOnTheProfilePageIsPresent();}
+        profilePage.assertTheDeleteButtonOnTheProfilePageIsPresent();
     }
+}

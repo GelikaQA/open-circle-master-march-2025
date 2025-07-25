@@ -81,7 +81,7 @@ Feature: Change Password
     And they enter "<new password>" in New password input field on Change password page
     And they click Save button on Change password page
     And they see a success popup message "Password has been changed"
-    And they logged out from the account
+    And they click Log out button
     And they enter existing email in Email input field on Login page
     And they enter "<new password>" in Password input field on Login page
     Then they click Sign In button on Login page

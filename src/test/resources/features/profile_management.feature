@@ -38,6 +38,7 @@ Feature: profile_management
       | Mary1                            |
       | Namenamenamenamenamenamenamename |
 
+
   Scenario Outline: Updating last name with invalid input
     Given a user is logged into the account
     And they click the Avatar icon

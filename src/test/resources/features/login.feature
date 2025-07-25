@@ -1,5 +1,5 @@
 Feature: login
-//Test CI
+
   Scenario: Successful login with valid credentials
      Given a user opens Login page
      When they enter existing email in Email input field on Login page

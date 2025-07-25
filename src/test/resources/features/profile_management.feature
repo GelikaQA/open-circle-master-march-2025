@@ -53,3 +53,24 @@ Feature: profile_management
       | Smit h                            | Field accepts alphabetical char and digits, no special chars allowed |
       |                                   | Please input your Last Name                                          |
       | Namenamenamenamenamenamenamenamen | Last Name must be between 1 and 32                                   |
+
+  Scenario Outline: Updating First name with invalid input
+    Given a user is logged into the account
+    And they click the Avatar icon
+    When they clear First name field on the Profile page
+    And they enter "<First name>" in First name field on the Profile Page
+    And they click the Save button
+    Then error on the Profile Page is displayed "<error message>"
+
+    Examples:
+      | First name                        | error message                                                        |
+      | M@ry                              | Field accepts alphabetical char and digits, no special chars allowed |
+      | M ary                             | Field accepts alphabetical char and digits, no special chars allowed |
+      |                                   | Please input your First Name                                         |
+      | Namenamenamenamenamenamenamenamen | First Name must be between 1 and 32                                  |
+
+  Scenario: Replacing existing profile picture
+    Given a user is logged into the account
+    And they click the Avatar icon
+    When they replace the profile picture
+    Then The Delete button on Profile page is displayed

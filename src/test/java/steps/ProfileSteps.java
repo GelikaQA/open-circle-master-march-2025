@@ -69,4 +69,14 @@ public class ProfileSteps {
         profilePage.clickOnTheAvatarIconOnTheProfilePage();
         profilePage.clickLogOutButton();
     }
+
+    @When("they replace the profile picture")
+    public void theyReplaceTheProfilePicture() {
+            profilePage.replaceProfilePictureIfExists();
+    }
+
+    @Then("The Delete button on Profile page is displayed")
+    public void theDeleteButtonOnProfilePageIsDisplayed() {
+        profilePage.assertTheDeleteButtonOnTheProfilePageIsPresent();
+    }
 }

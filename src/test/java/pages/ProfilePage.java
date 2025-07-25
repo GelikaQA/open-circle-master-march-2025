@@ -25,6 +25,7 @@ public class ProfilePage extends BasePage {
     private static final String ERROR_MESSAGE_PROFILE_PAGE = "xpath=//div[@class='ant-form-item-explain-error']";
     private static final String OK_BUTTON = "xpath=//*[@type='button']/span[contains(text(), 'OK')]";
     private static final String LOG_OUT_BUTTON = "xpath=//div[contains(@class,'profile_logout')]";
+    private static final String PROFILE_PICTURE = "xpath=//span[@class='ant-upload']";
 
     public static String getProfileAvatarIcon() {
         return PROFILE_AVATAR_ICON;
@@ -74,7 +75,8 @@ public class ProfilePage extends BasePage {
         return PROFILE_VISIBLE_UPLOAD_BUTTON;
     }
 
-    //public void clickTheAvatarIconOnTheProfilePage() {
+    public static String getProfilePicture() { return PROFILE_PICTURE; }
+
     public static String getLogOutButton() {
         return LOG_OUT_BUTTON;
     }
@@ -103,7 +105,7 @@ public class ProfilePage extends BasePage {
         wait.forElementToBeDisplayed(10, getByObject(getOkButton()), "Ok Button");
         driver.findElement(getByObject(getOkButton())).click();
 
-        wait.forElementToBeDisplayed(10, getByObject(getProfileAvatarDeleteButton()), "Avatar Delete Button");
+        wait.forElementToBeDisplayed(20, getByObject(getProfileAvatarDeleteButton()), "Avatar Delete Button");
     }
 
     public void assertTheUploadButtonOnTheProfilePageIsPresent() {
@@ -184,5 +186,32 @@ public class ProfilePage extends BasePage {
         String message = "Text '" + errorMessage + "' 'in "  + " is not presented. 'Actual text is '"
                 + elementText + "'";
         assertTrue(message, elementText.contains(errorMessage));
+    }
+
+    public void replaceProfilePictureIfExists() {
+        try {
+            wait.forElementToBeDisplayed(3, getByObject(getProfilePicture()), "Profile Picture");
+            driver.findElement(getByObject(getProfilePicture())).click();
+            changeAvatarPhoto();
+        } catch (TimeoutException | NoSuchElementException e) {
+            uploadAvatarPhoto();
+            wait.forElementToBeDisplayed(10, getByObject(getProfilePicture()), "Profile Picture");
+            driver.findElement(getByObject(getProfilePicture())).click();
+            uploadAvatarPhoto();
+        }
+    }
+
+    private void changeAvatarPhoto() {
+        WebElement fileInput = driver.findElement(getByObject(getProfilePicture()));
+        fileInput.sendKeys(new File(PropertiesLoader.getProperties("fileJpg")).getAbsolutePath());
+
+        wait.forElementToBeDisplayed(10, getByObject(getOkButton()), "Ok Button");
+        driver.findElement(getByObject(getOkButton())).click();
+
+        wait.forElementToBeDisplayed(10, getByObject(getProfileAvatarDeleteButton()), "Avatar Delete Button");
+    }
+
+    public void assertTheDeleteButtonOnTheProfilePageIsPresent() {
+        wait.forPresenceOfElementLocated(10, getByObject(getProfileAvatarDeleteButton()), "Visible Delete Button");
     }
 }

@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.ChangePasswordPage;
+import pages.SignInPage;
 import tools.PropertiesLoader;
 
 import static tools.CommonTools.*;
@@ -51,7 +52,7 @@ public class ChangePasswordSteps {
 
     @And("they enter current valid password in Current password input field on Change password page")
     public void theyEnterCurrentValidPasswordInCurrentPasswordInputFieldOnChangePasswordPage() {
-        changePasswordPage.enterPasswordInCurrentPasswordInputFieldOnChangePasswordPage(PropertiesLoader.getProperties("password"));
+        changePasswordPage.enterPasswordInCurrentPasswordInputFieldOnChangePasswordPage(SignInPage.getValidPassword());
     }
 
     @Then("they see an {string} under the New password input field on Change password page")

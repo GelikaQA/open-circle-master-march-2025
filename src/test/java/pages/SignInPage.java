@@ -23,6 +23,14 @@ public class SignInPage extends BasePage {
     private static final String LOGIN_PAGE_MESSAGE_POP_UP_USER_NOT_FOUND = "xpath=//div[@class='ant-notification-notice-description']/span[text()='User not found.']";
     private static final String CHAT_PAGE_HEADER_LOCATOR = "xpath=//div[starts-with(@class,'header_organization')]";
 
+    public static String getExistingEmail(){
+        return System.getenv("EMAIL");
+    }
+
+    public static String getValidPassword() {
+        return System.getenv("PASSWORD");
+    }
+
     public static String getEmailInputFieldLocator() {
         return EMAIL_INPUT_FIELD_LOCATOR;
     }
@@ -64,7 +72,7 @@ public class SignInPage extends BasePage {
 
     public void enterEmailOnSignInPage() {
         wait.forElementToBeDisplayed(10, getByObject(getEmailInputFieldLocator()), "Email input field");
-        driver.findElement(getByObject(getEmailInputFieldLocator())).sendKeys(PropertiesLoader.getProperties("email"));
+        driver.findElement(getByObject(getEmailInputFieldLocator())).sendKeys(getExistingEmail());
     }
 
     public void enterPasswordOnSignInPage(String email) {

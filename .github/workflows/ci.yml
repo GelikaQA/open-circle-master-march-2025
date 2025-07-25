@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: Java CI with Selenium Tests
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,5 +22,34 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Build and run tests
-        run: mvn clean test
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Install Chrome browser
+        run: sudo apt-get update && sudo apt-get install -y google-chrome-stable
+
+      - name: Install ChromeDriver
+        uses: nanasess/setup-chromedriver@v1
+        with:
+          chromedriver-version: 'latest'
+
+      - name: Run tests with Xvfb (headless display)
+        env:
+          EMAIL: ${{ secrets.EMAIL }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          EMAIL2: ${{ secrets.EMAIL2 }}
+          PASSWORD2: ${{ secrets.PASSWORD2 }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          FILE_JPG_PATH: ${{ secrets.FILE_JPG_PATH }}
+          NEW_CIRCLE_EMAIL: ${{ secrets.NEW_CIRCLE_EMAIL }}
+          NEW_CIRCLE_PASSWORD: ${{ secrets.NEW_CIRCLE_PASSWORD }}
+          DISPLAY: :99
+        run: |
+          sudo apt-get install -y xvfb
+          Xvfb :99 -screen 0 1280x1024x24 &
+          mvn clean test

@@ -5,6 +5,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.ChangePasswordPage;
+import pages.SignInPage;
+import pages.ProfilePage;
 import tools.PropertiesLoader;
 
 import static tools.CommonTools.*;
@@ -12,6 +14,7 @@ import static tools.CommonTools.*;
 public class ChangePasswordSteps {
 
     ChangePasswordPage changePasswordPage = new ChangePasswordPage();
+    ProfilePage profilePage = new ProfilePage();
 
     @Given("they click Profile icon")
     public void theyClickProfileIcon() {
@@ -51,7 +54,7 @@ public class ChangePasswordSteps {
 
     @And("they enter current valid password in Current password input field on Change password page")
     public void theyEnterCurrentValidPasswordInCurrentPasswordInputFieldOnChangePasswordPage() {
-        changePasswordPage.enterPasswordInCurrentPasswordInputFieldOnChangePasswordPage(PropertiesLoader.getProperties("password"));
+        changePasswordPage.enterPasswordInCurrentPasswordInputFieldOnChangePasswordPage(SignInPage.getValidPassword());
     }
 
     @Then("they see an {string} under the New password input field on Change password page")
@@ -59,13 +62,13 @@ public class ChangePasswordSteps {
         changePasswordPage.assertErrorMessageUnderNewPasswordField (invalidNewPassword);
     }
 
-    @And("they logged out from the account")
+    @And("they click Log out button")
     public void theyLoggedOutFromTheAccount() {
-        changePasswordPage.clickLogOutButton();
+        profilePage.clickLogOutButton();
     }
 
     @And("they enter existing password in New password input field on Change password page")
     public void theyEnterExistingPasswordInNewPasswordInputFieldOnChangePasswordPage() {
-        changePasswordPage.enterExistingPasswordInNewPasswordInputFieldOnChangePasswordPage(PropertiesLoader.getProperties("password"));
+        changePasswordPage.enterExistingPasswordInNewPasswordInputFieldOnChangePasswordPage(SignInPage.getValidPassword());
     }
 }

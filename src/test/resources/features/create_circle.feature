@@ -1,6 +1,5 @@
 Feature: Create Circle
 
-
   Scenario Outline: First name field error message validation
 
     Given a user opens Create Circle page
@@ -18,6 +17,7 @@ Feature: Create Circle
       | TestCircleThree | TestFirstNameThatIsExtremelyLongF | TestLastName | testemail@test.com  | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
       | CircleTester    |                                   | TestLastName | testing123@test.com | Password123   | This input is required.                                                                        |
       | TestCircleThree | TestFirstName@                    | TestLastName | testemail@test.com  | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
+
 
   Scenario Outline: Last name field error message validation
 
@@ -37,6 +37,8 @@ Feature: Create Circle
       | CircleTester    | TestFirstName |                                              | testing123@test.com | Password123   | This input is required.                                                                        |
       | TestCircleThree | TestFirstName | TestLastName@                                | testemail@test.com  | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
 
+
+    @DeleteUser
   Scenario Outline: Attempting to enter input into passcode field
     Given a user opens Create Circle page
     And they enter "<passcode>" in Passcode field on Create Circle page
@@ -44,6 +46,7 @@ Feature: Create Circle
     Examples:
       | passcode |
       | Abcd12@  |
+
 
   Scenario: Pushing copy button to copy generated data in passcode field
     Given a user opens Create Circle page
@@ -61,10 +64,10 @@ Feature: Create Circle
         | Generate PassCode firstly |
 
 
-  @DeleteCircle
-  Scenario: New circle is created, and user is logged into the newly created circle
+  @DeleteCircleAndUser
+  Scenario Outline: New circle is created, and user is logged into the newly created circle
     Given a user opens Create Circle page
-    When they enter "TestCircle2025" in the Circle name field on the Create Circle page
+    When they enter "<circle name>" in the Circle name field on the Create Circle page
     And they click the Generate button on the Create Circle page
     And they enter "FirstName" in the First Name field on the Create Circle Page
     And they enter "LastName" in the Last Name field on the Create Circle page
@@ -75,4 +78,8 @@ Feature: Create Circle
     And they enter new circle email in Email input field on Login page
     And they enter new circle password in Password input field on Login page
     And they click Sign In button on Login page
-    And they verify that they are on Circle Home page
+    And they see a Circle Name "<circle name>" on Home Page
+
+    Examples:
+      | circle name    |
+      | TestCircle2025 |

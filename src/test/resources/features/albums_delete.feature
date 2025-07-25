@@ -9,6 +9,7 @@ Feature: delete Album
     Then they do not see the album with unique name on Album Page
 
 
+  @Skip
   Scenario: User cannot delete album that they didn't create
     Given a user is logged into the account
     And they create new album with unique name

@@ -19,6 +19,7 @@ Feature: join_circle
       | JoinCircle  | ab66cd   | Victoria   | Palees    | test@test.com | Password1 | Incorrect Passcode. Please try again |
       | JoinCircle  | 999999   | Victoria   | Palees    | test@test.com | Password1 | Incorrect Passcode. Please try again |
 
+
   Scenario Outline: Show warning When First Name exceeds 32 characters or if less than 1 character long
     Given a user opens Join Circle page
     When they enter "<circle name>" in the field Circle Name on the Join Circle page
@@ -31,11 +32,11 @@ Feature: join_circle
     Then they are still on the Join Circle page as the registration was not completed
     And under the field First Name the Warning message is displayed: "<error message>"
 
-
     Examples:
       | circle name | passcode | first name                               | last name | email         | password  | error message                                                                                 |
       | JoinCircle  | 55566    | VictoriaVictoriaVictoriaVictoriaVictoria | Palees    | test@test.com | Password1 | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 character |
       | JoinCircle  | 55566    |                                          | Palees    | test@test.com | Password1 | This input is required                                                                        |
+
 
   Scenario Outline: The password should not be copied from context menu
     Given a user opens Join Circle page
@@ -50,6 +51,7 @@ Feature: join_circle
   Scenario: The password is masked
     Given a user opens Join Circle page
     Then the password is masked on Join Circle Page
+
 
   Scenario Outline: Verify Last Name field validations
     Given a user opens Join Circle page
@@ -67,6 +69,7 @@ Feature: join_circle
       | circleName | passcode | firstName | lastName                          | email         | password  | warningMessage                                                                                 |
       | JoinCircle | 555666   | Victoria  |                                   | test@test.com | Password1 | This input is required.                                                                        |
       | JoinCircle | 555666   | Victoria  | PaleesPaleesPaleesPaleesPaleesPal | test@test.com | Password1 | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
+
 
   Scenario Outline: Error message for invalid "Email"
     Given a user opens Join Circle page

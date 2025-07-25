@@ -14,6 +14,7 @@ Feature: createAlbum
       | album name |
       | newAlbum   |
 
+
   Scenario Outline: User can not create a photo album without a unique name
     Given a user is logged into the account
     And they create new album with the name "<duplicate name>"
@@ -27,6 +28,7 @@ Feature: createAlbum
       | duplicate name |
       | TEST124        |
 
+
   Scenario Outline: User cancels creating a new album
     Given a user is logged into the account
     And they click the Albums button
@@ -38,6 +40,7 @@ Feature: createAlbum
     Examples:
       | album name |
       | alex_album |
+
 
   Scenario: User can not create a photo album with the same name
     Given a user is logged into the account

@@ -13,7 +13,7 @@ public class CreateCircleSteps {
     @Given("a user opens Create Circle page")
     public void aUserOpensCreateCirclePage() {
         createCirclePage.openCreateCirclePage();
-        createCirclePage.enterAdminPasswordOnAdminPage(PropertiesLoader.getProperties("adminPassword"));
+        createCirclePage.enterAdminPasswordOnAdminPage(CreateCirclePage.getAdminPassword());
         createCirclePage.clickSubmitButton();
     }
 

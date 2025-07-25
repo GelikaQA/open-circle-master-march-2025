@@ -9,9 +9,16 @@ public class CreateTopicSteps {
 
     TopicsPage topicsPage = new TopicsPage();
 
-    @When("they lick New Topic Plus Button")
+    @When("they click New Topic Plus Button")
     public void ClickCreateTopicPlusButton() {
         topicsPage.clickCreateTopicPlusButton();
+    }
+
+    @When("they create a new topic")
+    public void CreateNewTopic() {
+        topicsPage.clickCreateTopicPlusButton();
+        topicsPage.generateNewUniqueTopicNameInPopUpWindow();
+        topicsPage.clickCreateButtonOnTopicPage();
     }
 
     @And("they enter {string} in new topic name input field")

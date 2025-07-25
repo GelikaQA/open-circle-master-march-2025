@@ -37,6 +37,40 @@ Feature: Create Circle
       | CircleTester    | TestFirstName |                                              | testing123@test.com | Password123   | This input is required.                                                                        |
       | TestCircleThree | TestFirstName | TestLastName@                                | testemail@test.com  | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
 
+  Scenario Outline: Email field error message validation
+
+    Given a user opens Create Circle page
+    And they enter "<circle name>" in the Circle name field on the Create Circle page
+    And they click the Generate button on the Create Circle page
+    And they enter "<first name>" in the First Name field on the Create Circle Page
+    And they enter "<last name>" in the Last Name field on the Create Circle page
+    And they enter "<email>" in the email field on the Create Circle page
+    And they enter "<user password>" in the password field on the Create Circle page
+    And they click the Create button on the Create Circle page
+    Then error message pops-up "<error message>" for Email field on Create Circle page
+
+    Examples:
+      | circle name | first name | last name | email                                | user password | error message                                   |
+      | oval        | fname      | lname     | nameataddressdotcom                  | Aa111111      | Invalid email address, limited to 32 characters |
+      | oval        | fname      | lname     | namenamenamenamenamename@address.com | Aa111111      | Invalid email address, limited to 32 characters |
+      | oval        | fname      | lname     |                                      | Aa111111      | This input is required.                         |
+
+
+  Scenario Outline: Email field pop-up error message validation
+
+    Given a user opens Create Circle page
+    And they enter "<circle name>" in the Circle name field on the Create Circle page
+    And they click the Generate button on the Create Circle page
+    And they enter "<first name>" in the First Name field on the Create Circle Page
+    And they enter "<last name>" in the Last Name field on the Create Circle page
+    And they enter "<email>" in the email field on the Create Circle page
+    And they enter "<user password>" in the password field on the Create Circle page
+    And they click the Create button on the Create Circle page
+    Then they see a warning popup message "<error popup>"
+
+    Examples:
+      | circle name | first name | last name | email              | user password | error popup                        |
+      | oval        | fname      | lname     | name@address.com   | Aa111111      | A user with such an email exists.  |
 
     @DeleteUser
   Scenario Outline: Attempting to enter input into passcode field

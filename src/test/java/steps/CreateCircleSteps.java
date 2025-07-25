@@ -96,4 +96,9 @@ public class CreateCircleSteps {
     public void errorMessagePopsUpBelowLastNameFieldOnCreateCirclePage(String error) {
         createCirclePage.assertLastNameValidationMessageOnCreateCirclePage(error);
     }
+
+    @Then("error message pops-up {string} for Email field on Create Circle page")
+    public void errorMessagePopsUpForEmailFieldOnCreateCirclePage(String error) {
+        createCirclePage.assertEmailValidationMessageOnCreateCirclePage(error);
+    }
 }

@@ -65,7 +65,6 @@ Feature: join_circle
     Then they are still on the Join Circle page as the registration was not completed
     And under the field 'Last Name' the Warning message is displayed: "<warningMessage>"
 
-    @Skip
     Examples:
       | circleName | passcode | firstName | lastName | email         | password  | warningMessage          |
       | JoinCircle | 555666   | Victoria  |          | test@test.com | Password1 | This input is required. |

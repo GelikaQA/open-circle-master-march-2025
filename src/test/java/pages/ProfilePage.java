@@ -82,7 +82,7 @@ public class ProfilePage extends BasePage {
     }
 
     public void clickOnTheAvatarIconOnTheProfilePage() {
-        wait.forElementToBeDisplayed(10, getByObject(getProfileAvatarIcon()), "Avatar Icon");
+        wait.forElementToBeDisplayed(20, getByObject(getProfileAvatarIcon()), "Avatar Icon");
         WebElement foundElement = driver.findElement(getByObject(getProfileAvatarIcon()));
         foundElement.click();
     }

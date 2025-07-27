@@ -66,9 +66,8 @@ Feature: join_circle
     And under the field 'Last Name' the Warning message is displayed: "<warningMessage>"
 
     Examples:
-      | circleName | passcode | firstName | lastName | email         | password  | warningMessage          |
-      | JoinCircle | 555666   | Victoria  |          | test@test.com | Password1 | This input is required. |
-    @Skip
+      | circleName | passcode | firstName | lastName                          | email         | password  | warningMessage                                                                                 |
+      | JoinCircle | 555666   | Victoria  |                                   | test@test.com | Password1 | This input is required.                                                                        |
       | JoinCircle | 555666   | Victoria  | PaleesPaleesPaleesPaleesPaleesPal | test@test.com | Password1 | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
 
 

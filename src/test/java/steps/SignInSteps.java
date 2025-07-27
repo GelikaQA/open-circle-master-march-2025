@@ -99,19 +99,10 @@ public class SignInSteps {
         signInPage.enterPasswordOnSignInPage(PropertiesLoader.getProperties("newCirclePassword"));
     }
 
-    @And("another user {int} is logged into the account")
-    public void anotherUserIsLoggedIntoTheAccount(int userNumber) {
-        String email = "email";
-        String password = "password";
-        if (userNumber == 1) {
-            email = "email";
-            password = "password";
-        }else {
-            email += userNumber;
-            password += userNumber;
-        }
-        signInPage.enterEmailOnSignInPage(SignInPage.getExistingEmail());
-        signInPage.enterPasswordOnSignInPage(SignInPage.getValidPassword());
+    @And("another user is logged into the account")
+    public void anotherUserIsLoggedIntoTheAccount() {
+        signInPage.enterEmailOnSignInPage(SignInPage.getSecondUserEmail());
+        signInPage.enterPasswordOnSignInPage(SignInPage.getSecondUserPassword());
         signInPage.clickSignInButton();
         homePage.assertCircleNameIsDisplayedOnHomePage();
     }

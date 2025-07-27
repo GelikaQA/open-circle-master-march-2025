@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static tools.CommonTools.getFromContext;
+import static tools.CommonTools.sleep;
 
 public class TearDown {
     private final WebDriver driver;
@@ -26,6 +27,10 @@ public class TearDown {
 
     @After(order = 1)
     public void afterScenario(Scenario scenario) {
+        if (scenario.isFailed()) {
+            sleep(2000);
+            saveScreenshotsForScenario(scenario);
+        }
         this.driver.quit();
     }
 

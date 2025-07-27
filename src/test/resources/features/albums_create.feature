@@ -11,8 +11,8 @@ Feature: createAlbum
     And they delete album named "<album name>" from Album Page
 
     Examples:
-      | album name |
-      | newAlbum   |
+      | album name  |
+      | uniqueAlbum |
 
 
   Scenario Outline: User can not create a photo album without a unique name

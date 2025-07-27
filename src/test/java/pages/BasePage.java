@@ -6,6 +6,8 @@ import org.openqa.selenium.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.junit.Assert.*;
 import static tools.CommonTools.getByObject;
@@ -184,4 +186,30 @@ public class BasePage {
         assertEquals("The password field is not masked. Can't find attribute in tag 'type=password' ",
                 "password", typeAttribute);
     }
+
+    private WebElement findStripeFrame() {
+        List<WebElement> iframes = driver.findElements(getByObject("xpath=//iframe[starts-with(@name, '__privateStripeFrame')]"));
+        if (!iframes.isEmpty()) {
+            return iframes.get(0);
+        }
+        throw new NoSuchElementException("No Stripe iframe found");
+    }
+
+    public void switchToStripeFrame() {
+        driver.switchTo().frame(findStripeFrame());
+    }
+
+    public void switchToDefaultContent() {
+        driver.switchTo().defaultContent();
+    }
+
+//    Example of iframe automation
+//    @When("the user enters credit card info")
+//    public void enterCreditCardInfo() {
+//        paymentPage.switchToStripeFrame();
+//        driver.findElement(By.name("cardnumber")).sendKeys("4242 4242 4242 4242");
+//        driver.findElement(By.name("exp-date")).sendKeys("12/34");
+//        driver.findElement(By.name("cvc")).sendKeys("123");
+//        paymentPage.switchToDefaultContent();
+//    }
 }

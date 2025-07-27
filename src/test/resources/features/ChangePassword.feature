@@ -2,7 +2,7 @@ Feature: Change Password
 
   Scenario Outline: Leaving the current password field empty triggers a warning message
     Given a user is logged into the account
-    And they click Profile icon
+    And they click the Avatar icon
     When they click Change password section
     And they enter "" in Current password input field on Change password page
     And they enter "<password>" in New password input field on Change password page
@@ -16,7 +16,7 @@ Feature: Change Password
 
   Scenario Outline:  Leaving the new password field empty triggers a warning message
     Given a user is logged into the account
-    And they click Profile icon
+    And they click the Avatar icon
     When they click Change password section
     And they enter "<valid password>" in Current password input field on Change password page
     When they enter "" in New password input field on Change password page
@@ -30,7 +30,7 @@ Feature: Change Password
 
   Scenario Outline: Submitting an invalid current password displays an error message
     Given a user is logged into the account
-    And they click Profile icon
+    And they click the Avatar icon
     When they click Change password section
     And they enter "<invalid password>" in Current password input field on Change password page
     And they enter "<valid password>" in New password input field on Change password page
@@ -46,7 +46,7 @@ Feature: Change Password
   @changePassword
   Scenario Outline: Success message is displayed on clicking Save with valid current passwords
     Given a user is logged into the account
-    And they click Profile icon
+    And they click the Avatar icon
     When they click Change password section
     And they enter current valid password in Current password input field on Change password page
     And they enter "<new password>" in New password input field on Change password page
@@ -62,7 +62,7 @@ Feature: Change Password
 
   Scenario Outline: Submitting an invalid new password displays an error message
     Given a user is logged into the account
-    And they click Profile icon
+    And they click the Avatar icon
     When they click Change password section
     And they enter current valid password in Current password input field on Change password page
     And they enter "<invalid password>" in New password input field on Change password page
@@ -77,7 +77,7 @@ Feature: Change Password
   @Skip
   Scenario Outline: the user re-login with the new password
     Given a user is logged into the account
-    And they click Profile icon
+    And they click the Avatar icon
     When they click Change password section
     And they enter current valid password in Current password input field on Change password page
     And they enter "<new password>" in New password input field on Change password page

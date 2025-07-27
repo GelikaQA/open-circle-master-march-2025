@@ -55,6 +55,7 @@ Feature: Create Circle
     And they paste input into first name field on Create Circle form
     Then Input in first name field is the same as input in passcode field
 
+
   Scenario Outline:  Pushing copy button while passcode field is empty
       Given a user opens Create Circle page
       And they click copy button on Create Circle page

@@ -53,7 +53,6 @@ public class JoinCircleSteps {
     @And("they press button Join on the Join Circle page")
     public void theyPressButtonJoinOnTheJoinCirclePage() {
         joinCirclePage.clickJoinButtonOnJoinCirclePage();
-
     }
 
     @Then("they are still on the Join Circle page as the registration was not completed")
@@ -91,17 +90,18 @@ public class JoinCircleSteps {
         joinCirclePage.assertPasswordIsMasked(getJoinCirclePasswordInputField());
     }
 
-@Then("under the field 'Last Name' the Warning message is displayed: {string}")
-public void warningMessageUnderLastNameFieldIsDisplayed(String expectedWarningMessage) {
+    @Then("under the field 'Last Name' the Warning message is displayed: {string}")
+    public void warningMessageUnderLastNameFieldIsDisplayed(String expectedWarningMessage) {
     joinCirclePage.assertWarningMessageForLastNameOnJoinCirclePageIsDisplayed(expectedWarningMessage);
-}
+    }
 
     @Then("under the field Email the Warning message is displayed: {string}")
     public void warningMessageUnderEmailFieldIsDisplayed(String expectedWarningMessage) {
         joinCirclePage.assertWarningMessageUnderEmailFieldOnJoinCirclePageIsDisplayed(expectedWarningMessage);
     }
+
     @And("under the field 'Password' the Warning message is displayed: {string}")
     public void WarningMessageUnderPasswordFieldIsDisplayed(String incorrectPasswordWarning) {
         joinCirclePage.assertUnderPasswordFieldOnJoinCircleWarningMessageIsDisplayed(incorrectPasswordWarning);
     }
-    }
+}

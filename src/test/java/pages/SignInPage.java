@@ -13,13 +13,12 @@ public class SignInPage extends BasePage {
     private static final String PASSWORD_INPUT_FIELD_LOCATOR = "id=password";
     private static final String WARNING_MESSAGE_LOCATOR = "xpath=(.//*[normalize-space(text()) and normalize-space(.)='Warning'])[1]/following::span[1]";
     private static final String LOGIN_PAGE_EMAIL_FIELD_MESSAGE_INVALID_EMAIL = "xpath=//ul[contains(@class,'form_text_danger')]/li[contains(text(),'Invalid email address')]";
-    private static final String LOGIN_PAGE_MESSAGE_INVALID_PASSWORD = "xpath=//li[contains(text(),'Field should contain at least one upper-case')]";
+    private static final String LOGIN_PAGE_PASSWORD_FIELD_MESSAGE = "xpath=//input[@name='password']/following-sibling::ul/li";
     private static final String SIGN_IN_MESSAGE_POPUP_INVALID_EMAIL_PASSWORD = "xpath=//span[text()='Invalid email or password.']";
     private static final String LOGIN_PAGE_H1_HEADER = "xpath=//h1[text()='Sign in']";
     private static final String LOGIN_PAGE_LINK_TO_JOIN_CIRCLE = "xpath=//a[contains(@href,'join')]";
     private static final String LOGIN_PAGE_LINK_TO_CREATE_CIRCLE = "xpath=//a[contains(@href,'create')]";
     private static final String LOGIN_PAGE_EMAIL_FIELD_MESSAGE_THIS_INPUT_IS_REQUIRED = "xpath=//input[@name='email']/following-sibling::ul/li[contains(text(),'This input is required.')]";
-    private static final String LOGIN_PAGE_PASSWORD_FIELD_MESSAGE_THIS_INPUT_IS_REQUIRED = "xpath=//input[@name='password']/following-sibling::ul/li[contains(text(),'This input is required.')]";
     private static final String LOGIN_PAGE_MESSAGE_POP_UP_USER_NOT_FOUND = "xpath=//div[@class='ant-notification-notice-description']/span[text()='User not found.']";
     private static final String CHAT_PAGE_HEADER_LOCATOR = "xpath=//div[starts-with(@class,'header_organization')]";
 
@@ -78,7 +77,7 @@ public class SignInPage extends BasePage {
     }
 
     public static String getLoginPageMessageInvalidPassword(){
-        return LOGIN_PAGE_MESSAGE_INVALID_PASSWORD;
+        return LOGIN_PAGE_PASSWORD_FIELD_MESSAGE;
     }
     public void openSignInPage() {
         driver.get(PropertiesLoader.getProperties("signInUrl"));
@@ -129,8 +128,13 @@ public class SignInPage extends BasePage {
     }
 
     public void assertLoginPagePasswordFieldMessageInvalidPassword(String InvalidPassword) {
-        wait.forElementToBeDisplayed(10, getByObject(getLoginPageMessageInvalidPassword()), "Element");
+        wait.forElementToBeDisplayed(10, getByObject(getLoginPageMessageInvalidPassword()), "Error message under password field");
         WebElement foundElement = driver.findElement(getByObject(getLoginPageMessageInvalidPassword()));
         assertTrue(foundElement.isDisplayed());
+        String elementText = foundElement.getText();
+
+        String message = "Text '" + InvalidPassword + "' in " + getLoginPageMessageInvalidPassword() + " is not presented. 'Actual text is '" + elementText + "'";
+        assertTrue(message, elementText.contains(InvalidPassword));
+
     }
 }

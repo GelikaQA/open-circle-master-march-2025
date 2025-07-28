@@ -26,7 +26,7 @@ Feature: createAlbum
 
     Examples:
       | duplicate name |
-      | TEST124        |
+      | TestAlbum01    |
 
 
   Scenario Outline: User cancels creating a new album

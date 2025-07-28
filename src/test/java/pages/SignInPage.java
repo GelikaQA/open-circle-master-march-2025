@@ -128,7 +128,7 @@ public class SignInPage extends BasePage {
     }
 
     public void assertLoginPagePasswordFieldMessageInvalidPassword(String InvalidPassword) {
-        wait.forElementToBeDisplayed(10, getByObject(getLoginPageMessageInvalidPassword()), "Field should contain at least one upper-case, at least one lower-case and at least one digit and be between 8 and 20");
+        wait.forElementToBeDisplayed(10, getByObject(getLoginPageMessageInvalidPassword()), "Error message under password field");
         WebElement foundElement = driver.findElement(getByObject(getLoginPageMessageInvalidPassword()));
         assertTrue(foundElement.isDisplayed());
         String elementText = foundElement.getText();

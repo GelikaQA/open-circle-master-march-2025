@@ -46,6 +46,14 @@ public class ChangePasswordPage extends BasePage {
         return WARNING_MESSAGE_ON_CHANGE_PASSWORD_PAGE;
     }
 
+    public static String getCurrentPasswordHiddenByDots() {
+        return CURRENT_PASSWORD_VISIBILITY_TOGGLE;
+    }
+
+    public static String getNewPasswordHiddenByDots() {
+        return NEW_PASSWORD_VISIBILITY_TOGGLE;
+    }
+
     public void clickProfileIcon() {
         wait.forElementToBeDisplayed(20,
                 getByObject(getProfileIcon()),
@@ -112,5 +120,21 @@ public class ChangePasswordPage extends BasePage {
         WebElement foundElement = driver.findElement(getByObject(getNewPasswordInputFieldOnChangePasswordPage()));
         foundElement.sendKeys(password);
         putInContext("newPassword", password);
+    }
+
+    public void verifyCurrentPasswordVisibilityToggleEnabledByDefaultOnChangePasswordPage() {
+        wait.forElementToBeDisplayed(10,
+                getByObject(getCurrentPasswordHiddenByDots()),
+                "Visibility toggle");
+        WebElement toggleElement = driver.findElement(getByObject(getCurrentPasswordHiddenByDots()));
+        assertTrue("Visibility toggle should be enabled by default", toggleElement.isDisplayed());
+    }
+
+    public void verifyNewPasswordVisibilityToggleEnabledByDefaultOnChangePasswordPage() {
+        wait.forElementToBeDisplayed(10,
+                getByObject(getNewPasswordHiddenByDots()),
+                "Visibility toggle");
+        WebElement toggleElement = driver.findElement(getByObject(getNewPasswordHiddenByDots()));
+        assertTrue("Visibility toggle should be enabled by default", toggleElement.isDisplayed());
     }
 }

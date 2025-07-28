@@ -71,4 +71,15 @@ public class ChangePasswordSteps {
     public void theyEnterExistingPasswordInNewPasswordInputFieldOnChangePasswordPage() {
         changePasswordPage.enterExistingPasswordInNewPasswordInputFieldOnChangePasswordPage(SignInPage.getValidPassword());
     }
+
+
+    @Then("they verify that current password visibility toggle enable by default on Change password page")
+    public void theyVerifyThatCurrentPasswordVisibilityToggleEnableByDefaultOnChangePasswordPage() {
+        changePasswordPage.verifyCurrentPasswordVisibilityToggleEnabledByDefaultOnChangePasswordPage();
+    }
+
+    @Then("they verify that new password visibility toggle enable by default on Change password page")
+    public void theyVerifyThatNewPasswordVisibilityToggleEnableByDefaultOnChangePasswordPage() {
+        changePasswordPage.verifyNewPasswordVisibilityToggleEnabledByDefaultOnChangePasswordPage();
+    }
 }

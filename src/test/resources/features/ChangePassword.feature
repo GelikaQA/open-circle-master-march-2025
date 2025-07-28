@@ -97,3 +97,23 @@ Feature: Change Password
     Examples:
      |new password |
      | Example122  |
+
+
+  Scenario: password visibility toggle enable by default on current password field
+    Given a user is logged into the account
+    And they click Profile icon
+    When they click Change password section
+    And they enter current valid password in Current password input field on Change password page
+    Then they verify that current password visibility toggle enable by default on Change password page
+
+
+  Scenario Outline: password visibility toggle enable by default on new password field
+    Given a user is logged into the account
+    And they click Profile icon
+    When they click Change password section
+    And they enter "<valid password>" in New password input field on Change password page
+    Then they verify that new password visibility toggle enable by default on Change password page
+
+    Examples:
+      | valid password |
+      | Kamaliya1234   |

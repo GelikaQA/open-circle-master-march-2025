@@ -16,11 +16,6 @@ public class ChangePasswordSteps {
     ChangePasswordPage changePasswordPage = new ChangePasswordPage();
     ProfilePage profilePage = new ProfilePage();
 
-    @Given("they click Profile icon")
-    public void theyClickProfileIcon() {
-        changePasswordPage.clickProfileIcon();
-    }
-
     @When("they click Change password section")
     public void theyClickChangePasswordSection() {
         changePasswordPage.clickChangePasswordSection();
@@ -73,13 +68,13 @@ public class ChangePasswordSteps {
     }
 
 
-    @Then("they verify that current password visibility toggle enable by default on Change password page")
-    public void theyVerifyThatCurrentPasswordVisibilityToggleEnableByDefaultOnChangePasswordPage() {
+    @Then("they verify that current password visibility toggle enabled by default on Change password page")
+    public void theyVerifyThatCurrentPasswordVisibilityToggleEnabledByDefaultOnChangePasswordPage() {
         changePasswordPage.verifyCurrentPasswordVisibilityToggleEnabledByDefaultOnChangePasswordPage();
     }
 
-    @Then("they verify that new password visibility toggle enable by default on Change password page")
-    public void theyVerifyThatNewPasswordVisibilityToggleEnableByDefaultOnChangePasswordPage() {
+    @Then("they verify that new password visibility toggle enabled by default on Change password page")
+    public void theyVerifyThatNewPasswordVisibilityToggleEnabledByDefaultOnChangePasswordPage() {
         changePasswordPage.verifyNewPasswordVisibilityToggleEnabledByDefaultOnChangePasswordPage();
     }
 }

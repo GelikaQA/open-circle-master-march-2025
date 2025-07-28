@@ -101,4 +101,9 @@ public class CreateCircleSteps {
     public void errorMessagePopsUpForEmailFieldOnCreateCirclePage(String error) {
         createCirclePage.assertEmailValidationMessageOnCreateCirclePage(error);
     }
+
+    @Then("error message pops-up {string} for Password field on Create Circle page")
+    public void errorMessagePopsUpForPasswordFieldOnCreateCirclePage(String error) {
+        createCirclePage.assertPasswordValidationMessageOnCreateCirclePage(error);
+    }
 }

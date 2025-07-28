@@ -16,11 +16,6 @@ public class ChangePasswordSteps {
     ChangePasswordPage changePasswordPage = new ChangePasswordPage();
     ProfilePage profilePage = new ProfilePage();
 
-    @Given("they click Profile icon")
-    public void theyClickProfileIcon() {
-        changePasswordPage.clickProfileIcon();
-    }
-
     @When("they click Change password section")
     public void theyClickChangePasswordSection() {
         changePasswordPage.clickChangePasswordSection();
@@ -70,5 +65,16 @@ public class ChangePasswordSteps {
     @And("they enter existing password in New password input field on Change password page")
     public void theyEnterExistingPasswordInNewPasswordInputFieldOnChangePasswordPage() {
         changePasswordPage.enterExistingPasswordInNewPasswordInputFieldOnChangePasswordPage(SignInPage.getValidPassword());
+    }
+
+
+    @Then("they verify that current password visibility toggle enabled by default on Change password page")
+    public void theyVerifyThatCurrentPasswordVisibilityToggleEnabledByDefaultOnChangePasswordPage() {
+        changePasswordPage.verifyCurrentPasswordVisibilityToggleEnabledByDefaultOnChangePasswordPage();
+    }
+
+    @Then("they verify that new password visibility toggle enabled by default on Change password page")
+    public void theyVerifyThatNewPasswordVisibilityToggleEnabledByDefaultOnChangePasswordPage() {
+        changePasswordPage.verifyNewPasswordVisibilityToggleEnabledByDefaultOnChangePasswordPage();
     }
 }

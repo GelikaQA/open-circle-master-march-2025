@@ -88,7 +88,7 @@ Feature: Change Password
     And they enter "<new password>" in Password input field on Login page
     Then they click Sign In button on Login page
     And they see a Circle Name on Home Page
-    And they click Profile icon
+    And they click the Avatar icon
     And they click Change password section
     And they enter "<new password>" in Current password input field on Change password page
     And they enter existing password in New password input field on Change password page
@@ -97,3 +97,23 @@ Feature: Change Password
     Examples:
      |new password |
      | Example122  |
+
+
+  Scenario: password visibility toggle enabled by default on current password field
+    Given a user is logged into the account
+    And they click the Avatar icon
+    When they click Change password section
+    And they enter current valid password in Current password input field on Change password page
+    Then they verify that current password visibility toggle enabled by default on Change password page
+
+
+  Scenario Outline: password visibility toggle enabled by default on new password field
+    Given a user is logged into the account
+    And they click the Avatar icon
+    When they click Change password section
+    And they enter "<valid password>" in New password input field on Change password page
+    Then they verify that new password visibility toggle enabled by default on Change password page
+
+    Examples:
+      | valid password |
+      | Kamaliya1234   |

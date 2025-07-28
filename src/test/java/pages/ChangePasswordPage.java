@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 import static tools.CommonTools.*;
 
 public class ChangePasswordPage extends BasePage {
-    private static final String PROFILE_ICON = "xpath=//span[@class='ant-avatar-string']";
     private static final String CHANGE_PASSWORD_SECTION = "xpath=//span[text()='Change password']";
     private static final String CURRENT_PASSWORD_INPUT_FIELD = "id=oldPassword";
     private static final String NEW_PASSWORD_INPUT_FIELD = "id=newPassword";
@@ -20,10 +19,6 @@ public class ChangePasswordPage extends BasePage {
 
     public static String getNewInvalidPasswordErrorMessage() {
         return NEW_INVALID_PASSWORD_ERROR_MESSAGE;
-    }
-
-    public static String getProfileIcon() {
-        return PROFILE_ICON;
     }
 
     public static String getChangePasswordSection() {
@@ -46,11 +41,12 @@ public class ChangePasswordPage extends BasePage {
         return WARNING_MESSAGE_ON_CHANGE_PASSWORD_PAGE;
     }
 
-    public void clickProfileIcon() {
-        wait.forElementToBeDisplayed(20,
-                getByObject(getProfileIcon()),
-                "Profile icon");
-        driver.findElement(getByObject(getProfileIcon())).click();
+    public static String getCurrentPasswordHiddenByDots() {
+        return CURRENT_PASSWORD_VISIBILITY_TOGGLE;
+    }
+
+    public static String getNewPasswordHiddenByDots() {
+        return NEW_PASSWORD_VISIBILITY_TOGGLE;
     }
 
     public void clickChangePasswordSection() {
@@ -112,5 +108,21 @@ public class ChangePasswordPage extends BasePage {
         WebElement foundElement = driver.findElement(getByObject(getNewPasswordInputFieldOnChangePasswordPage()));
         foundElement.sendKeys(password);
         putInContext("newPassword", password);
+    }
+
+    public void verifyCurrentPasswordVisibilityToggleEnabledByDefaultOnChangePasswordPage() {
+        wait.forElementToBeDisplayed(10,
+                getByObject(getCurrentPasswordHiddenByDots()),
+                "Visibility toggle");
+        WebElement toggleElement = driver.findElement(getByObject(getCurrentPasswordHiddenByDots()));
+        assertTrue("Visibility toggle should be enabled by default", toggleElement.isDisplayed());
+    }
+
+    public void verifyNewPasswordVisibilityToggleEnabledByDefaultOnChangePasswordPage() {
+        wait.forElementToBeDisplayed(10,
+                getByObject(getNewPasswordHiddenByDots()),
+                "Visibility toggle");
+        WebElement toggleElement = driver.findElement(getByObject(getNewPasswordHiddenByDots()));
+        assertTrue("Visibility toggle should be enabled by default", toggleElement.isDisplayed());
     }
 }

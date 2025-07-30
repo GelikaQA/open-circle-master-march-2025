@@ -13,6 +13,9 @@ public class AlbumsPage extends BasePage {
     private static final String CLOSE_BUTTON_NEW_ALBUM_WINDOW = "xpath=//span[@role='img']";
     private static final String CANCEL_BUTTON_NEW_ALBUM_WINDOW = "xpath=//span[text()='Cancel']";
     private static final String CREATE_BUTTON_NEW_ALBUM_WINDOW = "xpath=//span[text()='Create']";
+    private static final String ERROR_MESSAGE = "id=form_in_modal_title_help";
+
+    public static String getErrorMessage() { return ERROR_MESSAGE; }
 
     public static String getAlbumsButtonOnHomePage() {
         return ALBUMS_BUTTON_ON_HOME_PAGE;
@@ -161,5 +164,13 @@ public class AlbumsPage extends BasePage {
 
     public void assertBucketIconIsDisplayed(boolean canDelete){
         assertBucketIconIsDisplayed(getUniqueAlbumName("uniqueAlbumName"), canDelete);
+    }
+
+
+    public void assertAnErrorMessageIsDisplayed(String errorMessage) {
+        wait.forElementToBeDisplayed(10,
+                getByObject(getErrorMessage()), "Error Message");
+        String elementText = driver.findElement(getByObject(getErrorMessage())).getText();
+        assertTrue(elementText.contains(errorMessage));
     }
 }

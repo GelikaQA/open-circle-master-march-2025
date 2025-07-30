@@ -72,7 +72,7 @@ Feature: Create Circle
       | circle name | first name | last name | email              | user password | error popup                        |
       | oval        | fname      | lname     | name@address.com   | Aa111111      | A user with such an email exists.  |
 
-    @DeleteUser
+
   Scenario Outline: Attempting to enter input into passcode field
     Given a user opens Create Circle page
     And they enter "<passcode>" in Passcode field on Create Circle page

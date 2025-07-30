@@ -24,6 +24,7 @@ public class CreateCirclePage extends BasePage {
     private static final String CREATE_CIRCLE_LAST_NAME_VALIDATION_MESSAGE = "xpath=//div[label[@for='lastName']]//li";
     private static final String CREATE_CIRCLE_EMAIL_VALIDATION_MESSAGE = "xpath=//div[label[@for='email']]//li";
     private static final String CREATE_CIRCLE_PASSWORD_VALIDATION_MESSAGE = "xpath=//div[label[@for='password']]//li";
+    private static final String CREATE_CIRCLE_CIRCLE_NAME_VALIDATION_MESSAGE = "xpath=//div[label[@for='circleId']]//li";
 
     public static String getAdminPassword() {
         String adminPassword = System.getenv("ADMIN_PASSWORD");
@@ -107,6 +108,10 @@ public class CreateCirclePage extends BasePage {
 
     public static String getCreateCirclePasswordValidationMessage() {
         return CREATE_CIRCLE_PASSWORD_VALIDATION_MESSAGE;
+    }
+
+    public static String getCreateCircleCircleNameValidationMessage() {
+        return CREATE_CIRCLE_CIRCLE_NAME_VALIDATION_MESSAGE;
     }
 
     public void openCreateCirclePage() {
@@ -294,4 +299,15 @@ public class CreateCirclePage extends BasePage {
         assertTrue(message, elementText.contains(error));
     }
 
+    public void assertCircleNameValidationMessageOnCreateCirclePage(String error) {
+        wait.forElementToBeDisplayed(
+                10,
+                getByObject(getCreateCircleCircleNameValidationMessage()),
+                "Error message");
+        WebElement foundElement = driver.findElement(getByObject(getCreateCircleCircleNameValidationMessage()));
+        String elementText = foundElement.getText();
+
+        String message = "Text '" + error + "' 'in " + getCreateCircleCircleNameValidationMessage() + " is presented.";
+        assertTrue(message, elementText.contains(error));
+    }
 }

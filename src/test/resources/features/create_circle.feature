@@ -94,6 +94,26 @@ Feature: Create Circle
       | TestCircleThree | TestFirstName | TestLastName | testing123@test.com | Password1$Password1$Password1$ | Field should contain at least one upper-case, at least one lower-case and at least one digit and be between 8 and 20 |
       | TestCircleThree | TestFirstName | TestLastName | testing123@test.com |                                | This input is required.                                                                                              |
 
+
+  Scenario Outline: Circle name field error message validation
+
+    Given a user opens Create Circle page
+    And they enter "<circle name>" in the Circle name field on the Create Circle page
+    And they click the Generate button on the Create Circle page
+    And they enter "<first name>" in the First Name field on the Create Circle Page
+    And they enter "<last name>" in the Last Name field on the Create Circle page
+    And they enter "<email>" in the email field on the Create Circle page
+    And they enter "<user password>" in the password field on the Create Circle page
+    And they click the Create button on the Create Circle page
+    Then error message pops-up "<error message>" for Circle name field on Create Circle page
+
+    Examples:
+      | circle name                       | first name    | last name    | email               | user password | error message                                                                                  |
+      |                                   | TestFirstName | TestLastName | testing123@test.com | Password123   | This input is required.                                                                        |
+      | TestCircleNameTestCircleName12345 | TestFirstName | TestLastName | testing123@test.com | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
+      | TestCircleName@#$                 | TestFirstName | TestLastName | testing123@test.com | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
+
+
   @DeleteUser
   Scenario Outline: Attempting to enter input into passcode field
     Given a user opens Create Circle page

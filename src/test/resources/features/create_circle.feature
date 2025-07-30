@@ -1,7 +1,6 @@
 Feature: Create Circle
 
   Scenario Outline: First name field error message validation
-
     Given a user opens Create Circle page
     And they enter "<circle name>" in the Circle name field on the Create Circle page
     And they click the Generate button on the Create Circle page
@@ -20,7 +19,6 @@ Feature: Create Circle
 
 
   Scenario Outline: Last name field error message validation
-
     Given a user opens Create Circle page
     And they enter "<circle name>" in the Circle name field on the Create Circle page
     And they click the Generate button on the Create Circle page
@@ -37,8 +35,8 @@ Feature: Create Circle
       | CircleTester    | TestFirstName |                                              | testing123@test.com | Password123   | This input is required.                                                                        |
       | TestCircleThree | TestFirstName | TestLastName@                                | testemail@test.com  | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
 
-  Scenario Outline: Email field error message validation
 
+  Scenario Outline: Email field error message validation
     Given a user opens Create Circle page
     And they enter "<circle name>" in the Circle name field on the Create Circle page
     And they click the Generate button on the Create Circle page
@@ -57,7 +55,6 @@ Feature: Create Circle
 
 
   Scenario Outline: Email field pop-up error message validation
-
     Given a user opens Create Circle page
     And they enter "<circle name>" in the Circle name field on the Create Circle page
     And they click the Generate button on the Create Circle page
@@ -74,7 +71,6 @@ Feature: Create Circle
 
 
   Scenario Outline: Password field error message validation
-
     Given a user opens Create Circle page
     And they enter "<circle name>" in the Circle name field on the Create Circle page
     And they click the Generate button on the Create Circle page
@@ -96,7 +92,6 @@ Feature: Create Circle
 
 
   Scenario Outline: Circle name field error message validation
-
     Given a user opens Create Circle page
     And they enter "<circle name>" in the Circle name field on the Create Circle page
     And they click the Generate button on the Create Circle page
@@ -114,7 +109,6 @@ Feature: Create Circle
       | TestCircleName@#$                 | TestFirstName | TestLastName | testing123@test.com | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
 
 
-  @DeleteUser
   Scenario Outline: Attempting to enter input into passcode field
     Given a user opens Create Circle page
     And they enter "<passcode>" in Passcode field on Create Circle page

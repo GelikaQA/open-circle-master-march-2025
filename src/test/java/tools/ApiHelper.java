@@ -3,6 +3,7 @@ package tools;
 import io.restassured.filter.cookie.CookieFilter;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import pages.SignInPage;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static tools.CommonTools.getFromContext;
 
 public class ApiHelper {
     private final CookieFilter cookieFilter = new CookieFilter();
@@ -51,6 +53,12 @@ public class ApiHelper {
     }
 
     public void deleteCircle() {
+        String csrfToken = getCsrfToken();
+        login(
+                PropertiesLoader.getProperties("newCircleEmail"),
+                PropertiesLoader.getProperties("newCirclePassword"),
+                csrfToken);
+
         given()
                 .filter(cookieFilter)
                 .baseUri(PropertiesLoader.getProperties("apiBaseUrl"))
@@ -64,6 +72,12 @@ public class ApiHelper {
     }
 
     public String getUserIdByEmail(String email) {
+        String csrfToken = getCsrfToken();
+        login(
+                PropertiesLoader.getProperties("newCircleEmail"),
+                PropertiesLoader.getProperties("newCirclePassword"),
+                csrfToken);
+
         Response response =
         given()
                 .filter(cookieFilter)
@@ -94,6 +108,38 @@ public class ApiHelper {
                 .body(requestBody)
         .when()
                 .delete(PropertiesLoader.getProperties("users.endpoint") )
+        .then()
+                .statusCode(200);
+    }
+
+    public void changeUserPassword() {
+        String oldPassword = getFromContext("newPassword").toString();
+        String encodedOldPassword = Base64.getEncoder()
+                .encodeToString(oldPassword.getBytes(StandardCharsets.UTF_8));
+
+        String newPassword = SignInPage.getValidPassword();
+        String encodedNewPassword = Base64.getEncoder()
+                .encodeToString(newPassword.getBytes(StandardCharsets.UTF_8));
+
+        String csrfToken = getCsrfToken();
+        login(
+                SignInPage.getExistingEmail(),
+                oldPassword,
+                csrfToken);
+
+        String requestBody = "{\n" +
+                "  \"oldPassword\": \"" + encodedOldPassword + "\",\n" +
+                "  \"newPassword\": \"" + encodedNewPassword + "\"\n" +
+                "}";
+
+        given()
+                .filter(cookieFilter)
+                .baseUri(PropertiesLoader.getProperties("apiBaseUrl"))
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body(requestBody)
+        .when()
+                .put(PropertiesLoader.getProperties("changePassword.endpoint"))
         .then()
                 .statusCode(200);
     }

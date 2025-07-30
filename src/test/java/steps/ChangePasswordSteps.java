@@ -1,13 +1,11 @@
 package steps;
 
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.ChangePasswordPage;
 import pages.SignInPage;
 import pages.ProfilePage;
-import tools.PropertiesLoader;
 
 import static tools.CommonTools.*;
 
@@ -41,7 +39,7 @@ public class ChangePasswordSteps {
         changePasswordPage.assertPopUpMessageDescriptionIsDisplayed(message);
     }
 
-    @Then("success message password has been changed displayed")
+    @Then("success message Password Has Been Changed displayed")
     public void verifySuccessMessage() {
         changePasswordPage.assertWarningMessagePopsUp("Password has been changed");
         putInContext("passwordWasChanged", true);

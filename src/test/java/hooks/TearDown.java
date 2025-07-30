@@ -6,7 +6,6 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import pages.ChangePasswordPage;
 import tools.ApiHelper;
 import tools.PropertiesLoader;
 
@@ -39,11 +38,6 @@ public class TearDown {
         ApiHelper api = new ApiHelper();
 
         try {
-            String csrfToken = api.getCsrfToken();
-            api.login(
-                    PropertiesLoader.getProperties("newCircleEmail"),
-                    PropertiesLoader.getProperties("newCirclePassword"),
-                    csrfToken);
             api.deleteCircle();
 
             String userId = api.getUserIdByEmail(PropertiesLoader.getProperties("newCircleEmail"));
@@ -63,12 +57,6 @@ public class TearDown {
         ApiHelper api = new ApiHelper();
 
         try {
-            String csrfToken = api.getCsrfToken();
-            api.login(
-                    PropertiesLoader.getProperties("newCircleEmail"),
-                    PropertiesLoader.getProperties("newCirclePassword"),
-                    csrfToken);
-
             String userId = api.getUserIdByEmail(PropertiesLoader.getProperties("newCircleEmail"));
             if (userId != null) {
                 api.deleteUserById(userId);
@@ -82,15 +70,12 @@ public class TearDown {
     }
 
     @After(value = "@changePassword", order = 3)
-    public void revertPasswordIfChanged() {
-        ChangePasswordPage changePasswordPage = new ChangePasswordPage();
-
+    public void changeUserPassword() {
         Boolean passwordWasChanged = (Boolean) getFromContext("passwordWasChanged");
         if (passwordWasChanged != null && passwordWasChanged) {
             try {
-                changePasswordPage.enterPasswordInCurrentPasswordInputFieldOnChangePasswordPage((String) getFromContext("newPassword"));
-                changePasswordPage.enterPasswordInNewPasswordInputFieldOnChangePasswordPage(PropertiesLoader.getProperties("password"));
-                changePasswordPage.clickSaveButtonOnChangePasswordPage();
+                ApiHelper api = new ApiHelper();
+                api.changeUserPassword();
             } catch (Exception e) {
                 System.err.println("Failed to revert password: " + e.getMessage());
             }

@@ -1,7 +1,6 @@
 Feature: Create Circle
 
   Scenario Outline: First name field error message validation
-
     Given a user opens Create Circle page
     And they enter "<circle name>" in the Circle name field on the Create Circle page
     And they click the Generate button on the Create Circle page
@@ -20,7 +19,6 @@ Feature: Create Circle
 
 
   Scenario Outline: Last name field error message validation
-
     Given a user opens Create Circle page
     And they enter "<circle name>" in the Circle name field on the Create Circle page
     And they click the Generate button on the Create Circle page
@@ -37,8 +35,8 @@ Feature: Create Circle
       | CircleTester    | TestFirstName |                                              | testing123@test.com | Password123   | This input is required.                                                                        |
       | TestCircleThree | TestFirstName | TestLastName@                                | testemail@test.com  | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
 
-  Scenario Outline: Email field error message validation
 
+  Scenario Outline: Email field error message validation
     Given a user opens Create Circle page
     And they enter "<circle name>" in the Circle name field on the Create Circle page
     And they click the Generate button on the Create Circle page
@@ -57,7 +55,6 @@ Feature: Create Circle
 
 
   Scenario Outline: Email field pop-up error message validation
-
     Given a user opens Create Circle page
     And they enter "<circle name>" in the Circle name field on the Create Circle page
     And they click the Generate button on the Create Circle page
@@ -71,6 +68,45 @@ Feature: Create Circle
     Examples:
       | circle name | first name | last name | email              | user password | error popup                        |
       | oval        | fname      | lname     | name@address.com   | Aa111111      | A user with such an email exists.  |
+
+
+  Scenario Outline: Password field error message validation
+    Given a user opens Create Circle page
+    And they enter "<circle name>" in the Circle name field on the Create Circle page
+    And they click the Generate button on the Create Circle page
+    And they enter "<first name>" in the First Name field on the Create Circle Page
+    And they enter "<last name>" in the Last Name field on the Create Circle page
+    And they enter "<email>" in the email field on the Create Circle page
+    And they enter "<user password>" in the password field on the Create Circle page
+    And they click the Create button on the Create Circle page
+    Then error message pops-up "<error message>" for Password field on Create Circle page
+
+    Examples:
+      | circle name     | first name    | last name    | email               | user password                  | error message                                                                                                        |
+      | TestCircleThree | TestFirstName | TestLastName | testing123@test.com | password1                      | Field should contain at least one upper-case, at least one lower-case and at least one digit and be between 8 and 20 |
+      | TestCircleThree | TestFirstName | TestLastName | testing123@test.com | PASSWORD1                      | Field should contain at least one upper-case, at least one lower-case and at least one digit and be between 8 and 20 |
+      | TestCircleThree | TestFirstName | TestLastName | testing123@test.com | password                       | Field should contain at least one upper-case, at least one lower-case and at least one digit and be between 8 and 20 |
+      | TestCircleThree | TestFirstName | TestLastName | testing123@test.com | Passw1$                        | Field should contain at least one upper-case, at least one lower-case and at least one digit and be between 8 and 20 |
+      | TestCircleThree | TestFirstName | TestLastName | testing123@test.com | Password1$Password1$Password1$ | Field should contain at least one upper-case, at least one lower-case and at least one digit and be between 8 and 20 |
+      | TestCircleThree | TestFirstName | TestLastName | testing123@test.com |                                | This input is required.                                                                                              |
+
+
+  Scenario Outline: Circle name field error message validation
+    Given a user opens Create Circle page
+    And they enter "<circle name>" in the Circle name field on the Create Circle page
+    And they click the Generate button on the Create Circle page
+    And they enter "<first name>" in the First Name field on the Create Circle Page
+    And they enter "<last name>" in the Last Name field on the Create Circle page
+    And they enter "<email>" in the email field on the Create Circle page
+    And they enter "<user password>" in the password field on the Create Circle page
+    And they click the Create button on the Create Circle page
+    Then error message pops-up "<error message>" for Circle name field on Create Circle page
+
+    Examples:
+      | circle name                       | first name    | last name    | email               | user password | error message                                                                                  |
+      |                                   | TestFirstName | TestLastName | testing123@test.com | Password123   | This input is required.                                                                        |
+      | TestCircleNameTestCircleName12345 | TestFirstName | TestLastName | testing123@test.com | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
+      | TestCircleName@#$                 | TestFirstName | TestLastName | testing123@test.com | Password123   | Field accepts alphabetical char and digits, no special chars allowed, limited to 32 characters |
 
 
   Scenario Outline: Attempting to enter input into passcode field

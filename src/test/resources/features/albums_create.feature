@@ -53,15 +53,15 @@ Feature: createAlbum
     And they click the Albums button
     And click Create new album button on Albums page
     And they enter "<album name>" unique Album name in the pop up field in create new album window
-    And they see an error message "<error message>"
+    And they see an error message under album name input "<error message>"
     And they click Cancel button on Create New Album Window
     And they verify no album with the name "<album name>" was created
 
     Examples:
-      | album name             |            error message          |
-      | alex_album123456123451 |Album Name must be between 1 and 20|
-      | alex album             |Album Name cannot contain spaces or most punctuation|
-      | alex,.!                |Album Name cannot contain spaces or most punctuation|
+      | album name             | error message                                        |
+      | alex_album123456123451 | Album Name must be between 1 and 20                  |
+      | alex album             | Album Name cannot contain spaces or most punctuation |
+      | alex,.!                | Album Name cannot contain spaces or most punctuation |
 
 
 

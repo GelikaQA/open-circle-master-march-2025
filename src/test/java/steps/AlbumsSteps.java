@@ -103,8 +103,8 @@ public class AlbumsSteps {
         albumsPage.assertAlbumIsNotDisplayed();
     }
 
-    @And("they see an error message {string}")
-    public void theySeeAnErrorMessage(String errorMessage) {
-        albumsPage.assertAnErrorMessageIsDisplayed(errorMessage);
+    @And("they see an error message under album name input {string}")
+    public void theySeeErrorMessageUnderAlbumNameInput(String errorMessage) {
+        albumsPage.assertErrorMessageUnderAlbumNameInputIsDisplayed(errorMessage);
     }
 }

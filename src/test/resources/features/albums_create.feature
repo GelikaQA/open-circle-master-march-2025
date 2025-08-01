@@ -50,3 +50,23 @@ Feature: createAlbum
     And they see a warning popup message "Album with this name exists"
     And they click Cancel button on Create New Album Window
     And they delete unique album from Album Page
+
+  Scenario Outline: User can not create a photo album with a name longer than 20 symbols
+    Given a user is logged into the account
+    And they click the Albums button
+    And click Create new album button on Albums page
+    And they enter "<album name>" unique Album name in the pop up field in create new album window
+    And they see an error message under album name input "<error message>"
+    And they click Cancel button on Create New Album Window
+    And they verify no album with the name "<album name>" was created
+
+    Examples:
+      | album name             | error message                                        |
+      | alex_album123456123451 | Album Name must be between 1 and 20                  |
+      | alex album             | Album Name cannot contain spaces or most punctuation |
+      | alex,.!                | Album Name cannot contain spaces or most punctuation |
+
+
+
+
+

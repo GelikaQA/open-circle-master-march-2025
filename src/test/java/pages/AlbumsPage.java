@@ -13,7 +13,7 @@ public class AlbumsPage extends BasePage {
     private static final String CLOSE_BUTTON_NEW_ALBUM_WINDOW = "xpath=//span[@role='img']";
     private static final String CANCEL_BUTTON_NEW_ALBUM_WINDOW = "xpath=//span[text()='Cancel']";
     private static final String CREATE_BUTTON_NEW_ALBUM_WINDOW = "xpath=//span[text()='Create']";
-    private static final String ERROR_MESSAGE_UNDER_ALBUM_NAME_INPUT = "id=form_in_modal_title_help";
+    private static final String ERROR_MESSAGE_UNDER_ALBUM_NAME_INPUT = "xpath=//*[@class='ant-form-item-explain-error']";
 
     public static String getErrorMessageUnderAlbumNameInput() { return ERROR_MESSAGE_UNDER_ALBUM_NAME_INPUT; }
 

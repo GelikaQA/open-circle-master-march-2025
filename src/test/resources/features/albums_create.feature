@@ -51,6 +51,7 @@ Feature: createAlbum
     And they click Cancel button on Create New Album Window
     And they delete unique album from Album Page
 
+
   Scenario Outline: User can not create a photo album with a name longer than 20 symbols
     Given a user is logged into the account
     And they click the Albums button
@@ -67,6 +68,16 @@ Feature: createAlbum
       | alex,.!                | Album Name cannot contain spaces or most punctuation |
 
 
+  Scenario: User can upload a photo to the album they created
+    Given a user is logged into the account
+    And they create new album with unique name
+    And they see a success popup message "Album has been created"
+    And they assert the unique album name is present on Album Page
+    And they open unique album from Album Page
+    When they upload a photo to the unique album
+    Then they see the uploaded photo in the album
+    And they open page Albums
+    And they delete unique album from Album Page
 
 
 

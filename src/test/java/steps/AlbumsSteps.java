@@ -2,7 +2,9 @@ package steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import pages.AlbumsPage;
+import tools.PropertiesLoader;
 
 public class AlbumsSteps {
 
@@ -44,7 +46,7 @@ public class AlbumsSteps {
     }
 
     @And("they delete unique album from Album Page")
-    public void deleteAlbumNamed() {
+    public void deleteUniqueAlbum() {
         albumsPage.clickDeleteUniqueAlbum();
     }
 
@@ -106,5 +108,25 @@ public class AlbumsSteps {
     @And("they see an error message under album name input {string}")
     public void theySeeErrorMessageUnderAlbumNameInput(String errorMessage) {
         albumsPage.assertErrorMessageUnderAlbumNameInputIsDisplayed(errorMessage);
+    }
+
+    @And("they open unique album from Album Page")
+    public void theyOpenUniqueAlbumFromAlbumPage() {
+        albumsPage.clickOpenUniqueAlbum();
+    }
+
+    @When("they upload a photo to the unique album")
+    public void theyUploadAPhotoToTheUniqueAlbum() {
+        albumsPage.uploadPhotoToTheUniqueAlbum();
+    }
+
+    @Then("they see the uploaded photo in the album")
+    public void theySeeTheUploadedPhotoInTheAlbum() {
+        albumsPage.assertPhotoIsDisplayed();
+    }
+
+    @And("they open page Albums")
+    public void openPageAlbums() {
+        albumsPage.openAlbumsPage();
     }
 }

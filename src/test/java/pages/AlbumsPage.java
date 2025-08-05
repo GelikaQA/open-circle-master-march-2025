@@ -1,6 +1,9 @@
 package pages;
 
 import org.openqa.selenium.WebElement;
+import tools.PropertiesLoader;
+
+import java.io.File;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -14,6 +17,10 @@ public class AlbumsPage extends BasePage {
     private static final String CANCEL_BUTTON_NEW_ALBUM_WINDOW = "xpath=//span[text()='Cancel']";
     private static final String CREATE_BUTTON_NEW_ALBUM_WINDOW = "xpath=//span[text()='Create']";
     private static final String ERROR_MESSAGE_UNDER_ALBUM_NAME_INPUT = "xpath=//*[@class='ant-form-item-explain-error']";
+    private static final String UPLOAD_PHOTOS_BUTTON = "xpath=//span[@class='ant-upload']";
+    private static final String UPLOAD_PHOTOS_INPUT = "xpath=//span[@class='ant-upload']/input";
+
+    private static final String PHOTO_CARD_LIST = "xpath=//div[contains(@class,'album_card')]";
 
     public static String getErrorMessageUnderAlbumNameInput() { return ERROR_MESSAGE_UNDER_ALBUM_NAME_INPUT; }
 
@@ -41,6 +48,18 @@ public class AlbumsPage extends BasePage {
         return CANCEL_BUTTON_NEW_ALBUM_WINDOW;
     }
 
+    public static String getUploadPhotosButton() {
+        return UPLOAD_PHOTOS_BUTTON;
+    }
+
+    public static String getUploadPhotosInput() {
+        return UPLOAD_PHOTOS_INPUT;
+    }
+
+    public static String getPhotoCardList() {
+        return PHOTO_CARD_LIST;
+    }
+
     public static String deleteAlbumLocator(String albumTitle) {
         return "xpath=//div[contains(@class,'albums_text')]/descendant::b[text()='" +
                 albumTitle + "']/../../div/div[2]";
@@ -48,6 +67,11 @@ public class AlbumsPage extends BasePage {
 
     public static String selectAlbumLocator(String albumTitle) {
         return "xpath=//div[contains(@class,'albums_text')]/b[text()='" + albumTitle + "']";
+    }
+
+    public static String openAlbumLocator(String albumTitle) {
+        return "xpath=//div[contains(@class,'albums_text')]/descendant::b[text()='" +
+                albumTitle + "']/../../div/div[1]";
     }
 
     public static String albumIconsListLocator(String albumTitle) {
@@ -171,5 +195,32 @@ public class AlbumsPage extends BasePage {
                 getByObject(getErrorMessageUnderAlbumNameInput()), "Error Message");
         String elementText = driver.findElement(getByObject(getErrorMessageUnderAlbumNameInput())).getText();
         assertTrue(elementText.contains(errorMessage));
+    }
+
+    public void clickOpenUniqueAlbum(){
+        wait.forElementToBeDisplayed(10, getByObject(selectAlbumLocator(getUniqueAlbumName("uniqueAlbumName"))), "Select Album");
+        WebElement foundElement = driver.findElement(getByObject(openAlbumLocator((getUniqueAlbumName("uniqueAlbumName")))));
+        foundElement.click();
+        wait.forElementToBeNotDisplayed(10, getByObject(selectAlbumLocator((getUniqueAlbumName("uniqueAlbumName")))), "Select Album");
+    }
+
+    public void uploadPhotoToTheUniqueAlbum() {
+        wait.forElementToBeDisplayed(10, getByObject(getUploadPhotosButton()), "Upload Photo Button");
+        WebElement fileUpload = driver.findElement(getByObject(getUploadPhotosInput()));
+        fileUpload.sendKeys(new File(PropertiesLoader.getProperties("fileJpg")).getAbsolutePath());
+        wait.forElementToBeDisplayed(10,getByObject(ProfilePage.getOkButton()), "OK button on Edit image window");
+        driver.findElement(getByObject(ProfilePage.getOkButton())).click();
+        wait.forElementToBeNotDisplayed(10, getByObject(ProfilePage.getOkButton()), "OK button on Edit image window");
+        wait.forAnyElementToBeDisplayed(10, "photo list", getByObject(getPhotoCardList()));
+    }
+
+    public void assertPhotoIsDisplayed() {
+        List<WebElement> photos = driver.findElements(getByObject(getPhotoCardList()));
+        assertEquals(2, photos.size());
+    }
+
+    public void openAlbumsPage() {
+        openWebPage(PropertiesLoader.getProperties("albumsUrl"));
+        wait.forElementToBeDisplayed(10, getByObject(getAlbumsButtonOnHomePage()), "Albums Button");
     }
 }
